@@ -277,279 +277,182 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 60vw;
-      max-height: 80vh;
-      overflow-y: auto;
-      background: rgba(11, 0, 20, 0.8); /* Semi-transparent ultravioleta */
+      width: 80%;
+      max-width: 600px;
+      background: rgba(11, 0, 20, 0.9); /* Ultravioleta semi-transparente */
       border: 2px solid var(--bugambilia-neon);
       border-radius: 15px;
       padding: 2rem;
-      z-index: 10000;
-      box-shadow: 0 0 50px var(--rosa-electrico);
+      box-shadow: 0 0 30px rgba(193, 59, 255, 0.6);
+      z-index: 20;
       color: var(--verde-acido);
       font-family: 'Roboto Slab', serif;
+      text-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
     }
-    .guestbook h2 {
-      font-family: 'Cinzel', serif;
-      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .guestbook .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: transparent;
-      border: none;
-      color: var(--rosa-electrico);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    .guestbook .close-btn:hover {
-      color: var(--naranja-volcanico);
-    }
-    /* Social media icons */
-    .social-icons {
-      position: absolute;
-      top: 2vh;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 1.5rem;
-      z-index: 10;
-    }
-    .social-icons a {
-      color: var(--verde-acido);
-      font-size: 1.8rem;
-      text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
-      transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
-    }
-    .social-icons a:hover {
-      color: var(--turquesa-cenote);
-      transform: scale(1.2);
-      text-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
-    }
-    /* Responsive adjustments for mobile */
-    @media screen and (max-width: 768px) {
-      .hanzel-logo {
-        font-size: 5rem;
-        letter-spacing: 6px;
-      }
-      .intro p {
-        font-size: 1.5rem;
-      }
-      .vertical-menu {
-        font-size: 1.2rem;
-        bottom: 3vh;
-        right: 3vw;
-      }
-      .music-player {
-        font-size: 1rem;
-        bottom: 3vh;
-        left: 3vw;
-      }
-      .est {
-        font-size: 0.8rem;
-      }
-      .chi-rho {
-        font-size: 0.8rem;
-      }
-      .social-icons {
-        gap: 1rem;
-      }
-      .social-icons a {
-        font-size: 1.5rem;
-      }
-      .guestbook {
-        width: 90vw;
-        padding: 1rem;
-      }
-      .guestbook h2 {
-        font-size: 1.5rem;
-      }
-    }
+    /* Estilos para el player pro (agregados) */
+    ul { list-style-type: none; padding: 0; }
+    li { cursor: pointer; padding: 10px; background: #fff; margin: 5px 0; border-radius: 5px; }
+    li:hover { background: #e0e0e0; }
+    li.active { font-weight: bold; background: #d0eaff; }
+    audio { width: 100%; max-width: 400px; margin: 10px 0; }
   </style>
 </head>
 <body>
-  <!-- Cursor psicodélico -->
-  <div class="cursor" id="cursor"></div>
+  <!-- Contenedor intro -->
   <div class="intro">
-    <div class="lava-container">
-      <svg style="display:none;">
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
-          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
-      </svg>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+    <div class="hanzel-logo">
+      <span style="--delay: 0s; --duration: 2s;">H</span>
+      <span style="--delay: 0.2s; --duration: 2.2s;">A</span>
+      <span style="--delay: 0.4s; --duration: 2.4s;">N</span>
+      <span style="--delay: 0.6s; --duration: 2.6s;">Z</span>
+      <span style="--delay: 0.8s; --duration: 2.8s;">E</span>
+      <span style="--delay: 1s; --duration: 3s;">L</span>
     </div>
-    <h1 class="hanzel-logo">HANZEL</h1>
-    <p>RESTABLECIENDO EL CANON</p>
-    <!-- Lista vertical agregada -->
-    <ul class="vertical-menu">
-      <li id="guestbook-link">guestbook</li>
-    </ul>
-    <!-- EST. 2006 -->
-    <div class="est">EST. 2006</div>
+    <p>poema complejo acerca del alma</p>
   </div>
+
+  <!-- Lista vertical en la parte inferior derecha -->
+  <ul class="vertical-menu">
+    <li onclick="showGuestbook()">Guestbook</li>
+    <!-- Agrega más opciones si las tienes -->
+  </ul>
+
+  <!-- Blobs de lava -->
+  <div class="lava-container">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+
+  <!-- EST. 2006 -->
+  <div class="est">EST. 2006</div>
+
   <!-- Símbolo Chi Rho -->
-  <div class="chi-rho">☧</div>
-  <!-- Mini music player -->
+  <div class="chi-rho">&#9767;</div>
+
+  <!-- Player pro integrado en el music-player -->
   <div class="music-player">
-    <span class="song-title" id="song-title">sin identidad</span>
-    <div class="buttons">
-      <button id="prev-btn"><i class="fas fa-backward"></i></button>
-      <button id="play-pause-btn"><i class="fas fa-play"></i></button>
-      <button id="next-btn"><i class="fas fa-forward"></i></button>
-    </div>
-    <audio id="audio-player" src="sin identidad.m4a"></audio>
+    <h2>Mi Playlist de Música 🚀</h2>
+    <audio id="player" controls></audio>  <!-- El player principal -->
+
+    <ul id="playlist">
+      <li data-src="montana_rusa.m4a">Montaña Rusa</li>
+      <li data-src="sin_identidad.m4a">Sin Identidad</li>
+      <!-- Agrega más canciones aquí si subes más, ej: <li data-src="nueva_cancion.m4a">Nueva Canción</li> -->
+    </ul>
   </div>
-  <!-- Guestbook section -->
-  <div class="guestbook" id="guestbook">
-    <button class="close-btn" id="close-guestbook">×</button>
+
+  <!-- Guestbook -->
+  <div class="guestbook">
+    <!-- Tu contenido del guestbook, ej: form o mensajes -->
     <h2>Guestbook</h2>
-    <!-- Utterances script for persistent comments -->
-    <script src="https://utteranc.es/client.js"
-      repo="hanzelconzeta/hanzelconzeta.github.io"  <!-- Reemplaza con tu repo -->
-      issue-number="1"  <!-- Reemplaza con el número de issue para el guestbook -->
-      label="guestbook"
-      theme="github-dark"  <!-- O elige otro tema como 'preferred-color-scheme' -->
-      crossorigin="anonymous"
-      async>
-    </script>
+    <p>Escribe algo aquí...</p>
+    <!-- Agrega tu form o lo que tengas -->
   </div>
-  <!-- Social media icons -->
-  <div class="social-icons">
-    <a href="https://www.youtube.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-    <a href="https://instagram.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9?si=N8NxSAolT_mo-quR65zBAg" target="_blank" rel="noopener noreferrer"><i class="fab fa-spotify"></i></a>
-    <a href="https://www.facebook.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-    <a href="https://x.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-  </div>
+
+  <!-- Script para el player pro -->
   <script>
-    // Cursor psicodélico
-    const cursor = document.getElementById('cursor');
+    const player = document.getElementById('player');
+    const playlist = document.getElementById('playlist');
+    const tracks = playlist.querySelectorAll('li');
+
+    // Función para reproducir una pista y resaltar
+    function playTrack(track) {
+      player.src = track.getAttribute('data-src');
+      player.play();
+      tracks.forEach(t => t.classList.remove('active'));
+      track.classList.add('active');
+    }
+
+    // Click en una canción
+    tracks.forEach(track => {
+      track.addEventListener('click', () => {
+        playTrack(track);
+      });
+    });
+
+    // Autoplay siguiente al terminar (opcional pero pro)
+    player.addEventListener('ended', () => {
+      const currentIndex = Array.from(tracks).findIndex(t => t.classList.contains('active'));
+      const nextIndex = (currentIndex + 1) % tracks.length;  // Vuelve al inicio si termina la última
+      playTrack(tracks[nextIndex]);
+    });
+
+    // Reproduce la primera automáticamente al cargar (opcional, quítalo si no quieres)
+    if (tracks.length > 0) {
+      playTrack(tracks[0]);
+    }
+  </script>
+
+  <!-- Script para efectos de cursor, ripples, trails, etc. (agrega tu código actual aquí si no lo tienes) -->
+  <script>
+    // Código para cursor
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor');
+    document.body.appendChild(cursor);
+
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+
+      // Trail
       const trail = document.createElement('div');
-      trail.className = 'cursor-trail';
-      trail.style.left = e.clientX + 'px';
-      trail.style.top = e.clientY + 'px';
-      // Colores trippy para la estela
-      const colors = ['var(--bugambilia-neon)', 'var(--rosa-electrico)', 'var(--naranja-volcanico)', 'var(--verde-acido)', 'var(--turquesa-cenote)', 'var(--dorado-luznegra)'];
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      trail.style.background = `radial-gradient(circle, ${randomColor}, transparent)`;
+      trail.classList.add('cursor-trail');
+      trail.style.left = `${e.clientX}px`;
+      trail.style.top = `${e.clientY}px`;
+      trail.style.backgroundColor = getComputedStyle(cursor).backgroundColor;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
-    // Detect hover on interactive elements
-    const interactiveElements = document.querySelectorAll('button, li, .close-btn, a');
-    interactiveElements.forEach(el => {
+
+    // Hover
+    document.querySelectorAll('a, button, li').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
-    // Animación al click (lanzar y pegar)
-    document.addEventListener('mousedown', () => cursor.classList.add('click'));
-    document.addEventListener('mouseup', () => cursor.classList.remove('click'));
-    // Efecto de agua: ripple on move (cada pocos movimientos para no sobrecargar)
-    let rippleThrottle = 0;
-    document.addEventListener('mousemove', (e) => {
-      rippleThrottle++;
-      if (rippleThrottle % 5 === 0) { // Cada 5 movimientos para performance
-        const ripple = document.createElement('div');
-        ripple.className = 'ripple';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top = e.clientY + 'px';
-        ripple.style.width = '2px';
-        ripple.style.height = '2px';
-        ripple.style.transform = 'translate(-50%, -50%)';
-        // Colores trippy para ripple
-        const rippleColors = ['var(--turquesa-cenote)', 'var(--verde-acido)', 'var(--rosa-electrico)'];
-        ripple.style.background = rippleColors[Math.floor(Math.random() * rippleColors.length)];
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 1000);
-      }
+
+    // Click for ripple and click animation
+    document.addEventListener('click', (e) => {
+      cursor.classList.add('click');
+      setTimeout(() => cursor.classList.remove('click'), 500);
+
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple');
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+      ripple.style.width = ripple.style.height = '50px';
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 1000);
     });
-    // Animación flotante para cada letra de HANZEL
-    const logo = document.querySelector('.hanzel-logo');
-    const text = logo.textContent;
-    logo.innerHTML = '';
-    const durations = [5, 6, 4.5, 5.5, 4, 6]; // Duraciones variadas para movimientos independientes
-    const delays = [0, 0.1, 0.2, 0.05, 0.15, 0.25]; // Delays más cortos para activación más rápida
-    text.split('').forEach((char, index) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.style.setProperty('--duration', `${durations[index]}s`);
-      span.style.setProperty('--delay', `${delays[index]}s`);
-      logo.appendChild(span);
-    });
-    // Mini music player logic
- const songs = [
-  { title: 'sin identidad', src: 'sinidentidad.m4a' },
-  { title: 'montaña rusa', src: 'montaña rusa.m4a' }
-];
-    let currentSongIndex = 0;
-    const audio = document.getElementById('audio-player');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const songTitle = document.getElementById('song-title');
-    // Placeholder para counter de canciones (no visible, no cuenta aún)
-    let songPlayCount = 0; // Activar más tarde
-    function loadSong(index) {
-      audio.src = songs[index].src;
-      songTitle.textContent = songs[index].title;
-      audio.load();
-      // No auto-play; remains paused until play button is clicked
-      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-    }
-    playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        // songPlayCount++; // Descomentar cuando se active
-      } else {
-        audio.pause();
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-      }
-    });
-    prevBtn.addEventListener('click', () => {
-      currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-      loadSong(currentSongIndex);
-    });
-    nextBtn.addEventListener('click', () => {
-      currentSongIndex = (currentSongIndex + 1) % songs.length;
-      loadSong(currentSongIndex);
-    });
-    audio.addEventListener('ended', () => {
-      nextBtn.click();
-    });
-    // Load initial song (paused)
-    loadSong(currentSongIndex);
-    // Guestbook logic
-    const guestbookLink = document.getElementById('guestbook-link');
-    const guestbook = document.getElementById('guestbook');
-    const closeGuestbook = document.getElementById('close-guestbook');
-    guestbookLink.addEventListener('click', () => {
-      guestbook.style.display = 'block';
-    });
-    closeGuestbook.addEventListener('click', () => {
-      guestbook.style.display = 'none';
-    });
-    // Placeholder para counter de visitas (no cuenta aún)
-    let visitCount = 0; // Activar más tarde, e.g., con backend o storage persistente
-    // Para activar: visitCount++; y mostrar en algún elemento
   </script>
+
+  <!-- Filtro para goo effect -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+    </filter>
+  </svg>
+
+  <!-- Script para mostrar guestbook (ejemplo) -->
+  <script>
+    function showGuestbook() {
+      document.querySelector('.guestbook').style.display = 'block';
+    }
+  </script>
+
 </body>
 </html>
