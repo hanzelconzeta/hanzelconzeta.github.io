@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HANZEL | poema complejo acerca del alma</title>
+  <title>HANZEL | RESTABLECIENDO EL CANON</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto+Slab:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -289,12 +289,10 @@
       font-family: 'Roboto Slab', serif;
       text-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
     }
-    /* Estilos para el player pro (agregados) */
-    ul { list-style-type: none; padding: 0; }
-    li { cursor: pointer; padding: 10px; background: #fff; margin: 5px 0; border-radius: 5px; }
-    li:hover { background: #e0e0e0; }
-    li.active { font-weight: bold; background: #d0eaff; }
-    audio { width: 100%; max-width: 400px; margin: 10px 0; }
+    /* Eliminamos fondos blancos para minimalismo */
+    button, .song-title {
+      background: transparent !important;
+    }
   </style>
 </head>
 <body>
@@ -308,7 +306,7 @@
       <span style="--delay: 0.8s; --duration: 2.8s;">E</span>
       <span style="--delay: 1s; --duration: 3s;">L</span>
     </div>
-    <p>poema complejo acerca del alma</p>
+    <p>RESTABLECIENDO EL CANON</p>
   </div>
 
   <!-- Lista vertical en la parte inferior derecha -->
@@ -342,16 +340,15 @@
   <!-- Símbolo Chi Rho -->
   <div class="chi-rho">&#9767;</div>
 
-  <!-- Player pro integrado en el music-player -->
+  <!-- Mini player con botones -->
   <div class="music-player">
-    <h2>Mi Playlist de Música 🚀</h2>
-    <audio id="player" controls></audio>  <!-- El player principal -->
-
-    <ul id="playlist">
-      <li data-src="monta%C3%B1a%20rusa.m4a">Montaña Rusa</li>
-      <li data-src="sin%20identidad.m4a">Sin Identidad</li>
-      <!-- Agrega más canciones aquí si subes más, ej: <li data-src="nueva_cancion.m4a">Nueva Canción</li> -->
-    </ul>
+    <span class="song-title" id="song-title">Montaña Rusa</span>
+    <div class="buttons">
+      <button id="prev"><i class="fas fa-backward"></i></button>
+      <button id="play-pause"><i class="fas fa-play"></i></button>
+      <button id="next"><i class="fas fa-forward"></i></button>
+    </div>
+    <audio id="player"></audio>
   </div>
 
   <!-- Guestbook -->
@@ -362,41 +359,65 @@
     <!-- Agrega tu form o lo que tengas -->
   </div>
 
-  <!-- Script para el player pro -->
+  <!-- Script para el mini player con botones -->
   <script>
     const player = document.getElementById('player');
-    const playlist = document.getElementById('playlist');
-    const tracks = playlist.querySelectorAll('li');
+    const playPauseBtn = document.getElementById('play-pause');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const songTitle = document.getElementById('song-title');
 
-    // Función para reproducir una pista y resaltar
-    function playTrack(track) {
-      player.src = track.getAttribute('data-src');
+    const songs = [
+      { src: 'montana_rusa.m4a', title: 'Montaña Rusa' },
+      { src: 'sin_identidad.m4a', title: 'Sin Identidad' }
+      // Agrega más { src: 'nueva.m4a', title: 'Nueva' } si subes más
+    ];
+    let currentIndex = 0;
+
+    function loadSong(index) {
+      player.src = songs[index].src;
+      songTitle.textContent = songs[index].title;
+      player.load();
+      // No autoplay para evitar bloqueos; usuario debe clickear play
+    }
+
+    function playPause() {
+      if (player.paused) {
+        player.play();
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        player.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    }
+
+    function prevSong() {
+      currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+      loadSong(currentIndex);
       player.play();
-      tracks.forEach(t => t.classList.remove('active'));
-      track.classList.add('active');
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
     }
 
-    // Click en una canción
-    tracks.forEach(track => {
-      track.addEventListener('click', () => {
-        playTrack(track);
-      });
-    });
-
-    // Autoplay siguiente al terminar (opcional pero pro)
-    player.addEventListener('ended', () => {
-      const currentIndex = Array.from(tracks).findIndex(t => t.classList.contains('active'));
-      const nextIndex = (currentIndex + 1) % tracks.length;  // Vuelve al inicio si termina la última
-      playTrack(tracks[nextIndex]);
-    });
-
-    // Reproduce la primera automáticamente al cargar (opcional, quítalo si no quieres)
-    if (tracks.length > 0) {
-      playTrack(tracks[0]);
+    function nextSong() {
+      currentIndex = (currentIndex + 1) % songs.length;
+      loadSong(currentIndex);
+      player.play();
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
     }
+
+    // Cargar primera canción (sin play automático)
+    loadSong(currentIndex);
+
+    // Eventos
+    playPauseBtn.addEventListener('click', playPause);
+    prevBtn.addEventListener('click', prevSong);
+    nextBtn.addEventListener('click', nextSong);
+
+    // Siguiente al terminar
+    player.addEventListener('ended', nextSong);
   </script>
 
-  <!-- Script para efectos de cursor, ripples, trails, etc. (agrega tu código actual aquí si no lo tienes) -->
+  <!-- Script para efectos de cursor, ripples, trails, etc. -->
   <script>
     // Código para cursor
     const cursor = document.createElement('div');
