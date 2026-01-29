@@ -140,6 +140,10 @@
       text-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
       color: var(--turquesa-cenote);
     }
+    .vertical-menu a {
+      color: inherit;
+      text-decoration: none;
+    }
     /* Blobs de lava */
     .lava-container {
       position: absolute;
@@ -345,10 +349,12 @@
     <p>poema complejo acerca del alma</p>
   </div>
 
-  <!-- Lista vertical en la parte inferior derecha -->
+  <!-- Lista vertical en la parte inferior derecha con redes sociales -->
   <ul class="vertical-menu">
     <li onclick="showGuestbook()">Guestbook</li>
-    <!-- Agrega más opciones si las tienes -->
+    <li><a href="https://www.instagram.com/hanzel.la.h/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+    <li><a href="https://www.facebook.com/hanzelconzeta/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+    <li><a href="https://x.com/poietez/" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
   </ul>
 
   <!-- Blobs de lava -->
@@ -387,12 +393,18 @@
     <audio id="player" preload="auto"></audio>
   </div>
 
-  <!-- Guestbook -->
+  <!-- Guestbook with Utterances -->
   <div class="guestbook">
-    <!-- Tu contenido del guestbook, ej: form o mensajes -->
     <h2>Guestbook</h2>
-    <p>Escribe algo aquí...</p>
-    <!-- Agrega tu form o lo que tengas -->
+    <p>Firma aquí y deja tu comentario. ¡Los comentarios anteriores se muestran abajo!</p>
+    <script src="https://utteranc.es/client.js"
+      repo="hanzelconzeta/hanzelconzeta.github.io"
+      issue-term="pathname"
+      label="guestbook"
+      theme="github-dark"
+      crossorigin="anonymous"
+      async>
+    </script>
   </div>
 
   <!-- Script para el mini player con botones -->
