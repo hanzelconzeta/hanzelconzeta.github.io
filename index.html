@@ -293,6 +293,57 @@
     button, .song-title {
       background: transparent !important;
     }
+    /* Responsive adjustments for mobile */
+    @media (max-width: 768px) {
+      .hanzel-logo {
+        font-size: 5rem; /* Reduce size to prevent wrapping */
+        letter-spacing: 6px;
+      }
+      .intro p {
+        font-size: 1.5rem; /* Smaller text for mobile */
+      }
+      .vertical-menu {
+        bottom: 3vh;
+        right: 3vw;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+      .music-player {
+        bottom: 3vh;
+        left: 3vw;
+        font-size: 1rem;
+        padding: 0.5rem;
+      }
+      .music-player button {
+        font-size: 1.2rem;
+      }
+      .est {
+        bottom: 1vh;
+        font-size: 1rem;
+      }
+      .chi-rho {
+        bottom: 1vh;
+        left: 1vw;
+        font-size: 1rem;
+      }
+      .blob {
+        width: 150px; /* Smaller blobs for mobile performance */
+        height: 150px;
+      }
+      .guestbook {
+        width: 90%;
+        padding: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hanzel-logo {
+        font-size: 3.5rem; /* Even smaller for very small screens */
+        letter-spacing: 4px;
+      }
+      .intro p {
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -348,7 +399,7 @@
       <button id="play-pause"><i class="fas fa-play"></i></button>
       <button id="next"><i class="fas fa-forward"></i></button>
     </div>
-    <audio id="player"></audio>
+    <audio id="player" preload="auto"></audio>
   </div>
 
   <!-- Guestbook -->
@@ -375,15 +426,17 @@
     let currentIndex = 0;
 
     function loadSong(index) {
-      player.src = songs[index].src;
-      songTitle.textContent = songs[index].title;
+      const song = songs[index];
+      player.innerHTML = `<source src="${song.src}" type="audio/mp4">`;
+      songTitle.textContent = song.title;
       player.load();
-      // No autoplay para evitar bloqueos; usuario debe clickear play
     }
 
     function playPause() {
       if (player.paused) {
-        player.play();
+        player.play().catch(error => {
+          console.error('Error playing audio:', error);
+        });
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
       } else {
         player.pause();
@@ -394,14 +447,18 @@
     function prevSong() {
       currentIndex = (currentIndex - 1 + songs.length) % songs.length;
       loadSong(currentIndex);
-      player.play();
+      player.play().catch(error => {
+        console.error('Error playing audio:', error);
+      });
       playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
     }
 
     function nextSong() {
       currentIndex = (currentIndex + 1) % songs.length;
       loadSong(currentIndex);
-      player.play();
+      player.play().catch(error => {
+        console.error('Error playing audio:', error);
+      });
       playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
     }
 
