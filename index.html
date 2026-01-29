@@ -140,10 +140,6 @@
       text-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
       color: var(--turquesa-cenote);
     }
-    .vertical-menu a {
-      color: inherit;
-      text-decoration: none;
-    }
     /* Blobs de lava */
     .lava-container {
       position: absolute;
@@ -333,9 +329,39 @@
         font-size: 1.2rem;
       }
     }
+    /* Social icons at top center */
+    .social-icons {
+      position: absolute;
+      top: 2vh;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1.5rem;
+      z-index: 20;
+    }
+    .social-icons a {
+      color: var(--verde-acido);
+      font-size: 1.8rem;
+      transition: color 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: var(--turquesa-cenote);
+      transform: scale(1.2);
+    }
   </style>
 </head>
 <body>
+  <!-- Social icons -->
+  <div class="social-icons">
+    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9?si=N8NxSAolT_mo-quR65zBAg" target="_blank"><i class="fab fa-spotify"></i></a>
+    <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.x.com/hanzelconzeta" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.tiktok.com/hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
+  </div>
+
   <!-- Contenedor intro -->
   <div class="intro">
     <div class="hanzel-logo">
@@ -346,15 +372,13 @@
       <span style="--delay: 0.8s; --duration: 2.8s;">E</span>
       <span style="--delay: 1s; --duration: 3s;">L</span>
     </div>
-    <p>poema complejo acerca del alma</p>
+    <p>RESTABLECIENDO EL CANON</p>
   </div>
 
-  <!-- Lista vertical en la parte inferior derecha con redes sociales -->
+  <!-- Lista vertical en la parte inferior derecha -->
   <ul class="vertical-menu">
     <li onclick="showGuestbook()">Guestbook</li>
-    <li><a href="https://www.instagram.com/hanzel.la.h/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-    <li><a href="https://www.facebook.com/hanzelconzeta/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-    <li><a href="https://x.com/poietez/" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+    <!-- Agrega más opciones si las tienes -->
   </ul>
 
   <!-- Blobs de lava -->
