@@ -270,53 +270,6 @@
     .music-player audio {
       display: none;
     }
-    /* Guestbook section - retro inspired with psychedelic style */
-    .guestbook {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80%;
-      max-width: 600px;
-      background: rgba(11, 0, 20, 0.9); /* Ultravioleta semi-transparente */
-      border: 2px solid var(--bugambilia-neon);
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 0 30px rgba(193, 59, 255, 0.6);
-      z-index: 20;
-      color: var(--verde-acido);
-      font-family: 'Roboto Slab', serif;
-      text-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
-    }
-    /* Estilos adicionales para el form del guestbook */
-    .guestbook input, .guestbook textarea {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--verde-acido);
-      color: var(--dorado-luznegra);
-      border-radius: 5px;
-    }
-    .guestbook button {
-      background: var(--bugambilia-neon);
-      color: var(--ultravioleta-cosmico);
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .guestbook button:hover {
-      background: var(--rosa-electrico);
-    }
-    .guestbook #commentsList div {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.5rem;
-      margin-top: 0.5rem;
-      border-radius: 5px;
-    }
     /* Estilos para el player pro (agregados) */
     ul { list-style-type: none; padding: 0; }
     li { cursor: pointer; padding: 10px; background: #fff; margin: 5px 0; border-radius: 5px; }
@@ -336,12 +289,11 @@
       <span style="--delay: 0.8s; --duration: 2.8s;">E</span>
       <span style="--delay: 1s; --duration: 3s;">L</span>
     </div>
-    <p>poema complejo acerca del alma</p>
+    <p>RESTABLECIENDO EL CANON</p>
   </div>
 
   <!-- Lista vertical en la parte inferior derecha -->
   <ul class="vertical-menu">
-    <li onclick="showGuestbook()">Guestbook</li>
     <!-- Agrega más opciones si las tienes -->
   </ul>
 
@@ -370,60 +322,82 @@
   <!-- Símbolo Chi Rho -->
   <div class="chi-rho">&#9767;</div>
 
-  <!-- Player pro integrado en el music-player -->
+  <!-- Player minimalista con botones -->
   <div class="music-player">
-    <audio id="player" controls></audio>  <!-- El player principal -->
+    <div class="buttons">
+      <button id="rewind"><i class="fas fa-backward"></i></button>
+      <button id="playPause"><i class="fas fa-play"></i></button>
+      <button id="forward"><i class="fas fa-forward"></i></button>
+    </div>
+    <audio id="player"></audio>  <!-- El player oculto -->
 
     <ul id="playlist">
-      <li data-src="montana_rusa.mp3">Montaña Rusa</li>
-      <li data-src="sin_identidad.mp3">Sin Identidad</li>
-      <!-- Agrega más canciones aquí si subes más, ej: <li data-src="nueva_cancion.mp3">Nueva Canción</li> -->
+      <li data-src="montana_rusa.mp3">montaña rusa</li>
+      <li data-src="me_hiciste_creer.mp3">me hiciste creer</li>
+      <!-- Agrega más canciones aquí si subes más, ej: <li data-src="nueva_cancion.mp3">nueva canción</li> -->
     </ul>
   </div>
 
-  <!-- Guestbook con form y lista de comentarios -->
-  <div class="guestbook">
-    <h2>Guestbook</h2>
-    <form id="commentForm">
-      <input type="text" id="name" placeholder="Tu nombre" required>
-      <textarea id="comment" placeholder="Escribe tu comentario..." required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="commentsList"></div>  <!-- Aquí se muestran los comentarios -->
-  </div>
-
-  <!-- Script para el player pro -->
+  <!-- Script para el player pro con botones minimalistas -->
   <script>
     const player = document.getElementById('player');
     const playlist = document.getElementById('playlist');
     const tracks = playlist.querySelectorAll('li');
+    const playPauseBtn = document.getElementById('playPause');
+    const rewindBtn = document.getElementById('rewind');
+    const forwardBtn = document.getElementById('forward');
+
+    let currentTrackIndex = 0;
+    let isPlaying = false;
 
     // Función para reproducir una pista y resaltar
-    function playTrack(track) {
-      player.src = track.getAttribute('data-src');
+    function playTrack(index) {
+      if (index < 0 || index >= tracks.length) return;
+      currentTrackIndex = index;
+      player.src = tracks[index].getAttribute('data-src');
       player.play();
+      isPlaying = true;
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
       tracks.forEach(t => t.classList.remove('active'));
-      track.classList.add('active');
+      tracks[index].classList.add('active');
     }
 
     // Click en una canción
-    tracks.forEach(track => {
+    tracks.forEach((track, index) => {
       track.addEventListener('click', () => {
-        playTrack(track);
+        playTrack(index);
       });
     });
 
-    // Autoplay siguiente al terminar (opcional pero pro)
-    player.addEventListener('ended', () => {
-      const currentIndex = Array.from(tracks).findIndex(t => t.classList.contains('active'));
-      const nextIndex = (currentIndex + 1) % tracks.length;  // Vuelve al inicio si termina la última
-      playTrack(tracks[nextIndex]);
+    // Play/Pause
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        player.pause();
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      } else {
+        player.play();
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }
     });
 
-    // Reproduce la primera automáticamente al cargar (opcional, quítalo si no quieres)
-    if (tracks.length > 0) {
-      playTrack(tracks[0]);
-    }
+    // Rewind (anterior)
+    rewindBtn.addEventListener('click', () => {
+      playTrack(currentTrackIndex - 1);
+    });
+
+    // Forward (siguiente)
+    forwardBtn.addEventListener('click', () => {
+      playTrack(currentTrackIndex + 1);
+    });
+
+    // Autoplay siguiente al terminar
+    player.addEventListener('ended', () => {
+      playTrack(currentTrackIndex + 1);
+    });
+
+    // No reproduce automáticamente al cargar
   </script>
 
   <!-- Script para efectos de cursor, ripples, trails, etc. -->
@@ -476,69 +450,6 @@
       <feComposite in="SourceGraphic" in2="goo" operator="atop" />
     </filter>
   </svg>
-
-  <!-- Script para Firebase y guestbook (usando sintaxis modular moderna) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-
-    // Tu config de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyDzkLe_DkH2JZdL7niw-CX-jurYZhfL6hA",
-      authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
-      projectId: "hanzelconzeta-bd17b",
-      storageBucket: "hanzelconzeta-bd17b.firebasestorage.app",
-      messagingSenderId: "855182658974",
-      appId: "1:855182658974:web:7dede44a589105053c1a8f",
-      measurementId: "G-Z9PM97EJL7"
-    };
-
-    // Inicializa Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Enviar comentario
-    const form = document.getElementById('commentForm');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const comment = document.getElementById('comment').value;
-
-      try {
-        await addDoc(collection(db, 'comments'), {
-          name: name,
-          comment: comment,
-          timestamp: serverTimestamp()
-        });
-        alert('¡Comentario enviado!');
-        form.reset();
-        loadComments();  // Recarga la lista
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    });
-
-    // Mostrar comentarios (ordenados por fecha)
-    async function loadComments() {
-      const commentsList = document.getElementById('commentsList');
-      commentsList.innerHTML = '';  // Limpia la lista
-
-      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const div = document.createElement('div');
-        div.innerHTML = `<strong>${data.name}:</strong> ${data.comment} <br><small>${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : 'Fecha no disponible'}</small><hr>`;
-        commentsList.appendChild(div);
-      });
-    }
-
-    // Función para mostrar guestbook y cargar comentarios
-    function showGuestbook() {
-      document.querySelector('.guestbook').style.display = 'block';
-      loadComments();  // Carga comentarios al abrir
-    }
-  </script>
 
 </body>
 </html>
