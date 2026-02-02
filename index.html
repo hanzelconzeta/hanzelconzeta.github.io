@@ -65,6 +65,21 @@
       50% { transform: translate(-50%, -50%) scale(1.2) rotate(10deg); } /* Expande y gira */
       100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
     }
+    /* Efecto de agua: ripples */
+    .ripple {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(0, 240, 255, 0.2); /* Turquesa semi-transparente */
+      pointer-events: none;
+      z-index: 9998;
+      animation: rippleEffect 1s ease-out forwards;
+    }
+    @keyframes rippleEffect {
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
     .cursor-trail {
       position: fixed;
       width: 10px;
@@ -124,7 +139,7 @@
       list-style: none;
       padding: 1rem;
       border-radius: 10px;
-      z-index: 20;
+      z-index: 10;
       font-size: 1.5rem;
       color: var(--verde-acido);
       text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
@@ -140,17 +155,13 @@
       text-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
       color: var(--turquesa-cenote);
     }
-    .vertical-menu a {
-      color: inherit;
-      text-decoration: none;
-    }
     /* Blobs de lava */
     .lava-container {
       position: absolute;
       inset: 0;
       filter: url(#goo);
       pointer-events: none;
-      z-index: 15; /* Delante de intro (10), detrás de player/guestbook/etc (20+) */
+      z-index: 5;
     }
     .blob {
       position: absolute;
@@ -202,7 +213,7 @@
       font-size: 1.2rem;
       font-weight: bold;
       opacity: 0.8;
-      z-index: 20;
+      z-index: 10;
       text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
     /* Símbolo Chi Rho en esquina inferior izquierda, un poco más grande con brillo místico */
@@ -213,7 +224,7 @@
       font-size: 1.2rem;
       color: var(--dorado-luznegra);
       opacity: 0.7;
-      z-index: 20;
+      z-index: 10;
       text-shadow: 0 0 15px var(--bugambilia-neon), 0 0 30px var(--rosa-electrico);
       animation: glow 3s ease-in-out infinite alternate;
     }
@@ -228,7 +239,7 @@
       background: transparent;
       padding: 0.8rem;
       border-radius: 20px;
-      z-index: 20;
+      z-index: 10;
       color: var(--verde-acido);
       font-size: 1.2rem;
       gap: 0.6rem;
@@ -273,100 +284,48 @@
       border-radius: 15px;
       padding: 2rem;
       box-shadow: 0 0 30px rgba(193, 59, 255, 0.6);
-      z-index: 30;
+      z-index: 20;
       color: var(--verde-acido);
       font-family: 'Roboto Slab', serif;
       text-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
-      text-align: center;
     }
-    /* Eliminamos fondos blancos para minimalismo */
-    button, .song-title {
-      background: transparent !important;
+    /* Estilos adicionales para el form del guestbook */
+    .guestbook input, .guestbook textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--verde-acido);
+      color: var(--dorado-luznegra);
+      border-radius: 5px;
     }
-    /* Responsive adjustments for mobile */
-    @media (max-width: 768px) {
-      .hanzel-logo {
-        font-size: 5rem; /* Reduce size to prevent wrapping */
-        letter-spacing: 6px;
-      }
-      .intro p {
-        font-size: 1.5rem; /* Smaller text for mobile */
-      }
-      .vertical-menu {
-        bottom: 3vh;
-        right: 3vw;
-        font-size: 1.2rem;
-        padding: 0.5rem;
-      }
-      .music-player {
-        bottom: 3vh;
-        left: 3vw;
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      .music-player button {
-        font-size: 1.2rem;
-      }
-      .est {
-        bottom: 1vh;
-        font-size: 1rem;
-      }
-      .chi-rho {
-        bottom: 1vh;
-        left: 1vw;
-        font-size: 1rem;
-      }
-      .blob {
-        width: 150px; /* Smaller blobs for mobile performance */
-        height: 150px;
-      }
-      .guestbook {
-        width: 90%;
-        padding: 1rem;
-      }
+    .guestbook button {
+      background: var(--bugambilia-neon);
+      color: var(--ultravioleta-cosmico);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
     }
-    @media (max-width: 480px) {
-      .hanzel-logo {
-        font-size: 3.5rem; /* Even smaller for very small screens */
-        letter-spacing: 4px;
-      }
-      .intro p {
-        font-size: 1.2rem;
-      }
+    .guestbook button:hover {
+      background: var(--rosa-electrico);
     }
-    /* Social icons at top center */
-    .social-icons {
-      position: absolute;
-      top: 2vh;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 1.5rem;
-      z-index: 20;
+    .guestbook #commentsList div {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 5px;
     }
-    .social-icons a {
-      color: var(--verde-acido);
-      font-size: 1.8rem;
-      transition: color 0.3s, transform 0.3s;
-      text-decoration: none;
-    }
-    .social-icons a:hover {
-      color: var(--turquesa-cenote);
-      transform: scale(1.2);
-    }
+    /* Estilos para el player pro (agregados) */
+    ul { list-style-type: none; padding: 0; }
+    li { cursor: pointer; padding: 10px; background: #fff; margin: 5px 0; border-radius: 5px; }
+    li:hover { background: #e0e0e0; }
+    li.active { font-weight: bold; background: #d0eaff; }
+    audio { width: 100%; max-width: 400px; margin: 10px 0; }
   </style>
 </head>
 <body>
-  <!-- Social icons -->
-  <div class="social-icons">
-    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9?si=N8NxSAolT_mo-quR65zBAg" target="_blank"><i class="fab fa-spotify"></i></a>
-    <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.x.com/hanzelconzeta" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.tiktok.com/hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
-  </div>
-
   <!-- Contenedor intro -->
   <div class="intro">
     <div class="hanzel-logo">
@@ -377,7 +336,7 @@
       <span style="--delay: 0.8s; --duration: 2.8s;">E</span>
       <span style="--delay: 1s; --duration: 3s;">L</span>
     </div>
-    <p>RESTABLECIENDO EL CANON</p>
+    <p>poema complejo acerca del alma</p>
   </div>
 
   <!-- Lista vertical en la parte inferior derecha -->
@@ -411,82 +370,64 @@
   <!-- Símbolo Chi Rho -->
   <div class="chi-rho">&#9767;</div>
 
-  <!-- Mini player con botones -->
+  <!-- Player pro integrado en el music-player -->
   <div class="music-player">
-    <span class="song-title" id="song-title">montaña rusa</span>
-    <div class="buttons">
-      <button id="prev"><i class="fas fa-backward"></i></button>
-      <button id="play-pause"><i class="fas fa-play"></i></button>
-      <button id="next"><i class="fas fa-forward"></i></button>
-    </div>
-    <audio id="player" preload="auto"></audio>
+    <h2>Mi Playlist de Música 🚀</h2>
+    <audio id="player" controls></audio>  <!-- El player principal -->
+
+    <ul id="playlist">
+      <li data-src="montana_rusa.m4a">Montaña Rusa</li>
+      <li data-src="sin_identidad.m4a">Sin Identidad</li>
+      <!-- Agrega más canciones aquí si subes más, ej: <li data-src="nueva_cancion.m4a">Nueva Canción</li> -->
+    </ul>
   </div>
 
-  <!-- Guestbook -->
+  <!-- Guestbook con form y lista de comentarios -->
   <div class="guestbook">
     <h2>Guestbook</h2>
-    <p>Próximamente</p>
+    <form id="commentForm">
+      <input type="text" id="name" placeholder="Tu nombre" required>
+      <textarea id="comment" placeholder="Escribe tu comentario..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="commentsList"></div>  <!-- Aquí se muestran los comentarios -->
   </div>
 
-  <!-- Script para el mini player con botones -->
+  <!-- Script para el player pro -->
   <script>
     const player = document.getElementById('player');
-    const playPauseBtn = document.getElementById('play-pause');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const songTitle = document.getElementById('song-title');
+    const playlist = document.getElementById('playlist');
+    const tracks = playlist.querySelectorAll('li');
 
-    const songs = [
-      { src: 'montana_rusa.mp3', title: 'montaña rusa' },
-      { src: 'me_hiciste_creer.mp3', title: 'me hiciste creer' }
-    ];
-    let currentIndex = 0;
-
-    function loadSong(index) {
-      player.src = songs[index].src;
-      songTitle.textContent = songs[index].title;
-      player.load();
-      console.log('Cargando canción: ' + songs[index].src);
+    // Función para reproducir una pista y resaltar
+    function playTrack(track) {
+      player.src = track.getAttribute('data-src');
+      player.play();
+      tracks.forEach(t => t.classList.remove('active'));
+      track.classList.add('active');
     }
 
-    function playPause() {
-      if (player.paused) {
-        player.play().then(() => {
-          console.log('Reproduciendo OK');
-        }).catch(error => {
-          console.error('Error al reproducir: ', error);
-        });
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      } else {
-        player.pause();
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-      }
+    // Click en una canción
+    tracks.forEach(track => {
+      track.addEventListener('click', () => {
+        playTrack(track);
+      });
+    });
+
+    // Autoplay siguiente al terminar (opcional pero pro)
+    player.addEventListener('ended', () => {
+      const currentIndex = Array.from(tracks).findIndex(t => t.classList.contains('active'));
+      const nextIndex = (currentIndex + 1) % tracks.length;  // Vuelve al inicio si termina la última
+      playTrack(tracks[nextIndex]);
+    });
+
+    // Reproduce la primera automáticamente al cargar (opcional, quítalo si no quieres)
+    if (tracks.length > 0) {
+      playTrack(tracks[0]);
     }
-
-    function prevSong() {
-      currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-      loadSong(currentIndex);
-      player.play().catch(error => console.error('Error prev: ', error));
-      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    }
-
-    function nextSong() {
-      currentIndex = (currentIndex + 1) % songs.length;
-      loadSong(currentIndex);
-      player.play().catch(error => console.error('Error next: ', error));
-      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    }
-
-    loadSong(currentIndex);
-
-    playPauseBtn.addEventListener('click', playPause);
-    prevBtn.addEventListener('click', prevSong);
-    nextBtn.addEventListener('click', nextSong);
-
-    player.addEventListener('ended', nextSong);
   </script>
 
-  <!-- Script para efectos de cursor, ripples, trails, etc. (sin ripple) -->
+  <!-- Script para efectos de cursor, ripples, trails, etc. -->
   <script>
     // Código para cursor
     const cursor = document.createElement('div');
@@ -513,10 +454,18 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
 
-    // Click animation (sin ripple)
+    // Click for ripple and click animation
     document.addEventListener('click', (e) => {
       cursor.classList.add('click');
       setTimeout(() => cursor.classList.remove('click'), 500);
+
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple');
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+      ripple.style.width = ripple.style.height = '50px';
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 1000);
     });
   </script>
 
@@ -529,10 +478,66 @@
     </filter>
   </svg>
 
-  <!-- Script para mostrar guestbook (ejemplo) -->
-  <script>
+  <!-- Script para Firebase y guestbook (usando sintaxis modular moderna) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+
+    // Tu config de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDzkLe_DkH2JZdL7niw-CX-jurYZhfL6hA",
+      authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
+      projectId: "hanzelconzeta-bd17b",
+      storageBucket: "hanzelconzeta-bd17b.firebasestorage.app",
+      messagingSenderId: "855182658974",
+      appId: "1:855182658974:web:7dede44a589105053c1a8f",
+      measurementId: "G-Z9PM97EJL7"
+    };
+
+    // Inicializa Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Enviar comentario
+    const form = document.getElementById('commentForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const comment = document.getElementById('comment').value;
+
+      try {
+        await addDoc(collection(db, 'comments'), {
+          name: name,
+          comment: comment,
+          timestamp: serverTimestamp()
+        });
+        alert('¡Comentario enviado!');
+        form.reset();
+        loadComments();  // Recarga la lista
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+
+    // Mostrar comentarios (ordenados por fecha)
+    async function loadComments() {
+      const commentsList = document.getElementById('commentsList');
+      commentsList.innerHTML = '';  // Limpia la lista
+
+      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${data.name}:</strong> ${data.comment} <br><small>${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : 'Fecha no disponible'}</small><hr>`;
+        commentsList.appendChild(div);
+      });
+    }
+
+    // Función para mostrar guestbook y cargar comentarios
     function showGuestbook() {
       document.querySelector('.guestbook').style.display = 'block';
+      loadComments();  // Carga comentarios al abrir
     }
   </script>
 
