@@ -113,7 +113,6 @@
       font-size: 10rem;
       letter-spacing: 12px;
       margin-bottom: 1rem;
-      white-space: nowrap; /* Prevent wrapping */
     }
     .hanzel-logo span {
       display: inline-block;
@@ -270,186 +269,347 @@
     .music-player audio {
       display: none;
     }
-    /* Estilos para el player pro (agregados) */
-    ul { list-style-type: none; padding: 0; }
-    li { cursor: pointer; padding: 10px; background: #fff; margin: 5px 0; border-radius: 5px; }
-    li:hover { background: #e0e0e0; }
-    li.active { font-weight: bold; background: #d0eaff; }
-    audio { width: 100%; max-width: 400px; margin: 10px 0; }
+    /* Guestbook section - retro inspired with psychedelic style */
+    .guestbook {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      max-height: 80vh;
+      overflow-y: auto;
+      background: rgba(11, 0, 20, 0.8); /* Semi-transparent ultravioleta */
+      border: 2px solid var(--bugambilia-neon);
+      border-radius: 15px;
+      padding: 2rem;
+      z-index: 10000;
+      box-shadow: 0 0 50px var(--rosa-electrico);
+      color: var(--verde-acido);
+      font-family: 'Roboto Slab', serif;
+    }
+    .guestbook h2 {
+      font-family: 'Cinzel', serif;
+      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .guestbook form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .guestbook input, .guestbook textarea {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--turquesa-cenote);
+      color: var(--dorado-luznegra);
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .guestbook button {
+      background: var(--bugambilia-neon);
+      border: none;
+      color: var(--ultravioleta-cosmico);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .guestbook button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--bugambilia-neon);
+    }
+    .guestbook .comments {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .guestbook .comment {
+      background: rgba(0, 255, 153, 0.1);
+      border: 1px solid var(--verde-acido);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+    }
+    .guestbook .comment .author {
+      font-weight: bold;
+      color: var(--turquesa-cenote);
+    }
+    .guestbook .comment .date {
+      font-size: 0.8rem;
+      color: var(--dorado-luznegra);
+      opacity: 0.7;
+    }
+    .guestbook .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      color: var(--rosa-electrico);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .guestbook .close-btn:hover {
+      color: var(--naranja-volcanico);
+    }
+    /* Social media icons */
+    .social-icons {
+      position: absolute;
+      top: 2vh;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1.5rem;
+      z-index: 10;
+    }
+    .social-icons a {
+      color: var(--verde-acido);
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+      transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+    }
+    .social-icons a:hover {
+      color: var(--turquesa-cenote);
+      transform: scale(1.2);
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+    }
   </style>
 </head>
 <body>
-  <!-- Contenedor intro -->
+  <!-- Cursor psicodélico -->
+  <div class="cursor" id="cursor"></div>
   <div class="intro">
-    <div class="hanzel-logo">
-      <span style="--delay: 0s; --duration: 2s;">H</span>
-      <span style="--delay: 0.2s; --duration: 2.2s;">A</span>
-      <span style="--delay: 0.4s; --duration: 2.4s;">N</span>
-      <span style="--delay: 0.6s; --duration: 2.6s;">Z</span>
-      <span style="--delay: 0.8s; --duration: 2.8s;">E</span>
-      <span style="--delay: 1s; --duration: 3s;">L</span>
+    <div class="lava-container">
+      <svg style="display:none;">
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </svg>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
+    <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
-  </div>
-
-  <!-- Lista vertical en la parte inferior derecha -->
-  <ul class="vertical-menu">
-    <!-- Agrega más opciones si las tienes -->
-  </ul>
-
-  <!-- Blobs de lava -->
-  <div class="lava-container">
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-  </div>
-
-  <!-- EST. 2006 -->
-  <div class="est">EST. 2006</div>
-
-  <!-- Símbolo Chi Rho -->
-  <div class="chi-rho">&#9767;</div>
-
-  <!-- Player minimalista con botones -->
-  <div class="music-player">
-    <div class="buttons">
-      <button id="rewind"><i class="fas fa-backward"></i></button>
-      <button id="playPause"><i class="fas fa-play"></i></button>
-      <button id="forward"><i class="fas fa-forward"></i></button>
-    </div>
-    <audio id="player"></audio>  <!-- El player oculto -->
-
-    <ul id="playlist">
-      <li data-src="montana_rusa.mp3">montaña rusa</li>
-      <li data-src="me_hiciste_creer.mp3">me hiciste creer</li>
-      <!-- Agrega más canciones aquí si subes más, ej: <li data-src="nueva_cancion.mp3">nueva canción</li> -->
+    <!-- Lista vertical agregada -->
+    <ul class="vertical-menu">
+      <li id="guestbook-link">guestbook</li>
     </ul>
+    <!-- EST. 2006 -->
+    <div class="est">EST. 2006</div>
+  </div>
+  <!-- Símbolo Chi Rho -->
+  <div class="chi-rho">☧</div>
+
+  <!-- Mini music player -->
+  <div class="music-player">
+    <span class="song-title" id="song-title">Sin Identidad</span>
+    <div class="buttons">
+      <button id="prev-btn">⏮</button>
+      <button id="play-pause-btn">▶</button>
+      <button id="next-btn">⏭</button>
+    </div>
+    <audio id="audio-player" src="sin_identidad.mp3"></audio>
   </div>
 
-  <!-- Script para el player pro con botones minimalistas -->
+  <!-- Guestbook section -->
+  <div class="guestbook" id="guestbook">
+    <button class="close-btn" id="close-guestbook">×</button>
+    <h2>Guestbook</h2>
+    <form id="guestbook-form">
+      <input type="text" id="name" placeholder="Tu nombre" required>
+      <textarea id="message" placeholder="Deja un mensaje..." required></textarea>
+      <button type="submit">Firmar</button>
+    </form>
+    <div class="comments" id="comments-list">
+      <!-- Comentarios se agregarán aquí dinámicamente -->
+    </div>
+  </div>
+
+  <!-- Social media icons -->
+  <div class="social-icons">
+    <a href="https://www.youtube.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+    <a href="https://instagram.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9?si=N8NxSAolT_mo-quR65zBAg" target="_blank" rel="noopener noreferrer"><i class="fab fa-spotify"></i></a>
+    <a href="https://www.facebook.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+    <a href="https://x.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+  </div>
+
   <script>
-    const player = document.getElementById('player');
-    const playlist = document.getElementById('playlist');
-    const tracks = playlist.querySelectorAll('li');
-    const playPauseBtn = document.getElementById('playPause');
-    const rewindBtn = document.getElementById('rewind');
-    const forwardBtn = document.getElementById('forward');
-
-    let currentTrackIndex = 0;
-    let isPlaying = false;
-
-    // Función para reproducir una pista y resaltar
-    function playTrack(index) {
-      if (index < 0 || index >= tracks.length) return;
-      currentTrackIndex = index;
-      player.src = tracks[index].getAttribute('data-src');
-      player.play();
-      isPlaying = true;
-      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      tracks.forEach(t => t.classList.remove('active'));
-      tracks[index].classList.add('active');
-    }
-
-    // Click en una canción
-    tracks.forEach((track, index) => {
-      track.addEventListener('click', () => {
-        playTrack(index);
-      });
-    });
-
-    // Play/Pause
-    playPauseBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        player.pause();
-        isPlaying = false;
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-      } else {
-        player.play();
-        isPlaying = true;
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      }
-    });
-
-    // Rewind (anterior)
-    rewindBtn.addEventListener('click', () => {
-      playTrack(currentTrackIndex - 1);
-    });
-
-    // Forward (siguiente)
-    forwardBtn.addEventListener('click', () => {
-      playTrack(currentTrackIndex + 1);
-    });
-
-    // Autoplay siguiente al terminar
-    player.addEventListener('ended', () => {
-      playTrack(currentTrackIndex + 1);
-    });
-
-    // No reproduce automáticamente al cargar
-  </script>
-
-  <!-- Script para efectos de cursor, ripples, trails, etc. -->
-  <script>
-    // Código para cursor
-    const cursor = document.createElement('div');
-    cursor.classList.add('cursor');
-    document.body.appendChild(cursor);
-
+    // Cursor psicodélico
+    const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-
-      // Trail
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
       const trail = document.createElement('div');
-      trail.classList.add('cursor-trail');
-      trail.style.left = `${e.clientX}px`;
-      trail.style.top = `${e.clientY}px`;
-      trail.style.backgroundColor = getComputedStyle(cursor).backgroundColor;
+      trail.className = 'cursor-trail';
+      trail.style.left = e.clientX + 'px';
+      trail.style.top = e.clientY + 'px';
+      // Colores trippy para la estela
+      const colors = ['var(--bugambilia-neon)', 'var(--rosa-electrico)', 'var(--naranja-volcanico)', 'var(--verde-acido)', 'var(--turquesa-cenote)', 'var(--dorado-luznegra)'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      trail.style.background = `radial-gradient(circle, ${randomColor}, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
 
-    // Hover
-    document.querySelectorAll('a, button, li').forEach(el => {
+    // Detect hover on interactive elements
+    const interactiveElements = document.querySelectorAll('button, li, .close-btn, a');
+    interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
 
-    // Click for ripple and click animation
-    document.addEventListener('click', (e) => {
-      cursor.classList.add('click');
-      setTimeout(() => cursor.classList.remove('click'), 500);
+    // Animación al click (lanzar y pegar)
+    document.addEventListener('mousedown', () => cursor.classList.add('click'));
+    document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
-      const ripple = document.createElement('div');
-      ripple.classList.add('ripple');
-      ripple.style.left = `${e.clientX}px`;
-      ripple.style.top = `${e.clientY}px`;
-      ripple.style.width = ripple.style.height = '50px';
-      document.body.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 1000);
+    // Efecto de agua: ripple on move (cada pocos movimientos para no sobrecargar)
+    let rippleThrottle = 0;
+    document.addEventListener('mousemove', (e) => {
+      rippleThrottle++;
+      if (rippleThrottle % 5 === 0) { // Cada 5 movimientos para performance
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        ripple.style.width = '2px';
+        ripple.style.height = '2px';
+        ripple.style.transform = 'translate(-50%, -50%)';
+        // Colores trippy para ripple
+        const rippleColors = ['var(--turquesa-cenote)', 'var(--verde-acido)', 'var(--rosa-electrico)'];
+        ripple.style.background = rippleColors[Math.floor(Math.random() * rippleColors.length)];
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 1000);
+      }
     });
+
+    // Animación flotante para cada letra de HANZEL
+    const logo = document.querySelector('.hanzel-logo');
+    const text = logo.textContent;
+    logo.innerHTML = '';
+    const durations = [5, 6, 4.5, 5.5, 4, 6]; // Duraciones variadas para movimientos independientes
+    const delays = [0, 0.1, 0.2, 0.05, 0.15, 0.25]; // Delays más cortos para activación más rápida
+    text.split('').forEach((char, index) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.setProperty('--duration', `${durations[index]}s`);
+      span.style.setProperty('--delay', `${delays[index]}s`);
+      logo.appendChild(span);
+    });
+
+    // Mini music player logic
+    const songs = [
+      { title: 'Sin Identidad', src: 'sin_identidad.mp3' },
+      { title: 'Montaña Rusa', src: 'montana_rusa.mp3' }
+    ];
+    let currentSongIndex = 0;
+    const audio = document.getElementById('audio-player');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const songTitle = document.getElementById('song-title');
+
+    // Placeholder para counter de canciones (no visible, no cuenta aún)
+    let songPlayCount = 0; // Activar más tarde
+
+    function loadSong(index) {
+      audio.src = songs[index].src;
+      songTitle.textContent = songs[index].title;
+      audio.load();
+      // No auto-play; remains paused until play button is clicked
+      playPauseBtn.textContent = '▶';
+    }
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = '❚❚';
+        // songPlayCount++; // Descomentar cuando se active
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = '▶';
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+      loadSong(currentSongIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentSongIndex = (currentSongIndex + 1) % songs.length;
+      loadSong(currentSongIndex);
+    });
+
+    audio.addEventListener('ended', () => {
+      nextBtn.click();
+    });
+
+    // Load initial song (paused)
+    loadSong(currentSongIndex);
+
+    // Guestbook logic
+    const guestbookLink = document.getElementById('guestbook-link');
+    const guestbook = document.getElementById('guestbook');
+    const closeGuestbook = document.getElementById('close-guestbook');
+    const guestbookForm = document.getElementById('guestbook-form');
+    const commentsList = document.getElementById('comments-list');
+
+    // No initial comments
+
+    function renderComments(comments) {
+      commentsList.innerHTML = '';
+      comments.forEach(comment => {
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `
+          <span class="author">${comment.name}</span>
+          <p>${comment.message}</p>
+          <span class="date">${comment.date}</span>
+        `;
+        commentsList.appendChild(div);
+      });
+    }
+
+    guestbookLink.addEventListener('click', () => {
+      guestbook.style.display = 'block';
+      renderComments([]); // Empty initially
+    });
+
+    closeGuestbook.addEventListener('click', () => {
+      guestbook.style.display = 'none';
+    });
+
+    guestbookForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const message = document.getElementById('message').value;
+      const date = new Date().toISOString().split('T')[0];
+      // In a real scenario, push to a persistent array or backend
+      // For now, since no backend, comments are lost on refresh
+      const newComment = { name, message, date };
+      // Simulate adding (but not persisting)
+      renderComments([newComment]); // Only show the new one for demo; adjust as needed
+      guestbookForm.reset();
+      // En un sitio real, aquí se enviaría a un backend
+    });
+
+    // Placeholder para counter de visitas (no cuenta aún)
+    let visitCount = 0; // Activar más tarde, e.g., con backend o storage persistente
+    // Para activar: visitCount++; y mostrar en algún elemento
   </script>
-
-  <!-- Filtro para goo effect -->
-  <svg style="position: absolute; width: 0; height: 0;">
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-    </filter>
-  </svg>
-
 </body>
 </html>
