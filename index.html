@@ -411,7 +411,6 @@
   </div>
   <!-- Símbolo Chi Rho -->
   <div class="chi-rho">☧</div>
-
   <!-- Mini music player -->
   <div class="music-player">
     <span class="song-title" id="song-title">me hiciste creer</span>
@@ -420,9 +419,8 @@
       <button id="play-pause-btn">▶</button>
       <button id="next-btn">⏭</button>
     </div>
-    <audio id="audio-player" src="me_hiciste_creer.mp3"></audio>
+    <audio id="audio-player"></audio>
   </div>
-
   <!-- Guestbook section -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
@@ -436,7 +434,6 @@
       <!-- Comentarios se agregarán aquí dinámicamente -->
     </div>
   </div>
-
   <!-- Social media icons -->
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
@@ -464,18 +461,15 @@
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
-
     // Detect hover on interactive elements
     const interactiveElements = document.querySelectorAll('button, li, .close-btn, a');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
-
     // Animación al click (lanzar y pegar)
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
-
     // Efecto de agua: ripple on move (cada pocos movimientos para no sobrecargar)
     let rippleThrottle = 0;
     document.addEventListener('mousemove', (e) => {
@@ -495,7 +489,6 @@
         setTimeout(() => ripple.remove(), 1000);
       }
     });
-
     // Animación flotante para cada letra de HANZEL
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
@@ -509,12 +502,13 @@
       span.style.setProperty('--delay', `${delays[index]}s`);
       logo.appendChild(span);
     });
-
     // Mini music player logic
     const songs = [
-      { title: 'me hiciste creer', src: 'me_hiciste_creer.mp3' },
+      { title: 'que dificil seria verte partir', src: 'que_dificil_seria_verte_partir.mp3' },
+      { title: 'te entrego hoy', src: 'te_entrego_hoy.mp3' },
       { title: 'montaña rusa', src: 'montana_rusa.mp3' },
-      { title: 'sin identidad', src: 'sin_identidad.mp3' }
+      { title: 'sin identidad', src: 'sin_identidad.mp3' },
+      { title: 'me hiciste creer', src: 'me_hiciste_creer.mp3' }
     ];
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
@@ -523,14 +517,10 @@
     const nextBtn = document.getElementById('next-btn');
     const songTitle = document.getElementById('song-title');
 
-    // Placeholder para counter de canciones (no visible, no cuenta aún)
-    let songPlayCount = 0; // Activar más tarde
-
     function loadSong(index) {
       audio.src = songs[index].src;
       songTitle.textContent = songs[index].title;
       audio.load();
-      // No auto-play; remains paused until play button is clicked
       playPauseBtn.textContent = '▶';
     }
 
@@ -538,7 +528,6 @@
       if (audio.paused) {
         audio.play();
         playPauseBtn.textContent = '❚❚';
-        // songPlayCount++; // Descomentar cuando se active
       } else {
         audio.pause();
         playPauseBtn.textContent = '▶';
@@ -569,8 +558,6 @@
     const guestbookForm = document.getElementById('guestbook-form');
     const commentsList = document.getElementById('comments-list');
 
-    // No initial comments
-
     function renderComments(comments) {
       commentsList.innerHTML = '';
       comments.forEach(comment => {
@@ -587,7 +574,7 @@
 
     guestbookLink.addEventListener('click', () => {
       guestbook.style.display = 'block';
-      renderComments([]); // Empty initially
+      renderComments([]);
     });
 
     closeGuestbook.addEventListener('click', () => {
@@ -599,18 +586,10 @@
       const name = document.getElementById('name').value;
       const message = document.getElementById('message').value;
       const date = new Date().toISOString().split('T')[0];
-      // In a real scenario, push to a persistent array or backend
-      // For now, since no backend, comments are lost on refresh
       const newComment = { name, message, date };
-      // Simulate adding (but not persisting)
-      renderComments([newComment]); // Only show the new one for demo; adjust as needed
+      renderComments([newComment]);
       guestbookForm.reset();
-      // En un sitio real, aquí se enviaría a un backend
     });
-
-    // Placeholder para counter de visitas (no cuenta aún)
-    let visitCount = 0; // Activar más tarde, e.g., con backend o storage persistente
-    // Para activar: visitCount++; y mostrar en algún elemento
   </script>
 </body>
 </html>
