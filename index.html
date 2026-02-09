@@ -421,16 +421,19 @@
     </div>
     <audio id="audio-player"></audio>
   </div>
-  <!-- Guestbook section -->
-  <div class="guestbook" id="guestbook">
-    <button class="close-btn" id="close-guestbook">×</button>
-    <h2>Guestbook</h2>
-    <form id="guestbook-form">
-      <input type="text" id="name" placeholder="Tu nombre" required>
-      <textarea id="message" placeholder="Deja un mensaje..." required></textarea>
-      <button type="submit">Firmar</button>
-    </form>
-    <div class="comments" id="comments-list">
+<!-- Guestbook -->
+<div class="guestbook" id="guestbook">
+  <button class="close-btn" id="close-guestbook">×</button>
+  <h2>Guestbook</h2>
+  
+  <form id="guestbook-form">
+    <input type="text" id="name" placeholder="Tu nombre" maxlength="50" required>
+    <textarea id="message" placeholder="Deja tu mensaje..." maxlength="500" required></textarea>
+    <button type="submit">Firmar el libro</button>
+  </form>
+
+  <div class="comments" id="comments-list"></div>
+</div>
       <!-- Comentarios se agregarán aquí dinámicamente -->
     </div>
   </div>
@@ -551,45 +554,83 @@
     // Load initial song (paused)
     loadSong(currentSongIndex);
 
-    // Guestbook logic
-    const guestbookLink = document.getElementById('guestbook-link');
-    const guestbook = document.getElementById('guestbook');
-    const closeGuestbook = document.getElementById('close-guestbook');
-    const guestbookForm = document.getElementById('guestbook-form');
-    const commentsList = document.getElementById('comments-list');
+   <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
-    function renderComments(comments) {
-      commentsList.innerHTML = '';
-      comments.forEach(comment => {
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.innerHTML = `
-          <span class="author">${comment.name}</span>
-          <p>${comment.message}</p>
-          <span class="date">${comment.date}</span>
-        `;
-        commentsList.appendChild(div);
+  const firebaseConfig = {
+    apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
+    authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
+    projectId: "hanzelconzeta-bd17b",
+    storageBucket: "hanzelconzeta-bd17b.firebasestorage.app",
+    messagingSenderId: "855182658974",
+    appId: "1:855182658974:web:7dede44a589105053c1a8f"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Abrir guestbook
+  document.getElementById('guestbook-link').addEventListener('click', () => {
+    document.getElementById('guestbook').style.display = 'block';
+    loadComments();
+  });
+
+  // Cerrar guestbook
+  document.getElementById('close-guestbook').addEventListener('click', () => {
+    document.getElementById('guestbook').style.display = 'none';
+  });
+
+  // Enviar comentario
+  document.getElementById('guestbook-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !message) return;
+
+    try {
+      await addDoc(collection(db, 'comments'), {
+        name: name,
+        message: message,
+        timestamp: serverTimestamp()
       });
+      alert('¡Gracias por firmar el guestbook!');
+      document.getElementById('guestbook-form').reset();
+      loadComments();
+    } catch (error) {
+      console.error(error);
+      alert('Hubo un error, intenta de nuevo.');
     }
+  });
 
-    guestbookLink.addEventListener('click', () => {
-      guestbook.style.display = 'block';
-      renderComments([]);
+  // Cargar comentarios
+  async function loadComments() {
+    const commentsList = document.getElementById('comments-list');
+    commentsList.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando mensajes...</p>';
+
+    const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+    const snapshot = await getDocs(q);
+
+    commentsList.innerHTML = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString('es-MX') : '';
+      
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.innerHTML = `
+        <span class="author">${data.name}</span>
+        <p>${data.message}</p>
+        <span class="date">${date}</span>
+      `;
+      commentsList.appendChild(div);
     });
 
-    closeGuestbook.addEventListener('click', () => {
-      guestbook.style.display = 'none';
-    });
-
-    guestbookForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const message = document.getElementById('message').value;
-      const date = new Date().toISOString().split('T')[0];
-      const newComment = { name, message, date };
-      renderComments([newComment]);
-      guestbookForm.reset();
-    });
-  </script>
+    if (snapshot.empty) {
+      commentsList.innerHTML = '<p style="text-align:center;opacity:0.6;">Aún no hay mensajes... ¡Sé el primero!</p>';
+    }
+  }
+</script>
 </body>
 </html>
