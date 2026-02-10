@@ -58,8 +58,16 @@
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:var(--bugambilia-neon); text-shadow:0 0 40px var(--bugambilia-neon); transform:translateX(20px) scale(1.1); }
 
-    .guestbook { position:fixed; top:50%; right:4vw; width:380px; max-height:82vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2rem; box-shadow:0 0 60px var(--rosa-electrico); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transform:translateY(-50%) translateX(100px); transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
+    /* GUESTBOOK – DERECHA (junto al ☧) */
+    .guestbook { 
+      position:fixed; top:50%; right:4vw; width:380px; max-height:82vh; overflow-y:auto;
+      background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; 
+      padding:2rem; box-shadow:0 0 60px var(--rosa-electrico); z-index:10000; color:var(--verde-acido);
+      opacity:0; visibility:hidden; transform:translateY(-50%) translateX(100px); 
+      transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); 
+    }
     .guestbook.active { opacity:1; visibility:visible; transform:translateY(-50%) translateX(0); }
+
     .guestbook h2 { font-size:1.9rem; text-align:center; margin-bottom:1.5rem; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     .guestbook input, .guestbook textarea { background:rgba(255,255,255,0.08); border:1px solid var(--turquesa-cenote); color:var(--dorado-luznegra); padding:0.85rem; border-radius:8px; font-size:1rem; }
     .guestbook button { background:var(--bugambilia-neon); border:none; color:var(--ultravioleta-cosmico); padding:0.85rem; border-radius:8px; font-weight:bold; cursor:pointer; transition:all .3s; }
@@ -123,6 +131,7 @@
   </div>
 
   <script>
+    /* Cursor + logo */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -211,9 +220,7 @@
       loadComments();
     });
 
-    document.getElementById('close-guestbook').addEventListener('click', () => {
-      guestbook.classList.remove('active');
-    });
+    document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
     document.addEventListener('click', e => {
       if (guestbook.classList.contains('active') && !guestbook.contains(e.target) && e.target.id !== 'guestbook-link') {
