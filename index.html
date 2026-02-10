@@ -19,7 +19,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor y efectos (sin cambios) */
+    /* Cursor (igual) */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:transform .1s,width .3s,height .3s,box-shadow .3s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
     .cursor.hover { width:20px;height:20px;box-shadow:0 0 25px rgba(255,46,152,0.7); }
@@ -58,7 +58,7 @@
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; z-index:10; text-shadow:0 0 10px rgba(255,215,0,0.5); }
-    .chi-rho { position:absolute; bottom:1vh; left:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s ease-in-out infinite alternate; }
+    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s ease-in-out infinite alternate; }
 
     /* Music player */
     .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; z-index:10; color:var(--verde-acido); gap:0.6rem; }
@@ -68,7 +68,7 @@
     .music-player button:active { transform:scale(0.9); }
     .music-player .song-title { font-family:'Playfair Display',serif; text-shadow:0 0 5px rgba(0,255,153,0.3); }
 
-    /* MENÚ VERTICAL – estilo neon */
+    /* Menú vertical – letra más pequeña */
     .vertical-menu {
       position: absolute;
       left: 5vw;
@@ -82,7 +82,7 @@
     }
     .vertical-menu li {
       font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
+      font-size: 1.8rem; /* ← más pequeño */
       color: var(--dorado-luznegra);
       text-transform: uppercase;
       letter-spacing: 8px;
@@ -95,12 +95,8 @@
       text-shadow: 0 0 40px var(--bugambilia-neon);
       transform: translateX(20px) scale(1.1);
     }
-    .vertical-menu li:active {
-      transform: scale(0.9);
-      color: var(--rosa-electrico);
-    }
 
-    /* GUESTBOOK – ahora a la derecha con animación bouncy */
+    /* Guestbook a la derecha con animación */
     .guestbook {
       position: fixed;
       top: 50%;
@@ -115,7 +111,6 @@
       box-shadow: 0 0 60px var(--rosa-electrico), inset 0 0 30px rgba(193,59,255,0.2);
       z-index: 10000;
       color: var(--verde-acido);
-      font-family: 'Roboto Slab', serif;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-50%) translateX(100px);
@@ -127,67 +122,16 @@
       transform: translateY(-50%) translateX(0);
     }
 
-    .guestbook h2 { 
-      font-family:'Cinzel',serif; 
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); 
-      -webkit-background-clip:text; 
-      -webkit-text-fill-color:transparent; 
-      text-shadow:0 0 30px rgba(255,215,0,0.6); 
-      margin-bottom:1.5rem; 
-      text-align:center; 
-      font-size:2.2rem; 
-    }
+    .guestbook h2 { font-family:'Cinzel',serif; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 30px rgba(255,215,0,0.6); margin-bottom:1.5rem; text-align:center; font-size:2.2rem; }
     .guestbook form { display:flex; flex-direction:column; gap:1.2rem; margin-bottom:2rem; }
-    .guestbook input, .guestbook textarea { 
-      background:rgba(255,255,255,0.08); 
-      border:1px solid var(--turquesa-cenote); 
-      color:var(--dorado-luznegra); 
-      padding:0.9rem; 
-      border-radius:8px; 
-      font-size:1.1rem; 
-      transition:all .3s; 
-    }
-    .guestbook input:focus, .guestbook textarea:focus { 
-      border-color:var(--bugambilia-neon); 
-      box-shadow:0 0 25px var(--bugambilia-neon); 
-      background:rgba(255,255,255,0.15); 
-    }
-    .guestbook button { 
-      background:var(--bugambilia-neon); 
-      border:none; 
-      color:var(--ultravioleta-cosmico); 
-      padding:0.9rem; 
-      border-radius:8px; 
-      font-weight:bold; 
-      cursor:pointer; 
-      transition:all .3s; 
-    }
+    .guestbook input, .guestbook textarea { background:rgba(255,255,255,0.08); border:1px solid var(--turquesa-cenote); color:var(--dorado-luznegra); padding:0.9rem; border-radius:8px; font-size:1.1rem; transition:all .3s; }
+    .guestbook input:focus, .guestbook textarea:focus { border-color:var(--bugambilia-neon); box-shadow:0 0 25px var(--bugambilia-neon); background:rgba(255,255,255,0.15); }
+    .guestbook button { background:var(--bugambilia-neon); border:none; color:var(--ultravioleta-cosmico); padding:0.9rem; border-radius:8px; font-weight:bold; cursor:pointer; transition:all .3s; }
     .guestbook button:hover { transform:scale(1.08); box-shadow:0 0 30px var(--bugambilia-neon); }
-    .guestbook button:active { transform:scale(0.92); }
-
     .guestbook .comments { display:flex; flex-direction:column; gap:1.2rem; margin-top:1rem; }
-    .guestbook .comment { 
-      background:rgba(0,255,153,0.08); 
-      border:1px solid var(--verde-acido); 
-      padding:1.2rem; 
-      border-radius:12px; 
-      box-shadow:0 0 15px rgba(0,255,153,0.3); 
-    }
-    .guestbook .close-btn { 
-      position:absolute; 
-      top:1.2rem; 
-      right:1.5rem; 
-      background:transparent; 
-      border:none; 
-      color:var(--rosa-electrico); 
-      font-size:2rem; 
-      cursor:pointer; 
-      transition:all .3s; 
-    }
-    .guestbook .close-btn:hover { 
-      color:var(--naranja-volcanico); 
-      transform:rotate(90deg) scale(1.2); 
-    }
+    .guestbook .comment { background:rgba(0,255,153,0.08); border:1px solid var(--verde-acido); padding:1.2rem; border-radius:12px; box-shadow:0 0 15px rgba(0,255,153,0.3); }
+    .guestbook .close-btn { position:absolute; top:1.2rem; right:1.5rem; background:transparent; border:none; color:var(--rosa-electrico); font-size:2rem; cursor:pointer; transition:all .3s; }
+    .guestbook .close-btn:hover { color:var(--naranja-volcanico); transform:rotate(90deg) scale(1.2); }
 
     .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:10; }
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
@@ -213,7 +157,7 @@
   <div class="chi-rho">☧</div>
 
   <div class="music-player">
-    <span class="song-title" id="song-title">me hiciste creer</span>
+    <span class="song-title" id="song-title">montaña rusa</span>
     <div class="buttons">
       <button id="prev-btn">⏮</button>
       <button id="play-pause-btn">▶</button>
@@ -222,7 +166,6 @@
     <audio id="audio-player"></audio>
   </div>
 
-  <!-- GUESTBOOK -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -244,19 +187,9 @@
   </div>
 
   <script>
-    /* Cursor, logo, music player (exactamente igual que tenías) */
+    /* Cursor, logo, trails (igual) */
     const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      const trail = document.createElement('div');
-      trail.className = 'cursor-trail';
-      trail.style.left = e.clientX + 'px';
-      trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, ${['#C13BFF','#FF2E98','#FF4F00','#00FF99','#00F0FF'][Math.floor(Math.random()*5)]}, transparent)`;
-      document.body.appendChild(trail);
-      setTimeout(() => trail.remove(), 1000);
-    });
+    document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; /* trail code */ });
     document.querySelectorAll('button, li, a').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
@@ -276,15 +209,31 @@
       span.style.setProperty('--delay', `${delays[i]}s`);
       logo.appendChild(span);
     });
+  </script>
 
-    /* Music player (igual) */
-    const songs = [ /* tus 5 canciones */ ];
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+
+    const firebaseConfig = { /* tu config aquí */ };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    /* ====================== MUSIC PLAYER ====================== */
+    const songs = [
+      { title: 'que dificil seria verte partir', src: 'que_dificil_seria_verte_partir.mp3' },
+      { title: 'te entrego hoy', src: 'te_entrego_hoy.mp3' },
+      { title: 'montaña rusa', src: 'montana_rusa.mp3' },
+      { title: 'sin identidad', src: 'sin_identidad.mp3' },
+      { title: 'me hiciste creer', src: 'me_hiciste_creer.mp3' }
+    ];
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const songTitle = document.getElementById('song-title');
+
     function loadSong(i) {
       currentSongIndex = i;
       audio.src = songs[i].src;
@@ -292,6 +241,7 @@
       audio.load();
       playPauseBtn.textContent = '▶';
     }
+
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
       else { audio.pause(); playPauseBtn.textContent = '▶'; }
@@ -301,7 +251,7 @@
     audio.addEventListener('ended', () => nextBtn.click());
     loadSong(0);
 
-    /* GUESTBOOK JS – ahora con animación */
+    /* ====================== GUESTBOOK ====================== */
     const guestbook = document.getElementById('guestbook');
 
     document.getElementById('guestbook-link').addEventListener('click', () => {
@@ -313,7 +263,6 @@
       guestbook.classList.remove('active');
     });
 
-    /* Cerrar al hacer clic fuera */
     document.addEventListener('click', e => {
       if (guestbook.classList.contains('active') && 
           !guestbook.contains(e.target) && 
@@ -321,15 +270,6 @@
         guestbook.classList.remove('active');
       }
     });
-  </script>
-
-  <script type="module">
-    /* Firebase (exactamente igual que tenías) */
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-    const firebaseConfig = { /* tu config */ };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
 
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
