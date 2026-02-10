@@ -19,9 +19,10 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
+    /* Cursor y efectos (todo igual) */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:transform .1s,width .3s,height .3s,box-shadow .3s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
-    .cursor.hover { width:20px;height:20px;box-shadow:0 0 25px rgba(255,46,152,0.7); }
+    .cursor.hover { width:20px; height:20px; box-shadow:0 0 25px rgba(255,46,152,0.7); }
     .cursor.click { animation:launch-stick .5s ease-out; }
     @keyframes launch-stick { 0%{transform:translate(-50%,-50%)scale(1)} 50%{transform:translate(-50%,-50%)scale(1.2)rotate(10deg)} 100%{transform:translate(-50%,-50%)scale(1)rotate(0)} }
 
@@ -32,11 +33,13 @@
     @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
     @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
+    /* Intro y logo */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size:10rem; letter-spacing:12px; margin-bottom:1rem; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 40px rgba(255,215,0,0.7); animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
     .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size:2rem; margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
 
+    /* Lava blobs */
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.7; animation:lava-move 40s infinite ease-in-out alternate; }
     @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
@@ -60,8 +63,11 @@
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; z-index:10; text-shadow:0 0 10px rgba(255,215,0,0.5); }
+
+    /* CHI RHO EN LA ESQUINA INFERIOR DERECHA */
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s ease-in-out infinite alternate; }
 
+    /* Music player */
     .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; z-index:10; color:var(--verde-acido); gap:0.6rem; }
     .music-player .buttons { display:flex; gap:0.6rem; }
     .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:color .3s,transform .2s; }
@@ -69,7 +75,7 @@
     .music-player button:active { transform:scale(0.9); }
     .music-player .song-title { font-family:'Playfair Display',serif; text-shadow:0 0 5px rgba(0,255,153,0.3); }
 
-    /* GUESTBOOK EN EL LADO DERECHO */
+    /* GUESTBOOK EN EL LADO DERECHO CON TODO SU ESTILO ORIGINAL */
     .guestbook {
       display:none;
       position:fixed;
@@ -86,14 +92,24 @@
       z-index:10000;
       box-shadow:0 0 50px var(--rosa-electrico);
       color:var(--verde-acido);
+      font-family:'Roboto Slab',serif;
     }
-    .guestbook h2 { font-family:'Cinzel',serif; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:1rem; text-align:center; }
+    .guestbook h2 { font-family:'Cinzel',serif; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 20px rgba(255,215,0,0.5); margin-bottom:1rem; text-align:center; }
     .guestbook form { display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem; }
-    .guestbook input, .guestbook textarea { background:rgba(255,255,255,0.1); border:1px solid var(--turquesa-cenote); color:var(--dorado-luznegra); padding:0.5rem; border-radius:5px; }
-    .guestbook button { background:var(--bugambilia-neon); border:none; color:var(--ultravioleta-cosmico); padding:0.5rem 1rem; border-radius:5px; cursor:pointer; }
+    .guestbook input, .guestbook textarea { background:rgba(255,255,255,0.1); border:1px solid var(--turquesa-cenote); color:var(--dorado-luznegra); padding:0.5rem; border-radius:5px; font-size:1rem; }
+    .guestbook button { background:var(--bugambilia-neon); border:none; color:var(--ultravioleta-cosmico); padding:0.5rem 1rem; border-radius:5px; cursor:pointer; transition:transform 0.3s,box-shadow 0.3s; }
+    .guestbook button:hover { transform:scale(1.05); box-shadow:0 0 20px var(--bugambilia-neon); }
     .guestbook .comments { display:flex; flex-direction:column; gap:1rem; }
-    .guestbook .comment { background:rgba(0,255,153,0.1); border:1px solid var(--verde-acido); padding:1rem; border-radius:10px; }
-    .guestbook .close-btn { position:absolute; top:1rem; right:1rem; background:transparent; border:none; color:var(--rosa-electrico); font-size:1.5rem; cursor:pointer; }
+    .guestbook .comment { background:rgba(0,255,153,0.1); border:1px solid var(--verde-acido); padding:1rem; border-radius:10px; box-shadow:0 0 10px rgba(0,255,153,0.3); }
+    .guestbook .comment .author { font-weight:bold; color:var(--turquesa-cenote); }
+    .guestbook .comment .date { font-size:0.8rem; color:var(--dorado-luznegra); opacity:0.7; }
+    .guestbook .close-btn { position:absolute; top:1rem; right:1rem; background:transparent; border:none; color:var(--rosa-electrico); font-size:1.5rem; cursor:pointer; transition:color 0.3s; }
+    .guestbook .close-btn:hover { color:var(--naranja-volcanico); }
+
+    /* Social icons */
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:10; }
+    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
+    .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
   </style>
 </head>
 <body>
@@ -125,7 +141,7 @@
     <audio id="audio-player"></audio>
   </div>
 
-  <!-- GUESTBOOK (ahora a la derecha) -->
+  <!-- Guestbook a la derecha con todo su estilo -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -146,9 +162,8 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Scripts -->
+  <!-- Scripts (cursor, logo, música, Firebase) -->
   <script>
-    /* Cursor completo */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -161,14 +176,13 @@
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
-    document.querySelectorAll('button, li, a').forEach(el => {
+    document.querySelectorAll('button, li, a, .guestbook').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
-    /* Logo flotante */
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -182,7 +196,6 @@
       logo.appendChild(span);
     });
 
-    /* Music Player */
     const songs = [
       { title: 'que dificil seria verte partir', src: 'que_dificil_seria_verte_partir.mp3' },
       { title: 'te entrego hoy', src: 'te_entrego_hoy.mp3' },
@@ -216,7 +229,6 @@
     loadSong(0);
   </script>
 
-  <!-- Firebase Guestbook -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
