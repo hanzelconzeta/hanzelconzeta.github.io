@@ -19,28 +19,56 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor */
+    /* Cursor y efectos (sin cambios) */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:transform .1s,width .3s,height .3s,box-shadow .3s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
     .cursor.hover { width:20px;height:20px;box-shadow:0 0 25px rgba(255,46,152,0.7); }
     .cursor.click { animation:launch-stick .5s ease-out; }
     @keyframes launch-stick { 0%{transform:translate(-50%,-50%)scale(1)} 50%{transform:translate(-50%,-50%)scale(1.2)rotate(10deg)} 100%{transform:translate(-50%,-50%)scale(1)rotate(0)} }
-
-    /* Lava blobs */
-    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.7; animation:lava-move 40s infinite ease-in-out alternate; }
-    @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
-    /* (todos los .blob:nth-child igual que antes) */
-    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
-    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
-    /* ... (los demás blobs igual que en tu código original) ... */
+    .cursor-trail { position:fixed; width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;animation:fadeOut 1s forwards,pulse .5s infinite alternate; }
+    @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
+    @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size:10rem; letter-spacing:12px; margin-bottom:1rem; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 40px rgba(255,215,0,0.7); animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
     .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size:2rem; margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
 
-    /* MENÚ VERTICAL (ahora con estilo neon) */
+    /* Lava blobs (igual) */
+    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
+    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.7; animation:lava-move 40s infinite ease-in-out alternate; }
+    @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
+    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
+    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
+    .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
+    .blob:nth-child(4){left:35%;bottom:-120px;animation-duration:45s;animation-delay:15s;}
+    .blob:nth-child(5){left:45%;bottom:-180px;animation-duration:40s;animation-delay:3s;}
+    .blob:nth-child(6){left:55%;bottom:-140px;animation-duration:43s;animation-delay:8s;}
+    .blob:nth-child(7){left:65%;bottom:-220px;animation-duration:37s;animation-delay:13s;}
+    .blob:nth-child(8){left:75%;bottom:-160px;animation-duration:41s;animation-delay:18s;}
+    .blob:nth-child(9){left:85%;bottom:-190px;animation-duration:39s;animation-delay:20s;}
+    .blob:nth-child(10){left:95%;bottom:-130px;animation-duration:44s;animation-delay:22s;}
+    .blob:nth-child(11){left:10%;bottom:-250px;animation-duration:36s;animation-delay:1s;}
+    .blob:nth-child(12){left:20%;bottom:-170px;animation-duration:46s;animation-delay:7s;}
+    .blob:nth-child(13){left:40%;bottom:-210px;animation-duration:39s;animation-delay:11s;}
+    .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
+    .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
+
+    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
+    @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
+
+    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; z-index:10; text-shadow:0 0 10px rgba(255,215,0,0.5); }
+    .chi-rho { position:absolute; bottom:1vh; left:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s ease-in-out infinite alternate; }
+
+    /* Music player */
+    .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; z-index:10; color:var(--verde-acido); gap:0.6rem; }
+    .music-player .buttons { display:flex; gap:0.6rem; }
+    .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:color .3s,transform .2s; }
+    .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
+    .music-player button:active { transform:scale(0.9); }
+    .music-player .song-title { font-family:'Playfair Display',serif; text-shadow:0 0 5px rgba(0,255,153,0.3); }
+
+    /* MENÚ VERTICAL – estilo neon */
     .vertical-menu {
       position: absolute;
       left: 5vw;
@@ -72,14 +100,6 @@
       color: var(--rosa-electrico);
     }
 
-    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; z-index:10; text-shadow:0 0 10px rgba(255,215,0,0.5); }
-    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s ease-in-out infinite alternate; }
-
-    /* Music player */
-    .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; z-index:10; color:var(--verde-acido); gap:0.6rem; }
-    .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:color .3s,transform .2s; }
-    .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
-
     /* GUESTBOOK – ahora a la derecha con animación bouncy */
     .guestbook {
       position: fixed;
@@ -107,25 +127,71 @@
       transform: translateY(-50%) translateX(0);
     }
 
-    .guestbook h2 { font-family:'Cinzel',serif; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 30px rgba(255,215,0,0.6); margin-bottom:1.5rem; text-align:center; font-size:2.2rem; }
+    .guestbook h2 { 
+      font-family:'Cinzel',serif; 
+      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); 
+      -webkit-background-clip:text; 
+      -webkit-text-fill-color:transparent; 
+      text-shadow:0 0 30px rgba(255,215,0,0.6); 
+      margin-bottom:1.5rem; 
+      text-align:center; 
+      font-size:2.2rem; 
+    }
     .guestbook form { display:flex; flex-direction:column; gap:1.2rem; margin-bottom:2rem; }
-    .guestbook input, .guestbook textarea { background:rgba(255,255,255,0.08); border:1px solid var(--turquesa-cenote); color:var(--dorado-luznegra); padding:0.9rem; border-radius:8px; font-size:1.1rem; transition:all .3s; }
-    .guestbook input:focus, .guestbook textarea:focus { border-color:var(--bugambilia-neon); box-shadow:0 0 25px var(--bugambilia-neon); background:rgba(255,255,255,0.15); }
-    .guestbook button { background:var(--bugambilia-neon); border:none; color:var(--ultravioleta-cosmico); padding:0.9rem; border-radius:8px; font-weight:bold; cursor:pointer; transition:all .3s; }
+    .guestbook input, .guestbook textarea { 
+      background:rgba(255,255,255,0.08); 
+      border:1px solid var(--turquesa-cenote); 
+      color:var(--dorado-luznegra); 
+      padding:0.9rem; 
+      border-radius:8px; 
+      font-size:1.1rem; 
+      transition:all .3s; 
+    }
+    .guestbook input:focus, .guestbook textarea:focus { 
+      border-color:var(--bugambilia-neon); 
+      box-shadow:0 0 25px var(--bugambilia-neon); 
+      background:rgba(255,255,255,0.15); 
+    }
+    .guestbook button { 
+      background:var(--bugambilia-neon); 
+      border:none; 
+      color:var(--ultravioleta-cosmico); 
+      padding:0.9rem; 
+      border-radius:8px; 
+      font-weight:bold; 
+      cursor:pointer; 
+      transition:all .3s; 
+    }
     .guestbook button:hover { transform:scale(1.08); box-shadow:0 0 30px var(--bugambilia-neon); }
     .guestbook button:active { transform:scale(0.92); }
 
     .guestbook .comments { display:flex; flex-direction:column; gap:1.2rem; margin-top:1rem; }
-    .guestbook .comment { background:rgba(0,255,153,0.08); border:1px solid var(--verde-acido); padding:1.2rem; border-radius:12px; box-shadow:0 0 15px rgba(0,255,153,0.3); }
-    .guestbook .close-btn { position:absolute; top:1.2rem; right:1.5rem; background:transparent; border:none; color:var(--rosa-electrico); font-size:2rem; cursor:pointer; transition:all .3s; }
-    .guestbook .close-btn:hover { color:var(--naranja-volcanico); transform:rotate(90deg) scale(1.2); }
+    .guestbook .comment { 
+      background:rgba(0,255,153,0.08); 
+      border:1px solid var(--verde-acido); 
+      padding:1.2rem; 
+      border-radius:12px; 
+      box-shadow:0 0 15px rgba(0,255,153,0.3); 
+    }
+    .guestbook .close-btn { 
+      position:absolute; 
+      top:1.2rem; 
+      right:1.5rem; 
+      background:transparent; 
+      border:none; 
+      color:var(--rosa-electrico); 
+      font-size:2rem; 
+      cursor:pointer; 
+      transition:all .3s; 
+    }
+    .guestbook .close-btn:hover { 
+      color:var(--naranja-volcanico); 
+      transform:rotate(90deg) scale(1.2); 
+    }
 
     .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:10; }
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-
-    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
-    @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
 <body>
@@ -134,19 +200,13 @@
   <div class="intro">
     <div class="lava-container">
       <svg style="display:none;"><filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></svg>
-      <!-- todos tus blobs aquí (copia los 15 blobs de tu código original) -->
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
-
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
-    
-    <ul class="vertical-menu">
-      <li id="guestbook-link">guestbook</li>
-    </ul>
-
+    <ul class="vertical-menu"><li id="guestbook-link">guestbook</li></ul>
     <div class="est">EST. 2006</div>
   </div>
 
@@ -183,9 +243,8 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Scripts -->
   <script>
-    /* Cursor (igual) */
+    /* Cursor, logo, music player (exactamente igual que tenías) */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -205,7 +264,6 @@
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
-    /* Logo flotante (igual) */
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -220,10 +278,30 @@
     });
 
     /* Music player (igual) */
-    const songs = [ /* tus canciones */ ];
-    /* ... (todo el código del music player igual que antes) ... */
+    const songs = [ /* tus 5 canciones */ ];
+    let currentSongIndex = 0;
+    const audio = document.getElementById('audio-player');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const songTitle = document.getElementById('song-title');
+    function loadSong(i) {
+      currentSongIndex = i;
+      audio.src = songs[i].src;
+      songTitle.textContent = songs[i].title;
+      audio.load();
+      playPauseBtn.textContent = '▶';
+    }
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
+      else { audio.pause(); playPauseBtn.textContent = '▶'; }
+    });
+    prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + songs.length) % songs.length));
+    nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % songs.length));
+    audio.addEventListener('ended', () => nextBtn.click());
+    loadSong(0);
 
-    /* GUESTBOOK JS */
+    /* GUESTBOOK JS – ahora con animación */
     const guestbook = document.getElementById('guestbook');
 
     document.getElementById('guestbook-link').addEventListener('click', () => {
@@ -235,7 +313,7 @@
       guestbook.classList.remove('active');
     });
 
-    /* Clic fuera para cerrar */
+    /* Cerrar al hacer clic fuera */
     document.addEventListener('click', e => {
       if (guestbook.classList.contains('active') && 
           !guestbook.contains(e.target) && 
@@ -243,12 +321,45 @@
         guestbook.classList.remove('active');
       }
     });
-
-    /* Firebase (todo igual que antes) */
-    /* ... (pega aquí todo tu script de Firebase) ... */
   </script>
-</body>
-</html>
+
+  <script type="module">
+    /* Firebase (exactamente igual que tenías) */
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+    const firebaseConfig = { /* tu config */ };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    document.getElementById('guestbook-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !message) return;
+      try {
+        await addDoc(collection(db, 'comments'), { name, message, timestamp: serverTimestamp() });
+        alert('¡Gracias por firmar el guestbook!');
+        document.getElementById('guestbook-form').reset();
+        loadComments();
+      } catch(err) { alert('Error al enviar'); }
+    });
+
+    async function loadComments() {
+      const list = document.getElementById('comments-list');
+      list.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando...</p>';
+      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+      const snapshot = await getDocs(q);
+      list.innerHTML = '';
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
+        list.appendChild(div);
+      });
+      if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
+    }
   </script>
 </body>
 </html>
