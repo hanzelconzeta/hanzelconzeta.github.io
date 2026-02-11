@@ -7,29 +7,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto+Slab:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    :root { 
-      --ultravioleta-cosmico:#0B0014; 
-      --bugambilia-neon:#C13BFF; 
-      --rosa-electrico:#FF2E98; 
-      --naranja-volcanico:#FF4F00; 
-      --verde-acido:#00FF99; 
-      --turquesa-cenote:#00F0FF; 
-      --dorado-luznegra:#FFD700; 
-    }
+    :root { --ultravioleta-cosmico:#0B0014; --bugambilia-neon:#C13BFF; --rosa-electrico:#FF2E98; --naranja-volcanico:#FF4F00; --verde-acido:#00FF99; --turquesa-cenote:#00F0FF; --dorado-luznegra:#FFD700; }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor (igual) */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:transform .1s,width .3s,height .3s,box-shadow .3s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
     .cursor.hover { width:20px;height:20px;box-shadow:0 0 25px rgba(255,46,152,0.7); }
     .cursor.click { animation:launch-stick .5s ease-out; }
     @keyframes launch-stick { 0%{transform:translate(-50%,-50%)scale(1)} 50%{transform:translate(-50%,-50%)scale(1.2)rotate(10deg)} 100%{transform:translate(-50%,-50%)scale(1)rotate(0)} }
     .cursor-trail { position:fixed; width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;animation:fadeOut 1s forwards,pulse .5s infinite alternate; }
-    @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} } 
-    @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
+    @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} } @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
-    /* Resto de estilos (lava, logo, etc.) igual */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size:10rem; letter-spacing:12px; margin-bottom:1rem; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
@@ -62,98 +51,31 @@
     .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
     .music-player button:active { transform:scale(0.9); }
 
-    /* MENÚ VERTICAL – IZQUIERDA + MÁS ABAJO */
-    .vertical-menu { 
-      position:absolute; 
-      left:5vw; 
-      top:58vh; 
-      transform:translateY(-50%); 
-      list-style:none; 
-      display:flex; 
-      flex-direction:column; 
-      gap:2.8rem; 
-      z-index:20; 
-    }
-    .vertical-menu li { 
-      font-family:'Cinzel',serif; 
-      font-size:1.75rem; 
-      color:var(--dorado-luznegra); 
-      text-transform:uppercase; 
-      letter-spacing:6px; 
-      cursor:pointer; 
-      opacity:0.75; 
-      transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
-    }
-    .vertical-menu li:hover { 
-      color:var(--bugambilia-neon); 
-      text-shadow:0 0 40px var(--bugambilia-neon); 
-      transform:translateX(20px) scale(1.1); 
-    }
+    /* MENÚ VERTICAL - IZQUIERDA */
+    .vertical-menu { position:absolute; left:5vw; top:58vh; transform:translateY(-50%); list-style:none; display:flex; flex-direction:column; gap:2.8rem; z-index:20; }
+    .vertical-menu li { font-family:'Cinzel',serif; font-size:1.75rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
+    .vertical-menu li:hover { color:var(--bugambilia-neon); text-shadow:0 0 40px var(--bugambilia-neon); transform:translateX(20px) scale(1.1); }
 
-    /* GUESTBOOK – DERECHA + MÁS ABAJO + COLOR AZUL */
+    /* GUESTBOOK - DERECHA + AZUL */
     .guestbook {
-      position:fixed;
-      top:48vh;
-      right:5vw;
-      width:400px;
-      max-height:78vh;
-      overflow-y:auto;
-      background:rgba(11,0,20,0.95);
-      border:2px solid var(--bugambilia-neon);
-      border-radius:20px;
-      padding:2.2rem 2rem 2rem;
-      box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 30px rgba(0,240,255,0.15);
-      z-index:10000;
-      color:var(--verde-acido);
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(-50%) translateX(80px) scale(0.95);
+      position:fixed; top:48vh; right:5vw; width:400px; max-height:78vh; overflow-y:auto;
+      background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px;
+      padding:2.2rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico); z-index:10000; color:var(--verde-acido);
+      opacity:0; visibility:hidden; transform:translateY(-50%) translateX(80px) scale(0.95);
       transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275);
     }
-    .guestbook.active {
-      opacity:1;
-      visibility:visible;
-      transform:translateY(-50%) translateX(0) scale(1);
-    }
-    .guestbook h2 { 
-      font-size:1.9rem; 
-      text-align:center; 
-      margin-bottom:1.5rem; 
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); 
-      -webkit-background-clip:text; 
-      -webkit-text-fill-color:transparent; 
-    }
-    .guestbook input, .guestbook textarea { 
-      background:rgba(255,255,255,0.08); 
-      border:1px solid var(--turquesa-cenote); 
-      color:var(--dorado-luznegra); 
-      padding:0.85rem; 
-      border-radius:8px; 
-      font-size:1rem; 
-    }
+    .guestbook.active { opacity:1; visibility:visible; transform:translateY(-50%) translateX(0) scale(1); }
+    .guestbook h2 { font-size:1.9rem; text-align:center; margin-bottom:1.5rem; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .guestbook input, .guestbook textarea { background:rgba(255,255,255,0.08); border:1px solid var(--turquesa-cenote); color:var(--dorado-luznegra); padding:0.85rem; border-radius:8px; font-size:1rem; }
     .guestbook button { 
-      background:var(--turquesa-cenote); /* ← AZUL */
-      border:none; 
-      color:var(--ultravioleta-cosmico); 
-      padding:0.9rem; 
-      border-radius:8px; 
-      font-weight:bold; 
-      cursor:pointer; 
-      transition:all .3s; 
+      background:var(--turquesa-cenote); /* AZUL */
+      border:none; color:var(--ultravioleta-cosmico); padding:0.9rem; border-radius:8px; font-weight:bold; cursor:pointer; transition:all .3s; 
     }
-    .guestbook button:hover { 
-      transform:scale(1.08); 
-      box-shadow:0 0 30px var(--turquesa-cenote); 
-    }
-    .guestbook button:active { 
-      transform:scale(0.92); 
-    }
+    .guestbook button:hover { transform:scale(1.08); box-shadow:0 0 30px var(--turquesa-cenote); }
+    .guestbook button:active { transform:scale(0.92); }
     .guestbook .comments { display:flex; flex-direction:column; gap:1rem; margin-top:1rem; }
     .guestbook .comment { background:rgba(0,255,153,0.08); border:1px solid var(--verde-acido); padding:1rem; border-radius:12px; }
-    .guestbook .close-btn { 
-      position:absolute; top:1rem; right:1.5rem; background:transparent; border:none; 
-      color:var(--rosa-electrico); font-size:2rem; cursor:pointer; 
-    }
+    .guestbook .close-btn { position:absolute; top:1rem; right:1.5rem; background:transparent; border:none; color:var(--rosa-electrico); font-size:2rem; cursor:pointer; }
     .guestbook .close-btn:hover { color:var(--naranja-volcanico); transform:rotate(90deg) scale(1.2); }
 
     .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:10; }
@@ -162,7 +84,6 @@
   </style>
 </head>
 <body>
-  <!-- HTML igual -->
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -208,7 +129,7 @@
   </div>
 
   <script>
-    /* Cursor + logo (igual) */
+    /* Cursor + logo */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -245,13 +166,46 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-    const firebaseConfig = { /* tu config igual */ };
+    const firebaseConfig = {
+      apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
+      authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
+      projectId: "hanzelconzeta-bd17b",
+      storageBucket: "hanzelconzeta-bd17b.firebasestorage.app",
+      messagingSenderId: "855182658974",
+      appId: "1:855182658974:web:7dede44a589105053c1a8f"
+    };
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    /* Music player (igual) */
-    const songs = [ /* tus canciones */ ];
-    /* ... (todo el music player igual) ... */
+    /* MUSIC PLAYER */
+    const songs = [
+      { title: 'montaña rusa', src: 'montana_rusa.mp3' },
+      { title: 'que dificil seria verte partir', src: 'que_dificil_seria_verte_partir.mp3' },
+      { title: 'te entrego hoy', src: 'te_entrego_hoy.mp3' },
+      { title: 'sin identidad', src: 'sin_identidad.mp3' },
+      { title: 'me hiciste creer', src: 'me_hiciste_creer.mp3' }
+    ];
+    let currentSongIndex = 0;
+    const audio = document.getElementById('audio-player');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const songTitle = document.getElementById('song-title');
+    function loadSong(i) {
+      currentSongIndex = i;
+      audio.src = songs[i].src;
+      songTitle.textContent = songs[i].title;
+      audio.load();
+      playPauseBtn.textContent = '▶';
+    }
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
+      else { audio.pause(); playPauseBtn.textContent = '▶'; }
+    });
+    prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + songs.length) % songs.length));
+    nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % songs.length));
+    audio.addEventListener('ended', () => nextBtn.click());
+    loadSong(0);
 
     /* GUESTBOOK */
     const guestbook = document.getElementById('guestbook');
@@ -271,9 +225,35 @@
       if (e.key === "Escape" && guestbook.classList.contains('active')) guestbook.classList.remove('active');
     });
 
-    /* Form y comentarios (igual) */
-    document.getElementById('guestbook-form').addEventListener('submit', async e => { /* igual */ });
-    async function loadComments() { /* igual */ }
+    document.getElementById('guestbook-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !message) return;
+      try {
+        await addDoc(collection(db, 'comments'), { name, message, timestamp: serverTimestamp() });
+        alert('¡Gracias por firmar el guestbook!');
+        document.getElementById('guestbook-form').reset();
+        loadComments();
+      } catch(err) { alert('Error al enviar'); }
+    });
+
+    async function loadComments() {
+      const list = document.getElementById('comments-list');
+      list.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando...</p>';
+      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+      const snapshot = await getDocs(q);
+      list.innerHTML = '';
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
+        list.appendChild(div);
+      });
+      if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
+    }
   </script>
 </body>
 </html>
