@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor, intro, guestbook, música... (todo igual) */
+    /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
@@ -31,12 +31,12 @@
     @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
     @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
+    /* Intro y lava */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
     .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size: clamp(1.4rem, 5vw, 2rem); margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
 
-    /* Lava container + goo filter (efecto adhesión) */
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
 
     .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
@@ -59,7 +59,17 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    .est, .chi-rho, .music-player, .vertical-menu, .social-icons { z-index:20; } /* texto siempre por encima */
+    /* Elementos de texto siempre por encima */
+    .est, .chi-rho, .music-player, .vertical-menu, .social-icons { z-index:25 !important; }
+
+    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; text-shadow:0 0 10px rgba(255,215,0,0.5); }
+    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s infinite alternate; }
+    .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; color:var(--verde-acido); gap:0.6rem; }
+    .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:all .3s; }
+    .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
+    .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; }
+    .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
+    .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
 
     /* Guestbook y social (sin cambios) */
     .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
@@ -81,7 +91,7 @@
     .guestbook .comment p { color:var(--dorado-luznegra); line-height:1.55; }
     .guestbook .comment .date { font-size:0.82rem; color:var(--verde-acido); opacity:0.75; position:absolute; bottom:0.7rem; right:1.2rem; }
 
-    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:20; }
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; }
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
 
@@ -91,12 +101,14 @@
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
 
       .lava-container { 
-        z-index:8; 
-        filter:url(#goo-mobile) !important; /* efecto goo MÁS FUERTE en celular */
+        z-index:5; 
+        filter:url(#goo-mobile) !important; /* goo más fuerte en celular */
       }
 
       .blob { 
-        width:165px; height:165px; opacity:0.88;
+        width:165px; 
+        height:165px; 
+        opacity:0.95; /* más opacidad */
         background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%);
       }
       .blob:nth-child(n+7) { display:none; }
@@ -120,10 +132,10 @@
       .blob:nth-child(5){left:68%; bottom:-76px;}
       .blob:nth-child(6){left:84%; bottom:-91px;}
 
+      .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
       .music-player button { font-size:1.8rem; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
       .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
-      .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
       .est { font-size:1rem; bottom:4vh; }
       .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
       .social-icons { top:3.5vh; gap:1.2rem; }
@@ -148,7 +160,7 @@
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
         <filter id="goo-mobile">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="45" result="blur"/> <!-- más fuerte en celular -->
+          <feGaussianBlur in="SourceGraphic" stdDeviation="48" result="blur"/> <!-- goo más fuerte en celular -->
           <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
@@ -193,7 +205,6 @@
 
   <!-- Scripts sin cambios -->
   <script>
-    /* Cursor + logo (igual) */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -228,7 +239,6 @@
   </script>
 
   <script type="module">
-    /* Firebase, música y guestbook (sin cambios) */
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
     
