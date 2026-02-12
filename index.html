@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor */
+    /* Cursor, intro, guestbook... (todo igual) */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
@@ -31,7 +31,6 @@
     @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
     @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
-    /* Intro y lava (desktop) */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
@@ -40,7 +39,6 @@
     .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
     @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
 
-    /* Posiciones desktop (8 blobs) */
     .blob:nth-child(1){left:8%;bottom:-90px;animation-duration:37s;}
     .blob:nth-child(2){left:19%;bottom:-125px;animation-duration:41s;animation-delay:4s;}
     .blob:nth-child(3){left:31%;bottom:-105px;animation-duration:34s;animation-delay:9s;}
@@ -59,7 +57,7 @@
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
 
-    /* ==================== GUESTBOOK (completo) ==================== */
+    /* Guestbook completo (sin cambios) */
     .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
     .guestbook.show, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
     .guestbook .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
@@ -83,43 +81,41 @@
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
 
-    /* ==================== MOBILE / TABLET (BLOBS AJUSTADAS) ==================== */
+    /* ==================== MOBILE ==================== */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
 
-      .lava-container { z-index:15; } /* lava pasa por delante del texto */
+      .lava-container { z-index:15; }
 
       .blob { 
-        width:165px; 
-        height:165px; 
-        opacity:0.88;
+        width:165px; height:165px; opacity:0.88;
         background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%);
       }
-
-      /* Solo 6 blobs para que quede limpio */
       .blob:nth-child(n+7) { display:none; }
 
-      /* Animación más lenta y suave (32 segundos) */
+      /* MOVIMIENTO ORGÁNICO Y FLUIDO EN CELULAR */
       @keyframes lava-move-mobile {
-        0%   { transform: translateY(0) scale(1) rotate(0); }
-        50%  { transform: translateY(-72vh) scale(1.65) rotate(90deg); }
-        100% { transform: translateY(0) scale(1) rotate(0); }
+        0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+        25%  { transform: translate(18px, -32vh) scale(1.22) rotate(38deg); }
+        50%  { transform: translate(-14px, -71vh) scale(1.68) rotate(105deg); }
+        75%  { transform: translate(22px, -48vh) scale(1.38) rotate(72deg); }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); }
       }
-      .blob { animation: lava-move-mobile 32s infinite ease-in-out alternate !important; }
+      .blob { animation: lava-move-mobile 31s infinite ease-in-out alternate !important; }
 
-      /* Posiciones más espaciadas */
-      .blob:nth-child(1){left:7%;bottom:-75px;animation-duration:32s;}
-      .blob:nth-child(2){left:22%;bottom:-95px;animation-duration:29s;animation-delay:4s;}
-      .blob:nth-child(3){left:38%;bottom:-82px;animation-duration:34s;animation-delay:8s;}
-      .blob:nth-child(4){left:53%;bottom:-105px;animation-duration:31s;animation-delay:2s;}
-      .blob:nth-child(5){left:69%;bottom:-78px;animation-duration:33s;animation-delay:6s;}
-      .blob:nth-child(6){left:83%;bottom:-92px;animation-duration:30s;animation-delay:10s;}
+      /* Posiciones y ritmos diferentes para cada blob */
+      .blob:nth-child(1){left:6%; bottom:-72px; animation-duration:31s;}
+      .blob:nth-child(2){left:21%; bottom:-98px; animation-duration:28s; animation-delay:3.5s;}
+      .blob:nth-child(3){left:37%; bottom:-79px; animation-duration:33s; animation-delay:7s;}
+      .blob:nth-child(4){left:52%; bottom:-104px; animation-duration:29s; animation-delay:1.8s;}
+      .blob:nth-child(5){left:68%; bottom:-76px; animation-duration:32s; animation-delay:5.5s;}
+      .blob:nth-child(6){left:84%; bottom:-91px; animation-duration:30s; animation-delay:9.2s;}
 
+      .music-player button { font-size:1.8rem; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
       .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
       .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
-      .music-player button { font-size:1.8rem; }
       .est { font-size:1rem; bottom:4vh; }
       .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
       .social-icons { top:3.5vh; gap:1.2rem; }
@@ -138,12 +134,8 @@
   <div class="intro">
     <div class="lava-container">
       <svg style="display:none;"><filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></svg>
-      <div class="blob"></div>
-      <div class="blob"></div>
-      <div class="blob"></div>
-      <div class="blob"></div>
-      <div class="blob"></div>
-      <div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
@@ -154,9 +146,9 @@
   <div class="music-player">
     <span class="song-title" id="song-title">montaña rusa</span>
     <div class="buttons">
-      <button id="prev-btn">⏮</button>
+      <button id="prev-btn"><i class="fas fa-backward"></i></button>
       <button id="play-pause-btn">▶</button>
-      <button id="next-btn">⏭</button>
+      <button id="next-btn"><i class="fas fa-forward"></i></button>
     </div>
     <audio id="audio-player"></audio>
   </div>
@@ -179,7 +171,7 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Scripts completos -->
+  <!-- Scripts (sin cambios) -->
   <script>
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
