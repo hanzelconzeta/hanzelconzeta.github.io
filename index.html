@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor, intro, guestbook... (todo igual) */
+    /* Cursor, intro, guestbook, música, etc. (todo igual) */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
@@ -39,15 +39,6 @@
     .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
     @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
 
-    .blob:nth-child(1){left:8%;bottom:-90px;animation-duration:37s;}
-    .blob:nth-child(2){left:19%;bottom:-125px;animation-duration:41s;animation-delay:4s;}
-    .blob:nth-child(3){left:31%;bottom:-105px;animation-duration:34s;animation-delay:9s;}
-    .blob:nth-child(4){left:46%;bottom:-140px;animation-duration:39s;animation-delay:2s;}
-    .blob:nth-child(5){left:59%;bottom:-95px;animation-duration:36s;animation-delay:7s;}
-    .blob:nth-child(6){left:72%;bottom:-120px;animation-duration:42s;animation-delay:5s;}
-    .blob:nth-child(7){left:81%;bottom:-110px;animation-duration:38s;animation-delay:11s;}
-    .blob:nth-child(8){left:90%;bottom:-130px;animation-duration:40s;animation-delay:3s;}
-
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; z-index:10; text-shadow:0 0 10px rgba(255,215,0,0.5); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s infinite alternate; }
     .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; z-index:10; color:var(--verde-acido); gap:0.6rem; }
@@ -57,7 +48,7 @@
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
 
-    /* Guestbook completo (sin cambios) */
+    /* Guestbook (sin cambios) */
     .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
     .guestbook.show, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
     .guestbook .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
@@ -81,7 +72,7 @@
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
 
-    /* ==================== MOBILE ==================== */
+    /* ==================== MOBILE - BLOBS CON MOVIMIENTO ORGÁNICO ==================== */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
@@ -89,28 +80,50 @@
       .lava-container { z-index:15; }
 
       .blob { 
-        width:165px; height:165px; opacity:0.88;
+        width:165px; 
+        height:165px; 
+        opacity:0.88;
         background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%);
       }
       .blob:nth-child(n+7) { display:none; }
 
-      /* MOVIMIENTO ORGÁNICO Y FLUIDO EN CELULAR */
-      @keyframes lava-move-mobile {
+      /* 3 ANIMACIONES DIFERENTES PARA QUE NO SE MUEVAN JUNTAS */
+      @keyframes lava-move-mobile1 {
         0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-        25%  { transform: translate(18px, -32vh) scale(1.22) rotate(38deg); }
-        50%  { transform: translate(-14px, -71vh) scale(1.68) rotate(105deg); }
-        75%  { transform: translate(22px, -48vh) scale(1.38) rotate(72deg); }
+        22%  { transform: translate(14px, -28vh) scale(1.18) rotate(32deg); }
+        47%  { transform: translate(-11px, -59vh) scale(1.52) rotate(89deg); }
+        71%  { transform: translate(19px, -47vh) scale(1.41) rotate(64deg); }
         100% { transform: translate(0, 0) scale(1) rotate(0deg); }
       }
-      .blob { animation: lava-move-mobile 31s infinite ease-in-out alternate !important; }
+      @keyframes lava-move-mobile2 {
+        0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+        19%  { transform: translate(-16px, -31vh) scale(1.25) rotate(41deg); }
+        44%  { transform: translate(9px, -66vh) scale(1.58) rotate(112deg); }
+        68%  { transform: translate(-13px, -51vh) scale(1.37) rotate(73deg); }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      }
+      @keyframes lava-move-mobile3 {
+        0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+        25%  { transform: translate(18px, -26vh) scale(1.21) rotate(28deg); }
+        51%  { transform: translate(-7px, -63vh) scale(1.55) rotate(98deg); }
+        76%  { transform: translate(15px, -44vh) scale(1.33) rotate(59deg); }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      }
 
-      /* Posiciones y ritmos diferentes para cada blob */
-      .blob:nth-child(1){left:6%; bottom:-72px; animation-duration:31s;}
-      .blob:nth-child(2){left:21%; bottom:-98px; animation-duration:28s; animation-delay:3.5s;}
-      .blob:nth-child(3){left:37%; bottom:-79px; animation-duration:33s; animation-delay:7s;}
-      .blob:nth-child(4){left:52%; bottom:-104px; animation-duration:29s; animation-delay:1.8s;}
-      .blob:nth-child(5){left:68%; bottom:-76px; animation-duration:32s; animation-delay:5.5s;}
-      .blob:nth-child(6){left:84%; bottom:-91px; animation-duration:30s; animation-delay:9.2s;}
+      .blob:nth-child(1) { animation: lava-move-mobile1 29s infinite ease-in-out alternate; }
+      .blob:nth-child(2) { animation: lava-move-mobile2 33s infinite ease-in-out alternate; animation-delay: 2.8s; }
+      .blob:nth-child(3) { animation: lava-move-mobile3 27s infinite ease-in-out alternate; animation-delay: 6.5s; }
+      .blob:nth-child(4) { animation: lava-move-mobile1 31s infinite ease-in-out alternate; animation-delay: 1.2s; }
+      .blob:nth-child(5) { animation: lava-move-mobile2 28s infinite ease-in-out alternate; animation-delay: 4.9s; }
+      .blob:nth-child(6) { animation: lava-move-mobile3 32s infinite ease-in-out alternate; animation-delay: 8.7s; }
+
+      /* Posiciones */
+      .blob:nth-child(1){left:6%; bottom:-72px;}
+      .blob:nth-child(2){left:21%; bottom:-98px;}
+      .blob:nth-child(3){left:37%; bottom:-79px;}
+      .blob:nth-child(4){left:52%; bottom:-104px;}
+      .blob:nth-child(5){left:68%; bottom:-76px;}
+      .blob:nth-child(6){left:84%; bottom:-91px;}
 
       .music-player button { font-size:1.8rem; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
@@ -130,6 +143,7 @@
   </style>
 </head>
 <body>
+  <!-- HTML y scripts exactamente iguales que antes -->
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -171,8 +185,9 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Scripts (sin cambios) -->
+  <!-- Scripts sin cambios -->
   <script>
+    /* Cursor + logo */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -207,6 +222,7 @@
   </script>
 
   <script type="module">
+    /* Firebase, música y guestbook (sin cambios) */
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
     
