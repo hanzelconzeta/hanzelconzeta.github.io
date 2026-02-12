@@ -18,109 +18,132 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
-    body { 
-      background:var(--ultravioleta-cosmico); 
-      color:var(--dorado-luznegra); 
-      font-family:'Roboto Slab',serif; 
-      height:100vh; 
-      overflow:hidden; 
-      position:relative; 
-      cursor:none; 
-    }
+    body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Cursor, intro, guestbook y todo lo demás igual que antes... */
+    /* Cursor */
+    .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
+    @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
+    @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
+    .cursor.hover { width:20px;height:20px;box-shadow:0 0 25px rgba(255,46,152,0.7); }
+    .cursor.click { animation:launch-stick .5s ease-out; }
+    @keyframes launch-stick { 0%{transform:translate(-50%,-50%)scale(1)} 50%{transform:translate(-50%,-50%)scale(1.2)rotate(10deg)} 100%{transform:translate(-50%,-50%)scale(1)rotate(0)} }
+    .cursor-trail { position:fixed; width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;animation:fadeOut 1s forwards,pulse .5s infinite alternate; }
+    @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
+    @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
+    /* Intro y lava (desktop) */
+    .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
+    .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
+    .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
+    .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size: clamp(1.4rem, 5vw, 2rem); margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-    .blob { 
-      position:absolute; width:220px; height:220px; border-radius:50%; 
-      background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); 
-      opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; 
-    }
-    @keyframes lava-move { 
-      0%{transform:translateY(0)scale(1)rotate(0)} 
-      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 
-      100%{transform:translateY(0)scale(1)rotate(0)} 
-    }
+    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
+    @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
 
-    /* Posiciones blobs desktop (sin cambios) */
-    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
-    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
-    .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
-    .blob:nth-child(4){left:35%;bottom:-120px;animation-duration:45s;animation-delay:15s;}
-    .blob:nth-child(5){left:45%;bottom:-180px;animation-duration:40s;animation-delay:3s;}
-    .blob:nth-child(6){left:55%;bottom:-140px;animation-duration:43s;animation-delay:8s;}
-    .blob:nth-child(7){left:65%;bottom:-220px;animation-duration:37s;animation-delay:13s;}
-    .blob:nth-child(8){left:75%;bottom:-160px;animation-duration:41s;animation-delay:18s;}
+    /* Posiciones desktop (8 blobs) */
+    .blob:nth-child(1){left:8%;bottom:-90px;animation-duration:37s;}
+    .blob:nth-child(2){left:19%;bottom:-125px;animation-duration:41s;animation-delay:4s;}
+    .blob:nth-child(3){left:31%;bottom:-105px;animation-duration:34s;animation-delay:9s;}
+    .blob:nth-child(4){left:46%;bottom:-140px;animation-duration:39s;animation-delay:2s;}
+    .blob:nth-child(5){left:59%;bottom:-95px;animation-duration:36s;animation-delay:7s;}
+    .blob:nth-child(6){left:72%;bottom:-120px;animation-duration:42s;animation-delay:5s;}
+    .blob:nth-child(7){left:81%;bottom:-110px;animation-duration:38s;animation-delay:11s;}
+    .blob:nth-child(8){left:90%;bottom:-130px;animation-duration:40s;animation-delay:3s;}
 
-    /* ==================== MOBILE / TABLET (BLOBS OPTIMIZADAS) ==================== */
+    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; z-index:10; text-shadow:0 0 10px rgba(255,215,0,0.5); }
+    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; z-index:10; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s infinite alternate; }
+    .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; z-index:10; color:var(--verde-acido); gap:0.6rem; }
+    .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:all .3s; }
+    .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
+    .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:20; }
+    .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
+    .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
+
+    /* ==================== GUESTBOOK (completo) ==================== */
+    .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .guestbook.show, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+    .guestbook .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
+    .guestbook .close-btn:hover { background:var(--rosa-electrico); color:var(--ultravioleta-cosmico); transform:rotate(90deg) scale(1.15); box-shadow:0 0 35px var(--turquesa-cenote); border-color:var(--turquesa-cenote); }
+    .guestbook h2 { font-family:'Cinzel',serif; font-size:2.4rem; text-align:center; margin-bottom:2rem; color:var(--dorado-luznegra); text-shadow:0 0 25px var(--bugambilia-neon),0 0 50px var(--rosa-electrico); letter-spacing:6px; text-transform:uppercase; }
+    .guestbook form { display:flex; flex-direction:column; gap:1.4rem; }
+    .guestbook input, .guestbook textarea { background:rgba(11,0,20,0.75); border:2px solid var(--bugambilia-neon); border-radius:14px; padding:1.1rem 1.4rem; color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; font-size:1.1rem; transition:all .4s ease; box-shadow:0 0 18px rgba(193,59,255,0.25); }
+    .guestbook input:focus, .guestbook textarea:focus { border-color:var(--turquesa-cenote); box-shadow:0 0 30px var(--turquesa-cenote); color:var(--verde-acido); }
+    .guestbook input::placeholder, .guestbook textarea::placeholder { color:var(--verde-acido); opacity:0.65; font-style:italic; }
+    .guestbook textarea { min-height:120px; resize:vertical; }
+    .guestbook button[type="submit"] { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); border:none; color:var(--dorado-luznegra); font-family:'Cinzel',serif; font-size:1.35rem; padding:1.15rem; border-radius:14px; cursor:pointer; text-transform:uppercase; letter-spacing:4px; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow:0 0 35px var(--rosa-electrico); }
+    .guestbook button[type="submit"]:hover { transform:translateY(-4px) scale(1.04); box-shadow:0 0 55px var(--turquesa-cenote); background:linear-gradient(90deg,var(--turquesa-cenote),var(--verde-acido),var(--bugambilia-neon)); }
+    .guestbook .comments { margin-top:2.2rem; padding-top:1.8rem; border-top:1px dashed var(--bugambilia-neon); }
+    .guestbook .comment { background:rgba(255,255,255,0.04); border-left:4px solid var(--rosa-electrico); padding:1.1rem 1.4rem; margin-bottom:1.1rem; border-radius:10px; position:relative; transition:all .3s; }
+    .guestbook .comment:hover { border-left-color:var(--turquesa-cenote); box-shadow:0 0 25px rgba(0,240,255,0.25); }
+    .guestbook .comment .author { font-family:'Cinzel',serif; color:var(--rosa-electrico); font-size:1.15rem; margin-bottom:0.5rem; }
+    .guestbook .comment p { color:var(--dorado-luznegra); line-height:1.55; }
+    .guestbook .comment .date { font-size:0.82rem; color:var(--verde-acido); opacity:0.75; position:absolute; bottom:0.7rem; right:1.2rem; }
+
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:10; }
+    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
+    .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
+
+    /* ==================== MOBILE / TABLET (BLOBS AJUSTADAS) ==================== */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
 
-      /* Lava por delante del texto */
-      .lava-container { z-index: 15; }
+      .lava-container { z-index:15; } /* lava pasa por delante del texto */
 
-      /* Blobs más pequeñas, más opacas en el centro y bordes suaves */
       .blob { 
-        width: 185px; 
-        height: 185px; 
-        opacity: 0.92;
-        background: radial-gradient(circle at 32% 32%, 
-                    var(--rosa-electrico) 18%, 
-                    var(--bugambilia-neon) 48%, 
-                    transparent 82%);
+        width:165px; 
+        height:165px; 
+        opacity:0.88;
+        background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%);
       }
 
-      /* Solo 8 blobs para que no se vea sucio */
-      .blob:nth-child(n+9) { display: none; }
+      /* Solo 6 blobs para que quede limpio */
+      .blob:nth-child(n+7) { display:none; }
 
-      /* Animación mucho más corta (20-22 segundos) y menos crecimiento */
+      /* Animación más lenta y suave (32 segundos) */
       @keyframes lava-move-mobile {
         0%   { transform: translateY(0) scale(1) rotate(0); }
-        50%  { transform: translateY(-85vh) scale(1.75) rotate(90deg); }
+        50%  { transform: translateY(-72vh) scale(1.65) rotate(90deg); }
         100% { transform: translateY(0) scale(1) rotate(0); }
       }
-      .blob {
-        animation: lava-move-mobile 21s infinite ease-in-out alternate !important;
-      }
+      .blob { animation: lava-move-mobile 32s infinite ease-in-out alternate !important; }
 
-      /* Posiciones más limpias para las 8 blobs */
-      .blob:nth-child(1){left:8%;bottom:-80px;animation-duration:21s;}
-      .blob:nth-child(2){left:18%;bottom:-110px;animation-duration:19s;animation-delay:3s;}
-      .blob:nth-child(3){left:28%;bottom:-95px;animation-duration:23s;animation-delay:7s;}
-      .blob:nth-child(4){left:42%;bottom:-120px;animation-duration:18s;animation-delay:2s;}
-      .blob:nth-child(5){left:55%;bottom:-85px;animation-duration:22s;animation-delay:9s;}
-      .blob:nth-child(6){left:68%;bottom:-105px;animation-duration:20s;animation-delay:5s;}
-      .blob:nth-child(7){left:78%;bottom:-90px;animation-duration:19s;animation-delay:11s;}
-      .blob:nth-child(8){left:88%;bottom:-115px;animation-duration:21s;animation-delay:4s;}
+      /* Posiciones más espaciadas */
+      .blob:nth-child(1){left:7%;bottom:-75px;animation-duration:32s;}
+      .blob:nth-child(2){left:22%;bottom:-95px;animation-duration:29s;animation-delay:4s;}
+      .blob:nth-child(3){left:38%;bottom:-82px;animation-duration:34s;animation-delay:8s;}
+      .blob:nth-child(4){left:53%;bottom:-105px;animation-duration:31s;animation-delay:2s;}
+      .blob:nth-child(5){left:69%;bottom:-78px;animation-duration:33s;animation-delay:6s;}
+      .blob:nth-child(6){left:83%;bottom:-92px;animation-duration:30s;animation-delay:10s;}
 
-      .vertical-menu { bottom: 15vh; gap: 2rem; right: 6vw; }
-      .vertical-menu li { font-size: 1.35rem; letter-spacing: 4px; }
-      .music-player { bottom: 9vh; left: 4vw; padding: 0.6rem; }
-      .music-player button { font-size: 1.8rem; }
-      .est { font-size: 1rem; bottom: 4vh; }
-      .chi-rho { font-size: 1.5rem; bottom: 4vh; right: 4vw; }
-      .social-icons { top: 3.5vh; gap: 1.2rem; }
-      .social-icons a { font-size: 1.6rem; }
-      .guestbook { width: 92vw; max-width: 420px; padding: 2rem 1.8rem 1.8rem; }
-      .guestbook h2 { font-size: 2.1rem; }
-      .guestbook .close-btn { width: 38px; height: 38px; font-size: 1.8rem; }
+      .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
+      .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
+      .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
+      .music-player button { font-size:1.8rem; }
+      .est { font-size:1rem; bottom:4vh; }
+      .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
+      .social-icons { top:3.5vh; gap:1.2rem; }
+      .social-icons a { font-size:1.6rem; }
+      .guestbook { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
+      .guestbook h2 { font-size:2.1rem; }
+      .guestbook .close-btn { width:38px; height:38px; font-size:1.8rem; }
     }
 
-    /* Resto del CSS igual (guestbook, glow, float, etc.) */
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
 <body>
-  <!-- HTML y scripts exactamente iguales que la versión anterior -->
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
       <svg style="display:none;"><filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></svg>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <!-- solo hasta 8 blobs -->
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
@@ -156,9 +179,8 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Scripts exactamente iguales -->
+  <!-- Scripts completos -->
   <script>
-    /* Cursor + logo (sin cambios) */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -193,7 +215,6 @@
   </script>
 
   <script type="module">
-    /* Firebase, música y guestbook sin cambios */
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
     
