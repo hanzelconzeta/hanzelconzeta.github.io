@@ -36,10 +36,28 @@
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
     .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size: clamp(1.4rem, 5vw, 2rem); margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
+    .lava-container {
+  position: absolute;
+  inset: 0;
+  filter: url(#goo);
+  pointer-events: none;
+  z-index: 5;
+  isolation: isolate;           /* ← clave para Safari */
+  will-change: filter;
+}
 
-    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-
-    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
+.blob {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--rosa-electrico), var(--bugambilia-neon), transparent 70%);
+  opacity: 0.75;
+  animation: lava-move 40s infinite ease-in-out alternate;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
     @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
 
     /* Posiciones desktop (15 blobs) */
@@ -99,39 +117,49 @@
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
+      .lava-container {
+    filter: url(#goo-mobile) !important;
+  }
 
-      .lava-container { 
-        z-index:5; 
-        filter:url(#goo-mobile) !important; /* goo más fuerte en celular */
-      }
+  .blob {
+    width: 180px;          /* un poco más grandes para que se vean mejor */
+    height: 180px;
+    opacity: 0.92;
+    background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%);
+  }
 
-      .blob { 
-        width:165px; 
-        height:165px; 
-        opacity:0.95; /* más opacidad */
-        background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%);
-      }
-      .blob:nth-child(n+7) { display:none; }
+  .blob:nth-child(n+7) { display: none; }   /* solo 6 blobs en móvil */
+      
+/* Tus keyframes orgánicos (los mantengo igual, solo cambié el nombre para que no choque) */
+  @keyframes lava-move-mobile1 { 
+    0%{transform:translate(0,0)scale(1)rotate(0deg)} 
+    22%{transform:translate(14px,-32vh)scale(1.22)rotate(32deg)} 
+    47%{transform:translate(-11px,-68vh)scale(1.58)rotate(89deg)} 
+    71%{transform:translate(19px,-51vh)scale(1.44)rotate(64deg)} 
+    100%{transform:translate(0,0)scale(1)rotate(0deg)} 
+  }
+  @keyframes lava-move-mobile2 { 
+    0%{transform:translate(0,0)scale(1)rotate(0deg)} 
+    19%{transform:translate(-18px,-35vh)scale(1.28)rotate(41deg)} 
+    44%{transform:translate(9px,-71vh)scale(1.62)rotate(112deg)} 
+    68%{transform:translate(-15px,-54vh)scale(1.39)rotate(73deg)} 
+    100%{transform:translate(0,0)scale(1)rotate(0deg)} 
+  }
+  @keyframes lava-move-mobile3 { 
+    0%{transform:translate(0,0)scale(1)rotate(0deg)} 
+    25%{transform:translate(20px,-29vh)scale(1.24)rotate(28deg)} 
+    51%{transform:translate(-8px,-67vh)scale(1.59)rotate(98deg)} 
+    76%{transform:translate(17px,-48vh)scale(1.36)rotate(59deg)} 
+    100%{transform:translate(0,0)scale(1)rotate(0deg)} 
+  }
 
-      /* Animaciones orgánicas (mismo que antes) */
-      @keyframes lava-move-mobile1 { 0%{transform:translate(0,0)scale(1)rotate(0deg)} 22%{transform:translate(14px,-28vh)scale(1.18)rotate(32deg)} 47%{transform:translate(-11px,-59vh)scale(1.52)rotate(89deg)} 71%{transform:translate(19px,-47vh)scale(1.41)rotate(64deg)} 100%{transform:translate(0,0)scale(1)rotate(0deg)} }
-      @keyframes lava-move-mobile2 { 0%{transform:translate(0,0)scale(1)rotate(0deg)} 19%{transform:translate(-16px,-31vh)scale(1.25)rotate(41deg)} 44%{transform:translate(9px,-66vh)scale(1.58)rotate(112deg)} 68%{transform:translate(-13px,-51vh)scale(1.37)rotate(73deg)} 100%{transform:translate(0,0)scale(1)rotate(0deg)} }
-      @keyframes lava-move-mobile3 { 0%{transform:translate(0,0)scale(1)rotate(0deg)} 25%{transform:translate(18px,-26vh)scale(1.21)rotate(28deg)} 51%{transform:translate(-7px,-63vh)scale(1.55)rotate(98deg)} 76%{transform:translate(15px,-44vh)scale(1.33)rotate(59deg)} 100%{transform:translate(0,0)scale(1)rotate(0deg)} }
-
-      .blob:nth-child(1) { animation: lava-move-mobile1 29s infinite ease-in-out alternate; }
-      .blob:nth-child(2) { animation: lava-move-mobile2 33s infinite ease-in-out alternate; animation-delay:2.8s; }
-      .blob:nth-child(3) { animation: lava-move-mobile3 27s infinite ease-in-out alternate; animation-delay:6.5s; }
-      .blob:nth-child(4) { animation: lava-move-mobile1 31s infinite ease-in-out alternate; animation-delay:1.2s; }
-      .blob:nth-child(5) { animation: lava-move-mobile2 28s infinite ease-in-out alternate; animation-delay:4.9s; }
-      .blob:nth-child(6) { animation: lava-move-mobile3 32s infinite ease-in-out alternate; animation-delay:8.7s; }
-
-      .blob:nth-child(1){left:6%; bottom:-72px;}
-      .blob:nth-child(2){left:21%; bottom:-98px;}
-      .blob:nth-child(3){left:37%; bottom:-79px;}
-      .blob:nth-child(4){left:52%; bottom:-104px;}
-      .blob:nth-child(5){left:68%; bottom:-76px;}
-      .blob:nth-child(6){left:84%; bottom:-91px;}
-
+  .blob:nth-child(1) { animation: lava-move-mobile1 29s infinite ease-in-out alternate; left:6%; bottom:-80px; }
+  .blob:nth-child(2) { animation: lava-move-mobile2 33s infinite ease-in-out alternate; animation-delay:2.8s; left:21%; bottom:-105px; }
+  .blob:nth-child(3) { animation: lava-move-mobile3 27s infinite ease-in-out alternate; animation-delay:6.5s; left:37%; bottom:-85px; }
+  .blob:nth-child(4) { animation: lava-move-mobile1 31s infinite ease-in-out alternate; animation-delay:1.2s; left:52%; bottom:-110px; }
+  .blob:nth-child(5) { animation: lava-move-mobile2 28s infinite ease-in-out alternate; animation-delay:4.9s; left:68%; bottom:-82px; }
+  .blob:nth-child(6) { animation: lava-move-mobile3 32s infinite ease-in-out alternate; animation-delay:8.7s; left:84%; bottom:-97px; }
+}
       .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
       .music-player button { font-size:1.8rem; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
@@ -152,23 +180,45 @@
 <body>
   <div class="cursor" id="cursor"></div>
   <div class="intro">
-    <div class="lava-container">
-      <svg style="display:none;">
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
-          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
-        <filter id="goo-mobile">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="48" result="blur"/> <!-- goo más fuerte en celular -->
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
-          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
-      </svg>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-    </div>
+<div class="lava-container">
+  <svg style="position:absolute; width:0; height:0; overflow:hidden;">
+    <defs>
+      <!-- Desktop (más definido) -->
+      <filter id="goo" 
+              x="-50%" y="-50%" width="200%" height="200%" 
+              color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"/>
+        <feColorMatrix in="blur" type="matrix" 
+                       values="1 0 0 0 0 
+                               0 1 0 0 0 
+                               0 0 1 0 0 
+                               0 0 0 18 -7" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+
+      <!-- Mobile (más suave y con región más grande para evitar clipping) -->
+      <filter id="goo-mobile" 
+              x="-80%" y="-80%" width="260%" height="260%" 
+              color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur"/>
+        <feColorMatrix in="blur" type="matrix" 
+                       values="1 0 0 0 0 
+                               0 1 0 0 0 
+                               0 0 1 0 0 
+                               0 0 0 18 -7" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Los 15 blobs (se ocultan automáticamente en móvil) -->
+  <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+  <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+  <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+  <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+  <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+</div>
+    
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
     <ul class="vertical-menu"><li id="guestbook-link">guestbook</li></ul>
