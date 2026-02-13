@@ -48,8 +48,12 @@
       position: absolute;
       width: 230px;
       height: 230px;
-      opacity: 0.9;
-      background: radial-gradient(circle at 30% 30%, var(--rosa-electrico) 25%, var(--bugambilia-neon) 55%, transparent 85%);
+      opacity: 0.82;
+      background: radial-gradient(circle at 38% 32%, 
+                  var(--rosa-electrico) 0%, 
+                  var(--rosa-electrico) 42%, 
+                  var(--bugambilia-neon) 58%, 
+                  transparent 82%);
       animation: lava-move 40s infinite ease-in-out alternate;
       will-change: transform;
       backface-visibility: hidden;
@@ -73,7 +77,7 @@
     .blob:nth-child(14) { border-radius: 55% 45% 40% 60% / 40% 60% 55% 45%; }
     .blob:nth-child(15) { border-radius: 42% 58% 65% 35% / 60% 40% 48% 52%; }
 
-    /* Posiciones y duraciones desktop */
+    /* Posiciones desktop */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -99,14 +103,8 @@
     /* ==================== MOBILE ==================== */
     @media (max-width: 768px) {
       .lava-container { filter: url(#goo-mobile) !important; }
-
-      .blob {
-        width: 190px;
-        height: 190px;
-        opacity: 1;
-      }
-
-      .blob:nth-child(n+7) { display: none; }
+      .blob { width:190px; height:190px; opacity:1; }
+      .blob:nth-child(n+7) { display:none; }
 
       .blob:nth-child(1) { border-radius: 45% 55% 68% 32% / 58% 42% 48% 52%; left:6%; bottom:-82px; animation: lava-move-mobile1 29s infinite ease-in-out alternate; }
       .blob:nth-child(2) { border-radius: 58% 42% 38% 62% / 42% 58% 55% 45%; left:21%; bottom:-107px; animation: lava-move-mobile2 33s infinite ease-in-out alternate; animation-delay:2.8s; }
@@ -136,23 +134,9 @@
         76%  { transform: translate(17px,-49vh) scale(1.34,0.96) rotate(59deg); }
         100% { transform: translate(0,0) scale(1,1) rotate(0deg); }
       }
-
-      .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
-      .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
-      .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
-      .music-player button { font-size:1.8rem; }
-      .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
-      .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
-      .est { font-size:1rem; bottom:4vh; }
-      .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
-      .social-icons { top:3.5vh; gap:1.2rem; }
-      .social-icons a { font-size:1.6rem; }
-      .guestbook { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
-      .guestbook h2 { font-size:2.1rem; }
-      .guestbook .close-btn { width:38px; height:38px; font-size:1.8rem; }
     }
 
-    /* Resto de estilos (sin cambios) */
+    /* Resto de estilos */
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
     .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size: clamp(1.4rem, 5vw, 2rem); margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
