@@ -32,69 +32,41 @@
     @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
     /* ==================== LAVA ==================== */
-    .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
-
+       /* Blobs de lava */
     .lava-container {
       position: absolute;
       inset: 0;
       filter: url(#goo);
       pointer-events: none;
       z-index: 5;
-      isolation: isolate;
-      will-change: filter;
     }
-
     .blob {
       position: absolute;
-      width: 230px;
-      height: 230px;
-      opacity: 0.82;
-      background: radial-gradient(circle at 38% 32%, 
-                  var(--rosa-electrico) 0%, 
-                  var(--rosa-electrico) 42%, 
-                  var(--bugambilia-neon) 58%, 
-                  transparent 82%);
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--rosa-electrico), var(--bugambilia-neon), transparent 70%);
+      opacity: 0.7;
       animation: lava-move 40s infinite ease-in-out alternate;
-      will-change: transform;
-      backface-visibility: hidden;
-      transform: translateZ(0);
     }
-
-    /* Formas amorfas desktop */
-    .blob:nth-child(1)  { border-radius: 48% 52% 65% 35% / 55% 45% 50% 50%; }
-    .blob:nth-child(2)  { border-radius: 55% 45% 40% 60% / 40% 60% 55% 45%; }
-    .blob:nth-child(3)  { border-radius: 42% 58% 70% 30% / 60% 40% 48% 52%; }
-    .blob:nth-child(4)  { border-radius: 60% 40% 35% 65% / 45% 55% 50% 50%; }
-    .blob:nth-child(5)  { border-radius: 38% 62% 55% 45% / 70% 30% 52% 48%; }
-    .blob:nth-child(6)  { border-radius: 52% 48% 45% 55% / 40% 60% 65% 35%; }
-    .blob:nth-child(7)  { border-radius: 45% 55% 62% 38% / 58% 42% 50% 50%; }
-    .blob:nth-child(8)  { border-radius: 58% 42% 37% 63% / 42% 58% 55% 45%; }
-    .blob:nth-child(9)  { border-radius: 40% 60% 68% 32% / 62% 38% 48% 52%; }
-    .blob:nth-child(10) { border-radius: 62% 38% 35% 65% / 48% 52% 55% 45%; }
-    .blob:nth-child(11) { border-radius: 37% 63% 52% 48% / 68% 32% 50% 50%; }
-    .blob:nth-child(12) { border-radius: 53% 47% 42% 58% / 38% 62% 65% 35%; }
-    .blob:nth-child(13) { border-radius: 48% 52% 70% 30% / 55% 45% 50% 50%; }
-    .blob:nth-child(14) { border-radius: 55% 45% 40% 60% / 40% 60% 55% 45%; }
-    .blob:nth-child(15) { border-radius: 42% 58% 65% 35% / 60% 40% 48% 52%; }
-
-    /* Posiciones desktop */
-    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
-    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
-    .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
-    .blob:nth-child(4){left:35%;bottom:-120px;animation-duration:45s;animation-delay:15s;}
-    .blob:nth-child(5){left:45%;bottom:-180px;animation-duration:40s;animation-delay:3s;}
-    .blob:nth-child(6){left:55%;bottom:-140px;animation-duration:43s;animation-delay:8s;}
-    .blob:nth-child(7){left:65%;bottom:-220px;animation-duration:37s;animation-delay:13s;}
-    .blob:nth-child(8){left:75%;bottom:-160px;animation-duration:41s;animation-delay:18s;}
-    .blob:nth-child(9){left:85%;bottom:-190px;animation-duration:39s;animation-delay:20s;}
-    .blob:nth-child(10){left:95%;bottom:-130px;animation-duration:44s;animation-delay:22s;}
-    .blob:nth-child(11){left:10%;bottom:-250px;animation-duration:36s;animation-delay:1s;}
-    .blob:nth-child(12){left:20%;bottom:-170px;animation-duration:46s;animation-delay:7s;}
-    .blob:nth-child(13){left:40%;bottom:-210px;animation-duration:39s;animation-delay:11s;}
-    .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
-    .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
-
-    @keyframes lava-move {
+    /* Posiciones de blobs */
+    .blob:nth-child(1) { left: 5%; bottom: -100px; animation-duration: 35s; }
+    .blob:nth-child(2) { left: 15%; bottom: -150px; animation-duration: 42s; animation-delay: 5s; }
+    .blob:nth-child(3) { left: 25%; bottom: -200px; animation-duration: 38s; animation-delay: 10s; }
+    .blob:nth-child(4) { left: 35%; bottom: -120px; animation-duration: 45s; animation-delay: 15s; }
+    .blob:nth-child(5) { left: 45%; bottom: -180px; animation-duration: 40s; animation-delay: 3s; }
+    .blob:nth-child(6) { left: 55%; bottom: -140px; animation-duration: 43s; animation-delay: 8s; }
+    .blob:nth-child(7) { left: 65%; bottom: -220px; animation-duration: 37s; animation-delay: 13s; }
+    .blob:nth-child(8) { left: 75%; bottom: -160px; animation-duration: 41s; animation-delay: 18s; }
+    .blob:nth-child(9) { left: 85%; bottom: -190px; animation-duration: 39s; animation-delay: 20s; }
+    .blob:nth-child(10) { left: 95%; bottom: -130px; animation-duration: 44s; animation-delay: 22s; }
+    .blob:nth-child(11) { left: 10%; bottom: -250px; animation-duration: 36s; animation-delay: 1s; }
+    .blob:nth-child(12) { left: 20%; bottom: -170px; animation-duration: 46s; animation-delay: 7s; }
+    .blob:nth-child(13) { left: 40%; bottom: -210px; animation-duration: 39s; animation-delay: 11s; }
+    .blob:nth-child(14) { left: 60%; bottom: -160px; animation-duration: 42s; animation-delay: 16s; }
+    .blob:nth-child(15) { left: 80%; bottom: -230px; animation-duration: 37s; animation-delay: 19s; }
+    
+     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
@@ -177,25 +149,21 @@
 <body>
   <div class="cursor" id="cursor"></div>
   <div class="intro">
-    <div class="lava-container">
-      <svg style="position:absolute; width:0; height:0; overflow:hidden;">
-        <defs>
-          <filter id="goo" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur"/>
-            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9" result="goo"/>
-            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-          </filter>
-          <filter id="goo-mobile" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur"/>
-            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 25 -10" result="goo"/>
-            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-          </filter>
-        </defs>
+  <div class="lava-container">
+      <svg style="display:none;">
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
       </svg>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
+    
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
     <ul class="vertical-menu"><li id="guestbook-link">guestbook</li></ul>
