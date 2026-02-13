@@ -46,10 +46,10 @@
 
     .blob {
       position: absolute;
-      width: 220px;
-      height: 220px;
-      opacity: 1;
-      background: radial-gradient(circle at 30% 30%, var(--rosa-electrico) 28%, var(--bugambilia-neon) 58%, transparent 86%);
+      width: 230px;
+      height: 230px;
+      opacity: 0.9;
+      background: radial-gradient(circle at 30% 30%, var(--rosa-electrico) 25%, var(--bugambilia-neon) 55%, transparent 85%);
       animation: lava-move 40s infinite ease-in-out alternate;
       will-change: transform;
       backface-visibility: hidden;
@@ -73,7 +73,7 @@
     .blob:nth-child(14) { border-radius: 55% 45% 40% 60% / 40% 60% 55% 45%; }
     .blob:nth-child(15) { border-radius: 42% 58% 65% 35% / 60% 40% 48% 52%; }
 
-    /* Posiciones desktop */
+    /* Posiciones y duraciones desktop */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -104,50 +104,39 @@
         width: 190px;
         height: 190px;
         opacity: 1;
-        background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 30%, var(--bugambilia-neon) 62%, transparent 88%);
       }
 
       .blob:nth-child(n+7) { display: none; }
 
-      /* Formas amorfas móviles */
-      .blob:nth-child(1) { border-radius: 45% 55% 68% 32% / 58% 42% 48% 52%; }
-      .blob:nth-child(2) { border-radius: 58% 42% 38% 62% / 42% 58% 55% 45%; }
-      .blob:nth-child(3) { border-radius: 40% 60% 72% 28% / 62% 38% 50% 50%; }
-      .blob:nth-child(4) { border-radius: 62% 38% 35% 65% / 48% 52% 55% 45%; }
-      .blob:nth-child(5) { border-radius: 37% 63% 52% 48% / 68% 32% 50% 50%; }
-      .blob:nth-child(6) { border-radius: 53% 47% 42% 58% / 38% 62% 65% 35%; }
+      .blob:nth-child(1) { border-radius: 45% 55% 68% 32% / 58% 42% 48% 52%; left:6%; bottom:-82px; animation: lava-move-mobile1 29s infinite ease-in-out alternate; }
+      .blob:nth-child(2) { border-radius: 58% 42% 38% 62% / 42% 58% 55% 45%; left:21%; bottom:-107px; animation: lava-move-mobile2 33s infinite ease-in-out alternate; animation-delay:2.8s; }
+      .blob:nth-child(3) { border-radius: 40% 60% 72% 28% / 62% 38% 50% 50%; left:37%; bottom:-87px; animation: lava-move-mobile3 27s infinite ease-in-out alternate; animation-delay:6.5s; }
+      .blob:nth-child(4) { border-radius: 62% 38% 35% 65% / 48% 52% 55% 45%; left:52%; bottom:-112px; animation: lava-move-mobile1 31s infinite ease-in-out alternate; animation-delay:1.2s; }
+      .blob:nth-child(5) { border-radius: 37% 63% 52% 48% / 68% 32% 50% 50%; left:68%; bottom:-84px; animation: lava-move-mobile2 28s infinite ease-in-out alternate; animation-delay:4.9s; }
+      .blob:nth-child(6) { border-radius: 53% 47% 42% 58% / 38% 62% 65% 35%; left:84%; bottom:-99px; animation: lava-move-mobile3 32s infinite ease-in-out alternate; animation-delay:8.7s; }
 
-      /* Keyframes más orgánicos con deformación */
       @keyframes lava-move-mobile1 {
-        0%   { transform: translate(0,0)   scale(1,1)   rotate(0deg); }
+        0%   { transform: translate(0,0) scale(1,1) rotate(0deg); }
         22%  { transform: translate(14px,-34vh) scale(1.18,0.92) rotate(32deg); }
         47%  { transform: translate(-11px,-70vh) scale(1.55,1.12) rotate(89deg); }
         71%  { transform: translate(19px,-52vh) scale(1.38,0.95) rotate(64deg); }
-        100% { transform: translate(0,0)   scale(1,1)   rotate(0deg); }
+        100% { transform: translate(0,0) scale(1,1) rotate(0deg); }
       }
       @keyframes lava-move-mobile2 {
-        0%   { transform: translate(0,0)   scale(1,1)   rotate(0deg); }
+        0%   { transform: translate(0,0) scale(1,1) rotate(0deg); }
         19%  { transform: translate(-18px,-36vh) scale(1.25,0.88) rotate(41deg); }
         44%  { transform: translate(9px,-72vh) scale(1.60,1.15) rotate(112deg); }
         68%  { transform: translate(-15px,-55vh) scale(1.35,0.93) rotate(73deg); }
-        100% { transform: translate(0,0)   scale(1,1)   rotate(0deg); }
+        100% { transform: translate(0,0) scale(1,1) rotate(0deg); }
       }
       @keyframes lava-move-mobile3 {
-        0%   { transform: translate(0,0)   scale(1,1)   rotate(0deg); }
+        0%   { transform: translate(0,0) scale(1,1) rotate(0deg); }
         25%  { transform: translate(20px,-30vh) scale(1.22,0.90) rotate(28deg); }
         51%  { transform: translate(-8px,-68vh) scale(1.57,1.10) rotate(98deg); }
         76%  { transform: translate(17px,-49vh) scale(1.34,0.96) rotate(59deg); }
-        100% { transform: translate(0,0)   scale(1,1)   rotate(0deg); }
+        100% { transform: translate(0,0) scale(1,1) rotate(0deg); }
       }
 
-      .blob:nth-child(1) { animation: lava-move-mobile1 29s infinite ease-in-out alternate; left:6%; bottom:-82px; }
-      .blob:nth-child(2) { animation: lava-move-mobile2 33s infinite ease-in-out alternate; animation-delay:2.8s; left:21%; bottom:-107px; }
-      .blob:nth-child(3) { animation: lava-move-mobile3 27s infinite ease-in-out alternate; animation-delay:6.5s; left:37%; bottom:-87px; }
-      .blob:nth-child(4) { animation: lava-move-mobile1 31s infinite ease-in-out alternate; animation-delay:1.2s; left:52%; bottom:-112px; }
-      .blob:nth-child(5) { animation: lava-move-mobile2 28s infinite ease-in-out alternate; animation-delay:4.9s; left:68%; bottom:-84px; }
-      .blob:nth-child(6) { animation: lava-move-mobile3 32s infinite ease-in-out alternate; animation-delay:8.7s; left:84%; bottom:-99px; }
-
-      /* Resto de ajustes móviles (sin cambios) */
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
       .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
@@ -208,8 +197,8 @@
       <svg style="position:absolute; width:0; height:0; overflow:hidden;">
         <defs>
           <filter id="goo" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"/>
-            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 20 -8" result="goo"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur"/>
+            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9" result="goo"/>
             <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
           </filter>
           <filter id="goo-mobile" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
@@ -260,7 +249,6 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Scripts (sin cambios) -->
   <script>
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
