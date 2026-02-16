@@ -227,15 +227,15 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const songs = [
-      { title: 'montaña rusa', src: 'montana_rusa.mp3' },
-      { title: 'que dificil seria verte partir', src: 'que_dificil_seria_verte_partir.mp3' },
-      { title: 'te entrego hoy', src: 'te_entrego_hoy.mp3' },
-      { title: 'sin identidad', src: 'sin_identidad.mp3' },
-      { title: 'me hiciste creer', src: 'me_hiciste_creer.mp3' },
-      { title: 'primer acto', src: 'primer_acto.mp3' },
-      { title: 'la gloria #109 (27 de mayo)', src: 'la_gloria_109.mp3' }
-    ];
+const songs = [
+  { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3' },
+  { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3' },
+  { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3' },
+  { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3' },
+  { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3' },
+  { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3' },
+  { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria_109.mp3' }
+];
 
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
