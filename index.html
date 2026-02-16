@@ -34,11 +34,11 @@
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
     .intro p { font-family:'Playfair Display',serif; color:var(--verde-acido); font-size: clamp(1.4rem, 5vw, 2rem); margin:2rem 0; text-shadow:0 0 20px rgba(0,255,153,0.5); }
-    /* Lava container + goo filter */
+    /* Lava container */
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--rosa-electrico),var(--bugambilia-neon),transparent 70%); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
     @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
-    /* Posiciones desktop */
+    /* Posiciones desktop (15 blobs) */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -85,7 +85,7 @@
     .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:20; }
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    /* ==================== MOBILE ==================== */
+    /* MOBILE */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .intro p { font-size: clamp(1.3rem, 4.5vw, 1.6rem); }
@@ -124,6 +124,7 @@
   </style>
 </head>
 <body>
+  <!-- HTML sin cambios (cursor, intro, lava, music-player, guestbook, social) -->
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -178,7 +179,7 @@
   </div>
 
   <script>
-    /* Cursor + logo */
+    /* Cursor + logo (sin cambios) */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -230,10 +231,10 @@
       { title: 'montaña rusa', src: 'montana_rusa.mp3' },
       { title: 'que dificil seria verte partir', src: 'que_dificil_seria_verte_partir.mp3' },
       { title: 'te entrego hoy', src: 'te_entrego_hoy.mp3' },
-      { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3' },
+      { title: 'sin identidad', src: 'sin_identidad.mp3' },
       { title: 'me hiciste creer', src: 'me_hiciste_creer.mp3' },
-      { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3' },
-      { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria_109.mp3' }
+      { title: 'primer acto', src: 'primer_acto.mp3' },
+      { title: 'la gloria #109 (27 de mayo)', src: 'la_gloria_109.mp3' }
     ];
 
     let currentSongIndex = 0;
@@ -262,7 +263,7 @@
 
     loadSong(0);
 
-    /* Guestbook */
+    /* Guestbook (sin cambios) */
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
