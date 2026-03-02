@@ -69,9 +69,12 @@
     .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; color:var(--verde-acido); gap:0.6rem; }
     .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:all .3s; }
     .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
+    .music-player img { width:60px; height:60px; border-radius:10px; object-fit:cover; box-shadow:0 0 10px var(--verde-acido); }
     .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; }
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
+    .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:25; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
+    .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
     /* Guestbook y social */
     .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
     .guestbook.show, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
@@ -118,6 +121,7 @@
       .blob:nth-child(6){left:84%; bottom:-91px;}
       .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
       .music-player button { font-size:1.8rem; }
+      .music-player img { width:50px; height:50px; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
       .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
       .est { font-size:1rem; bottom:4vh; }
@@ -127,6 +131,7 @@
       .guestbook { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
       .guestbook h2 { font-size:2.1rem; }
       .guestbook .close-btn { width:38px; height:38px; font-size:1.8rem; }
+      .palette-button { width:40px; height:40px; right:4vw; font-size:1.2rem; }
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
@@ -154,11 +159,15 @@
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
-    <ul class="vertical-menu"><li id="guestbook-link">guestbook</li><li id="palette-toggle">16 rosas</li></ul>
+    <ul class="vertical-menu">
+      <li id="guestbook-link">guestbook</li>
+      <li id="music-link">música</li>
+    </ul>
     <div class="est">EST. 2006</div>
   </div>
   <div class="chi-rho">☧</div>
   <div class="music-player">
+    <img id="album-art" src="https://placehold.co/100x100/png?text=16+Rosas" alt="Album Cover">
     <span class="song-title" id="song-title">montaña rusa</span>
     <div class="buttons">
       <button id="prev-btn"><i class="fas fa-backward"></i></button>
@@ -185,6 +194,7 @@
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
+  <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
   <script>
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
@@ -218,16 +228,20 @@
     });
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'spenzer';
-    paletteToggle.textContent = '16 rosas';
     paletteToggle.addEventListener('click', () => {
       if (currentPalette === 'spenzer') {
         document.body.classList.add('palette-16rosas');
         currentPalette = '16rosas';
-        paletteToggle.textContent = 'spenzer';
       } else {
         document.body.classList.remove('palette-16rosas');
         currentPalette = 'spenzer';
-        paletteToggle.textContent = '16 rosas';
+      }
+    });
+    const musicLink = document.getElementById('music-link');
+    musicLink.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = '❚❚';
       }
     });
   </script>
