@@ -19,6 +19,15 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
+    body.palette-16rosas {
+      --ultravioleta-cosmico: #63010E;
+      --bugambilia-neon: #FCD4D4;
+      --rosa-electrico: #FCD4D4;
+      --naranja-volcanico: #FCD4D4;
+      --verde-acido: #FCD4D4;
+      --turquesa-cenote: #FCD4D4;
+      --dorado-luznegra: #FCD4D4;
+    }
     /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
@@ -124,7 +133,6 @@
   </style>
 </head>
 <body>
-  <!-- HTML sin cambios (cursor, intro, lava, music-player, guestbook, social) -->
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -146,7 +154,7 @@
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
-    <ul class="vertical-menu"><li id="guestbook-link">guestbook</li></ul>
+    <ul class="vertical-menu"><li id="guestbook-link">guestbook</li><li id="palette-toggle">16 rosas</li></ul>
     <div class="est">EST. 2006</div>
   </div>
   <div class="chi-rho">☧</div>
@@ -177,9 +185,7 @@
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
-
   <script>
-    /* Cursor + logo (sin cambios) */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -210,12 +216,24 @@
       span.style.setProperty('--delay', `${delays[i]}s`);
       logo.appendChild(span);
     });
+    const paletteToggle = document.getElementById('palette-toggle');
+    let currentPalette = 'spenzer';
+    paletteToggle.textContent = '16 rosas';
+    paletteToggle.addEventListener('click', () => {
+      if (currentPalette === 'spenzer') {
+        document.body.classList.add('palette-16rosas');
+        currentPalette = '16rosas';
+        paletteToggle.textContent = 'spenzer';
+      } else {
+        document.body.classList.remove('palette-16rosas');
+        currentPalette = 'spenzer';
+        paletteToggle.textContent = '16 rosas';
+      }
+    });
   </script>
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -226,24 +244,21 @@
     };
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-
-const songs = [
-  { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3' },
-  { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3' },
-  { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3' },
-  { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3' },
-  { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3' },
-  { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3' },
-  { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3' }
-];
-
+    const songs = [
+      { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3' },
+      { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3' },
+      { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3' },
+      { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3' },
+      { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3' },
+      { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3' },
+      { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3' }
+    ];
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const songTitle = document.getElementById('song-title');
-
     function loadSong(i) {
       currentSongIndex = i;
       audio.src = songs[i].src;
@@ -251,19 +266,14 @@ const songs = [
       audio.load();
       playPauseBtn.textContent = '▶';
     }
-
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
       else { audio.pause(); playPauseBtn.textContent = '▶'; }
     });
-
     prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + songs.length) % songs.length));
     nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % songs.length));
     audio.addEventListener('ended', () => nextBtn.click());
-
     loadSong(0);
-
-    /* Guestbook (sin cambios) */
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
