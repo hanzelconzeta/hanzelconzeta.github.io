@@ -21,12 +21,12 @@
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
-      --bugambilia-neon: #FCD4D4;
-      --rosa-electrico: #FCD4D4;
-      --naranja-volcanico: #FCD4D4;
-      --verde-acido: #FCD4D4;
-      --turquesa-cenote: #FCD4D4;
-      --dorado-luznegra: #FCD4D4;
+      --bugambilia-neon: #FF69B4;
+      --rosa-electrico: #FFC0CB;
+      --naranja-volcanico: #FF4500;
+      --verde-acido: #FFFFFF;
+      --turquesa-cenote: #FFFF00;
+      --dorado-luznegra: #FFD700;
     }
     /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
@@ -69,7 +69,6 @@
     .music-player { position:absolute; bottom:5vh; left:5vw; display:flex; flex-direction:column; align-items:flex-start; background:transparent; padding:0.8rem; border-radius:20px; color:var(--verde-acido); gap:0.6rem; }
     .music-player button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:all .3s; }
     .music-player button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
-    .music-player img { width:60px; height:60px; border-radius:10px; object-fit:cover; box-shadow:0 0 10px var(--verde-acido); }
     .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; }
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
@@ -121,7 +120,6 @@
       .blob:nth-child(6){left:84%; bottom:-91px;}
       .music-player { bottom:9vh; left:4vw; padding:0.6rem; }
       .music-player button { font-size:1.8rem; }
-      .music-player img { width:50px; height:50px; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
       .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
       .est { font-size:1rem; bottom:4vh; }
@@ -167,7 +165,6 @@
   </div>
   <div class="chi-rho">☧</div>
   <div class="music-player">
-    <img id="album-art" src="https://placehold.co/100x100/png?text=16+Rosas" alt="Album Cover">
     <span class="song-title" id="song-title">montaña rusa</span>
     <div class="buttons">
       <button id="prev-btn"><i class="fas fa-backward"></i></button>
