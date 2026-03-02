@@ -22,12 +22,13 @@
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
-      --rosa-electrico: #FF69B4;
+      --rosa-electrico: #FCD4D4;
       --naranja-volcanico: #FF4500;
-      --verde-acido: #FFFF00;
-      --turquesa-cenote: #FFD700;
-      --dorado-luznegra: #FFFF00;
+      --verde-acido: #FFD700;
+      --turquesa-cenote: #FFFACD;
+      --dorado-luznegra: #FFD700;
     }
+    body.palette-16rosas .intro p { display: none; }
     /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
@@ -158,8 +159,8 @@
     <h1 class="hanzel-logo">HANZEL</h1>
     <p>RESTABLECIENDO EL CANON</p>
     <ul class="vertical-menu">
-      <li id="guestbook-link">guestbook</li>
       <li id="music-link">música</li>
+      <li id="guestbook-link">guestbook</li>
     </ul>
     <div class="est">EST. 2006</div>
   </div>
