@@ -100,16 +100,17 @@
     .music-player-modal .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
     .music-player-modal .close-btn:hover { background:var(--rosa-electrico); color:var(--ultravioleta-cosmico); transform:rotate(90deg) scale(1.15); box-shadow:0 0 35px var(--turquesa-cenote); border-color:var(--turquesa-cenote); }
     .music-player-modal h2 { font-family:'Cinzel',serif; font-size:2.4rem; text-align:center; margin-bottom:2rem; color:var(--dorado-luznegra); text-shadow:0 0 25px var(--bugambilia-neon),0 0 50px var(--rosa-electrico); letter-spacing:6px; text-transform:uppercase; }
-    .music-player-modal .album-info { text-align:center; margin-bottom:1rem; font-style:italic; }
-    .music-player-modal .album-thumbnail { display:block; margin:0 auto 1rem; width:150px; height:150px; background:#ccc; } /* Placeholder for thumbnail */
-    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; }
-    .music-player-modal .song-list li { cursor:pointer; padding:0.5rem; transition:all .3s; }
+    .music-player-modal .album-info { text-align:center; margin-bottom:1rem; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; }
+    .music-player-modal .album-thumbnail { display:block; margin:0 auto 1.5rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
+    .music-player-modal .player-controls { display:flex; flex-direction:column; align-items:center; margin-bottom:1.5rem; gap:0.8rem; }
+    .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
+    .music-player-modal .player-controls .buttons { display:flex; gap:1.5rem; }
+    .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
+    .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
+    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; }
+    .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
-    .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); }
-    .music-player-modal .player-controls { display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
-    .music-player-modal .player-controls .buttons { display:flex; gap:1rem; }
-    .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:1.5rem; transition:all .3s; }
-    .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.1); }
+    .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
     /* MOBILE */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -144,7 +145,9 @@
       .music-player-modal { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
       .music-player-modal h2 { font-size:2.1rem; }
       .music-player-modal .close-btn { width:38px; height:38px; font-size:1.8rem; }
-      .music-player-modal .album-thumbnail { width:120px; height:120px; }
+      .music-player-modal .album-thumbnail { width:140px; height:140px; }
+      .music-player-modal .player-controls button { font-size:1.8rem; }
+      .music-player-modal .song-list li { font-size:1rem; padding:0.6rem 0; }
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
@@ -194,7 +197,6 @@
     <h2>Música</h2>
     <div class="album-info">16 rosas y algo llamado amor (2006)</div>
     <img class="album-thumbnail" src="" alt="Album Cover">
-    <ul class="song-list" id="song-list"></ul>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
       <div class="buttons">
@@ -204,6 +206,7 @@
       </div>
       <audio id="audio-player"></audio>
     </div>
+    <ul class="song-list" id="song-list"></ul>
   </div>
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -271,13 +274,13 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const songs = [
-      { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3' },
-      { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3' },
-      { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3' },
-      { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3' },
-      { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3' },
-      { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3' },
-      { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3' }
+      { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
+      { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
+      { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
+      { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
+      { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
+      { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
+      { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
     ];
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
@@ -301,7 +304,7 @@
       songList.innerHTML = '';
       songs.forEach((song, i) => {
         const li = document.createElement('li');
-        li.textContent = song.title;
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
         li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
