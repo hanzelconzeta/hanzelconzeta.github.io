@@ -95,7 +95,7 @@
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
     /* Music Player Modal */
-    .music-player-modal { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .music-player-modal { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:80vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
     .music-player-modal.show, .music-player-modal.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
     .music-player-modal .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
     .music-player-modal .close-btn:hover { background:var(--rosa-electrico); color:var(--ultravioleta-cosmico); transform:rotate(90deg) scale(1.15); box-shadow:0 0 35px var(--turquesa-cenote); border-color:var(--turquesa-cenote); }
@@ -107,10 +107,20 @@
     .music-player-modal .player-controls .buttons { display:flex; gap:1.5rem; }
     .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
     .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; }
+    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; position: relative; }
+    .music-player-modal .song-list::after { content: '↓ Desliza para ver más ↓'; display: block; text-align: center; font-size: 0.9rem; color: var(--verde-acido); opacity: 0.7; margin-top: 0.5rem; animation: fadeInOut 2s infinite; }
+    @keyframes fadeInOut { 0% { opacity: 0.7; } 50% { opacity: 0.3; } 100% { opacity: 0.7; } }
     .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
     .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
+    .music-player-modal .song-list li .download-link { color: var(--naranja-volcanico); font-size: 1.2rem; margin-left: 0.5rem; }
+    .music-player-modal .song-list li .download-link:hover { color: var(--turquesa-cenote); }
+    .music-player-modal .pre-save { text-align: center; margin-top: 1rem; }
+    .music-player-modal .pre-save a { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border:none; color:var(--dorado-luznegra); font-family:'Cinzel',serif; font-size:1.2rem; padding:0.8rem 1.2rem; border-radius:10px; cursor:pointer; text-transform:uppercase; letter-spacing:3px; transition:all .4s; box-shadow:0 0 25px var(--rosa-electrico); text-decoration: none; display: inline-block; }
+    .music-player-modal .pre-save a:hover { transform:scale(1.05); box-shadow:0 0 40px var(--turquesa-cenote); background:linear-gradient(90deg,var(--turquesa-cenote),var(--verde-acido)); }
+    /* Countdown */
+    .countdown { text-align: center; margin: 2rem 0; font-size: 1.5rem; color: var(--turquesa-cenote); text-shadow: 0 0 10px var(--verde-acido); }
+    .countdown span { display: inline-block; padding: 0.5rem 1rem; background: rgba(11,0,20,0.75); border: 1px solid var(--bugambilia-neon); border-radius: 5px; margin: 0 0.2rem; animation: pulse 1s infinite alternate; }
     /* MOBILE */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -142,7 +152,7 @@
       .guestbook { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
       .guestbook h2 { font-size:2.1rem; }
       .guestbook .close-btn { width:38px; height:38px; font-size:1.8rem; }
-      .music-player-modal { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
+      .music-player-modal { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; max-height: 80vh; }
       .music-player-modal h2 { font-size:2.1rem; }
       .music-player-modal .close-btn { width:38px; height:38px; font-size:1.8rem; }
       .music-player-modal .album-thumbnail { width:140px; height:140px; }
@@ -197,6 +207,8 @@
     <h2>Música</h2>
     <div class="album-info">16 rosas y algo llamado amor (2006)</div>
     <img class="album-thumbnail" src="https://hanzelconzeta.github.io/portadarosas.JPG" alt="Album Cover">
+    <div class="countdown" id="countdown">Estreno en: <span id="days"></span> días <span id="hours"></span> horas <span id="minutes"></span> minutos <span id="seconds"></span> segundos</div>
+    <div class="pre-save"><a href="https://share.amuse.io/album/hanzel-16-rosas-y-algo-llamado-amor" target="_blank">Pre-save el álbum</a></div>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
       <div class="buttons">
@@ -304,7 +316,7 @@
       songList.innerHTML = '';
       songs.forEach((song, i) => {
         const li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration} <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a></span>`;
         li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
@@ -357,6 +369,26 @@
       });
       if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
     }
+    // Countdown logic
+    const targetDate = new Date('2026-03-14T00:00:00'); // Asumiendo estreno en 2026, ajusta si es necesario
+    function updateCountdown() {
+      const now = new Date();
+      const difference = targetDate - now;
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+      } else {
+        document.getElementById('countdown').textContent = '¡Ya disponible!';
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
