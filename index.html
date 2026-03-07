@@ -108,8 +108,6 @@
     .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
     .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
     .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; position: relative; }
-    .music-player-modal .song-list::after { content: '↓ Desliza para ver más ↓'; display: block; text-align: center; font-size: 0.9rem; color: var(--verde-acido); opacity: 0.7; margin-top: 0.5rem; animation: fadeInOut 2s infinite; }
-    @keyframes fadeInOut { 0% { opacity: 0.7; } 50% { opacity: 0.3; } 100% { opacity: 0.7; } }
     .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
     .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
@@ -219,6 +217,7 @@
       <audio id="audio-player"></audio>
     </div>
     <ul class="song-list" id="song-list"></ul>
+    <div id="download-album" class="pre-save"></div>
   </div>
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -314,12 +313,20 @@
     }
     function populateSongList() {
       songList.innerHTML = '';
+      const hasCommented = localStorage.getItem('hasCommented') === 'true';
       songs.forEach((song, i) => {
         const li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration} <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a></span>`;
+        const downloadLink = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
         li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
+      const downloadAlbum = document.getElementById('download-album');
+      if (hasCommented) {
+        downloadAlbum.innerHTML = '<a href="https://hanzelconzeta.github.io/album.zip" download>Descargar Álbum Completo</a>';
+      } else {
+        downloadAlbum.innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar</p>';
+      }
     }
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
@@ -330,7 +337,7 @@
     audio.addEventListener('ended', () => nextBtn.click());
     populateSongList();
     loadSong(0);
-    document.getElementById('music-link').addEventListener('click', () => musicPlayerModal.classList.add('active'));
+    document.getElementById('music-link').addEventListener('click', () => { musicPlayerModal.classList.add('active'); populateSongList(); });
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
     document.addEventListener('click', e => {
       if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') musicPlayerModal.classList.remove('active');
@@ -350,7 +357,11 @@
         await addDoc(collection(db, 'comments'), { name, message, timestamp: serverTimestamp() });
         alert('¡Gracias por firmar el guestbook!');
         document.getElementById('guestbook-form').reset();
+        localStorage.setItem('hasCommented', 'true');
         loadComments();
+        if (musicPlayerModal.classList.contains('active')) {
+          populateSongList();
+        }
       } catch(err) { alert('Error al enviar'); }
     });
     async function loadComments() {
@@ -370,7 +381,7 @@
       if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
     }
     // Countdown logic
-    const targetDate = new Date('2026-03-14T00:00:00'); // Asumiendo estreno en 2026, ajusta si es necesario
+    const targetDate = new Date('2024-03-14T00:00:00');
     function updateCountdown() {
       const now = new Date();
       const difference = targetDate - now;
