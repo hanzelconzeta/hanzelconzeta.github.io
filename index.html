@@ -117,8 +117,8 @@
     .music-player-modal .pre-save a { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border:none; color:var(--dorado-luznegra); font-family:'Cinzel',serif; font-size:1.2rem; padding:0.8rem 1.2rem; border-radius:10px; cursor:pointer; text-transform:uppercase; letter-spacing:3px; transition:all .4s; box-shadow:0 0 25px var(--rosa-electrico); text-decoration: none; display: inline-block; }
     .music-player-modal .pre-save a:hover { transform:scale(1.05); box-shadow:0 0 40px var(--turquesa-cenote); background:linear-gradient(90deg,var(--turquesa-cenote),var(--verde-acido)); }
     /* Countdown */
-    .countdown { text-align: center; margin: 2rem 0; font-size: 1.5rem; color: var(--turquesa-cenote); text-shadow: 0 0 10px var(--verde-acido); }
-    .countdown span { display: inline-block; padding: 0.5rem 1rem; background: rgba(11,0,20,0.75); border: 1px solid var(--bugambilia-neon); border-radius: 5px; margin: 0 0.2rem; animation: pulse 1s infinite alternate; }
+    .countdown { text-align: center; margin: 1rem 0; font-size: 1.2rem; color: var(--turquesa-cenote); text-shadow: 0 0 10px var(--verde-acido); }
+    .countdown span { display: inline-block; padding: 0.3rem 0.6rem; background: rgba(11,0,20,0.75); border: 1px solid var(--bugambilia-neon); border-radius: 5px; margin: 0 0.1rem; animation: pulse 1s infinite alternate; }
     /* MOBILE */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -205,7 +205,7 @@
     <h2>Música</h2>
     <div class="album-info">16 rosas y algo llamado amor (2006)</div>
     <img class="album-thumbnail" src="https://hanzelconzeta.github.io/portadarosas.JPG" alt="Album Cover">
-    <div class="countdown" id="countdown">Estreno en: <span id="days"></span> días <span id="hours"></span> horas <span id="minutes"></span> minutos <span id="seconds"></span> segundos</div>
+    <div class="countdown" id="countdown">Estreno en plataformas digitales: <span id="days"></span> días <span id="hours"></span> horas <span id="minutes"></span> minutos <span id="seconds"></span> segundos</div>
     <div class="pre-save"><a href="https://share.amuse.io/album/hanzel-16-rosas-y-algo-llamado-amor" target="_blank">Pre-save el álbum</a></div>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
@@ -226,6 +226,7 @@
     <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook"></i></a>
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fas fa-music"></i></a>
   </div>
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
   <script>
@@ -292,7 +293,7 @@
       { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
       { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
       { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
-    ];
+    };
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
