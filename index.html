@@ -293,7 +293,7 @@
       { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
       { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
       { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
-    };
+    ];
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
@@ -382,7 +382,7 @@
       if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
     }
     // Countdown logic
-    const targetDate = new Date('2026-03-14T00:00:00');
+    const targetDate = new Date('2024-03-14T00:00:00');
     function updateCountdown() {
       const now = new Date();
       const difference = targetDate - now;
