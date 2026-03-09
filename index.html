@@ -161,7 +161,7 @@
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
-<body>
+<body class="palette-16rosas">
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -182,7 +182,6 @@
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
-    <p>RESTABLECIENDO EL CANON</p>
     <ul class="vertical-menu">
       <li id="music-link">música</li>
       <li id="guestbook-link">guestbook</li>
@@ -226,7 +225,6 @@
     <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook"></i></a>
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="#"><i class="fas fa-record-vinyl"></i></a>
   </div>
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
   <script>
@@ -261,14 +259,14 @@
       logo.appendChild(span);
     });
     const paletteToggle = document.getElementById('palette-toggle');
-    let currentPalette = 'spenzer';
+    let currentPalette = '16rosas';
     paletteToggle.addEventListener('click', () => {
-      if (currentPalette === 'spenzer') {
-        document.body.classList.add('palette-16rosas');
-        currentPalette = '16rosas';
-      } else {
+      if (currentPalette === '16rosas') {
         document.body.classList.remove('palette-16rosas');
         currentPalette = 'spenzer';
+      } else {
+        document.body.classList.add('palette-16rosas');
+        currentPalette = '16rosas';
       }
     });
   </script>
