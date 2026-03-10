@@ -305,7 +305,8 @@
       audio.src = songs[i].src;
       songTitle.textContent = songs[i].title;
       audio.load();
-      playPauseBtn.textContent = '▶';
+      audio.play();
+      playPauseBtn.textContent = '❚❚';
       document.querySelectorAll('.song-list li').forEach((li, index) => {
         li.classList.toggle('active', index === i);
       });
