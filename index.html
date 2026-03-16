@@ -28,6 +28,15 @@
       --turquesa-cenote: #FF69B4;
       --dorado-luznegra: #F5F5F5;
     }
+    body.palette-kantoamere {
+      --ultravioleta-cosmico: #4A0E2A;
+      --bugambilia-neon: #A8C0FF;
+      --rosa-electrico: #FF69B4;
+      --naranja-volcanico: #FF9EC1;
+      --verde-acido: #B0FF99;
+      --turquesa-cenote: #99F0FF;
+      --dorado-luznegra: #F5E0FF;
+    }
     body.palette-16rosas .intro p { display: none; }
     /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
@@ -205,7 +214,7 @@
     <div class="album-info" id="album-title">16 rosas y algo llamado amor (2006)</div>
     <div class="album-selector">
       <div class="album-option active" id="option-0">i. 16 rosas y algo llamado amor</div>
-      <div class="album-option" id="option-1">ii. kanto amere</div>
+      <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
     </div>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
@@ -264,6 +273,10 @@
     paletteToggle.addEventListener('click', () => {
       if (currentPalette === '16rosas') {
         document.body.classList.remove('palette-16rosas');
+        document.body.classList.add('palette-kantoamere');
+        currentPalette = 'kantoamere';
+      } else if (currentPalette === 'kantoamere') {
+        document.body.classList.remove('palette-kantoamere');
         currentPalette = 'spenzer';
       } else {
         document.body.classList.add('palette-16rosas');
