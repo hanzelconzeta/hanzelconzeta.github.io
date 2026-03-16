@@ -102,6 +102,10 @@
     .music-player-modal h2 { font-family:'Cinzel',serif; font-size:2.4rem; text-align:center; margin-bottom:2rem; color:var(--dorado-luznegra); text-shadow:0 0 25px var(--bugambilia-neon),0 0 50px var(--rosa-electrico); letter-spacing:6px; text-transform:uppercase; }
     .music-player-modal .album-info { text-align:center; margin-bottom:1rem; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; }
     .music-player-modal .album-thumbnail { display:block; margin:0 auto 1.5rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
+    .music-player-modal .album-tabs { display:flex; justify-content:center; gap:1rem; margin-bottom:1rem; }
+    .music-player-modal .album-tab { background:rgba(11,0,20,0.75); border:2px solid var(--bugambilia-neon); color:var(--dorado-luznegra); padding:0.6rem 1.2rem; border-radius:10px; cursor:pointer; font-family:'Cinzel',serif; font-size:1.1rem; transition:all .3s; }
+    .music-player-modal .album-tab:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
+    .music-player-modal .album-tab.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); color:var(--dorado-luznegra); }
     .music-player-modal .player-controls { display:flex; flex-direction:column; align-items:center; margin-bottom:1.5rem; gap:0.8rem; }
     .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
     .music-player-modal .player-controls .buttons { display:flex; gap:1.5rem; }
@@ -116,9 +120,6 @@
     .music-player-modal .pre-save { text-align: center; margin-top: 1rem; }
     .music-player-modal .pre-save a { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border:none; color:var(--dorado-luznegra); font-family:'Cinzel',serif; font-size:1.2rem; padding:0.8rem 1.2rem; border-radius:10px; cursor:pointer; text-transform:uppercase; letter-spacing:3px; transition:all .4s; box-shadow:0 0 25px var(--rosa-electrico); text-decoration: none; display: inline-block; }
     .music-player-modal .pre-save a:hover { transform:scale(1.05); box-shadow:0 0 40px var(--turquesa-cenote); background:linear-gradient(90deg,var(--turquesa-cenote),var(--verde-acido)); }
-    /* Countdown */
-    .countdown { text-align: center; margin: 1rem 0; font-size: 1.2rem; color: var(--turquesa-cenote); text-shadow: 0 0 10px var(--verde-acido); }
-    .countdown span { display: inline-block; padding: 0.3rem 0.6rem; background: rgba(11,0,20,0.75); border: 1px solid var(--bugambilia-neon); border-radius: 5px; margin: 0 0.1rem; animation: pulse 1s infinite alternate; }
     /* MOBILE */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -202,10 +203,12 @@
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <h2>Música</h2>
-    <div class="album-info">16 rosas y algo llamado amor (2006)</div>
-    <img class="album-thumbnail" src="https://hanzelconzeta.github.io/portadarosas.JPG" alt="Album Cover">
-    <div class="countdown" id="countdown">Estreno en plataformas digitales: <span id="days"></span> días <span id="hours"></span> horas <span id="minutes"></span> minutos <span id="seconds"></span> segundos</div>
-    <div class="pre-save"><a href="https://share.amuse.io/album/hanzel-16-rosas-y-algo-llamado-amor" target="_blank">Pre-save el álbum</a></div>
+    <img class="album-thumbnail" id="album-cover" src="https://hanzelconzeta.github.io/portadarosas.JPG" alt="Album Cover">
+    <div class="album-info" id="album-title">16 rosas y algo llamado amor (2006)</div>
+    <div class="album-tabs">
+      <button class="album-tab active" id="tab-0" onclick="switchAlbum(0)">16 rosas y algo llamado amor</button>
+      <button class="album-tab" id="tab-1" onclick="switchAlbum(1)">kanto amere (2007)</button>
+    </div>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
       <div class="buttons">
@@ -283,15 +286,36 @@
     };
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const songs = [
-      { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
-      { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
-      { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
-      { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
-      { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
-      { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
-      { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
+
+    const albums = [
+      {
+        title: "16 rosas y algo llamado amor (2006)",
+        cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
+        songs: [
+          { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
+          { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
+          { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
+          { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
+          { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
+          { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
+          { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
+        ]
+      },
+      {
+        title: "kanto amere (2007)",
+        cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
+        songs: [
+          { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '?:??' },
+          { title: 'siempre terminan en tragedia', src: 'https://hanzelconzeta.github.io/siempre_terminan_en_tragedia.mp3', duration: '?:??' },
+          { title: 'si no es hoy, mañana...', src: 'https://hanzelconzeta.github.io/si_no_es_hoy.mp3', duration: '?:??' },
+          { title: 'carta a sally', src: 'https://hanzelconzeta.github.io/carta_a_sally.mp3', duration: '?:??' },
+          { title: 'al final del arcoiris', src: 'https://hanzelconzeta.github.io/al_final_del_arcoiris.mp3', duration: '?:??' },
+          { title: 'suelo mirar al cielo cuando pienso en ti', src: 'https://hanzelconzeta.github.io/suelo_mirar_al_cielo_cuando_pienso_en_ti.mp3', duration: '?:??' }
+        ]
+      }
     ];
+
+    let currentAlbumIndex = 0;
     let currentSongIndex = 0;
     const audio = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
@@ -300,10 +324,13 @@
     const songTitle = document.getElementById('song-title');
     const songList = document.getElementById('song-list');
     const musicPlayerModal = document.getElementById('music-player-modal');
+    const albumCover = document.getElementById('album-cover');
+    const albumTitleEl = document.getElementById('album-title');
+
     function loadSong(i) {
       currentSongIndex = i;
-      audio.src = songs[i].src;
-      songTitle.textContent = songs[i].title;
+      audio.src = albums[currentAlbumIndex].songs[i].src;
+      songTitle.textContent = albums[currentAlbumIndex].songs[i].title;
       audio.load();
       audio.play();
       playPauseBtn.textContent = '❚❚';
@@ -311,10 +338,12 @@
         li.classList.toggle('active', index === i);
       });
     }
+
     function populateSongList() {
       songList.innerHTML = '';
       const hasCommented = localStorage.getItem('hasCommented') === 'true';
-      songs.forEach((song, i) => {
+      const currentAlbum = albums[currentAlbumIndex];
+      currentAlbum.songs.forEach((song, i) => {
         const li = document.createElement('li');
         const downloadLink = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
         li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
@@ -328,20 +357,37 @@
         downloadAlbum.innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar</p>';
       }
     }
+
+    function switchAlbum(index) {
+      currentAlbumIndex = index;
+      document.querySelectorAll('.album-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+      const album = albums[index];
+      albumTitleEl.textContent = album.title;
+      albumCover.src = album.cover;
+      populateSongList();
+      loadSong(0);
+    }
+
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
       else { audio.pause(); playPauseBtn.textContent = '▶'; }
     });
-    prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + songs.length) % songs.length));
-    nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % songs.length));
+    prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + albums[currentAlbumIndex].songs.length) % albums[currentAlbumIndex].songs.length));
+    nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % albums[currentAlbumIndex].songs.length));
     audio.addEventListener('ended', () => nextBtn.click());
+
     populateSongList();
     loadSong(0);
+
     document.getElementById('music-link').addEventListener('click', () => { musicPlayerModal.classList.add('active'); populateSongList(); });
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
     document.addEventListener('click', e => {
       if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') musicPlayerModal.classList.remove('active');
     });
+
+    // Guestbook (sin cambios)
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
@@ -359,9 +405,7 @@
         document.getElementById('guestbook-form').reset();
         localStorage.setItem('hasCommented', 'true');
         loadComments();
-        if (musicPlayerModal.classList.contains('active')) {
-          populateSongList();
-        }
+        if (musicPlayerModal.classList.contains('active')) populateSongList();
       } catch(err) { alert('Error al enviar'); }
     });
     async function loadComments() {
@@ -380,26 +424,6 @@
       });
       if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
     }
-    // Countdown logic
-    const targetDate = new Date('2024-03-14T00:00:00');
-    function updateCountdown() {
-      const now = new Date();
-      const difference = targetDate - now;
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours;
-        document.getElementById('minutes').textContent = minutes;
-        document.getElementById('seconds').textContent = seconds;
-      } else {
-        document.getElementById('countdown').textContent = '¡Ya disponible!';
-      }
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
   </script>
 </body>
 </html>
