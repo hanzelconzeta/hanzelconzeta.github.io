@@ -37,6 +37,15 @@
       --turquesa-cenote: #99F0FF;
       --dorado-luznegra: #F5E0FF;
     }
+    body.palette-zlooshee {
+      --ultravioleta-cosmico: #0A1F3D;
+      --bugambilia-neon: #00BFFF;
+      --rosa-electrico: #FF00FF;
+      --naranja-volcanico: #FF4500;
+      --verde-acido: #00FF7F;
+      --turquesa-cenote: #40E0D0;
+      --dorado-luznegra: #FFD700;
+    }
     body.palette-16rosas .intro p { display: none; }
     /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
@@ -169,7 +178,7 @@
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
-<body class="palette-16rosas">
+<body class="palette-kantoamere">
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -269,18 +278,20 @@
       logo.appendChild(span);
     });
     const paletteToggle = document.getElementById('palette-toggle');
-    let currentPalette = '16rosas';
+    let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
-      if (currentPalette === '16rosas') {
-        document.body.classList.remove('palette-16rosas');
-        document.body.classList.add('palette-kantoamere');
-        currentPalette = 'kantoamere';
-      } else if (currentPalette === 'kantoamere') {
+      if (currentPalette === 'kantoamere') {
         document.body.classList.remove('palette-kantoamere');
-        currentPalette = 'spenzer';
-      } else {
         document.body.classList.add('palette-16rosas');
         currentPalette = '16rosas';
+      } else if (currentPalette === '16rosas') {
+        document.body.classList.remove('palette-16rosas');
+        document.body.classList.add('palette-zlooshee');
+        currentPalette = 'zlooshee';
+      } else {
+        document.body.classList.remove('palette-zlooshee');
+        document.body.classList.add('palette-kantoamere');
+        currentPalette = 'kantoamere';
       }
     });
   </script>
@@ -390,11 +401,9 @@
     nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % albums[currentAlbumIndex].songs.length));
     audio.addEventListener('ended', () => nextBtn.click());
 
-    // Inicializar
     populateSongList();
     loadSong(0);
 
-    // Event listeners para cambiar álbum
     option0.addEventListener('click', () => switchAlbum(0));
     option1.addEventListener('click', () => switchAlbum(1));
 
@@ -407,7 +416,6 @@
       if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') musicPlayerModal.classList.remove('active');
     });
 
-    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
