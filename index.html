@@ -47,7 +47,6 @@
       --dorado-luznegra: #FFD700;
     }
     body.palette-16rosas .intro p { display: none; }
-    /* Cursor */
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
@@ -57,15 +56,12 @@
     .cursor-trail { position:fixed; width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;animation:fadeOut 1s forwards,pulse .5s infinite alternate; }
     @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
     @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
-    /* Intro y lava */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
-    /* Lava container */
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:var(--bugambilia-neon); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
     @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
-    /* Posiciones desktop (15 blobs) */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -89,7 +85,6 @@
     .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
     .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:25; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
-    /* Guestbook y social */
     .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
     .guestbook.show, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
     .guestbook .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
@@ -111,7 +106,6 @@
     .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:20; }
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    /* Music Player Modal */
     .music-player-modal { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:80vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
     .music-player-modal.show, .music-player-modal.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
     .music-player-modal .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
@@ -144,18 +138,17 @@
     .music-player-modal .player-controls .buttons { display:flex; gap:1.5rem; }
     .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
     .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; position: relative; }
+    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; }
     .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
     .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
-    .music-player-modal .song-list li .download-link { color: var(--naranja-volcanico); font-size: 1.2rem; margin-left: 0.5rem; }
+    .music-player-modal .song-list li .download-link { color: var(--naranja-volcanico); font-size: 1.2rem; margin-left: 0.5rem; cursor:pointer; }
     .music-player-modal .song-list li .download-link:hover { color: var(--turquesa-cenote); }
-    .music-player-modal .pre-save { text-align: center; margin-top: 1rem; }
     /* MOBILE */
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
       .lava-container { z-index:8; filter:url(#goo-mobile) !important; }
-      .blob { width:165px; height:165px; opacity:0.95; background: radial-gradient(circle at 33% 33%, var(--rosa-electrico) 22%, var(--bugambilia-neon) 52%, transparent 81%); }
+      .blob { width:165px; height:165px; opacity:0.95; }
       .blob:nth-child(n+7) { display:none; }
       .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
       .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
@@ -235,7 +228,9 @@
       <audio id="audio-player"></audio>
     </div>
     <ul class="song-list" id="song-list"></ul>
-    <div id="download-album" class="pre-save"></div>
+    <div id="download-album" class="pre-save">
+      <p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones individualmente</p>
+    </div>
   </div>
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -246,7 +241,9 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
+
   <script>
+    // Cursor y animaciones (igual que antes)
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -265,6 +262,7 @@
     });
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -277,6 +275,7 @@
       span.style.setProperty('--delay', `${delays[i]}s`);
       logo.appendChild(span);
     });
+
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
@@ -295,9 +294,11 @@
       }
     });
   </script>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -306,6 +307,7 @@
       messagingSenderId: "855182658974",
       appId: "1:855182658974:web:7dede44a589105053c1a8f"
     };
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
@@ -367,10 +369,10 @@
       audio.src = albums[currentAlbumIndex].songs[i].src;
       songTitle.textContent = albums[currentAlbumIndex].songs[i].title;
       audio.load();
-      audio.play();
+      audio.play().catch(e => console.log("Autoplay bloqueado:", e));
       playPauseBtn.textContent = '❚❚';
-      document.querySelectorAll('.song-list li').forEach((li, index) => {
-        li.classList.toggle('active', index === i);
+      document.querySelectorAll('.song-list li').forEach((li, idx) => {
+        li.classList.toggle('active', idx === i);
       });
     }
 
@@ -380,30 +382,49 @@
       const currentAlbum = albums[currentAlbumIndex];
       currentAlbum.songs.forEach((song, i) => {
         const li = document.createElement('li');
-        const downloadLink = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
+        let downloadLink = '';
+        if (hasCommented) {
+          downloadLink = ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>`;
+        }
         li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
         li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
+
+      // Mensaje informativo (sin ZIP)
       const downloadAlbum = document.getElementById('download-album');
       if (hasCommented) {
-        downloadAlbum.innerHTML = '<a href="https://hanzelconzeta.github.io/album.zip" download>Descargar Álbum Completo</a>';
+        downloadAlbum.innerHTML = '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>';
       } else {
-        downloadAlbum.innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar</p>';
+        downloadAlbum.innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>';
       }
     }
 
     playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
-      else { audio.pause(); playPauseBtn.textContent = '▶'; }
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = '❚❚';
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = '▶';
+      }
     });
-    prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + albums[currentAlbumIndex].songs.length) % albums[currentAlbumIndex].songs.length));
-    nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % albums[currentAlbumIndex].songs.length));
+
+    prevBtn.addEventListener('click', () => {
+      loadSong((currentSongIndex - 1 + albums[currentAlbumIndex].songs.length) % albums[currentAlbumIndex].songs.length);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      loadSong((currentSongIndex + 1) % albums[currentAlbumIndex].songs.length);
+    });
+
     audio.addEventListener('ended', () => nextBtn.click());
 
+    // Inicializar
     populateSongList();
     loadSong(0);
 
+    // Cambiar álbum
     option0.addEventListener('click', () => switchAlbum(0));
     option1.addEventListener('click', () => switchAlbum(1));
 
@@ -411,17 +432,30 @@
       musicPlayerModal.classList.add('active'); 
       populateSongList(); 
     });
+
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
+
     document.addEventListener('click', e => {
-      if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') musicPlayerModal.classList.remove('active');
+      if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') {
+        musicPlayerModal.classList.remove('active');
+      }
     });
 
+    // Guestbook
     const guestbook = document.getElementById('guestbook');
-    document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
-    document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
-    document.addEventListener('click', e => {
-      if (guestbook.classList.contains('active') && !guestbook.contains(e.target) && e.target.id !== 'guestbook-link') guestbook.classList.remove('active');
+    document.getElementById('guestbook-link').addEventListener('click', () => { 
+      guestbook.classList.add('active'); 
+      loadComments(); 
     });
+
+    document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
+
+    document.addEventListener('click', e => {
+      if (guestbook.classList.contains('active') && !guestbook.contains(e.target) && e.target.id !== 'guestbook-link') {
+        guestbook.classList.remove('active');
+      }
+    });
+
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
@@ -434,23 +468,31 @@
         localStorage.setItem('hasCommented', 'true');
         loadComments();
         if (musicPlayerModal.classList.contains('active')) populateSongList();
-      } catch(err) { alert('Error al enviar'); }
+      } catch(err) {
+        console.error(err);
+        alert('Error al enviar el comentario');
+      }
     });
+
     async function loadComments() {
       const list = document.getElementById('comments-list');
       list.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando...</p>';
-      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-      const snapshot = await getDocs(q);
-      list.innerHTML = '';
-      snapshot.forEach(doc => {
-        const d = doc.data();
-        const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
-        list.appendChild(div);
-      });
-      if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
+      try {
+        const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+        const snapshot = await getDocs(q);
+        list.innerHTML = '';
+        snapshot.forEach(doc => {
+          const d = doc.data();
+          const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
+          const div = document.createElement('div');
+          div.className = 'comment';
+          div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
+          list.appendChild(div);
+        });
+        if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
+      } catch(err) {
+        list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>';
+      }
     }
   </script>
 </body>
