@@ -18,17 +18,7 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
-    body { 
-      background:var(--ultravioleta-cosmico); 
-      color:var(--dorado-luznegra); 
-      font-family:'Roboto Slab',serif; 
-      height:100vh; 
-      overflow:hidden; 
-      position:relative; 
-      cursor:none; 
-    }
-
-    /* Paletas */
+    body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -56,139 +46,151 @@
       --turquesa-cenote: #40E0D0;
       --dorado-luznegra: #FFD700;
     }
-
-    /* === LAVA LAMP MEJORADA - MENOS BRUMA, MÁS VOLUMEN Y COLOR === */
-    .lava-container { 
-      position:absolute; 
-      inset:0; 
-      pointer-events:none; 
-      z-index:5; 
-      mix-blend-mode: screen;
-      overflow: hidden;
-    }
-    .blob { 
-      position:absolute; 
-      width:260px; 
-      height:260px; 
-      border-radius:50%; 
-      background: radial-gradient(circle at 40% 30%, rgba(255,255,255,0.4), var(--bugambilia-neon) 40%, var(--rosa-electrico));
-      opacity:0.85; 
-      filter: blur(22px); 
-      animation:lava-move 32s infinite ease-in-out alternate; 
-      will-change: transform;
-      box-shadow: 0 0 60px var(--bugambilia-neon);
-    }
-    @keyframes lava-move { 
-      0%   { transform: translateY(0) scale(1) rotate(5deg); }
-      50%  { transform: translateY(-135vh) scale(2.6) rotate(85deg); }
-      100% { transform: translateY(0) scale(1) rotate(5deg); }
-    }
-
-    /* Posiciones de los blobs */
-    .blob:nth-child(1){left:3%; bottom:-100px; animation-duration:34s;}
-    .blob:nth-child(2){left:14%; bottom:-160px; animation-duration:41s; animation-delay:3s;}
-    .blob:nth-child(3){left:24%; bottom:-190px; animation-duration:37s; animation-delay:8s;}
-    .blob:nth-child(4){left:36%; bottom:-115px; animation-duration:46s; animation-delay:13s;}
-    .blob:nth-child(5){left:48%; bottom:-175px; animation-duration:39s; animation-delay:1s;}
-    .blob:nth-child(6){left:57%; bottom:-145px; animation-duration:43s; animation-delay:6s;}
-    .blob:nth-child(7){left:68%; bottom:-215px; animation-duration:36s; animation-delay:11s;}
-    .blob:nth-child(8){left:77%; bottom:-155px; animation-duration:42s; animation-delay:16s;}
-    .blob:nth-child(9){left:86%; bottom:-195px; animation-duration:38s; animation-delay:19s;}
-    .blob:nth-child(10){left:94%; bottom:-125px; animation-duration:45s; animation-delay:22s;}
-    .blob:nth-child(11){left:8%; bottom:-240px; animation-duration:35s; animation-delay:4s;}
-    .blob:nth-child(12){left:19%; bottom:-165px; animation-duration:47s; animation-delay:9s;}
-    .blob:nth-child(13){left:41%; bottom:-205px; animation-duration:40s; animation-delay:14s;}
-    .blob:nth-child(14){left:62%; bottom:-150px; animation-duration:39s; animation-delay:7s;}
-    .blob:nth-child(15){left:79%; bottom:-225px; animation-duration:44s; animation-delay:12s;}
-
-    /* Cursor */
-    .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
+    body.palette-16rosas .intro p { display: none; }
+    .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-    .cursor.hover { width:22px; height:22px; box-shadow:0 0 25px rgba(255,46,152,0.7); }
-    .cursor.click { transform:translate(-50%,-50%) scale(1.3); }
-
-    .cursor-trail { 
-      position:fixed; width:10px; height:10px; border-radius:50%; pointer-events:none; 
-      transform:translate(-50%,-50%); z-index:9998; 
-      animation:fadeOut 1.2s forwards; 
-    }
-    @keyframes fadeOut { to{opacity:0; transform:scale(2) translate(-50%,-50%)} }
-
-    /* Intro y elementos principales */
+    @keyframes colorShift { 0%{background:var(--bugambilia-neon)} 20%{background:var(--rosa-electrico)} 40%{background:var(--naranja-volcanico)} 60%{background:var(--verde-acido)} 80%{background:var(--turquesa-cenote)} 100%{background:var(--dorado-luznegra)} }
+    .cursor.hover { width:20px;height:20px;box-shadow:0 0 25px rgba(255,46,152,0.7); }
+    .cursor.click { animation:launch-stick .5s ease-out; }
+    @keyframes launch-stick { 0%{transform:translate(-50%,-50%)scale(1)} 50%{transform:translate(-50%,-50%)scale(1.2)rotate(10deg)} 100%{transform:translate(-50%,-50%)scale(1)rotate(0)} }
+    .cursor-trail { position:fixed; width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;animation:fadeOut 1s forwards,pulse .5s infinite alternate; }
+    @keyframes fadeOut { to{opacity:0;transform:scale(1.5)translate(-50%,-50%)} }
+    @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
     .hanzel-logo span { display:inline-block; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 1.5s infinite alternate, float var(--duration) infinite; animation-delay:var(--delay); }
-
+    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
+    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:var(--bugambilia-neon); opacity:0.75; animation:lava-move 40s infinite ease-in-out alternate; }
+    @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
+    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
+    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
+    .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
+    .blob:nth-child(4){left:35%;bottom:-120px;animation-duration:45s;animation-delay:15s;}
+    .blob:nth-child(5){left:45%;bottom:-180px;animation-duration:40s;animation-delay:3s;}
+    .blob:nth-child(6){left:55%;bottom:-140px;animation-duration:43s;animation-delay:8s;}
+    .blob:nth-child(7){left:65%;bottom:-220px;animation-duration:37s;animation-delay:13s;}
+    .blob:nth-child(8){left:75%;bottom:-160px;animation-duration:41s;animation-delay:18s;}
+    .blob:nth-child(9){left:85%;bottom:-190px;animation-duration:39s;animation-delay:20s;}
+    .blob:nth-child(10){left:95%;bottom:-130px;animation-duration:44s;animation-delay:22s;}
+    .blob:nth-child(11){left:10%;bottom:-250px;animation-duration:36s;animation-delay:1s;}
+    .blob:nth-child(12){left:20%;bottom:-170px;animation-duration:46s;animation-delay:7s;}
+    .blob:nth-child(13){left:40%;bottom:-210px;animation-duration:39s;animation-delay:11s;}
+    .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
+    .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
+    .est, .chi-rho, .vertical-menu, .social-icons { z-index:25 !important; }
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.8; text-shadow:0 0 10px rgba(255,215,0,0.5); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.7; text-shadow:0 0 15px var(--bugambilia-neon),0 0 30px var(--rosa-electrico); animation:glow 3s infinite alternate; }
     .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; }
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.75; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
-
     .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:25; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
-
-    /* Guestbook y Music Player (sin cambios importantes) */
-    .guestbook, .music-player-modal { 
-      position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); 
-      width:380px; max-height:80vh; overflow-y:auto; 
-      background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); 
-      border-radius:20px; padding:2.5rem 2rem 2rem; 
-      box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); 
-      z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; 
-      transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); 
-    }
-    .guestbook.active, .music-player-modal.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-
-    .close-btn { 
-      position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; 
-      background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); 
-      font-size:2rem; line-height:38px; border-radius:50%; display:flex; 
-      align-items:center; justify-content:center; cursor:pointer; transition:all .4s; 
-    }
-    .close-btn:hover { background:var(--rosa-electrico); color:var(--ultravioleta-cosmico); transform:rotate(90deg) scale(1.15); }
-
+    .guestbook { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:65vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .guestbook.show, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+    .guestbook .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
+    .guestbook .close-btn:hover { background:var(--rosa-electrico); color:var(--ultravioleta-cosmico); transform:rotate(90deg) scale(1.15); box-shadow:0 0 35px var(--turquesa-cenote); border-color:var(--turquesa-cenote); }
+    .guestbook h2 { font-family:'Cinzel',serif; font-size:2.4rem; text-align:center; margin-bottom:2rem; color:var(--dorado-luznegra); text-shadow:0 0 25px var(--bugambilia-neon),0 0 50px var(--rosa-electrico); letter-spacing:6px; text-transform:uppercase; }
+    .guestbook form { display:flex; flex-direction:column; gap:1.4rem; }
+    .guestbook input, .guestbook textarea { background:rgba(11,0,20,0.75); border:2px solid var(--bugambilia-neon); border-radius:14px; padding:1.1rem 1.4rem; color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; font-size:1.1rem; transition:all .4s ease; box-shadow:0 0 18px rgba(193,59,255,0.25); }
+    .guestbook input:focus, .guestbook textarea:focus { border-color:var(--turquesa-cenote); box-shadow:0 0 30px var(--turquesa-cenote); color:var(--verde-acido); }
+    .guestbook input::placeholder, .guestbook textarea::placeholder { color:var(--verde-acido); opacity:0.65; font-style:italic; }
+    .guestbook textarea { min-height:120px; resize:vertical; }
+    .guestbook button[type="submit"] { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); border:none; color:var(--dorado-luznegra); font-family:'Cinzel',serif; font-size:1.35rem; padding:1.15rem; border-radius:14px; cursor:pointer; text-transform:uppercase; letter-spacing:4px; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow:0 0 35px var(--rosa-electrico); }
+    .guestbook button[type="submit"]:hover { transform:translateY(-4px) scale(1.04); box-shadow:0 0 55px var(--turquesa-cenote); background:linear-gradient(90deg,var(--turquesa-cenote),var(--verde-acido),var(--bugambilia-neon)); }
+    .guestbook .comments { margin-top:2.2rem; padding-top:1.8rem; border-top:1px dashed var(--bugambilia-neon); }
+    .guestbook .comment { background:rgba(255,255,255,0.04); border-left:4px solid var(--rosa-electrico); padding:1.1rem 1.4rem; margin-bottom:1.1rem; border-radius:10px; position:relative; transition:all .3s; }
+    .guestbook .comment:hover { border-left-color:var(--turquesa-cenote); box-shadow:0 0 25px rgba(0,240,255,0.25); }
+    .guestbook .comment .author { font-family:'Cinzel',serif; color:var(--rosa-electrico); font-size:1.15rem; margin-bottom:0.5rem; }
+    .guestbook .comment p { color:var(--dorado-luznegra); line-height:1.55; }
+    .guestbook .comment .date { font-size:0.82rem; color:var(--verde-acido); opacity:0.75; position:absolute; bottom:0.7rem; right:1.2rem; }
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:20; }
+    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s,color .3s; }
+    .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
+    .music-player-modal { position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); width:380px; max-height:80vh; overflow-y:auto; background:rgba(11,0,20,0.95); border:2px solid var(--bugambilia-neon); border-radius:20px; padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .music-player-modal.show, .music-player-modal.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+    .music-player-modal .close-btn { position:absolute; top:1.2rem; right:1.2rem; width:42px; height:42px; background:transparent; border:2px solid var(--rosa-electrico); color:var(--rosa-electrico); font-size:2rem; line-height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); box-shadow:0 0 20px rgba(255,46,152,0.6); }
+    .music-player-modal .close-btn:hover { background:var(--rosa-electrico); color:var(--ultravioleta-cosmico); transform:rotate(90deg) scale(1.15); box-shadow:0 0 35px var(--turquesa-cenote); border-color:var(--turquesa-cenote); }
+    .music-player-modal h2 { font-family:'Cinzel',serif; font-size:2.4rem; text-align:center; margin-bottom:1rem; color:var(--dorado-luznegra); text-shadow:0 0 25px var(--bugambilia-neon),0 0 50px var(--rosa-electrico); letter-spacing:6px; text-transform:uppercase; }
     .music-player-modal .album-thumbnail { display:block; margin:0 auto 1rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
     .music-player-modal .album-info { text-align:center; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; margin-bottom:0.8rem; }
     .music-player-modal .album-selector { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.2rem; }
     .music-player-modal .album-option { 
-      background:rgba(11,0,20,0.75); border:2px solid var(--bugambilia-neon); 
-      color:var(--dorado-luznegra); padding:0.7rem 1.2rem; border-radius:10px; 
-      cursor:pointer; font-family:'Cinzel',serif; font-size:1.05rem; 
-      text-align:center; transition:all .3s; text-transform: lowercase;
+      background:rgba(11,0,20,0.75); 
+      border:2px solid var(--bugambilia-neon); 
+      color:var(--dorado-luznegra); 
+      padding:0.7rem 1.2rem; 
+      border-radius:10px; 
+      cursor:pointer; 
+      font-family:'Cinzel',serif; 
+      font-size:1.05rem; 
+      text-align:center; 
+      transition:all .3s; 
+      text-transform: lowercase;
     }
     .music-player-modal .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
     .music-player-modal .album-option.active { 
       background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); 
-      border-color:var(--rosa-electrico); color:var(--dorado-luznegra); 
+      border-color:var(--rosa-electrico); 
+      color:var(--dorado-luznegra); 
     }
-    .music-player-modal .song-list li .download-link { color: var(--naranja-volcanico); font-size: 1.2rem; margin-left: 0.5rem; }
+    .music-player-modal .player-controls { display:flex; flex-direction:column; align-items:center; margin-bottom:1.5rem; gap:0.8rem; }
+    .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
+    .music-player-modal .player-controls .buttons { display:flex; gap:1.5rem; }
+    .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
+    .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
+    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; }
+    .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
+    .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
+    .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
+    .music-player-modal .song-list li .download-link { color: var(--naranja-volcanico); font-size: 1.2rem; margin-left: 0.5rem; cursor:pointer; }
     .music-player-modal .song-list li .download-link:hover { color: var(--turquesa-cenote); }
-
-    /* Mobile */
+    /* MOBILE */
     @media (max-width: 768px) {
-      .blob { width:175px; height:175px; filter: blur(26px); opacity:0.9; }
+      .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
+      .lava-container { z-index:8; filter:url(#goo-mobile) !important; }
+      .blob { width:165px; height:165px; opacity:0.95; }
       .blob:nth-child(n+7) { display:none; }
-      .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); }
-      .vertical-menu { bottom:15vh; right:6vw; gap:2rem; }
-      .guestbook, .music-player-modal { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
+      .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
+      .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
+      .est { font-size:1rem; bottom:4vh; }
+      .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
+      .social-icons { top:3.5vh; gap:1.2rem; }
+      .social-icons a { font-size:1.6rem; }
+      .guestbook { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
+      .guestbook h2 { font-size:2.1rem; }
+      .guestbook .close-btn { width:38px; height:38px; font-size:1.8rem; }
+      .music-player-modal { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; max-height: 80vh; }
+      .music-player-modal h2 { font-size:2.1rem; }
+      .music-player-modal .close-btn { width:38px; height:38px; font-size:1.8rem; }
       .music-player-modal .album-thumbnail { width:140px; height:140px; }
+      .music-player-modal .player-controls button { font-size:1.8rem; }
+      .music-player-modal .song-list li { font-size:1rem; padding:0.6rem 0; }
+      .music-player-modal .album-option { font-size:0.95rem; padding:0.6rem 1rem; }
     }
-
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
 <body class="palette-kantoamere">
   <div class="cursor" id="cursor"></div>
-
   <div class="intro">
     <div class="lava-container">
+      <svg style="display:none;">
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+        <filter id="goo-mobile">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="45" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </svg>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
-
     <h1 class="hanzel-logo">HANZEL</h1>
     <ul class="vertical-menu">
       <li id="music-link">música</li>
@@ -196,10 +198,7 @@
     </ul>
     <div class="est">EST. 2006</div>
   </div>
-
   <div class="chi-rho">☧</div>
-
-  <!-- Guestbook -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -210,8 +209,6 @@
     </form>
     <div class="comments" id="comments-list"></div>
   </div>
-
-  <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <h2>Música</h2>
@@ -232,10 +229,9 @@
     </div>
     <ul class="song-list" id="song-list"></ul>
     <div id="download-album" class="pre-save">
-      <p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>
+      <p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones individualmente</p>
     </div>
   </div>
-
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
     <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -244,11 +240,10 @@
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
-
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
   <script>
-    // Cursor y logo (mismo código anterior)
+    // Cursor y animaciones (igual que antes)
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -259,7 +254,7 @@
       trail.style.top = e.clientY + 'px';
       trail.style.background = `radial-gradient(circle, ${['#C13BFF','#FF2E98','#FF4F00','#00FF99','#00F0FF'][Math.floor(Math.random()*5)]}, transparent)`;
       document.body.appendChild(trail);
-      setTimeout(() => trail.remove(), 1200);
+      setTimeout(() => trail.remove(), 1000);
     });
     document.querySelectorAll('button, li, a').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
@@ -374,9 +369,11 @@
       audio.src = albums[currentAlbumIndex].songs[i].src;
       songTitle.textContent = albums[currentAlbumIndex].songs[i].title;
       audio.load();
-      audio.play().catch(() => {});
+      audio.play().catch(e => console.log("Autoplay bloqueado:", e));
       playPauseBtn.textContent = '❚❚';
-      document.querySelectorAll('.song-list li').forEach((li, idx) => li.classList.toggle('active', idx === i));
+      document.querySelectorAll('.song-list li').forEach((li, idx) => {
+        li.classList.toggle('active', idx === i);
+      });
     }
 
     function populateSongList() {
@@ -394,6 +391,7 @@
         songList.appendChild(li);
       });
 
+      // Mensaje informativo (sin ZIP)
       const downloadAlbum = document.getElementById('download-album');
       if (hasCommented) {
         downloadAlbum.innerHTML = '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>';
@@ -403,16 +401,30 @@
     }
 
     playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
-      else { audio.pause(); playPauseBtn.textContent = '▶'; }
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = '❚❚';
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = '▶';
+      }
     });
-    prevBtn.addEventListener('click', () => loadSong((currentSongIndex - 1 + albums[currentAlbumIndex].songs.length) % albums[currentAlbumIndex].songs.length));
-    nextBtn.addEventListener('click', () => loadSong((currentSongIndex + 1) % albums[currentAlbumIndex].songs.length));
+
+    prevBtn.addEventListener('click', () => {
+      loadSong((currentSongIndex - 1 + albums[currentAlbumIndex].songs.length) % albums[currentAlbumIndex].songs.length);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      loadSong((currentSongIndex + 1) % albums[currentAlbumIndex].songs.length);
+    });
+
     audio.addEventListener('ended', () => nextBtn.click());
 
+    // Inicializar
     populateSongList();
     loadSong(0);
 
+    // Cambiar álbum
     option0.addEventListener('click', () => switchAlbum(0));
     option1.addEventListener('click', () => switchAlbum(1));
 
@@ -420,21 +432,28 @@
       musicPlayerModal.classList.add('active'); 
       populateSongList(); 
     });
+
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
 
     document.addEventListener('click', e => {
-      if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') musicPlayerModal.classList.remove('active');
+      if (musicPlayerModal.classList.contains('active') && !musicPlayerModal.contains(e.target) && e.target.id !== 'music-link') {
+        musicPlayerModal.classList.remove('active');
+      }
     });
 
+    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => { 
       guestbook.classList.add('active'); 
       loadComments(); 
     });
+
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
     document.addEventListener('click', e => {
-      if (guestbook.classList.contains('active') && !guestbook.contains(e.target) && e.target.id !== 'guestbook-link') guestbook.classList.remove('active');
+      if (guestbook.classList.contains('active') && !guestbook.contains(e.target) && e.target.id !== 'guestbook-link') {
+        guestbook.classList.remove('active');
+      }
     });
 
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
@@ -449,24 +468,31 @@
         localStorage.setItem('hasCommented', 'true');
         loadComments();
         if (musicPlayerModal.classList.contains('active')) populateSongList();
-      } catch(err) { alert('Error al enviar'); }
+      } catch(err) {
+        console.error(err);
+        alert('Error al enviar el comentario');
+      }
     });
 
     async function loadComments() {
       const list = document.getElementById('comments-list');
       list.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando...</p>';
-      const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-      const snapshot = await getDocs(q);
-      list.innerHTML = '';
-      snapshot.forEach(doc => {
-        const d = doc.data();
-        const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
-        list.appendChild(div);
-      });
-      if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
+      try {
+        const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+        const snapshot = await getDocs(q);
+        list.innerHTML = '';
+        snapshot.forEach(doc => {
+          const d = doc.data();
+          const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
+          const div = document.createElement('div');
+          div.className = 'comment';
+          div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
+          list.appendChild(div);
+        });
+        if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
+      } catch(err) {
+        list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>';
+      }
     }
   </script>
 </body>
