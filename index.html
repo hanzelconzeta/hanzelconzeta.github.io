@@ -99,6 +99,7 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite; 
       animation-delay:var(--delay); 
     }
+
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { 
       position:absolute; width:220px; height:220px; border-radius:50%; 
@@ -127,9 +128,38 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    .est, .chi-rho, .vertical-menu { z-index:25 !important; }
+    /* MENÚ VERTICAL - Corregido */
+    .vertical-menu { 
+      position:absolute; 
+      right:5vw; 
+      bottom:11vh; 
+      list-style:none; 
+      display:flex; 
+      flex-direction:column; 
+      gap:2.5rem; 
+      z-index:25 !important;
+    }
+    .vertical-menu li { 
+      font-family:'Cinzel',serif; 
+      font-size:1.65rem; 
+      color:var(--dorado-luznegra); 
+      text-transform:uppercase; 
+      letter-spacing:6px; 
+      cursor:pointer; 
+      opacity:0.8; 
+      transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
+    }
+    .vertical-menu li:hover { 
+      color:var(--turquesa-cenote); 
+      text-shadow:0 0 40px var(--turquesa-cenote); 
+      transform:translateX(20px) scale(1.1); 
+    }
 
-    /* SOCIAL ICONS - Siempre por encima de las blobs */
+    .est, .chi-rho { z-index:25 !important; }
+    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
+    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
+
+    /* SOCIAL ICONS - Siempre visibles por encima */
     .social-icons { 
       position:absolute; 
       top:2vh; 
@@ -240,22 +270,25 @@
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
+    
+    <!-- MENÚ VERTICAL -->
     <ul class="vertical-menu">
       <li id="music-link">música</li>
       <li id="guestbook-link">guestbook</li>
     </ul>
+    
     <div class="est">EST. 2006</div>
   </div>
   <div class="chi-rho">☧</div>
 
-  <!-- SOCIAL ICONS - Ahora correctamente incluidos y con z-index alto -->
+  <!-- SOCIAL ICONS -->
   <div class="social-icons">
-    <a href="https://www.youtube.com/hanzelconzeta" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://instagram.com/hanzelconzeta" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
-    <a href="https://www.facebook.com/hanzelconzeta" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="https://x.com/hanzelconzeta" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9" target="_blank"><i class="fab fa-spotify"></i></a>
+    <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
@@ -295,7 +328,7 @@
   </div>
 
   <script>
-    // Cursor y animaciones
+    // Cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -427,8 +460,9 @@
       albumCover.src = album.cover;
       populateSongList();
 
-      if (album.songs.length > 0) loadSong(0);
-      else {
+      if (album.songs.length > 0) {
+        loadSong(0);
+      } else {
         songTitle.textContent = 'Próximamente...';
         playPauseBtn.textContent = '▶';
       }
@@ -488,6 +522,7 @@
     });
     audio.addEventListener('ended', () => nextBtn.click());
 
+    // Inicializar
     populateSongList();
     loadSong(0);
 
