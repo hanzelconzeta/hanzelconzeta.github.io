@@ -99,9 +99,7 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite; 
       animation-delay:var(--delay); 
     }
-    .lava-container { 
-      position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; 
-    }
+    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { 
       position:absolute; width:220px; height:220px; border-radius:50%; 
       background:var(--bugambilia-neon); opacity:0.85; 
@@ -131,7 +129,7 @@
 
     .est, .chi-rho, .vertical-menu { z-index:25 !important; }
 
-    /* SOCIAL ICONS - Ahora con z-index más alto para estar siempre por encima de las blobs */
+    /* SOCIAL ICONS - Siempre por encima de las blobs */
     .social-icons { 
       position:absolute; 
       top:2vh; 
@@ -139,13 +137,13 @@
       transform:translateX(-50%); 
       display:flex; 
       gap:1.5rem; 
-      z-index:30 !important;   /* ← Este es el cambio principal */
+      z-index:30 !important; 
     }
     .social-icons a { 
       color:var(--verde-acido); 
       font-size:1.8rem; 
       text-shadow:0 0 10px rgba(0,255,153,0.5); 
-      transition:transform .3s,color .3s; 
+      transition:transform .3s, color .3s; 
     }
     .social-icons a:hover { 
       color:var(--turquesa-cenote); 
@@ -172,7 +170,6 @@
       opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); 
     }
 
-    /* Resto de estilos (modales, etc.) */
     .music-player-modal .album-thumbnail { display:block; margin:0 auto 1rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
     .music-player-modal .album-info { text-align:center; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; margin-bottom:0.8rem; }
     .music-player-modal .album-option {
@@ -251,14 +248,14 @@
   </div>
   <div class="chi-rho">☧</div>
 
-  <!-- SOCIAL ICONS - Siempre visibles por encima -->
+  <!-- SOCIAL ICONS - Ahora correctamente incluidos y con z-index alto -->
   <div class="social-icons">
-    <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9" target="_blank"><i class="fab fa-spotify"></i></a>
-    <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.youtube.com/hanzelconzeta" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://instagram.com/hanzelconzeta" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
+    <a href="https://www.facebook.com/hanzelconzeta" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://x.com/hanzelconzeta" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
@@ -298,7 +295,7 @@
   </div>
 
   <script>
-    // Cursor y logo
+    // Cursor y animaciones
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -318,6 +315,7 @@
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
+    // Logo animado
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -331,7 +329,7 @@
       logo.appendChild(span);
     });
 
-    // Toggle de paletas
+    // Toggle paletas
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
@@ -503,7 +501,6 @@
     });
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
 
-    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
