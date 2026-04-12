@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     
-    /* PALETAS (las otras tres sin cambios) */
+    /* PALETAS (sin cambios) */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -49,32 +49,31 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE - HANZEL ajustado según tu petición */
+    /* PALETA PETITE - Ajuste final según tu petición */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;      /* Fondo turquesa brillante */
-      --bugambilia-neon: #FF0088;           /* Rosa magenta fuerte para blobs/lava */
+      --bugambilia-neon: #FF0088;           /* Rosa magenta fuerte para lava/blobs */
       --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC;
       --verde-acido: #B0FFEE;
       --turquesa-cenote: #00FFFF;
       --dorado-luznegra: #E0FFFF;
-      --magenta-brillante: #FF4D94;         /* Rosa más suave para HANZEL */
     }
 
     .cursor { 
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
       transition:all .1s; animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 20px rgba(255,77,148,0.7),inset 0 0 10px var(--rosa-electrico); 
+      box-shadow:0 0 20px rgba(255,20,147,0.7),inset 0 0 10px var(--rosa-electrico); 
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     
     @keyframes colorShift { 
       0%{background:var(--bugambilia-neon)} 
       25%{background:var(--rosa-electrico)} 
-      50%{background:var(--magenta-brillante)} 
+      50%{background:#FF4D94} 
       75%{background:var(--turquesa-cenote)} 
-      100%{background:var(--dorado-luznegra)} 
+      100%{background:#FFD700} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -96,19 +95,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Rosa más suave + toques rojizos y dorados */
+    /* HANZEL en PETITE - Rosa más suave + amarillo/dorado mucho más intenso */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF4D94, #FF6B9D, #FF8FB3, #FFAA00, #FFD700);
+      background:linear-gradient(90deg, #FF6BA6, #FF8AB8, #FFAA00, #FFCC00, #FFD700);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 35px #FF4D94, 0 0 65px #FFAA00, 0 0 90px #FFD700;
+      text-shadow: 0 0 35px #FF6BA6, 0 0 70px #FFAA00, 0 0 100px #FFD700;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 30px #FF4D94, 0 0 60px #FFAA00; }
-      to   { text-shadow: 0 0 50px #FF4D94, 0 0 85px #FFAA00, 0 0 110px #FFD700; }
+      from { text-shadow: 0 0 30px #FF6BA6, 0 0 65px #FFAA00; }
+      to   { text-shadow: 0 0 50px #FF6BA6, 0 0 90px #FFAA00, 0 0 120px #FFD700; }
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -310,7 +309,7 @@
   </div>
 
   <script>
-    // Cursor y logo
+    // Cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -319,7 +318,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FF4D94, #FFAA00, transparent)`;
+      trail.style.background = `radial-gradient(circle, #FF0088, #FF6BA6, #FFAA00, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
@@ -330,6 +329,7 @@
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
+    // Logo animado
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -343,7 +343,7 @@
       logo.appendChild(span);
     });
 
-    // Toggle paletas
+    // Toggle de paletas
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
