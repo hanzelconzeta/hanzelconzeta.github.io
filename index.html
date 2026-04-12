@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     
-    /* PALETAS */
+    /* PALETAS (sin cambios) */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -49,23 +49,23 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE MEJORADA */
+    /* PALETA PETITE MEJORADA - Solo HANZEL más llamativo */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;      /* Fondo turquesa brillante */
-      --bugambilia-neon: #FF0088;           /* Rosa magenta intenso para blobs/lava */
+      --bugambilia-neon: #FF0088;           /* Rosa magenta para blobs/lava */
       --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC;
       --verde-acido: #B0FFEE;
       --turquesa-cenote: #00FFFF;
       --dorado-luznegra: #E0FFFF;
-      --magenta-brillante: #FF40C0;         /* Nuevo tono para hacer HANZEL más llamativo */
+      --magenta-brillante: #FF1493;         /* Tono extra para hacer HANZEL más vibrante */
     }
 
     .cursor { 
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
       transition:all .1s; animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 20px rgba(255,64,192,0.8),inset 0 0 10px var(--rosa-electrico); 
+      box-shadow:0 0 20px rgba(255,20,147,0.7),inset 0 0 10px var(--rosa-electrico); 
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     
@@ -85,14 +85,25 @@
       margin-bottom:1rem; 
       white-space: nowrap; 
     }
-    .hanzel-logo span { 
-      display:inline-block; 
-      background:linear-gradient(90deg, #FF0088, #FF40C0, #FF80D1, #E0FFFF); 
+    
+    /* Solo en petite el logo es más brillante y contrastante */
+    body.palette-petite .hanzel-logo span { 
+      background:linear-gradient(90deg, #FF0088, #FF1493, #FF69B4, #FFFFFF); 
       -webkit-background-clip:text; 
       -webkit-text-fill-color:transparent; 
-      animation:glow 1.6s infinite alternate, float var(--duration) infinite; 
+      animation:glow 1.4s infinite alternate, float var(--duration) infinite; 
       animation-delay:var(--delay); 
-      text-shadow: 0 0 35px #FF40C0;
+      text-shadow: 0 0 40px #FF1493, 0 0 70px #FF69B4;
+    }
+
+    /* Logo normal en las otras paletas */
+    .hanzel-logo span { 
+      display:inline-block; 
+      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); 
+      -webkit-background-clip:text; 
+      -webkit-text-fill-color:transparent; 
+      animation:glow 1.5s infinite alternate, float var(--duration) infinite; 
+      animation-delay:var(--delay); 
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -215,10 +226,7 @@
       .music-player-modal .album-thumbnail { width:140px; height:140px; }
     }
 
-    @keyframes glow { 
-      from { text-shadow:0 0 25px var(--dorado-luznegra), 0 0 50px var(--magenta-brillante); } 
-      to { text-shadow:0 0 40px var(--dorado-luznegra), 0 0 90px var(--magenta-brillante); } 
-    }
+    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
@@ -306,7 +314,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FF40C0, #FF80D1, transparent)`;
+      trail.style.background = `radial-gradient(circle, #FF0088, #FF1493, #FF69B4, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
