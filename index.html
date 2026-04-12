@@ -48,64 +48,59 @@
       --turquesa-cenote: #40E0D0;
       --dorado-luznegra: #FFD700;
     }
+
+    /* PALETA PETITE MEJORADA */
     body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;
-      --bugambilia-neon: #FF0088;
+      --ultravioleta-cosmico: #00D4FF;      /* Fondo turquesa brillante */
+      --bugambilia-neon: #FF0088;           /* Rosa magenta intenso para blobs/lava */
       --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC;
       --verde-acido: #B0FFEE;
       --turquesa-cenote: #00FFFF;
       --dorado-luznegra: #E0FFFF;
+      --magenta-brillante: #FF40C0;         /* Nuevo tono para hacer HANZEL más llamativo */
     }
 
     .cursor { 
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
       transition:all .1s; animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 15px rgba(255,0,136,0.6),inset 0 0 10px var(--rosa-electrico); 
+      box-shadow:0 0 20px rgba(255,64,192,0.8),inset 0 0 10px var(--rosa-electrico); 
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     
     @keyframes colorShift { 
       0%{background:var(--bugambilia-neon)} 
       25%{background:var(--rosa-electrico)} 
-      50%{background:var(--naranja-volcanico)} 
+      50%{background:var(--magenta-brillante)} 
       75%{background:var(--turquesa-cenote)} 
       100%{background:var(--dorado-luznegra)} 
     }
-    
-    .cursor.hover { width:20px; height:20px; box-shadow:0 0 25px rgba(255,46,152,0.8); }
-    .cursor.click { animation:launch-stick .5s ease-out; }
-    @keyframes launch-stick { 
-      0%{transform:translate(-50%,-50%)scale(1)} 
-      50%{transform:translate(-50%,-50%)scale(1.2)rotate(10deg)} 
-      100%{transform:translate(-50%,-50%)scale(1)rotate(0)} 
-    }
-    
-    .cursor-trail { 
-      position:fixed; width:10px; height:10px; border-radius:50%; pointer-events:none; 
-      transform:translate(-50%,-50%); z-index:9998; 
-      animation:fadeOut 1s forwards, pulse .5s infinite alternate; 
-    }
-    @keyframes fadeOut { to{opacity:0; transform:scale(1.5)translate(-50%,-50%)} }
-    @keyframes pulse { from{opacity:0.3} to{opacity:0.6} }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
-    .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
+    .hanzel-logo { 
+      font-family:'Cinzel',serif; 
+      font-size: clamp(4rem, 15vw, 10rem); 
+      letter-spacing: clamp(4px, 2vw, 12px); 
+      margin-bottom:1rem; 
+      white-space: nowrap; 
+    }
     .hanzel-logo span { 
       display:inline-block; 
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); 
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; 
-      animation:glow 1.5s infinite alternate, float var(--duration) infinite; 
+      background:linear-gradient(90deg, #FF0088, #FF40C0, #FF80D1, #E0FFFF); 
+      -webkit-background-clip:text; 
+      -webkit-text-fill-color:transparent; 
+      animation:glow 1.6s infinite alternate, float var(--duration) infinite; 
       animation-delay:var(--delay); 
+      text-shadow: 0 0 35px #FF40C0;
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { 
       position:absolute; width:220px; height:220px; border-radius:50%; 
-      background:var(--bugambilia-neon); opacity:0.85; 
+      background:var(--bugambilia-neon); opacity:0.88; 
       animation:lava-move 40s infinite ease-in-out alternate; 
-      box-shadow: 0 0 45px var(--bugambilia-neon); 
+      box-shadow: 0 0 55px var(--bugambilia-neon); 
     }
     @keyframes lava-move { 
       0%{transform:translateY(0)scale(1)rotate(0)} 
@@ -128,30 +123,17 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    /* MENÚ VERTICAL - Corregido */
     .vertical-menu { 
-      position:absolute; 
-      right:5vw; 
-      bottom:11vh; 
-      list-style:none; 
-      display:flex; 
-      flex-direction:column; 
-      gap:2.5rem; 
-      z-index:25 !important;
+      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; 
+      gap:2.5rem; z-index:25 !important;
     }
     .vertical-menu li { 
-      font-family:'Cinzel',serif; 
-      font-size:1.65rem; 
-      color:var(--dorado-luznegra); 
-      text-transform:uppercase; 
-      letter-spacing:6px; 
-      cursor:pointer; 
-      opacity:0.8; 
+      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); 
+      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; 
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
     }
     .vertical-menu li:hover { 
-      color:var(--turquesa-cenote); 
-      text-shadow:0 0 40px var(--turquesa-cenote); 
+      color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); 
       transform:translateX(20px) scale(1.1); 
     }
 
@@ -159,26 +141,14 @@
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
-    /* SOCIAL ICONS - Siempre visibles por encima */
     .social-icons { 
-      position:absolute; 
-      top:2vh; 
-      left:50%; 
-      transform:translateX(-50%); 
-      display:flex; 
-      gap:1.5rem; 
-      z-index:30 !important; 
+      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; 
     }
     .social-icons a { 
-      color:var(--verde-acido); 
-      font-size:1.8rem; 
-      text-shadow:0 0 10px rgba(0,255,153,0.5); 
+      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); 
       transition:transform .3s, color .3s; 
     }
-    .social-icons a:hover { 
-      color:var(--turquesa-cenote); 
-      transform:scale(1.2); 
-    }
+    .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
 
     .palette-button { 
       position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; 
@@ -245,7 +215,10 @@
       .music-player-modal .album-thumbnail { width:140px; height:140px; }
     }
 
-    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
+    @keyframes glow { 
+      from { text-shadow:0 0 25px var(--dorado-luznegra), 0 0 50px var(--magenta-brillante); } 
+      to { text-shadow:0 0 40px var(--dorado-luznegra), 0 0 90px var(--magenta-brillante); } 
+    }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
@@ -270,18 +243,14 @@
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
-    
-    <!-- MENÚ VERTICAL -->
     <ul class="vertical-menu">
       <li id="music-link">música</li>
       <li id="guestbook-link">guestbook</li>
     </ul>
-    
     <div class="est">EST. 2006</div>
   </div>
   <div class="chi-rho">☧</div>
 
-  <!-- SOCIAL ICONS -->
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
     <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -337,7 +306,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, ${['#C13BFF','#FF2E98','#FF4F00','#00FF99','#00F0FF'][Math.floor(Math.random()*5)]}, transparent)`;
+      trail.style.background = `radial-gradient(circle, #FF0088, #FF40C0, #FF80D1, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
@@ -362,7 +331,7 @@
       logo.appendChild(span);
     });
 
-    // Toggle paletas
+    // Toggle de paletas
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
@@ -460,9 +429,8 @@
       albumCover.src = album.cover;
       populateSongList();
 
-      if (album.songs.length > 0) {
-        loadSong(0);
-      } else {
+      if (album.songs.length > 0) loadSong(0);
+      else {
         songTitle.textContent = 'Próximamente...';
         playPauseBtn.textContent = '▶';
       }
@@ -522,7 +490,6 @@
     });
     audio.addEventListener('ended', () => nextBtn.click());
 
-    // Inicializar
     populateSongList();
     loadSong(0);
 
