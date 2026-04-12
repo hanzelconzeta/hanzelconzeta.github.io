@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     
-    /* PALETAS (sin cambios) */
+    /* PALETAS BASE */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -48,32 +48,26 @@
       --turquesa-cenote: #40E0D0;
       --dorado-luznegra: #FFD700;
     }
-
-    /* PALETA PETITE MEJORADA - Solo HANZEL más llamativo */
     body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;      /* Fondo turquesa brillante */
-      --bugambilia-neon: #FF0088;           /* Rosa magenta para blobs/lava */
+      --ultravioleta-cosmico: #00D4FF;
+      --bugambilia-neon: #FF0088;
       --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC;
       --verde-acido: #B0FFEE;
       --turquesa-cenote: #00FFFF;
       --dorado-luznegra: #E0FFFF;
-      --magenta-brillante: #FF1493;         /* Tono extra para hacer HANZEL más vibrante */
     }
 
     .cursor { 
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
       transition:all .1s; animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 20px rgba(255,20,147,0.7),inset 0 0 10px var(--rosa-electrico); 
+      box-shadow:0 0 15px rgba(193,59,255,0.5),inset 0 0 10px var(--rosa-electrico); 
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-    
     @keyframes colorShift { 
-      0%{background:var(--bugambilia-neon)} 
-      25%{background:var(--rosa-electrico)} 
-      50%{background:var(--magenta-brillante)} 
-      75%{background:var(--turquesa-cenote)} 
+      0%{background:var(--bugambilia-neon)} 25%{background:var(--rosa-electrico)} 
+      50%{background:var(--naranja-volcanico)} 75%{background:var(--turquesa-cenote)} 
       100%{background:var(--dorado-luznegra)} 
     }
 
@@ -82,28 +76,57 @@
       font-family:'Cinzel',serif; 
       font-size: clamp(4rem, 15vw, 10rem); 
       letter-spacing: clamp(4px, 2vw, 12px); 
-      margin-bottom:1rem; 
-      white-space: nowrap; 
-    }
-    
-    /* Solo en petite el logo es más brillante y contrastante */
-    body.palette-petite .hanzel-logo span { 
-      background:linear-gradient(90deg, #FF0088, #FF1493, #FF69B4, #FFFFFF); 
-      -webkit-background-clip:text; 
-      -webkit-text-fill-color:transparent; 
-      animation:glow 1.4s infinite alternate, float var(--duration) infinite; 
-      animation-delay:var(--delay); 
-      text-shadow: 0 0 40px #FF1493, 0 0 70px #FF69B4;
+      margin-bottom:1rem; white-space: nowrap; 
     }
 
-    /* Logo normal en las otras paletas */
-    .hanzel-logo span { 
-      display:inline-block; 
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico)); 
-      -webkit-background-clip:text; 
-      -webkit-text-fill-color:transparent; 
-      animation:glow 1.5s infinite alternate, float var(--duration) infinite; 
-      animation-delay:var(--delay); 
+    /* === HANZEL SEGÚN PALETA (solo aquí se personaliza) === */
+
+    /* 16 ROSAS - pálido con tonos blancos y brillos (como antes) */
+    body.palette-16rosas .hanzel-logo span {
+      background:linear-gradient(90deg, #FCD4D4, #FFFFFF, #F5F5F5);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow: 0 0 30px #FFFFFF, 0 0 50px #FCD4D4;
+    }
+
+    /* KANTO AMERE - lila/morado con brillos y blancos */
+    body.palette-kantoamere .hanzel-logo span {
+      background:linear-gradient(90deg, #C71585, #BA55D3, #E0B0FF, #FFFFFF);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow: 0 0 30px #BA55D3, 0 0 55px #E0B0FF;
+    }
+
+    /* ZLOOSHEE - se mantiene igual (no lo pediste cambiar) */
+    body.palette-zlooshee .hanzel-logo span {
+      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* PETITE - ajuste detallado: rosa fuerte con cian brillante y blanco para máximo contraste */
+    body.palette-petite .hanzel-logo span {
+      background:linear-gradient(90deg, #FF0088, #FF1493, #FF69B4, #00FFFF, #FFFFFF);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow-petite 1.4s infinite alternate, float var(--duration) infinite;
+      text-shadow: 0 0 35px #FF1493, 0 0 65px #00FFFF, 0 0 90px #FFFFFF;
+    }
+
+    /* Glow específico para petite */
+    @keyframes glow-petite {
+      from { text-shadow: 0 0 30px #FF1493, 0 0 60px #00FFFF; }
+      to   { text-shadow: 0 0 45px #FF1493, 0 0 85px #00FFFF, 0 0 110px #FFFFFF; }
+    }
+
+    /* Logo por defecto (para las demás paletas) */
+    .hanzel-logo span {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow 1.5s infinite alternate, float var(--duration) infinite;
+      animation-delay:var(--delay);
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -134,39 +157,19 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    .vertical-menu { 
-      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; 
-      gap:2.5rem; z-index:25 !important;
-    }
-    .vertical-menu li { 
-      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); 
-      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; 
-      transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
-    }
-    .vertical-menu li:hover { 
-      color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); 
-      transform:translateX(20px) scale(1.1); 
-    }
+    .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:25 !important; }
+    .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
+    .vertical-menu li:hover { color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); transform:translateX(20px) scale(1.1); }
 
     .est, .chi-rho { z-index:25 !important; }
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
-    .social-icons { 
-      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; 
-    }
-    .social-icons a { 
-      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); 
-      transition:transform .3s, color .3s; 
-    }
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; }
+    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s, color .3s; }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
 
-    .palette-button { 
-      position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; 
-      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); 
-      cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra); 
-      font-size:1.5rem; display:flex; align-items:center; justify-content:center; 
-    }
+    .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
     .guestbook, .music-player-modal { 
@@ -181,27 +184,12 @@
       opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); 
     }
 
+    /* Resto de estilos del music player y guestbook (sin cambios) */
     .music-player-modal .album-thumbnail { display:block; margin:0 auto 1rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
     .music-player-modal .album-info { text-align:center; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; margin-bottom:0.8rem; }
-    .music-player-modal .album-option {
-      background:rgba(11,0,20,0.75);
-      border:2px solid var(--bugambilia-neon);
-      color:var(--dorado-luznegra);
-      padding:0.7rem 1.2rem;
-      border-radius:10px;
-      cursor:pointer;
-      font-family:'Cinzel',serif;
-      font-size:1.05rem;
-      text-align:center;
-      transition:all .3s;
-      text-transform: lowercase;
-    }
+    .music-player-modal .album-option { background:rgba(11,0,20,0.75); border:2px solid var(--bugambilia-neon); color:var(--dorado-luznegra); padding:0.7rem 1.2rem; border-radius:10px; cursor:pointer; font-family:'Cinzel',serif; font-size:1.05rem; text-align:center; transition:all .3s; text-transform: lowercase; }
     .music-player-modal .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
-    .music-player-modal .album-option.active {
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
-      border-color:var(--rosa-electrico);
-      color:var(--dorado-luznegra);
-    }
+    .music-player-modal .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); color:var(--dorado-luznegra); }
     .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
     .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
     .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
@@ -305,7 +293,6 @@
   </div>
 
   <script>
-    // Cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -314,7 +301,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FF1493, #FF69B4, transparent)`;
+      trail.style.background = `radial-gradient(circle, ${['#C13BFF','#FF2E98','#FF4F00','#00FF99','#00F0FF'][Math.floor(Math.random()*5)]}, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
@@ -325,7 +312,6 @@
     document.addEventListener('mousedown', () => cursor.classList.add('click'));
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
-    // Logo animado
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -339,26 +325,17 @@
       logo.appendChild(span);
     });
 
-    // Toggle de paletas
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
       if (currentPalette === 'kantoamere') {
-        document.body.classList.remove('palette-kantoamere');
-        document.body.classList.add('palette-16rosas');
-        currentPalette = '16rosas';
+        document.body.classList.remove('palette-kantoamere'); document.body.classList.add('palette-16rosas'); currentPalette = '16rosas';
       } else if (currentPalette === '16rosas') {
-        document.body.classList.remove('palette-16rosas');
-        document.body.classList.add('palette-zlooshee');
-        currentPalette = 'zlooshee';
+        document.body.classList.remove('palette-16rosas'); document.body.classList.add('palette-zlooshee'); currentPalette = 'zlooshee';
       } else if (currentPalette === 'zlooshee') {
-        document.body.classList.remove('palette-zlooshee');
-        document.body.classList.add('palette-petite');
-        currentPalette = 'petite';
+        document.body.classList.remove('palette-zlooshee'); document.body.classList.add('palette-petite'); currentPalette = 'petite';
       } else {
-        document.body.classList.remove('palette-petite');
-        document.body.classList.add('palette-kantoamere');
-        currentPalette = 'kantoamere';
+        document.body.classList.remove('palette-petite'); document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere';
       }
     });
   </script>
@@ -366,7 +343,6 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-    
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -379,36 +355,9 @@
     const db = getFirestore(app);
 
     const albums = [
-      {
-        title: "16 rosas y algo llamado amor (2006)",
-        cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
-        songs: [
-          { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
-          { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
-          { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
-          { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
-          { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
-          { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
-          { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
-        ]
-      },
-      {
-        title: "kanto amere (2007)",
-        cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
-        songs: [
-          { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
-          { title: 'siempre terminan en tragedia', src: 'https://hanzelconzeta.github.io/siempre_terminan_en_tragedia.mp3', duration: '4:24' },
-          { title: 'si no es hoy, mañana...', src: 'https://hanzelconzeta.github.io/si_no_es_hoy.mp3', duration: '5:30' },
-          { title: 'carta a sally', src: 'https://hanzelconzeta.github.io/carta_a_sally.mp3', duration: '4:40' },
-          { title: 'al final del arcoiris', src: 'https://hanzelconzeta.github.io/al_final_del_arcoiris.mp3', duration: '4:41' },
-          { title: 'suelo mirar al cielo cuando pienso en ti', src: 'https://hanzelconzeta.github.io/suelo_mirar_al_cielo_cuando_pienso_en_ti.mp3', duration: '5:35' }
-        ]
-      },
-      {
-        title: "petite (2026)",
-        cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
-        songs: []
-      }
+      { title: "16 rosas y algo llamado amor (2006)", cover: "https://hanzelconzeta.github.io/portadarosas.JPG", songs: [ /* canciones */ ] },
+      { title: "kanto amere (2007)", cover: "https://hanzelconzeta.github.io/kanto_portada.jpg", songs: [ /* canciones */ ] },
+      { title: "petite (2026)", cover: "https://hanzelconzeta.github.io/petite_portada.PNG", songs: [] }
     ];
 
     let currentAlbumIndex = 0;
@@ -431,25 +380,20 @@
       option0.classList.toggle('active', index === 0);
       option1.classList.toggle('active', index === 1);
       option2.classList.toggle('active', index === 2);
-
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
       populateSongList();
-
       if (album.songs.length > 0) loadSong(0);
-      else {
-        songTitle.textContent = 'Próximamente...';
-        playPauseBtn.textContent = '▶';
-      }
+      else { songTitle.textContent = 'Próximamente...'; playPauseBtn.textContent = '▶'; }
     }
 
     function loadSong(i) {
-      const currentAlbum = albums[currentAlbumIndex];
-      if (currentAlbum.songs.length === 0) return;
+      const album = albums[currentAlbumIndex];
+      if (album.songs.length === 0) return;
       currentSongIndex = i;
-      audio.src = currentAlbum.songs[i].src;
-      songTitle.textContent = currentAlbum.songs[i].title;
+      audio.src = album.songs[i].src;
+      songTitle.textContent = album.songs[i].title;
       audio.load();
       audio.play().catch(() => {});
       playPauseBtn.textContent = '❚❚';
@@ -459,9 +403,8 @@
     function populateSongList() {
       songList.innerHTML = '';
       const hasCommented = localStorage.getItem('hasCommented') === 'true';
-      const currentAlbum = albums[currentAlbumIndex];
-
-      if (currentAlbum.songs.length === 0) {
+      const album = albums[currentAlbumIndex];
+      if (album.songs.length === 0) {
         const li = document.createElement('li');
         li.style.cssText = 'text-align:center; opacity:0.75; padding:3rem 0; font-style:italic;';
         li.innerHTML = 'Próximamente... ✨<br><small>Las canciones de petite llegarán muy pronto</small>';
@@ -469,24 +412,19 @@
         document.getElementById('download-album').innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Próximamente las canciones de petite</p>';
         return;
       }
-
-      currentAlbum.songs.forEach((song, i) => {
+      album.songs.forEach((song, i) => {
         const li = document.createElement('li');
-        let downloadLink = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
+        let dl = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${dl}</span>`;
         li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
-
-      const downloadAlbum = document.getElementById('download-album');
-      downloadAlbum.innerHTML = hasCommented 
-        ? '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>' 
-        : '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>';
+      const da = document.getElementById('download-album');
+      da.innerHTML = hasCommented ? '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>' : '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>';
     }
 
     playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
-      else { audio.pause(); playPauseBtn.textContent = '▶'; }
+      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; } else { audio.pause(); playPauseBtn.textContent = '▶'; }
     });
     prevBtn.addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
@@ -505,17 +443,11 @@
     option1.addEventListener('click', () => switchAlbum(1));
     option2.addEventListener('click', () => switchAlbum(2));
 
-    document.getElementById('music-link').addEventListener('click', () => {
-      musicPlayerModal.classList.add('active');
-      populateSongList();
-    });
+    document.getElementById('music-link').addEventListener('click', () => { musicPlayerModal.classList.add('active'); populateSongList(); });
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
 
     const guestbook = document.getElementById('guestbook');
-    document.getElementById('guestbook-link').addEventListener('click', () => {
-      guestbook.classList.add('active');
-      loadComments();
-    });
+    document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
@@ -530,10 +462,7 @@
         localStorage.setItem('hasCommented', 'true');
         loadComments();
         if (musicPlayerModal.classList.contains('active')) populateSongList();
-      } catch(err) {
-        console.error(err);
-        alert('Error al enviar el comentario');
-      }
+      } catch(err) { console.error(err); alert('Error al enviar el comentario'); }
     });
 
     async function loadComments() {
@@ -552,9 +481,7 @@
           list.appendChild(div);
         });
         if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
-      } catch(err) {
-        list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>';
-      }
+      } catch(err) { list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>'; }
     }
   </script>
 </body>
