@@ -49,7 +49,7 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE - HANZEL con rosa más oscuro y contraste fuerte */
+    /* PALETA PETITE - HANZEL en plateado/gris metálico */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;
       --bugambilia-neon: #FF0088;
@@ -70,7 +70,7 @@
     
     @keyframes colorShift { 
       0%{background:var(--bugambilia-neon)} 25%{background:var(--rosa-electrico)} 
-      50%{background:#FF4D94} 75%{background:var(--turquesa-cenote)} 100%{background:#FFD700} 
+      50%{background:#FF4D94} 75%{background:var(--turquesa-cenote)} 100%{background:#E0E0E0} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -92,19 +92,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Rosa más oscuro + contraste fuerte con dorado intenso */
+    /* HANZEL en PETITE - Plateado/gris metálico con brillo */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #C8006E, #FF2E98, #FFAA00, #FFD700);
+      background:linear-gradient(90deg, #B8B8B8, #E0E0E0, #F5F5F5, #C0C0C0);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
+      animation:glow-petite 1.6s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 40px #C8006E, 0 0 75px #FFAA00, 0 0 110px #FFD700;
+      text-shadow: 0 0 35px #E0E0E0, 0 0 70px #B8B8B8;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 30px #C8006E, 0 0 65px #FFAA00; }
-      to   { text-shadow: 0 0 50px #C8006E, 0 0 90px #FFAA00, 0 0 125px #FFD700; }
+      from { text-shadow: 0 0 30px #E0E0E0, 0 0 60px #B8B8B8; }
+      to   { text-shadow: 0 0 50px #E0E0E0, 0 0 90px #B8B8B8, 0 0 120px #F5F5F5; }
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -182,7 +182,6 @@
       opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); 
     }
 
-    /* Resto de estilos del reproductor y guestbook */
     .music-player-modal .album-thumbnail { display:block; margin:0 auto 1rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
     .music-player-modal .album-info { text-align:center; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; margin-bottom:0.8rem; }
     .music-player-modal .album-option {
@@ -207,6 +206,7 @@
     .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
     .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
     .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
+    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; }
     .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
     .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
@@ -307,7 +307,6 @@
   </div>
 
   <script>
-    // Cursor y logo
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -340,7 +339,6 @@
       logo.appendChild(span);
     });
 
-    // Toggle paletas
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
@@ -372,9 +370,36 @@
     const db = getFirestore(app);
 
     const albums = [
-      { title: "16 rosas y algo llamado amor (2006)", cover: "https://hanzelconzeta.github.io/portadarosas.JPG", songs: [ /* tus canciones */ ] },
-      { title: "kanto amere (2007)", cover: "https://hanzelconzeta.github.io/kanto_portada.jpg", songs: [ /* tus canciones */ ] },
-      { title: "petite (2026)", cover: "https://hanzelconzeta.github.io/petite_portada.PNG", songs: [] }
+      {
+        title: "16 rosas y algo llamado amor (2006)",
+        cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
+        songs: [
+          { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
+          { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
+          { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
+          { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
+          { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
+          { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
+          { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
+        ]
+      },
+      {
+        title: "kanto amere (2007)",
+        cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
+        songs: [
+          { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
+          { title: 'siempre terminan en tragedia', src: 'https://hanzelconzeta.github.io/siempre_terminan_en_tragedia.mp3', duration: '4:24' },
+          { title: 'si no es hoy, mañana...', src: 'https://hanzelconzeta.github.io/si_no_es_hoy.mp3', duration: '5:30' },
+          { title: 'carta a sally', src: 'https://hanzelconzeta.github.io/carta_a_sally.mp3', duration: '4:40' },
+          { title: 'al final del arcoiris', src: 'https://hanzelconzeta.github.io/al_final_del_arcoiris.mp3', duration: '4:41' },
+          { title: 'suelo mirar al cielo cuando pienso en ti', src: 'https://hanzelconzeta.github.io/suelo_mirar_al_cielo_cuando_pienso_en_ti.mp3', duration: '5:35' }
+        ]
+      },
+      {
+        title: "petite (2026)",
+        cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
+        songs: []
+      }
     ];
 
     let currentAlbumIndex = 0;
@@ -397,12 +422,17 @@
       option0.classList.toggle('active', index === 0);
       option1.classList.toggle('active', index === 1);
       option2.classList.toggle('active', index === 2);
+
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
       populateSongList();
+
       if (album.songs.length > 0) loadSong(0);
-      else { songTitle.textContent = 'Próximamente...'; playPauseBtn.textContent = '▶'; }
+      else {
+        songTitle.textContent = 'Próximamente...';
+        playPauseBtn.textContent = '▶';
+      }
     }
 
     function loadSong(i) {
@@ -421,6 +451,7 @@
       songList.innerHTML = '';
       const hasCommented = localStorage.getItem('hasCommented') === 'true';
       const album = albums[currentAlbumIndex];
+
       if (album.songs.length === 0) {
         const li = document.createElement('li');
         li.style.cssText = 'text-align:center; opacity:0.75; padding:3rem 0; font-style:italic;';
@@ -429,19 +460,24 @@
         document.getElementById('download-album').innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Próximamente las canciones de petite</p>';
         return;
       }
+
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
-        let dl = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${dl}</span>`;
+        let downloadLink = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
         li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
-      const da = document.getElementById('download-album');
-      da.innerHTML = hasCommented ? '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>' : '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>';
+
+      const downloadAlbum = document.getElementById('download-album');
+      downloadAlbum.innerHTML = hasCommented 
+        ? '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>' 
+        : '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>';
     }
 
     playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; } else { audio.pause(); playPauseBtn.textContent = '▶'; }
+      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
+      else { audio.pause(); playPauseBtn.textContent = '▶'; }
     });
     prevBtn.addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
@@ -460,11 +496,17 @@
     option1.addEventListener('click', () => switchAlbum(1));
     option2.addEventListener('click', () => switchAlbum(2));
 
-    document.getElementById('music-link').addEventListener('click', () => { musicPlayerModal.classList.add('active'); populateSongList(); });
+    document.getElementById('music-link').addEventListener('click', () => {
+      musicPlayerModal.classList.add('active');
+      populateSongList();
+    });
     document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
 
     const guestbook = document.getElementById('guestbook');
-    document.getElementById('guestbook-link').addEventListener('click', () => { guestbook.classList.add('active'); loadComments(); });
+    document.getElementById('guestbook-link').addEventListener('click', () => {
+      guestbook.classList.add('active');
+      loadComments();
+    });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
@@ -479,7 +521,10 @@
         localStorage.setItem('hasCommented', 'true');
         loadComments();
         if (musicPlayerModal.classList.contains('active')) populateSongList();
-      } catch(err) { console.error(err); alert('Error al enviar el comentario'); }
+      } catch(err) {
+        console.error(err);
+        alert('Error al enviar el comentario');
+      }
     });
 
     async function loadComments() {
@@ -498,7 +543,9 @@
           list.appendChild(div);
         });
         if (snapshot.empty) list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero ✨</p>';
-      } catch(err) { list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>'; }
+      } catch(err) {
+        list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>';
+      }
     }
   </script>
 </body>
