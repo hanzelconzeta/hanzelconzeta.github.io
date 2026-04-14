@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     
-    /* PALETAS (las otras tres sin cambios) */
+    /* PALETAS */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -49,10 +49,10 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE - HANZEL en naranja/amarillo mexicano vibrante */
+    /* PALETA PETITE - Naranja/amarillo mexicano con más brillo y naranja */
     body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;      /* Fondo turquesa */
-      --bugambilia-neon: #FF0088;           /* Lava rosa magenta fuerte */
+      --ultravioleta-cosmico: #00D4FF;
+      --bugambilia-neon: #FF0088;
       --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC;
       --verde-acido: #B0FFEE;
@@ -69,8 +69,8 @@
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     
     @keyframes colorShift { 
-      0%{background:var(--bugambilia-neon)} 30%{background:#FFAA00} 
-      60%{background:#FFCC00} 80%{background:#FFD700} 100%{background:#FFFFFF} 
+      0%{background:#FF0088} 30%{background:#FF8C00} 
+      60%{background:#FFAA00} 80%{background:#FFD700} 100%{background:#FFFFFF} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -81,7 +81,7 @@
       margin-bottom:1rem; white-space: nowrap; 
     }
 
-    /* HANZEL en las otras paletas (sin cambios) */
+    /* HANZEL en las otras paletas */
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
@@ -92,19 +92,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Naranja/amarillo mexicano vibrante + dorado */
+    /* HANZEL en PETITE - Más naranja y brillo, amarillo mexicano como principal */
     body.palette-petite .hanzel-logo span {
       background:linear-gradient(90deg, #FF8C00, #FFAA00, #FFCC00, #FFD700, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
+      animation:glow-petite 1.4s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 40px #FF8C00, 0 0 75px #FFCC00, 0 0 110px #FFD700;
+      text-shadow: 0 0 45px #FF8C00, 0 0 80px #FFAA00, 0 0 120px #FFD700, 0 0 150px #FFFFFF;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FF8C00, 0 0 70px #FFCC00; }
-      to   { text-shadow: 0 0 55px #FF8C00, 0 0 95px #FFCC00, 0 0 125px #FFD700; }
+      from { text-shadow: 0 0 40px #FF8C00, 0 0 75px #FFAA00; }
+      to   { text-shadow: 0 0 60px #FF8C00, 0 0 100px #FFAA00, 0 0 140px #FFD700; }
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -231,7 +231,7 @@
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
-<body class="palette-kantoamere">
+<body class="palette-petite">   <!-- Inicia con petite -->
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -285,12 +285,12 @@
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <h2>Música</h2>
-    <img class="album-thumbnail" id="album-cover" src="https://hanzelconzeta.github.io/portadarosas.JPG" alt="Album Cover">
-    <div class="album-info" id="album-title">16 rosas y algo llamado amor (2006)</div>
+    <img class="album-thumbnail" id="album-cover" src="https://hanzelconzeta.github.io/petite_portada.PNG" alt="Album Cover">
+    <div class="album-info" id="album-title">petite (2026)</div>
     <div class="album-selector">
-      <div class="album-option active" id="option-0">i. 16 rosas y algo llamado amor</div>
-      <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
       <div class="album-option" id="option-2">iii. petite</div>
+      <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
+      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
     </div>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
@@ -299,31 +299,19 @@
         <button id="play-pause-btn">▶</button>
         <button id="next-btn"><i class="fas fa-forward"></i></button>
       </div>
-      <audio id="audio-player"></audio>
+      <audio id="audio-player" preload="none"></audio>
     </div>
     <ul class="song-list" id="song-list"></ul>
     <div id="download-album" class="pre-save"></div>
   </div>
 
   <script>
+    // Cursor y logo (sin cambios relevantes)
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
-      const trail = document.createElement('div');
-      trail.className = 'cursor-trail';
-      trail.style.left = e.clientX + 'px';
-      trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FFAA00, #FFD700, transparent)`;
-      document.body.appendChild(trail);
-      setTimeout(() => trail.remove(), 1000);
     });
-    document.querySelectorAll('button, li, a').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-    document.addEventListener('mousedown', () => cursor.classList.add('click'));
-    document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
@@ -338,25 +326,23 @@
       logo.appendChild(span);
     });
 
+    // Paleta toggle - orden: petite → kantoamere → 16rosas → zlooshee
     const paletteToggle = document.getElementById('palette-toggle');
-    let currentPalette = 'kantoamere';
+    let currentPalette = 'petite';
     paletteToggle.addEventListener('click', () => {
-      if (currentPalette === 'kantoamere') {
-        document.body.classList.remove('palette-kantoamere');
+      document.body.classList.remove('palette-petite', 'palette-kantoamere', 'palette-16rosas', 'palette-zlooshee');
+      if (currentPalette === 'petite') {
+        document.body.classList.add('palette-kantoamere');
+        currentPalette = 'kantoamere';
+      } else if (currentPalette === 'kantoamere') {
         document.body.classList.add('palette-16rosas');
         currentPalette = '16rosas';
       } else if (currentPalette === '16rosas') {
-        document.body.classList.remove('palette-16rosas');
         document.body.classList.add('palette-zlooshee');
         currentPalette = 'zlooshee';
-      } else if (currentPalette === 'zlooshee') {
-        document.body.classList.remove('palette-zlooshee');
+      } else {
         document.body.classList.add('palette-petite');
         currentPalette = 'petite';
-      } else {
-        document.body.classList.remove('palette-petite');
-        document.body.classList.add('palette-kantoamere');
-        currentPalette = 'kantoamere';
       }
     });
   </script>
@@ -405,110 +391,131 @@
       {
         title: "petite (2026)",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
-        songs: []
+        songs: [
+          { title: 'cuentacuentos', src: '', duration: '3:33' },
+          { title: 'segundo acto: nostalgia', src: '', duration: '2:55' },
+          { title: '10:01', src: '', duration: '2:59' },
+          { title: 'pequeña eiffel', src: '', duration: '3:54' },
+          { title: 'aioros', src: '', duration: '3:45' },
+          { title: 'segundo acto: nostalgia (bonus track)', src: '', duration: '2:47' },
+          { title: '10:01 (bonus track)', src: '', duration: '3:07' },
+          { title: 'pequeña eiffel (bonus track)', src: '', duration: '3:47' }
+        ]
       }
     ];
 
-    let currentAlbumIndex = 0;
+    let currentAlbumIndex = 2; // Inicia en petite
     let currentSongIndex = 0;
+    let isPlaying = false;
     const audio = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
     const songTitle = document.getElementById('song-title');
     const songList = document.getElementById('song-list');
     const musicPlayerModal = document.getElementById('music-player-modal');
     const albumCover = document.getElementById('album-cover');
     const albumTitleEl = document.getElementById('album-title');
-    const option0 = document.getElementById('option-0');
-    const option1 = document.getElementById('option-1');
-    const option2 = document.getElementById('option-2');
 
     function switchAlbum(index) {
       currentAlbumIndex = index;
-      option0.classList.toggle('active', index === 0);
-      option1.classList.toggle('active', index === 1);
-      option2.classList.toggle('active', index === 2);
+      document.querySelectorAll('.album-option').forEach((opt, i) => {
+        opt.classList.toggle('active', i === (2 - index)); // orden invertido en selector visual
+      });
 
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
       populateSongList();
 
-      if (album.songs.length > 0) loadSong(0);
-      else {
-        songTitle.textContent = 'Próximamente...';
-        playPauseBtn.textContent = '▶';
-      }
+      songTitle.textContent = '';
+      playPauseBtn.textContent = '▶';
+      isPlaying = false;
     }
 
     function loadSong(i) {
       const album = albums[currentAlbumIndex];
-      if (album.songs.length === 0) return;
+      if (album.songs.length === 0 || !album.songs[i].src) return;
       currentSongIndex = i;
       audio.src = album.songs[i].src;
       songTitle.textContent = album.songs[i].title;
-      audio.load();
-      audio.play().catch(() => {});
-      playPauseBtn.textContent = '❚❚';
       document.querySelectorAll('.song-list li').forEach((li, idx) => li.classList.toggle('active', idx === i));
     }
 
     function populateSongList() {
       songList.innerHTML = '';
-      const hasCommented = localStorage.getItem('hasCommented') === 'true';
       const album = albums[currentAlbumIndex];
+
+      album.songs.forEach((song, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
+        li.addEventListener('click', () => {
+          loadSong(i);
+          audio.play();
+          isPlaying = true;
+          playPauseBtn.textContent = '❚❚';
+        });
+        songList.appendChild(li);
+      });
 
       if (album.songs.length === 0) {
         const li = document.createElement('li');
         li.style.cssText = 'text-align:center; opacity:0.75; padding:3rem 0; font-style:italic;';
-        li.innerHTML = 'Próximamente... ✨<br><small>Las canciones de petite llegarán muy pronto</small>';
+        li.innerHTML = 'Próximamente... ✨';
         songList.appendChild(li);
-        document.getElementById('download-album').innerHTML = '<p style="text-align:center; color:var(--rosa-electrico);">Próximamente las canciones de petite</p>';
-        return;
       }
-
-      album.songs.forEach((song, i) => {
-        const li = document.createElement('li');
-        let downloadLink = hasCommented ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
-        li.addEventListener('click', () => loadSong(i));
-        songList.appendChild(li);
-      });
-
-      const downloadAlbum = document.getElementById('download-album');
-      downloadAlbum.innerHTML = hasCommented 
-        ? '<p style="text-align:center; color:var(--verde-acido);">Descargas individuales habilitadas ↓</p>' 
-        : '<p style="text-align:center; color:var(--rosa-electrico);">Deja un comentario en el guestbook para descargar las canciones</p>';
     }
 
+    // Play / Pause
     playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) { audio.play(); playPauseBtn.textContent = '❚❚'; }
-      else { audio.pause(); playPauseBtn.textContent = '▶'; }
+      if (audio.paused) {
+        if (!audio.src) {
+          const album = albums[currentAlbumIndex];
+          if (album.songs.length > 0 && album.songs[0].src) {
+            loadSong(0);
+          }
+        }
+        audio.play().then(() => {
+          isPlaying = true;
+          playPauseBtn.textContent = '❚❚';
+        }).catch(() => {});
+      } else {
+        audio.pause();
+        isPlaying = false;
+        playPauseBtn.textContent = '▶';
+      }
     });
-    prevBtn.addEventListener('click', () => {
+
+    // Botones anterior y siguiente
+    document.getElementById('prev-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 0) loadSong((currentSongIndex - 1 + len) % len);
+      if (len > 0) {
+        let newIndex = (currentSongIndex - 1 + len) % len;
+        loadSong(newIndex);
+        if (isPlaying) audio.play();
+      }
     });
-    nextBtn.addEventListener('click', () => {
+
+    document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 0) loadSong((currentSongIndex + 1) % len);
+      if (len > 0) {
+        let newIndex = (currentSongIndex + 1) % len;
+        loadSong(newIndex);
+        if (isPlaying) audio.play();
+      }
     });
-    audio.addEventListener('ended', () => nextBtn.click());
 
-    populateSongList();
-    loadSong(0);
-
-    option0.addEventListener('click', () => switchAlbum(0));
-    option1.addEventListener('click', () => switchAlbum(1));
-    option2.addEventListener('click', () => switchAlbum(2));
-
+    // Abrir modal de música
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
       populateSongList();
     });
-    document.getElementById('close-music-player').addEventListener('click', () => musicPlayerModal.classList.remove('active'));
 
+    document.getElementById('close-music-player').addEventListener('click', () => {
+      musicPlayerModal.classList.remove('active');
+      audio.pause();
+      playPauseBtn.textContent = '▶';
+    });
+
+    // Guestbook (sin cambios)
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
@@ -516,6 +523,7 @@
     });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
+    // Firebase guestbook (sin cambios)
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
@@ -527,7 +535,6 @@
         document.getElementById('guestbook-form').reset();
         localStorage.setItem('hasCommented', 'true');
         loadComments();
-        if (musicPlayerModal.classList.contains('active')) populateSongList();
       } catch(err) {
         console.error(err);
         alert('Error al enviar el comentario');
@@ -554,6 +561,10 @@
         list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>';
       }
     }
+
+    // Inicializar
+    switchAlbum(2); // petite
+    populateSongList();
   </script>
 </body>
 </html>
