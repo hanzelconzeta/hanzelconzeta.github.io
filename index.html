@@ -19,8 +19,8 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
-
-    /* PALETAS */
+    
+    /* PALETAS (sin cambios) */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -49,7 +49,7 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE - HANZEL en plateado/gris metálico */
+    /* PALETA PETITE - HANZEL con plateado + rosa neón + cian brillante */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;
       --bugambilia-neon: #FF0088;
@@ -64,13 +64,13 @@
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
       transition:all .1s; animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 20px rgba(255,0,136,0.7),inset 0 0 10px var(--rosa-electrico); 
+      box-shadow:0 0 20px rgba(255,0,136,0.7); 
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     
     @keyframes colorShift { 
       0%{background:var(--bugambilia-neon)} 25%{background:var(--rosa-electrico)} 
-      50%{background:#FF4D94} 75%{background:var(--turquesa-cenote)} 100%{background:#E0E0E0} 
+      50%{background:#00FFFF} 75%{background:#B8B8B8} 100%{background:#FFD700} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -92,19 +92,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Plateado/gris metálico con brillo */
+    /* HANZEL en PETITE - Plateado metálico + rosa neón + cian brillante */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #B8B8B8, #E0E0E0, #F5F5F5, #C0C0C0);
+      background:linear-gradient(90deg, #A8A8A8, #D0D0D0, #FF4D94, #00FFFF, #E0E0E0);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow-petite 1.6s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 35px #E0E0E0, 0 0 70px #B8B8B8;
+      text-shadow: 0 0 40px #FF4D94, 0 0 75px #00FFFF, 0 0 110px #E0E0E0;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 30px #E0E0E0, 0 0 60px #B8B8B8; }
-      to   { text-shadow: 0 0 50px #E0E0E0, 0 0 90px #B8B8B8, 0 0 120px #F5F5F5; }
+      from { text-shadow: 0 0 35px #FF4D94, 0 0 70px #00FFFF; }
+      to   { text-shadow: 0 0 55px #FF4D94, 0 0 95px #00FFFF, 0 0 130px #E0E0E0; }
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -206,7 +206,6 @@
     .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
     .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
     .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    .music-player-modal .song-list { list-style:none; margin-bottom:1rem; padding:0 1rem; }
     .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
     .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
@@ -315,7 +314,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FF4D94, #FFAA00, transparent)`;
+      trail.style.background = `radial-gradient(circle, #FF0088, #FF4D94, #00FFFF, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
