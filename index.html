@@ -19,7 +19,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
-    
+
     /* PALETAS */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
@@ -48,8 +48,7 @@
       --turquesa-cenote: #40E0D0;
       --dorado-luznegra: #FFD700;
     }
-
-    /* PALETA PETITE - Naranja/amarillo mexicano con más brillo y naranja */
+    /* PALETA PETITE - naranja/amarillo mexicano con más brillo */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;
       --bugambilia-neon: #FF0088;
@@ -92,7 +91,7 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Más naranja y brillo, amarillo mexicano como principal */
+    /* HANZEL en PETITE - más naranja y brillo */
     body.palette-petite .hanzel-logo span {
       background:linear-gradient(90deg, #FF8C00, #FFAA00, #FFCC00, #FFD700, #FFFFFF);
       -webkit-background-clip:text;
@@ -153,6 +152,7 @@
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
+    /* ICONOS DE REDES - ZLOOSHEE con color más visible */
     .social-icons { 
       position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; 
     }
@@ -161,6 +161,10 @@
       transition:transform .3s, color .3s; 
     }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
+    body.palette-zlooshee .social-icons a {
+      color:#FFD700;
+      text-shadow:0 0 15px #FFD700;
+    }
 
     .palette-button { 
       position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; 
@@ -170,11 +174,12 @@
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
+    /* MODALES - más elegantes y coherentes */
     .guestbook, .music-player-modal { 
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); 
-      width:380px; max-height:80vh; overflow-y:auto; background:rgba(11,0,20,0.95); 
-      border:2px solid var(--bugambilia-neon); border-radius:20px; 
-      padding:2.5rem 2rem 2rem; box-shadow:0 0 60px var(--rosa-electrico), inset 0 0 40px rgba(193,59,255,0.15); 
+      width:440px; max-height:82vh; overflow-y:auto; background:rgba(11,0,20,0.96); 
+      border:3px solid var(--bugambilia-neon); border-radius:24px; 
+      padding:3rem 2.8rem 2.8rem; box-shadow:0 0 70px var(--rosa-electrico), inset 0 0 50px rgba(193,59,255,0.2); 
       z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; 
       transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); 
     }
@@ -182,19 +187,111 @@
       opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); 
     }
 
-    .music-player-modal .album-thumbnail { display:block; margin:0 auto 1rem; width:180px; height:180px; border-radius:10px; box-shadow:0 0 20px var(--bugambilia-neon); object-fit:cover; }
-    .music-player-modal .album-info { text-align:center; font-style:italic; color:var(--rosa-electrico); font-size:1.2rem; margin-bottom:0.8rem; }
+    /* Botón cerrar elegante y coherente en todos los modales */
+    .close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.8rem;
+      font-size: 2.4rem;
+      color: var(--dorado-luznegra);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all .4s cubic-bezier(0.23,1,0.32,1.275);
+      z-index: 10001;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      color: var(--turquesa-cenote);
+      transform: scale(1.2) rotate(90deg);
+      text-shadow: 0 0 20px var(--turquesa-cenote);
+    }
+
+    /* Guestbook más elegante y espacioso */
+    .guestbook h2 {
+      font-family:'Cinzel',serif;
+      font-size: 2.1rem;
+      text-align:center;
+      margin-bottom: 2rem;
+      color:var(--dorado-luznegra);
+      text-shadow:0 0 20px var(--bugambilia-neon);
+    }
+    .guestbook input,
+    .guestbook textarea {
+      width:100%; background:rgba(255,255,255,0.08); border:2px solid var(--bugambilia-neon); 
+      border-radius:12px; padding:1rem 1.4rem; color:var(--dorado-luznegra); 
+      font-family:'Roboto Slab',serif; margin-bottom:1.2rem; transition:all .3s;
+    }
+    .guestbook input:focus,
+    .guestbook textarea:focus {
+      border-color:var(--turquesa-cenote);
+      box-shadow:0 0 0 4px rgba(0,240,255,0.2);
+      outline:none;
+    }
+    .guestbook button[type="submit"] {
+      width:100%; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); 
+      border:none; color:#fff; padding:1.1rem; font-size:1.1rem; font-family:'Cinzel',serif; 
+      border-radius:12px; cursor:pointer; transition:all .3s;
+    }
+    .guestbook button[type="submit"]:hover {
+      transform:scale(1.03);
+      box-shadow:0 0 25px var(--rosa-electrico);
+    }
+    #comments-list .comment {
+      background:rgba(255,255,255,0.06);
+      border-left:5px solid var(--bugambilia-neon);
+      padding:1.4rem 1.6rem;
+      margin-bottom:1.4rem;
+      border-radius:14px;
+      transition:all .3s;
+    }
+    #comments-list .comment:hover {
+      background:rgba(255,255,255,0.12);
+      border-left-color:var(--turquesa-cenote);
+    }
+    #comments-list .author {
+      font-family:'Cinzel',serif;
+      color:var(--dorado-luznegra);
+      font-size:1.15rem;
+      display:block;
+      margin-bottom:0.4rem;
+    }
+    #comments-list .date {
+      font-size:0.85rem;
+      opacity:0.6;
+      margin-top:0.8rem;
+      display:block;
+    }
+
+    /* Music player */
+    .music-player-modal h2 {
+      font-family:'Cinzel',serif;
+      font-size: 2.3rem;
+      text-align:center;
+      margin-bottom: 1.8rem;
+      color:var(--dorado-luznegra);
+      text-shadow:0 0 25px var(--bugambilia-neon);
+    }
+    .music-player-modal .album-thumbnail { 
+      display:block; margin:0 auto 1.4rem; width:190px; height:190px; border-radius:14px; 
+      box-shadow:0 0 25px var(--bugambilia-neon); object-fit:cover; 
+    }
+    .music-player-modal .album-info { 
+      text-align:center; font-style:italic; color:var(--rosa-electrico); 
+      font-size:1.25rem; margin-bottom:1.2rem; 
+    }
     .music-player-modal .album-option {
       background:rgba(11,0,20,0.75);
       border:2px solid var(--bugambilia-neon);
       color:var(--dorado-luznegra);
-      padding:0.7rem 1.2rem;
-      border-radius:10px;
+      padding:0.9rem 1.4rem;
+      border-radius:14px;
       cursor:pointer;
       font-family:'Cinzel',serif;
-      font-size:1.05rem;
+      font-size:1.1rem;
       text-align:center;
       transition:all .3s;
+      margin-bottom:0.8rem;
       text-transform: lowercase;
     }
     .music-player-modal .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
@@ -203,13 +300,31 @@
       border-color:var(--rosa-electrico);
       color:var(--dorado-luznegra);
     }
-    .music-player-modal .player-controls .song-title { font-size:1.3rem; font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
-    .music-player-modal .player-controls button { background:transparent; border:none; color:var(--verde-acido); cursor:pointer; font-size:2rem; transition:all .3s; }
-    .music-player-modal .player-controls button:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    .music-player-modal .song-list li { cursor:pointer; padding:0.8rem 0; border-bottom:1px dashed var(--rosa-electrico); transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; }
+    .music-player-modal .player-controls .song-title { 
+      font-size:1.35rem; font-weight:bold; color:var(--turquesa-cenote); 
+      text-shadow:0 0 12px var(--verde-acido); display:block; margin:1rem 0; 
+    }
+    .music-player-modal .player-controls button { 
+      background:transparent; border:none; color:var(--verde-acido); cursor:pointer; 
+      font-size:2.2rem; transition:all .3s; 
+    }
+    .music-player-modal .player-controls button:hover { 
+      color:var(--turquesa-cenote); transform:scale(1.15); 
+    }
+    .music-player-modal .song-list { 
+      list-style:none; margin:1.2rem 0; padding:0 0.8rem; 
+    }
+    .music-player-modal .song-list li { 
+      cursor:pointer; padding:1rem 0; border-bottom:1px dashed var(--rosa-electrico); 
+      transition:all .3s; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center; 
+    }
     .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
-    .music-player-modal .song-list li.active { font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); }
-    .music-player-modal .song-list li .download-link { color: var(--naranja-volcanico); font-size: 1.2rem; margin-left: 0.5rem; cursor:pointer; }
+    .music-player-modal .song-list li.active { 
+      font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 10px var(--verde-acido); 
+    }
+    .music-player-modal .song-list li .download-link { 
+      color: var(--naranja-volcanico); font-size: 1.3rem; margin-left: 0.8rem; cursor:pointer; 
+    }
     .music-player-modal .song-list li .download-link:hover { color: var(--turquesa-cenote); }
 
     @media (max-width: 768px) {
@@ -223,15 +338,16 @@
       .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
       .social-icons { top:3.5vh; gap:1.2rem; }
       .social-icons a { font-size:1.6rem; }
-      .guestbook, .music-player-modal { width:92vw; max-width:420px; padding:2rem 1.8rem 1.8rem; }
-      .music-player-modal .album-thumbnail { width:140px; height:140px; }
+      .guestbook, .music-player-modal { width:92vw; max-width:440px; padding:2.6rem 2.2rem 2.2rem; }
+      .music-player-modal .album-thumbnail { width:160px; height:160px; }
+      .close-btn { font-size:2rem; top:1rem; right:1.4rem; }
     }
 
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
   </style>
 </head>
-<body class="palette-petite">   <!-- Inicia con petite -->
+<body class="palette-petite">
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -271,6 +387,7 @@
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
+  <!-- GUESTBOOK más elegante y espacioso -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -282,15 +399,16 @@
     <div class="comments" id="comments-list"></div>
   </div>
 
+  <!-- MUSIC PLAYER - ahora con "melancolía" -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-    <h2>Música</h2>
+    <h2>melancolía</h2>
     <img class="album-thumbnail" id="album-cover" src="https://hanzelconzeta.github.io/petite_portada.PNG" alt="Album Cover">
-    <div class="album-info" id="album-title">petite (2026)</div>
+    <div class="album-info" id="album-title">petite (2009)</div>
     <div class="album-selector">
-      <div class="album-option" id="option-2">iii. petite</div>
+      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor (2006)</div>
       <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
-      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
+      <div class="album-option active" id="option-2">iii. petite (2009)</div>
     </div>
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
@@ -306,7 +424,6 @@
   </div>
 
   <script>
-    // Cursor y logo (sin cambios relevantes)
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -326,24 +443,14 @@
       logo.appendChild(span);
     });
 
-    // Paleta toggle - orden: petite → kantoamere → 16rosas → zlooshee
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'petite';
     paletteToggle.addEventListener('click', () => {
-      document.body.classList.remove('palette-petite', 'palette-kantoamere', 'palette-16rosas', 'palette-zlooshee');
-      if (currentPalette === 'petite') {
-        document.body.classList.add('palette-kantoamere');
-        currentPalette = 'kantoamere';
-      } else if (currentPalette === 'kantoamere') {
-        document.body.classList.add('palette-16rosas');
-        currentPalette = '16rosas';
-      } else if (currentPalette === '16rosas') {
-        document.body.classList.add('palette-zlooshee');
-        currentPalette = 'zlooshee';
-      } else {
-        document.body.classList.add('palette-petite');
-        currentPalette = 'petite';
-      }
+      document.body.classList.remove('palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
+      if (currentPalette === 'petite') { document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; }
+      else if (currentPalette === 'kantoamere') { document.body.classList.add('palette-16rosas'); currentPalette = '16rosas'; }
+      else if (currentPalette === '16rosas') { document.body.classList.add('palette-zlooshee'); currentPalette = 'zlooshee'; }
+      else { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
     });
   </script>
 
@@ -389,7 +496,7 @@
         ]
       },
       {
-        title: "petite (2026)",
+        title: "petite (2009)",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
         songs: [
           { title: 'cuentacuentos', src: '', duration: '3:33' },
@@ -404,7 +511,7 @@
       }
     ];
 
-    let currentAlbumIndex = 2; // Inicia en petite
+    let currentAlbumIndex = 2; // inicia en petite
     let currentSongIndex = 0;
     let isPlaying = false;
     const audio = document.getElementById('audio-player');
@@ -417,15 +524,11 @@
 
     function switchAlbum(index) {
       currentAlbumIndex = index;
-      document.querySelectorAll('.album-option').forEach((opt, i) => {
-        opt.classList.toggle('active', i === (2 - index)); // orden invertido en selector visual
-      });
-
+      document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
       populateSongList();
-
       songTitle.textContent = '';
       playPauseBtn.textContent = '▶';
       isPlaying = false;
@@ -433,26 +536,23 @@
 
     function loadSong(i) {
       const album = albums[currentAlbumIndex];
-      if (album.songs.length === 0 || !album.songs[i].src) return;
+      if (album.songs.length === 0) return;
       currentSongIndex = i;
-      audio.src = album.songs[i].src;
+      audio.src = album.songs[i].src || '';
       songTitle.textContent = album.songs[i].title;
       document.querySelectorAll('.song-list li').forEach((li, idx) => li.classList.toggle('active', idx === i));
     }
 
     function populateSongList() {
       songList.innerHTML = '';
+      const hasCommented = localStorage.getItem('hasCommented') === 'true';
       const album = albums[currentAlbumIndex];
 
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
-        li.addEventListener('click', () => {
-          loadSong(i);
-          audio.play();
-          isPlaying = true;
-          playPauseBtn.textContent = '❚❚';
-        });
+        let downloadLink = (hasCommented && song.src) ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
+        li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
 
@@ -464,19 +564,12 @@
       }
     }
 
-    // Play / Pause
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
-        if (!audio.src) {
-          const album = albums[currentAlbumIndex];
-          if (album.songs.length > 0 && album.songs[0].src) {
-            loadSong(0);
-          }
-        }
-        audio.play().then(() => {
-          isPlaying = true;
-          playPauseBtn.textContent = '❚❚';
-        }).catch(() => {});
+        if (!audio.src && albums[currentAlbumIndex].songs.length > 0) loadSong(0);
+        audio.play().catch(() => {});
+        isPlaying = true;
+        playPauseBtn.textContent = '❚❚';
       } else {
         audio.pause();
         isPlaying = false;
@@ -484,38 +577,33 @@
       }
     });
 
-    // Botones anterior y siguiente
     document.getElementById('prev-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
       if (len > 0) {
-        let newIndex = (currentSongIndex - 1 + len) % len;
-        loadSong(newIndex);
+        currentSongIndex = (currentSongIndex - 1 + len) % len;
+        loadSong(currentSongIndex);
         if (isPlaying) audio.play();
       }
     });
-
     document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
       if (len > 0) {
-        let newIndex = (currentSongIndex + 1) % len;
-        loadSong(newIndex);
+        currentSongIndex = (currentSongIndex + 1) % len;
+        loadSong(currentSongIndex);
         if (isPlaying) audio.play();
       }
     });
 
-    // Abrir modal de música
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
       populateSongList();
     });
-
     document.getElementById('close-music-player').addEventListener('click', () => {
       musicPlayerModal.classList.remove('active');
       audio.pause();
       playPauseBtn.textContent = '▶';
     });
 
-    // Guestbook (sin cambios)
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
@@ -523,7 +611,6 @@
     });
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
-    // Firebase guestbook (sin cambios)
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
