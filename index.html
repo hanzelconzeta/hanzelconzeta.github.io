@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
     
-    /* PALETAS (sin cambios) */
+    /* PALETAS (las otras tres sin cambios) */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -49,10 +49,10 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE - HANZEL solo fucsia claro + blanco + plateado (SIN AZUL) */
+    /* PALETA PETITE - HANZEL en naranja/amarillo mexicano vibrante */
     body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;
-      --bugambilia-neon: #FF0088;
+      --ultravioleta-cosmico: #00D4FF;      /* Fondo turquesa */
+      --bugambilia-neon: #FF0088;           /* Lava rosa magenta fuerte */
       --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC;
       --verde-acido: #B0FFEE;
@@ -69,8 +69,8 @@
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     
     @keyframes colorShift { 
-      0%{background:var(--bugambilia-neon)} 30%{background:var(--rosa-electrico)} 
-      60%{background:#FF69B4} 80%{background:#E0E0E0} 100%{background:#FFFFFF} 
+      0%{background:var(--bugambilia-neon)} 30%{background:#FFAA00} 
+      60%{background:#FFCC00} 80%{background:#FFD700} 100%{background:#FFFFFF} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -92,19 +92,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Fucsia claro + blanco + plateado (sin ningún azul) */
+    /* HANZEL en PETITE - Naranja/amarillo mexicano vibrante + dorado */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF69B4, #FF8EC1, #E0E0E0, #F5F5F5, #FFFFFF);
+      background:linear-gradient(90deg, #FF8C00, #FFAA00, #FFCC00, #FFD700, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.6s infinite alternate, float var(--duration) infinite;
+      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 40px #FF69B4, 0 0 75px #E0E0E0, 0 0 110px #FFFFFF;
+      text-shadow: 0 0 40px #FF8C00, 0 0 75px #FFCC00, 0 0 110px #FFD700;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FF69B4, 0 0 70px #E0E0E0; }
-      to   { text-shadow: 0 0 55px #FF69B4, 0 0 95px #E0E0E0, 0 0 125px #FFFFFF; }
+      from { text-shadow: 0 0 35px #FF8C00, 0 0 70px #FFCC00; }
+      to   { text-shadow: 0 0 55px #FF8C00, 0 0 95px #FFCC00, 0 0 125px #FFD700; }
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -314,7 +314,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FF69B4, #E0E0E0, transparent)`;
+      trail.style.background = `radial-gradient(circle, #FF0088, #FFAA00, #FFD700, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
