@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* ====================== PALETAS ====================== */
+    /* PALETAS */
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -48,7 +48,6 @@
       --turquesa-cenote: #40E0D0;
       --dorado-luznegra: #FFD700;
     }
-    /* PALETA PETITE - naranja/amarillo mexicano con brillo */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;
       --bugambilia-neon: #FF0088;
@@ -59,18 +58,18 @@
       --dorado-luznegra: #E0FFFF;
     }
 
-    /* ====================== CURSOR & ANIMACIONES ====================== */
     .cursor { 
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
       transition:all .1s; animation:colorShift 3s infinite alternate; 
       box-shadow:0 0 20px rgba(255,0,136,0.7); 
     }
+    @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
+    
     @keyframes colorShift { 
       0%{background:#FF0088} 30%{background:#FF8C00} 
       60%{background:#FFAA00} 80%{background:#FFD700} 100%{background:#FFFFFF} 
     }
-    @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo { 
@@ -80,7 +79,6 @@
       margin-bottom:1rem; white-space: nowrap; 
     }
 
-    /* HANZEL en las otras paletas */
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
@@ -91,7 +89,6 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE */
     body.palette-petite .hanzel-logo span {
       background:linear-gradient(90deg, #FF8C00, #FFAA00, #FFCC00, #FFD700, #FFFFFF);
       -webkit-background-clip:text;
@@ -100,6 +97,7 @@
       animation-delay:var(--delay);
       text-shadow: 0 0 45px #FF8C00, 0 0 80px #FFAA00, 0 0 120px #FFD700, 0 0 150px #FFFFFF;
     }
+
     @keyframes glow-petite {
       from { text-shadow: 0 0 40px #FF8C00, 0 0 75px #FFAA00; }
       to   { text-shadow: 0 0 60px #FF8C00, 0 0 100px #FFAA00, 0 0 140px #FFD700; }
@@ -108,7 +106,6 @@
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
-    /* ====================== LAVA ====================== */
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob { 
       position:absolute; width:220px; height:220px; border-radius:50%; 
@@ -137,7 +134,6 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    /* ====================== MENÚ VERTICAL ====================== */
     .vertical-menu { 
       position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; 
       gap:2.5rem; z-index:25 !important;
@@ -156,7 +152,6 @@
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
-    /* ====================== SOCIAL ICONS - ZLOOSHEE MEJORADO ====================== */
     .social-icons { 
       position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; 
     }
@@ -165,13 +160,11 @@
       transition:transform .3s, color .3s; 
     }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    /* ZLOOSHEE: color más fuerte y con más glow para que no se pierda con la lava */
     body.palette-zlooshee .social-icons a {
       color:#FF4D94;
       text-shadow:0 0 18px #FF4D94, 0 0 28px #FF0088;
     }
 
-    /* ====================== PALETTE BUTTON ====================== */
     .palette-button { 
       position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; 
       background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); 
@@ -180,7 +173,6 @@
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
-    /* ====================== MODALES - COHERENCIA ESTÉTICA ====================== */
     .guestbook, .music-player-modal { 
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); 
       width:460px; max-height:85vh; overflow-y:auto; background:rgba(11,0,20,0.97); 
@@ -193,7 +185,6 @@
       opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); 
     }
 
-    /* Botón cerrar elegante y coherente en TODOS los modales */
     .close-btn {
       position: absolute;
       top: 1.4rem;
@@ -213,7 +204,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* GUESTBOOK más elegante y espacioso */
+    /* Guestbook elegante */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
@@ -269,7 +260,7 @@
       display:block;
     }
 
-    /* MUSIC PLAYER - con "melancolía" */
+    /* Music Player */
     .music-player-modal h2 {
       font-family:'Cinzel',serif;
       font-size: 2.6rem;
@@ -390,7 +381,6 @@
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
-  <!-- GUESTBOOK más elegante y espacioso -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -402,7 +392,6 @@
     <div class="comments" id="comments-list"></div>
   </div>
 
-  <!-- MUSIC PLAYER - melancolía como trilogía -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <h2>melancolía</h2>
@@ -427,7 +416,6 @@
   </div>
 
   <script>
-    /* Cursor y logo */
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -447,7 +435,6 @@
       logo.appendChild(span);
     });
 
-    /* Toggle de paletas (petite primero) */
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'petite';
     paletteToggle.addEventListener('click', () => {
@@ -478,22 +465,37 @@
       {
         title: "16 rosas y algo llamado amor (2006)",
         cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
-        songs: [ /* tus canciones originales */ ]
+        songs: [
+          { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
+          { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
+          { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
+          { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
+          { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
+          { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
+          { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
+        ]
       },
       {
         title: "kanto amere (2007)",
         cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
-        songs: [ /* tus canciones originales */ ]
+        songs: [
+          { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
+          { title: 'siempre terminan en tragedia', src: 'https://hanzelconzeta.github.io/siempre_terminan_en_tragedia.mp3', duration: '4:24' },
+          { title: 'si no es hoy, mañana...', src: 'https://hanzelconzeta.github.io/si_no_es_hoy.mp3', duration: '5:30' },
+          { title: 'carta a sally', src: 'https://hanzelconzeta.github.io/carta_a_sally.mp3', duration: '4:40' },
+          { title: 'al final del arcoiris', src: 'https://hanzelconzeta.github.io/al_final_del_arcoiris.mp3', duration: '4:41' },
+          { title: 'suelo mirar al cielo cuando pienso en ti', src: 'https://hanzelconzeta.github.io/suelo_mirar_al_cielo_cuando_pienso_en_ti.mp3', duration: '5:35' }
+        ]
       },
       {
         title: "petite (2009)",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
         songs: [
-          { title: 'cuentacuentos', src: '', duration: '3:33' },
-          { title: 'segundo acto: nostalgia', src: '', duration: '2:55' },
-          { title: '10:01', src: '', duration: '2:59' },
-          { title: 'pequeña eiffel', src: '', duration: '3:54' },
-          { title: 'aioros', src: '', duration: '3:45' },
+          { title: 'cuentacuentos', src: 'https://hanzelconzeta.github.io/cuentacuentos.mp3', duration: '3:33' },
+          { title: 'segundo acto: nostalgia', src: 'https://hanzelconzeta.github.io/segundo_acto2009.mp3', duration: '2:55' },
+          { title: '10:01', src: 'https://hanzelconzeta.github.io/1001_2009.mp3', duration: '2:59' },
+          { title: 'pequeña eiffel', src: 'https://hanzelconzeta.github.io/pequena_eiffel2009.mp3', duration: '3:54' },
+          { title: 'aioros', src: 'https://hanzelconzeta.github.io/aioros.mp3', duration: '3:45' },
           { title: 'segundo acto: nostalgia (bonus track)', src: '', duration: '2:47' },
           { title: '10:01 (bonus track)', src: '', duration: '3:07' },
           { title: 'pequeña eiffel (bonus track)', src: '', duration: '3:47' }
@@ -501,7 +503,7 @@
       }
     ];
 
-    let currentAlbumIndex = 2; // petite por defecto
+    let currentAlbumIndex = 2; // petite
     let currentSongIndex = 0;
     let isPlaying = false;
     const audio = document.getElementById('audio-player');
@@ -536,20 +538,32 @@
     function populateSongList() {
       songList.innerHTML = '';
       const album = albums[currentAlbumIndex];
+
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
         li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
-        li.addEventListener('click', () => loadSong(i));
+        li.addEventListener('click', () => {
+          loadSong(i);
+          if (audio.src) {
+            audio.play().catch(() => {});
+            isPlaying = true;
+            playPauseBtn.textContent = '❚❚';
+          }
+        });
         songList.appendChild(li);
       });
     }
 
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
-        if (!audio.src && albums[currentAlbumIndex].songs.length > 0) loadSong(0);
-        audio.play().catch(() => {});
-        isPlaying = true;
-        playPauseBtn.textContent = '❚❚';
+        if (!audio.src && albums[currentAlbumIndex].songs.length > 0) {
+          loadSong(0);
+        }
+        if (audio.src) {
+          audio.play().catch(() => {});
+          isPlaying = true;
+          playPauseBtn.textContent = '❚❚';
+        }
       } else {
         audio.pause();
         isPlaying = false;
@@ -559,11 +573,19 @@
 
     document.getElementById('prev-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 0) { currentSongIndex = (currentSongIndex - 1 + len) % len; loadSong(currentSongIndex); if (isPlaying) audio.play(); }
+      if (len > 0) {
+        currentSongIndex = (currentSongIndex - 1 + len) % len;
+        loadSong(currentSongIndex);
+        if (isPlaying && audio.src) audio.play();
+      }
     });
     document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 0) { currentSongIndex = (currentSongIndex + 1) % len; loadSong(currentSongIndex); if (isPlaying) audio.play(); }
+      if (len > 0) {
+        currentSongIndex = (currentSongIndex + 1) % len;
+        loadSong(currentSongIndex);
+        if (isPlaying && audio.src) audio.play();
+      }
     });
 
     document.getElementById('music-link').addEventListener('click', () => {
@@ -576,7 +598,6 @@
       playPauseBtn.textContent = '▶';
     });
 
-    /* Guestbook */
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
@@ -622,8 +643,8 @@
       }
     }
 
-    /* Inicializar */
-    switchAlbum(2); // petite por defecto
+    // Inicializar
+    switchAlbum(2);
     populateSongList();
   </script>
 </body>
