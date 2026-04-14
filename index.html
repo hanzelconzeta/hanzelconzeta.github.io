@@ -49,7 +49,7 @@
       --dorado-luznegra: #FFD700;
     }
 
-    /* PALETA PETITE - HANZEL con plateado + rosa neón + cian brillante */
+    /* PALETA PETITE - HANZEL con fucsia claro + plateado y blanco brillante */
     body.palette-petite {
       --ultravioleta-cosmico: #00D4FF;
       --bugambilia-neon: #FF0088;
@@ -70,7 +70,7 @@
     
     @keyframes colorShift { 
       0%{background:var(--bugambilia-neon)} 25%{background:var(--rosa-electrico)} 
-      50%{background:#00FFFF} 75%{background:#B8B8B8} 100%{background:#FFD700} 
+      50%{background:#FF69B4} 75%{background:#E0E0E0} 100%{background:#FFFFFF} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -92,19 +92,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - Plateado metálico + rosa neón + cian brillante */
+    /* HANZEL en PETITE - Fucsia claro + plateado y blanco brillante */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #A8A8A8, #D0D0D0, #FF4D94, #00FFFF, #E0E0E0);
+      background:linear-gradient(90deg, #FF69B4, #FF8EC1, #E0E0E0, #F5F5F5, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow-petite 1.6s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 40px #FF4D94, 0 0 75px #00FFFF, 0 0 110px #E0E0E0;
+      text-shadow: 0 0 40px #FF69B4, 0 0 75px #E0E0E0, 0 0 110px #FFFFFF;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FF4D94, 0 0 70px #00FFFF; }
-      to   { text-shadow: 0 0 55px #FF4D94, 0 0 95px #00FFFF, 0 0 130px #E0E0E0; }
+      from { text-shadow: 0 0 35px #FF69B4, 0 0 70px #E0E0E0; }
+      to   { text-shadow: 0 0 55px #FF69B4, 0 0 95px #E0E0E0, 0 0 125px #FFFFFF; }
     }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -314,7 +314,7 @@
       trail.className = 'cursor-trail';
       trail.style.left = e.clientX + 'px';
       trail.style.top = e.clientY + 'px';
-      trail.style.background = `radial-gradient(circle, #FF0088, #FF4D94, #00FFFF, transparent)`;
+      trail.style.background = `radial-gradient(circle, #FF0088, #FF69B4, #E0E0E0, transparent)`;
       document.body.appendChild(trail);
       setTimeout(() => trail.remove(), 1000);
     });
@@ -342,13 +342,21 @@
     let currentPalette = 'kantoamere';
     paletteToggle.addEventListener('click', () => {
       if (currentPalette === 'kantoamere') {
-        document.body.classList.remove('palette-kantoamere'); document.body.classList.add('palette-16rosas'); currentPalette = '16rosas';
+        document.body.classList.remove('palette-kantoamere');
+        document.body.classList.add('palette-16rosas');
+        currentPalette = '16rosas';
       } else if (currentPalette === '16rosas') {
-        document.body.classList.remove('palette-16rosas'); document.body.classList.add('palette-zlooshee'); currentPalette = 'zlooshee';
+        document.body.classList.remove('palette-16rosas');
+        document.body.classList.add('palette-zlooshee');
+        currentPalette = 'zlooshee';
       } else if (currentPalette === 'zlooshee') {
-        document.body.classList.remove('palette-zlooshee'); document.body.classList.add('palette-petite'); currentPalette = 'petite';
+        document.body.classList.remove('palette-zlooshee');
+        document.body.classList.add('palette-petite');
+        currentPalette = 'petite';
       } else {
-        document.body.classList.remove('palette-petite'); document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere';
+        document.body.classList.remove('palette-petite');
+        document.body.classList.add('palette-kantoamere');
+        currentPalette = 'kantoamere';
       }
     });
   </script>
