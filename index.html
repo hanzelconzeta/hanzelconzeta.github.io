@@ -79,6 +79,7 @@
       margin-bottom:1rem; white-space: nowrap; 
     }
 
+    /* HANZEL en otras paletas */
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
@@ -89,18 +90,19 @@
       animation-delay:var(--delay);
     }
 
+    /* HANZEL en PETITE - naranja/amarillo mexicano + sutiles rosas y morados */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF8C00, #FFAA00, #FFCC00, #FFD700, #FFFFFF);
+      background:linear-gradient(90deg, #FF8C00, #FFAA00, #FF69B4, #C71585, #FFD700, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow-petite 1.4s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 45px #FF8C00, 0 0 80px #FFAA00, 0 0 120px #FFD700, 0 0 150px #FFFFFF;
+      text-shadow: 0 0 45px #FF8C00, 0 0 75px #FF69B4, 0 0 110px #FFD700, 0 0 140px #FFFFFF;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 40px #FF8C00, 0 0 75px #FFAA00; }
-      to   { text-shadow: 0 0 60px #FF8C00, 0 0 100px #FFAA00, 0 0 140px #FFD700; }
+      from { text-shadow: 0 0 40px #FF8C00, 0 0 70px #FF69B4; }
+      to   { text-shadow: 0 0 60px #FF8C00, 0 0 95px #FF69B4, 0 0 135px #FFD700; }
     }
 
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
@@ -204,7 +206,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook elegante */
+    /* Guestbook elegante y espacioso */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
@@ -503,7 +505,7 @@
       }
     ];
 
-    let currentAlbumIndex = 2; // petite
+    let currentAlbumIndex = 2;
     let currentSongIndex = 0;
     let isPlaying = false;
     const audio = document.getElementById('audio-player');
@@ -537,11 +539,13 @@
 
     function populateSongList() {
       songList.innerHTML = '';
+      const hasCommented = localStorage.getItem('hasCommented') === 'true';
       const album = albums[currentAlbumIndex];
 
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
+        let downloadLink = (hasCommented && song.src) ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
         li.addEventListener('click', () => {
           loadSong(i);
           if (audio.src) {
@@ -556,9 +560,7 @@
 
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
-        if (!audio.src && albums[currentAlbumIndex].songs.length > 0) {
-          loadSong(0);
-        }
+        if (!audio.src && albums[currentAlbumIndex].songs.length > 0) loadSong(0);
         if (audio.src) {
           audio.play().catch(() => {});
           isPlaying = true;
