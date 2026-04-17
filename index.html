@@ -79,6 +79,7 @@
       margin-bottom:1rem; white-space: nowrap; 
     }
 
+    /* HANZEL en otras paletas */
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
@@ -210,7 +211,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook elegante */
+    /* Guestbook */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
@@ -266,7 +267,7 @@
       display:block;
     }
 
-    /* Music Player */
+    /* Music Player - Modificado según tu petición */
     .music-player-modal h2 {
       font-family:'Cinzel',serif;
       font-size: 2.6rem;
@@ -276,12 +277,24 @@
       text-shadow:0 0 30px var(--bugambilia-neon);
     }
     .music-player-modal .album-thumbnail { 
-      display:block; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; 
+      display:none; /* Oculta inicialmente */
+      margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; 
       box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; 
     }
+    .music-player-modal .album-thumbnail.show { display:block; }
+
     .music-player-modal .album-info { 
+      display:none; /* Oculta inicialmente */
       text-align:center; font-style:italic; color:var(--rosa-electrico); 
       font-size:1.3rem; margin-bottom:1.4rem; 
+    }
+    .music-player-modal .album-info.show { display:block; }
+
+    .music-player-modal .album-selector {
+      display:flex;
+      flex-direction:column;
+      gap:0.8rem;
+      margin-bottom:1.4rem;
     }
     .music-player-modal .album-option {
       background:rgba(11,0,20,0.75);
@@ -294,7 +307,6 @@
       font-size:1.15rem;
       text-align:center;
       transition:all .3s;
-      margin-bottom:1rem;
       text-transform: lowercase;
     }
     .music-player-modal .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
@@ -303,6 +315,12 @@
       border-color:var(--rosa-electrico);
       color:var(--dorado-luznegra);
     }
+
+    .music-player-modal .player-controls { 
+      display:none; /* Oculta hasta seleccionar álbum */
+    }
+    .music-player-modal .player-controls.show { display:block; }
+
     .music-player-modal .player-controls .song-title { 
       font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote); 
       text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0; 
@@ -315,8 +333,9 @@
       color:var(--turquesa-cenote); transform:scale(1.2); 
     }
     .music-player-modal .song-list { 
-      list-style:none; margin:1.4rem 0; padding:0 1rem; 
+      list-style:none; margin:1.4rem 0; padding:0 1rem; display:none;
     }
+    .music-player-modal .song-list.show { display:block; }
     .music-player-modal .song-list li { 
       cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico); 
       transition:all .3s; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center; 
@@ -329,21 +348,6 @@
       color: var(--naranja-volcanico); font-size: 1.4rem; margin-left: 1rem; cursor:pointer; 
     }
     .music-player-modal .song-list li .download-link:hover { color: var(--turquesa-cenote); }
-
-    /* Mensaje especial para petite - super cool */
-    .luna-message {
-      text-align: center;
-      font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
-      color: #FFCC66;
-      text-shadow: 0 0 15px #FFCC66, 0 0 25px #FF99CC;
-      margin: 1.2rem 0 0.8rem;
-      padding: 1rem 1.5rem;
-      border: 1px dashed #FF99CC;
-      border-radius: 16px;
-      background: rgba(255, 204, 102, 0.08);
-      line-height: 1.4;
-    }
 
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -359,7 +363,6 @@
       .guestbook, .music-player-modal { width:92vw; max-width:460px; padding:2.8rem 2.4rem 2.4rem; }
       .music-player-modal .album-thumbnail { width:170px; height:170px; }
       .close-btn { font-size:2.2rem; top:1.1rem; right:1.6rem; }
-      .luna-message { font-size: 1rem; padding: 0.9rem 1.2rem; }
     }
   </style>
 </head>
@@ -414,23 +417,20 @@
     <div class="comments" id="comments-list"></div>
   </div>
 
+  <!-- MUSIC PLAYER - Ahora inicia vacío y carga solo al seleccionar álbum -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <h2>melancolía</h2>
-    <img class="album-thumbnail" id="album-cover" src="https://hanzelconzeta.github.io/petite_portada.PNG" alt="Album Cover">
-    <div class="album-info" id="album-title">petite (2009)</div>
     
-    <div class="luna-message">
-      SI DESEAS PUEDES DESCARGAR LAS CANCIONES,<br>
-      PERO SOLO HASTA QUE TERMINE LA LUNA DE LAS FLORES<br>
-      ¡APROVECHA!
-    </div>
-
     <div class="album-selector">
       <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor (2006)</div>
       <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
-      <div class="album-option active" id="option-2">iii. petite (2009)</div>
+      <div class="album-option" id="option-2">iii. petite (2009)</div>
     </div>
+
+    <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
+    <div class="album-info" id="album-title"></div>
+    
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
       <div class="buttons">
@@ -531,7 +531,7 @@
       }
     ];
 
-    let currentAlbumIndex = 2;
+    let currentAlbumIndex = -1; // Ningún álbum seleccionado al abrir
     let currentSongIndex = 0;
     let isPlaying = false;
     const audio = document.getElementById('audio-player');
@@ -541,13 +541,23 @@
     const musicPlayerModal = document.getElementById('music-player-modal');
     const albumCover = document.getElementById('album-cover');
     const albumTitleEl = document.getElementById('album-title');
+    const playerControls = document.querySelector('.player-controls');
+    const albumInfo = document.querySelector('.album-info');
 
     function switchAlbum(index) {
       currentAlbumIndex = index;
       document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
+
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
+
+      // Mostrar portada, info y lista de canciones
+      albumCover.classList.add('show');
+      albumInfo.classList.add('show');
+      playerControls.classList.add('show');
+      songList.classList.add('show');
+
       populateSongList();
       songTitle.textContent = '';
       playPauseBtn.textContent = '▶';
@@ -617,13 +627,23 @@
 
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
-      populateSongList();
+      // Al abrir música NO se muestra nada hasta que el usuario elija un álbum
+      albumCover.classList.remove('show');
+      albumInfo.classList.remove('show');
+      playerControls.classList.remove('show');
+      songList.classList.remove('show');
     });
+
     document.getElementById('close-music-player').addEventListener('click', () => {
       musicPlayerModal.classList.remove('active');
       audio.pause();
       playPauseBtn.textContent = '▶';
     });
+
+    // Selección de álbum
+    document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
+    document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
+    document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
@@ -669,10 +689,6 @@
         list.innerHTML = '<p style="text-align:center;color:red;">Error al cargar comentarios</p>';
       }
     }
-
-    // Inicializar
-    switchAlbum(2);
-    populateSongList();
   </script>
 </body>
 </html>
