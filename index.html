@@ -68,7 +68,7 @@
     
     @keyframes colorShift { 
       0%{background:#FF0088} 30%{background:#FF8C00} 
-      60%{background:#FFAA00} 80%{background:#FFD700} 100%{background:#FFFFFF} 
+      60%{background:#FFAA00} 80%{background:#FFE066} 100%{background:#FFFFFF} 
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
@@ -90,19 +90,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - naranja/amarillo mexicano + sutiles rosas y morados */
+    /* HANZEL en PETITE - amarillo suave + rosa/fucsia armonioso */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF8C00, #FFAA00, #FF69B4, #C71585, #FFD700, #FFFFFF);
+      background:linear-gradient(90deg, #FFCC33, #FFDD66, #FF99CC, #FF69B4, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.4s infinite alternate, float var(--duration) infinite;
+      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 45px #FF8C00, 0 0 75px #FF69B4, 0 0 110px #FFD700, 0 0 140px #FFFFFF;
+      text-shadow: 0 0 40px #FFCC33, 0 0 75px #FF99CC, 0 0 110px #FF69B4, 0 0 140px #FFFFFF;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 40px #FF8C00, 0 0 70px #FF69B4; }
-      to   { text-shadow: 0 0 60px #FF8C00, 0 0 95px #FF69B4, 0 0 135px #FFD700; }
+      from { text-shadow: 0 0 35px #FFCC33, 0 0 70px #FF99CC; }
+      to   { text-shadow: 0 0 55px #FFCC33, 0 0 90px #FF99CC, 0 0 125px #FF69B4; }
     }
 
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
@@ -146,7 +146,8 @@
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
     }
     .vertical-menu li:hover { 
-      color:var(--turquesa-cenote); text-shadow:0 0 40px var(--turquesa-cenote); 
+      color:#FFE066; /* amarillo claro suave */
+      text-shadow:0 0 40px #FFE066; 
       transform:translateX(20px) scale(1.1); 
     }
 
@@ -206,7 +207,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook elegante y espacioso */
+    /* Guestbook elegante */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
