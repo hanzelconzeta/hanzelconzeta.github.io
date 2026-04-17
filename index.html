@@ -146,7 +146,7 @@
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
     }
     .vertical-menu li:hover { 
-      color:#FFE066; /* amarillo claro suave */
+      color:#FFE066;
       text-shadow:0 0 40px #FFE066; 
       transform:translateX(20px) scale(1.1); 
     }
@@ -162,15 +162,15 @@
       color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); 
       transition:transform .3s, color .3s; 
     }
-    .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    /* Iconos en palette-petite cambian a amarillo suave */
-    body.palette-petite .social-icons a {
-      color: #FFE066;
-      text-shadow: 0 0 15px #FFE066;
+    .social-icons a:hover { 
+      color:#FFE066; 
+      transform:scale(1.2); 
+      text-shadow:0 0 20px #FFE066; 
     }
-    body.palette-petite .social-icons a:hover {
-      color: #FFDD66;
-      text-shadow: 0 0 20px #FFDD66;
+    /* ZLOOSHEE mantiene su color base fuerte */
+    body.palette-zlooshee .social-icons a {
+      color:#FF4D94;
+      text-shadow:0 0 18px #FF4D94, 0 0 28px #FF0088;
     }
 
     .palette-button { 
@@ -212,7 +212,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook elegante y espacioso */
+    /* Guestbook elegante */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
