@@ -90,19 +90,19 @@
       animation-delay:var(--delay);
     }
 
-    /* HANZEL en PETITE - amarillo suave + rosa/fucsia armonioso */
+    /* HANZEL en PETITE - Rosa predominante + glitter amarillo suave */
     body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FFCC33, #FFDD66, #FF99CC, #FF69B4, #FFFFFF);
+      background:linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #FFCC66, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
-      text-shadow: 0 0 40px #FFCC33, 0 0 75px #FF99CC, 0 0 110px #FF69B4, 0 0 140px #FFFFFF;
+      text-shadow: 0 0 40px #FF69B4, 0 0 70px #FF99CC, 0 0 100px #FFCC66, 0 0 130px #FFFFFF;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FFCC33, 0 0 70px #FF99CC; }
-      to   { text-shadow: 0 0 55px #FFCC33, 0 0 90px #FF99CC, 0 0 125px #FF69B4; }
+      from { text-shadow: 0 0 35px #FF69B4, 0 0 65px #FF99CC; }
+      to   { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #FFCC66; }
     }
 
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
@@ -163,9 +163,14 @@
       transition:transform .3s, color .3s; 
     }
     .social-icons a:hover { color:var(--turquesa-cenote); transform:scale(1.2); }
-    body.palette-zlooshee .social-icons a {
-      color:#FF4D94;
-      text-shadow:0 0 18px #FF4D94, 0 0 28px #FF0088;
+    /* Iconos en palette-petite cambian a amarillo suave */
+    body.palette-petite .social-icons a {
+      color: #FFE066;
+      text-shadow: 0 0 15px #FFE066;
+    }
+    body.palette-petite .social-icons a:hover {
+      color: #FFDD66;
+      text-shadow: 0 0 20px #FFDD66;
     }
 
     .palette-button { 
@@ -207,7 +212,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook elegante */
+    /* Guestbook elegante y espacioso */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
