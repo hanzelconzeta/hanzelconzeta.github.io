@@ -265,9 +265,9 @@
       display:block;
     }
 
-    /* Music Player - Sin título "melancolía" */
+    /* Music Player */
     .music-player-modal h2 {
-      display: none; /* Oculto */
+      display: none;
     }
 
     .music-player-modal .luna-message {
@@ -373,7 +373,6 @@
       .guestbook, .music-player-modal { width:92vw; max-width:460px; padding:2.8rem 2.4rem 2.4rem; }
       .music-player-modal .album-thumbnail { width:170px; height:170px; }
       .close-btn { font-size:2.2rem; top:1.1rem; right:1.6rem; }
-      .luna-message { font-size: 1.15rem; padding: 1.1rem 1.4rem; }
     }
   </style>
 </head>
@@ -431,7 +430,6 @@
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     
-    <!-- Mensaje surreal -->
     <div class="luna-message">
       DESCARGA LAS CANCIONES QUE DESEES<br>
       ANTES DE QUE TERMINE LA LUNA DE LAS FLORES
@@ -539,9 +537,9 @@
           { title: '10:01', src: 'https://hanzelconzeta.github.io/1001_2009.mp3', duration: '2:59' },
           { title: 'pequeña eiffel', src: 'https://hanzelconzeta.github.io/pequena_eiffel2009.mp3', duration: '3:54' },
           { title: 'aioros', src: 'https://hanzelconzeta.github.io/aioros.mp3', duration: '3:45' },
-          { title: 'segundo acto: nostalgia (bonus track)', src: '', duration: '2:47' },
-          { title: '10:01 (bonus track)', src: '', duration: '3:07' },
-          { title: 'pequeña eiffel (bonus track)', src: '', duration: '3:47' }
+          { title: 'segundo acto: nostalgia (bonus track)', src: 'https://hanzelconzeta.github.io/segundo_acto2008.mp3', duration: '2:47' },
+          { title: '10:01 (bonus track)', src: 'https://hanzelconzeta.github.io/1001_2008.mp3', duration: '3:07' },
+          { title: 'pequeña eiffel (bonus track)', src: 'https://hanzelconzeta.github.io/pequena_eiffel2008.mp3', duration: '3:47' }
         ]
       }
     ];
@@ -641,7 +639,6 @@
 
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
-      // Reset al abrir
       albumCover.classList.remove('show');
       albumInfo.classList.remove('show');
       playerControls.classList.remove('show');
