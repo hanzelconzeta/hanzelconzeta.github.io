@@ -37,7 +37,15 @@
     body.palette-16rosas   { --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4; --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5; }
     body.palette-kantoamere{ --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4; --naranja-volcanico: #FF9EC1; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF; }
     body.palette-zlooshee  { --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF; --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700; }
-    body.palette-petite    { --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8; --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF; }
+    body.palette-petite    { 
+      --ultravioleta-cosmico: #00A8D0; 
+      --bugambilia-neon: #FF0088;
+      --rosa-electrico: #FF2EB8;
+      --naranja-volcanico: #FF66CC;
+      --verde-acido: #B0FFEE;
+      --turquesa-cenote: #00FFFF;
+      --dorado-luznegra: #E0FFFF;
+    }
 
     /* Cursor solo en desktop */
     .cursor {
@@ -54,14 +62,6 @@
     }
     @media (pointer: coarse) { .cursor { display: none !important; } }
 
-    @keyframes colorShift {
-      0% { background: #FF0088; }
-      30% { background: #FF8C00; }
-      60% { background: #FFAA00; }
-      80% { background: #FFE066; }
-      100% { background: #FFFFFF; }
-    }
-
     .intro {
       position: relative;
       z-index: 10;
@@ -76,44 +76,47 @@
 
     .hanzel-logo {
       font-family: 'Cinzel', serif;
-      font-size: clamp(3.8rem, 14vw, 9.8rem);
-      letter-spacing: clamp(4px, 2vw, 13px);
+      font-size: clamp(4.2rem, 15.5vw, 11rem);
+      letter-spacing: clamp(5px, 2.5vw, 15px);
       margin-bottom: 1.2rem;
       white-space: nowrap;
+      -webkit-text-stroke: 3px rgba(0, 0, 0, 0.25);
+      text-shadow: 0 0 40px rgba(255,255,255,0.7);
     }
 
-    /* HANZEL - Gradientes por paleta */
+    /* HANZEL legible y fuerte */
     .hanzel-logo span {
-      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico), var(--naranja-volcanico));
+      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico), #FFFFFF);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow 1.6s infinite alternate, float var(--duration) infinite;
+      animation: glow 1.8s infinite alternate, float var(--duration) infinite;
       animation-delay: var(--delay);
     }
 
     body.palette-petite .hanzel-logo span {
-      background: linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #FFCC66, #FFFFFF);
-      animation: glow-petite 1.6s infinite alternate, float var(--duration) infinite;
-      text-shadow: 0 0 35px #FF69B4, 0 0 70px #FF99CC, 0 0 100px #FFCC66;
+      background: linear-gradient(90deg, #FF1E85, #FF4D94, #FF80B8, #FFCCDD, #FFFFFF);
+      -webkit-text-stroke: 3px #00000033;
+      text-shadow: 0 0 35px #FF2E98, 0 0 65px #FF69B4, 0 0 95px #FFFFFF;
+      animation: glow-petite 1.7s infinite alternate, float var(--duration) infinite;
     }
 
     @keyframes glow-petite {
-      from { text-shadow: 0 0 30px #FF69B4, 0 0 65px #FF99CC; }
-      to   { text-shadow: 0 0 55px #FF69B4, 0 0 90px #FF99CC, 0 0 125px #FFCC66; }
+      from { text-shadow: 0 0 30px #FF2E98, 0 0 60px #FF69B4, 0 0 90px #FFFFFF; }
+      to   { text-shadow: 0 0 45px #FF2E98, 0 0 80px #FF69B4, 0 0 120px #FFFFFF; }
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 20px var(--dorado-luznegra), 0 0 40px var(--bugambilia-neon); }
-      to   { text-shadow: 0 0 40px var(--dorado-luznegra), 0 0 80px var(--bugambilia-neon); }
+      from { text-shadow: 0 0 20px var(--dorado-luznegra), 0 0 45px var(--bugambilia-neon); }
+      to   { text-shadow: 0 0 40px var(--dorado-luznegra), 0 0 85px var(--bugambilia-neon); }
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.015); }
+      50% { transform: translateY(-12px) scale(1.02); }
     }
 
-    /* Lava */
+    /* Lava - versión más estable para Safari y móviles */
     .lava-container {
       position: absolute;
       inset: 0;
@@ -126,22 +129,21 @@
 
     .blob {
       position: absolute;
-      width: 210px;
-      height: 210px;
+      width: 185px;
+      height: 185px;
       border-radius: 50%;
       background: var(--bugambilia-neon);
       opacity: 0.85;
-      animation: lava-move 38s infinite ease-in-out alternate;
-      box-shadow: 0 0 60px var(--bugambilia-neon);
+      box-shadow: 0 0 55px var(--bugambilia-neon);
       will-change: transform;
     }
 
     @keyframes lava-move {
       0%   { transform: translateY(0) scale(1) rotate(0deg); }
-      100% { transform: translateY(-135vh) scale(2.9) rotate(90deg); }
+      100% { transform: translateY(-135vh) scale(2.7) rotate(90deg); }
     }
 
-    /* Menú vertical */
+    /* Elementos de interfaz */
     .vertical-menu {
       position: absolute;
       right: 5vw;
@@ -166,23 +168,23 @@
       transform: translateX(18px);
     }
 
-    .est {
-      position: absolute;
-      bottom: 4vh;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.15rem;
-      font-weight: 600;
-      z-index: 25;
+    .est { 
+      position: absolute; 
+      bottom: 4vh; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      font-size: 1.15rem; 
+      font-weight: 600; 
+      z-index: 25; 
     }
 
-    .chi-rho {
-      position: absolute;
-      bottom: 4vh;
-      right: 5vw;
-      font-size: 1.45rem;
-      z-index: 25;
-      opacity: 0.9;
+    .chi-rho { 
+      position: absolute; 
+      bottom: 4vh; 
+      right: 5vw; 
+      font-size: 1.45rem; 
+      z-index: 25; 
+      opacity: 0.9; 
     }
 
     .social-icons {
@@ -273,7 +275,6 @@
       transform: scale(1.25) rotate(90deg);
     }
 
-    /* Mensaje Luna */
     .luna-message {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -289,24 +290,18 @@
       box-shadow: 0 0 30px rgba(255,105,180,0.3);
     }
 
-    /* Music Player */
-    .album-thumbnail {
-      display: none;
-      margin: 1rem auto 1.4rem;
-      width: 195px;
-      height: 195px;
-      border-radius: 18px;
-      box-shadow: 0 0 35px var(--bugambilia-neon);
-      object-fit: cover;
+    .album-thumbnail { 
+      display: none; 
+      margin: 1rem auto 1.4rem; 
+      width: 195px; 
+      height: 195px; 
+      border-radius: 18px; 
+      box-shadow: 0 0 35px var(--bugambilia-neon); 
+      object-fit: cover; 
     }
     .album-thumbnail.show { display: block; }
 
-    .album-selector {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      margin-bottom: 1.4rem;
-    }
+    .album-selector { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.4rem; }
     .album-option {
       background: rgba(255,255,255,0.08);
       border: 2px solid var(--bugambilia-neon);
@@ -318,18 +313,12 @@
       font-family: 'Cinzel', serif;
       transition: all 0.3s ease;
     }
-    .album-option.active,
-    .album-option:hover {
+    .album-option.active, .album-option:hover {
       border-color: var(--turquesa-cenote);
       background: rgba(0, 240, 255, 0.12);
     }
 
-    .song-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.2rem 0;
-      display: none;
-    }
+    .song-list { list-style: none; padding: 0; margin: 1.2rem 0; display: none; }
     .song-list.show { display: block; }
     .song-list li {
       padding: 1.05rem 0;
@@ -341,15 +330,11 @@
       font-size: 1.08rem;
     }
     .song-list li:hover { color: var(--turquesa-cenote); }
-    .download-link {
-      color: var(--naranja-volcanico);
-      margin-left: 12px;
-      font-size: 1.4rem;
-    }
+    .download-link { color: var(--naranja-volcanico); margin-left: 12px; font-size: 1.4rem; }
 
     @media (max-width: 768px) {
       .lava-container { filter: url(#goo-mobile) !important; -webkit-filter: url(#goo-mobile) !important; }
-      .blob { width: 155px; height: 155px; }
+      .blob { width: 150px; height: 150px; }
       .vertical-menu { bottom: 15vh; right: 6vw; gap: 2rem; }
       .social-icons { top: 3.5vh; gap: 1.4rem; }
       .social-icons a { font-size: 1.7rem; }
@@ -365,23 +350,22 @@
     <svg width="0" height="0" style="position:absolute">
       <defs>
         <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 32 -11" result="goo"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -10" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
         <filter id="goo-mobile">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="32" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -9" result="goo"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="28" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -9" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </defs>
     </svg>
-    <div class="blob" style="left:8%; animation-duration:34s;"></div>
-    <div class="blob" style="left:22%; animation-duration:42s; animation-delay:3s;"></div>
-    <div class="blob" style="left:35%; animation-duration:37s; animation-delay:8s;"></div>
-    <div class="blob" style="left:52%; animation-duration:45s; animation-delay:1s;"></div>
-    <div class="blob" style="left:68%; animation-duration:39s; animation-delay:11s;"></div>
-    <div class="blob" style="left:82%; animation-duration:41s; animation-delay:6s;"></div>
+    <div class="blob" style="left:10%; animation-duration:36s;"></div>
+    <div class="blob" style="left:25%; animation-duration:44s; animation-delay:4s;"></div>
+    <div class="blob" style="left:42%; animation-duration:39s; animation-delay:9s;"></div>
+    <div class="blob" style="left:60%; animation-duration:41s; animation-delay:2s;"></div>
+    <div class="blob" style="left:78%; animation-duration:37s; animation-delay:7s;"></div>
   </div>
 
   <div class="intro">
@@ -423,7 +407,7 @@
     <button class="close-btn" id="close-music-player">×</button>
     
     <div class="luna-message">
-      DESCARGA LAS CANCIONES QUE DESEES<br>
+      DESCARGA LAS CANCIONES QUE DESEAS<br>
       ANTES DE QUE TERMINE LA LUNA DE LAS FLORES
     </div>
 
@@ -449,13 +433,12 @@
   </div>
 
   <script>
-    // Cursor solo en dispositivos con puntero fino (desktop)
+    // Cursor solo en desktop
     if (window.matchMedia("(pointer: fine)").matches) {
       const cursor = document.createElement('div');
       cursor.className = 'cursor';
       document.body.appendChild(cursor);
-
-      document.addEventListener('mousemove', (e) => {
+      document.addEventListener('mousemove', e => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
       });
@@ -560,9 +543,7 @@
 
     function switchAlbum(index) {
       currentAlbumIndex = index;
-      document.querySelectorAll('.album-option').forEach((opt, i) => {
-        opt.classList.toggle('active', i === index);
-      });
+      document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
 
       const album = albums[index];
       albumTitleEl.textContent = album.title;
@@ -607,7 +588,6 @@
       });
     }
 
-    // Controles de reproducción
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
         if (!audio.src && albums[currentAlbumIndex].songs.length > 0) loadSong(0);
@@ -639,7 +619,6 @@
       if (isPlaying && audio.src) audio.play();
     });
 
-    // Abrir música
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
       albumCover.classList.remove('show');
@@ -654,7 +633,6 @@
       playPauseBtn.textContent = '▶';
     });
 
-    // Selección de álbumes
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
