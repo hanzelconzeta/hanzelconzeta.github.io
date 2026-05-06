@@ -243,16 +243,15 @@
       box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
     }
 
-    .album-thumbnail { 
-      display:none; 
-      margin:0 auto 1.6rem; 
-      width:200px; 
-      height:200px; 
-      border-radius:16px; 
-      box-shadow:0 0 40px var(--bugambilia-neon); 
-      object-fit:cover; 
+    .esporas-cover {
+      display: block;
+      margin: 0 auto 2rem;
+      width: 190px;
+      height: 190px;
+      border-radius: 16px;
+      box-shadow: 0 0 45px var(--bugambilia-neon), 0 0 80px rgba(255, 138, 61, 0.5);
+      object-fit: cover;
     }
-    .album-thumbnail.show { display:block; }
 
     .album-selector { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.6rem; }
     .album-option {
@@ -274,6 +273,9 @@
       border-color:var(--rosa-electrico);
       color:var(--dorado-luznegra);
     }
+
+    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
+    .album-thumbnail.show { display:block; }
 
     .player-controls { display:none; }
     .player-controls.show { display:block; }
@@ -305,8 +307,7 @@
       .social-icons { top:3.5vh; gap:1.2rem; }
       .social-icons a { font-size:1.6rem; }
       .guestbook, .music-player-modal { width:92vw; max-width:460px; padding:2.8rem 2.4rem 2.4rem; }
-      .music-player-modal .album-thumbnail { width:170px; height:170px; }
-      .close-btn { font-size:2.2rem; top:1.1rem; right:1.6rem; }
+      .esporas-cover, .album-thumbnail { width:160px; height:160px; }
     }
   </style>
 </head>
@@ -368,11 +369,14 @@
     <div class="luna-message">
       esporas de internet
     </div>
+
+    <!-- Portada de Esporas de Internet -->
+    <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporasportada.png" alt="Esporas de Internet">
+
     <div class="album-selector">
-      <div class="album-option" id="option-0">i. esporas de internet</div>
-      <div class="album-option" id="option-1">ii. 16 rosas y algo llamado amor</div>
-      <div class="album-option" id="option-2">iii. kanto amere</div>
-      <div class="album-option" id="option-3">iv. petite</div>
+      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
+      <div class="album-option" id="option-1">ii. kanto amere</div>
+      <div class="album-option" id="option-2">iii. petite</div>
     </div>
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
@@ -439,14 +443,7 @@
 
     const albums = [
       {
-        title: "i. esporas de internet",
-        cover: "https://hanzelconzeta.github.io/esporasportada.png",
-        songs: [
-          { title: 'esporas de internet', src: '', duration: '' }
-        ]
-      },
-      {
-        title: "ii. 16 rosas y algo llamado amor",
+        title: "i. 16 rosas y algo llamado amor",
         cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
         songs: [
           { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
@@ -459,7 +456,7 @@
         ]
       },
       {
-        title: "iii. kanto amere",
+        title: "ii. kanto amere",
         cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
         songs: [
           { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
@@ -471,7 +468,7 @@
         ]
       },
       {
-        title: "iv. petite",
+        title: "iii. petite",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
         songs: [
           { title: 'cuentacuentos', src: 'https://hanzelconzeta.github.io/cuentacuentos.mp3', duration: '3:33' },
@@ -517,7 +514,6 @@
 
     function loadSong(i) {
       const album = albums[currentAlbumIndex];
-      if (album.songs.length === 0) return;
       currentSongIndex = i;
       audio.src = album.songs[i].src || '';
       songTitle.textContent = album.songs[i].title;
@@ -544,12 +540,10 @@
 
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
-        if (!audio.src && albums[currentAlbumIndex].songs.length > 0 && albums[currentAlbumIndex].songs[0].src) loadSong(0);
-        if (audio.src) {
-          audio.play().catch(() => {});
-          isPlaying = true;
-          playPauseBtn.textContent = '❚❚';
-        }
+        if (!audio.src) loadSong(0);
+        audio.play().catch(() => {});
+        isPlaying = true;
+        playPauseBtn.textContent = '❚❚';
       } else {
         audio.pause();
         isPlaying = false;
@@ -557,28 +551,23 @@
       }
     });
 
-    // Navigation buttons (disabled for esporas if no songs)
     document.getElementById('prev-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 1) {
-        currentSongIndex = (currentSongIndex - 1 + len) % len;
-        loadSong(currentSongIndex);
-        if (isPlaying && audio.src) audio.play();
-      }
+      currentSongIndex = (currentSongIndex - 1 + len) % len;
+      loadSong(currentSongIndex);
+      if (isPlaying) audio.play();
     });
 
     document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 1) {
-        currentSongIndex = (currentSongIndex + 1) % len;
-        loadSong(currentSongIndex);
-        if (isPlaying && audio.src) audio.play();
-      }
+      currentSongIndex = (currentSongIndex + 1) % len;
+      loadSong(currentSongIndex);
+      if (isPlaying) audio.play();
     });
 
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
-      switchAlbum(0); // Abre directamente en "esporas de internet"
+      switchAlbum(0);
     });
 
     document.getElementById('close-music-player').addEventListener('click', () => {
@@ -590,9 +579,8 @@
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
-    document.getElementById('option-3').addEventListener('click', () => switchAlbum(3));
 
-    // Guestbook (sin cambios)
+    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
