@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* ====================== PALETA ESPORAS ====================== */
+    /* PALETA ESPORAS */
     body.palette-esporas {
       --ultravioleta-cosmico: #FF4A00;
       --bugambilia-neon: #FF8A3D;
@@ -129,12 +129,10 @@
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
+      background:#FF6B1A; opacity:0.9;
       animation:lava-move 40s infinite ease-in-out alternate;
-      box-shadow: 0 0 55px var(--bugambilia-neon);
+      box-shadow: 0 0 60px #FF6B1A;
     }
-    body.palette-esporas .blob { box-shadow: 0 0 55px #FF8A3D; }
-
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
@@ -221,48 +219,42 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    .guestbook h2 {
-      font-family:'Cinzel',serif; font-size: 2.3rem; text-align:center;
-      margin-bottom: 2.4rem; color:var(--dorado-luznegra);
-      text-shadow:0 0 25px var(--bugambilia-neon);
+    .music-player-modal .esporas-main {
+      background: rgba(30, 0, 50, 0.95);
+      border: 3px solid var(--bugambilia-neon);
+      border-radius: 22px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     .music-player-modal .luna-message {
-      text-align: center;
       font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      line-height: 1.5;
+      font-size: 1.6rem;
       color: #FFCC99;
       text-shadow: 0 0 20px #FF99CC, 0 0 40px #FF69B4;
-      margin: 1.2rem 0 1.8rem;
-      padding: 1.4rem 2rem;
-      border: 1px solid rgba(255, 153, 204, 0.4);
-      border-radius: 20px;
-      background: rgba(255, 204, 153, 0.08);
-      letter-spacing: 1px;
-      box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+      margin-bottom: 1.5rem;
     }
 
     .esporas-cover {
-      display: block;
-      margin: 0 auto 2rem;
-      width: 190px;
-      height: 190px;
-      border-radius: 16px;
-      box-shadow: 0 0 45px var(--bugambilia-neon), 0 0 80px rgba(255, 138, 61, 0.5);
+      width: 220px;
+      height: 220px;
+      border-radius: 18px;
+      box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
       object-fit: cover;
+      margin: 0 auto 1.5rem;
     }
 
-    .album-selector { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.6rem; }
+    .album-selector { display:flex; flex-direction:column; gap:0.8rem; }
     .album-option {
-      background:rgba(11,0,20,0.75);
-      border:2px solid var(--bugambilia-neon);
+      background:rgba(11,0,20,0.8);
+      border:2px solid rgba(255,138,61,0.4);
       color:var(--dorado-luznegra);
-      padding:1.1rem 1.6rem;
-      border-radius:14px;
+      padding:1rem 1.5rem;
+      border-radius:12px;
       cursor:pointer;
       font-family:'Cinzel',serif;
-      font-size:1.15rem;
+      font-size:1.1rem;
       text-align:center;
       transition:all .3s;
       text-transform: lowercase !important;
@@ -271,11 +263,7 @@
     .album-option.active {
       background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
       border-color:var(--rosa-electrico);
-      color:var(--dorado-luznegra);
     }
-
-    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
-    .album-thumbnail.show { display:block; }
 
     .player-controls { display:none; }
     .player-controls.show { display:block; }
@@ -283,31 +271,16 @@
       font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote);
       text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0;
     }
-
     .song-list { list-style:none; margin:1.4rem 0; padding:0 1rem; display:none; }
     .song-list.show { display:block; }
     .song-list li {
       cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico);
       transition:all .3s; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center;
     }
-    .song-list li:hover { color:var(--turquesa-cenote); }
-    .song-list li.active {
-      font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 12px var(--verde-acido);
-    }
 
     @media (max-width: 768px) {
-      .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
-      .lava-container { z-index:8; filter:url(#goo-mobile) !important; }
-      .blob { width:165px; height:165px; opacity:0.95; }
-      .blob:nth-child(n+7) { display:none; }
-      .vertical-menu { bottom:15vh; gap:2rem; right:6vw; }
-      .vertical-menu li { font-size:1.35rem; letter-spacing:4px; }
-      .est { font-size:1rem; bottom:4vh; }
-      .chi-rho { font-size:1.5rem; bottom:4vh; right:4vw; }
-      .social-icons { top:3.5vh; gap:1.2rem; }
-      .social-icons a { font-size:1.6rem; }
-      .guestbook, .music-player-modal { width:92vw; max-width:460px; padding:2.8rem 2.4rem 2.4rem; }
-      .esporas-cover, .album-thumbnail { width:160px; height:160px; }
+      .esporas-cover { width: 180px; height: 180px; }
+      .music-player-modal { width:92vw; padding:2.5rem 2rem; }
     }
   </style>
 </head>
@@ -366,18 +339,19 @@
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
    
-    <div class="luna-message">
-      esporas de internet
+    <div class="esporas-main">
+      <div class="luna-message">
+        esporas de internet
+      </div>
+      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporasportada.png" alt="Esporas de Internet">
     </div>
-
-    <!-- Portada de Esporas de Internet -->
-    <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporasportada.png" alt="Esporas de Internet">
 
     <div class="album-selector">
       <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
       <div class="album-option" id="option-1">ii. kanto amere</div>
       <div class="album-option" id="option-2">iii. petite</div>
     </div>
+
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
    
@@ -555,14 +529,14 @@
       const len = albums[currentAlbumIndex].songs.length;
       currentSongIndex = (currentSongIndex - 1 + len) % len;
       loadSong(currentSongIndex);
-      if (isPlaying) audio.play();
+      if (isPlaying && audio.src) audio.play();
     });
 
     document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
       currentSongIndex = (currentSongIndex + 1) % len;
       loadSong(currentSongIndex);
-      if (isPlaying) audio.play();
+      if (isPlaying && audio.src) audio.play();
     });
 
     document.getElementById('music-link').addEventListener('click', () => {
@@ -580,7 +554,6 @@
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
-    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
