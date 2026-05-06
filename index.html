@@ -141,7 +141,6 @@
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
-    /* Blobs positions */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -244,7 +243,15 @@
       box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
     }
 
-    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
+    .album-thumbnail { 
+      display:none; 
+      margin:0 auto 1.6rem; 
+      width:200px; 
+      height:200px; 
+      border-radius:16px; 
+      box-shadow:0 0 40px var(--bugambilia-neon); 
+      object-fit:cover; 
+    }
     .album-thumbnail.show { display:block; }
 
     .album-selector { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.6rem; }
@@ -259,7 +266,7 @@
       font-size:1.15rem;
       text-align:center;
       transition:all .3s;
-      text-transform: lowercase;
+      text-transform: lowercase !important;
     }
     .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
     .album-option.active {
@@ -359,12 +366,13 @@
     <button class="close-btn" id="close-music-player">×</button>
    
     <div class="luna-message">
-      esporas de internet (2006-2009)
+      esporas de internet
     </div>
     <div class="album-selector">
-      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
-      <div class="album-option" id="option-1">ii. kanto amere</div>
-      <div class="album-option" id="option-2">iii. petite</div>
+      <div class="album-option" id="option-0">i. esporas de internet</div>
+      <div class="album-option" id="option-1">ii. 16 rosas y algo llamado amor</div>
+      <div class="album-option" id="option-2">iii. kanto amere</div>
+      <div class="album-option" id="option-3">iv. petite</div>
     </div>
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
@@ -431,7 +439,14 @@
 
     const albums = [
       {
-        title: "i. 16 rosas y algo llamado amor",
+        title: "i. esporas de internet",
+        cover: "https://hanzelconzeta.github.io/esporasportada.png",
+        songs: [
+          { title: 'esporas de internet', src: '', duration: '' }
+        ]
+      },
+      {
+        title: "ii. 16 rosas y algo llamado amor",
         cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
         songs: [
           { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
@@ -444,7 +459,7 @@
         ]
       },
       {
-        title: "ii. kanto amere",
+        title: "iii. kanto amere",
         cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
         songs: [
           { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
@@ -456,7 +471,7 @@
         ]
       },
       {
-        title: "iii. petite",
+        title: "iv. petite",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
         songs: [
           { title: 'cuentacuentos', src: 'https://hanzelconzeta.github.io/cuentacuentos.mp3', duration: '3:33' },
@@ -529,7 +544,7 @@
 
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
-        if (!audio.src && albums[currentAlbumIndex].songs.length > 0) loadSong(0);
+        if (!audio.src && albums[currentAlbumIndex].songs.length > 0 && albums[currentAlbumIndex].songs[0].src) loadSong(0);
         if (audio.src) {
           audio.play().catch(() => {});
           isPlaying = true;
@@ -542,9 +557,10 @@
       }
     });
 
+    // Navigation buttons (disabled for esporas if no songs)
     document.getElementById('prev-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 0) {
+      if (len > 1) {
         currentSongIndex = (currentSongIndex - 1 + len) % len;
         loadSong(currentSongIndex);
         if (isPlaying && audio.src) audio.play();
@@ -553,7 +569,7 @@
 
     document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
-      if (len > 0) {
+      if (len > 1) {
         currentSongIndex = (currentSongIndex + 1) % len;
         loadSong(currentSongIndex);
         if (isPlaying && audio.src) audio.play();
@@ -562,10 +578,7 @@
 
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
-      albumCover.classList.remove('show');
-      albumInfo.classList.remove('show');
-      playerControls.classList.remove('show');
-      songList.classList.remove('show');
+      switchAlbum(0); // Abre directamente en "esporas de internet"
     });
 
     document.getElementById('close-music-player').addEventListener('click', () => {
@@ -577,7 +590,9 @@
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
+    document.getElementById('option-3').addEventListener('click', () => switchAlbum(3));
 
+    // Guestbook (sin cambios)
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
