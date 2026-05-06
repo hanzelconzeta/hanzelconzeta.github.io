@@ -20,7 +20,17 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* PALETAS */
+    /* ====================== NUEVA PALETA: ESPORAS ====================== */
+    body.palette-esporas {
+      --ultravioleta-cosmico: #FF4A00;
+      --bugambilia-neon: #FF8A3D;
+      --rosa-electrico: #FFB366;
+      --naranja-volcanico: #FFD4A3;
+      --verde-acido: #FFEBCC;
+      --turquesa-cenote: #FFE6C7;
+      --dorado-luznegra: #FFF5E6;
+    }
+
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -58,25 +68,33 @@
       --dorado-luznegra: #E0FFFF;
     }
 
-    .cursor { 
-      position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; 
-      transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; 
-      transition:all .1s; animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 20px rgba(255,0,136,0.7); 
+    .cursor {
+      position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none;
+      transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999;
+      transition:all .1s; animation:colorShift 3s infinite alternate;
+      box-shadow:0 0 20px rgba(255,138,61,0.8);
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-    
-    @keyframes colorShift { 
-      0%{background:#FF0088} 30%{background:#FF8C00} 
-      60%{background:#FFAA00} 80%{background:#FFE066} 100%{background:#FFFFFF} 
+   
+    @keyframes colorShift {
+      0%{background:#FF8A3D} 30%{background:#FFB366}
+      60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF}
     }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
-    .hanzel-logo { 
-      font-family:'Cinzel',serif; 
-      font-size: clamp(4rem, 15vw, 10rem); 
-      letter-spacing: clamp(4px, 2vw, 12px); 
-      margin-bottom:1rem; white-space: nowrap; 
+    .hanzel-logo {
+      font-family:'Cinzel',serif;
+      font-size: clamp(4rem, 15vw, 10rem);
+      letter-spacing: clamp(4px, 2vw, 12px);
+      margin-bottom:1rem; white-space: nowrap;
+    }
+
+    body.palette-esporas .hanzel-logo span {
+      background:linear-gradient(90deg, #FFF5E6, #FFEBCC, #FFB366, #FF8A3D);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow-esporas 1.6s infinite alternate, float var(--duration) infinite;
+      animation-delay:var(--delay);
     }
 
     body.palette-16rosas .hanzel-logo span,
@@ -88,7 +106,6 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
-
     body.palette-petite .hanzel-logo span {
       background:linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #FFCC66, #FFFFFF);
       -webkit-background-clip:text;
@@ -98,26 +115,32 @@
       text-shadow: 0 0 40px #FF69B4, 0 0 70px #FF99CC, 0 0 100px #FFCC66, 0 0 130px #FFFFFF;
     }
 
+    @keyframes glow-esporas {
+      from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
+      to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
+    }
+    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes glow-petite {
       from { text-shadow: 0 0 35px #FF69B4, 0 0 65px #FF99CC; }
-      to   { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #FFCC66; }
+      to { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #FFCC66; }
     }
-
-    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-    .blob { 
-      position:absolute; width:220px; height:220px; border-radius:50%; 
-      background:var(--bugambilia-neon); opacity:0.88; 
-      animation:lava-move 40s infinite ease-in-out alternate; 
-      box-shadow: 0 0 55px var(--bugambilia-neon); 
+    .blob {
+      position:absolute; width:220px; height:220px; border-radius:50%;
+      background:var(--bugambilia-neon); opacity:0.88;
+      animation:lava-move 40s infinite ease-in-out alternate;
+      box-shadow: 0 0 55px var(--bugambilia-neon);
     }
-    @keyframes lava-move { 
-      0%{transform:translateY(0)scale(1)rotate(0)} 
-      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 
-      100%{transform:translateY(0)scale(1)rotate(0)} 
+    body.palette-esporas .blob { box-shadow: 0 0 55px #FF8A3D; }
+
+    @keyframes lava-move {
+      0%{transform:translateY(0)scale(1)rotate(0)}
+      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
+      100%{transform:translateY(0)scale(1)rotate(0)}
     }
+
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -134,60 +157,56 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    .vertical-menu { 
-      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; 
+    .vertical-menu {
+      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column;
       gap:2.5rem; z-index:25 !important;
     }
-    .vertical-menu li { 
-      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); 
-      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; 
-      transition:all .4s cubic-bezier(0.23,1,0.32,1.275); 
+    .vertical-menu li {
+      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra);
+      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8;
+      transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
     }
-    .vertical-menu li:hover { 
-      color:#FFE066;
-      text-shadow:0 0 40px #FFE066; 
-      transform:translateX(20px) scale(1.1); 
+    .vertical-menu li:hover {
+      color:#FFF5E6;
+      text-shadow:0 0 40px #FFF5E6;
+      transform:translateX(20px) scale(1.1);
     }
 
     .est, .chi-rho { z-index:25 !important; }
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
-    .social-icons { 
-      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; 
+    .social-icons {
+      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important;
     }
-    .social-icons a { 
-      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); 
-      transition:transform .3s, color .3s; 
+    .social-icons a {
+      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5);
+      transition:transform .3s, color .3s;
     }
-    .social-icons a:hover { 
-      color:#FFE066; 
-      transform:scale(1.2); 
-      text-shadow:0 0 20px #FFE066; 
-    }
-    body.palette-zlooshee .social-icons a {
-      color:#FF4D94;
-      text-shadow:0 0 18px #FF4D94, 0 0 28px #FF0088;
+    .social-icons a:hover {
+      color:#FFF5E6;
+      transform:scale(1.2);
+      text-shadow:0 0 20px #FFF5E6;
     }
 
-    .palette-button { 
-      position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; 
-      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); 
-      cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra); 
-      font-size:1.5rem; display:flex; align-items:center; justify-content:center; 
+    .palette-button {
+      position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%;
+      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
+      cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra);
+      font-size:1.5rem; display:flex; align-items:center; justify-content:center;
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
-    .guestbook, .music-player-modal { 
-      position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px); 
-      width:460px; max-height:85vh; overflow-y:auto; background:rgba(11,0,20,0.97); 
-      border:3px solid var(--bugambilia-neon); border-radius:26px; 
-      padding:3.2rem 3rem 2.8rem; box-shadow:0 0 80px var(--rosa-electrico), inset 0 0 60px rgba(193,59,255,0.25); 
-      z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden; 
-      transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275); 
+    .guestbook, .music-player-modal {
+      position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
+      width:460px; max-height:85vh; overflow-y:auto; background:rgba(11,0,20,0.97);
+      border:3px solid var(--bugambilia-neon); border-radius:26px;
+      padding:3.2rem 3rem 2.8rem; box-shadow:0 0 80px var(--rosa-electrico), inset 0 0 60px rgba(193,59,255,0.25);
+      z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden;
+      transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275);
     }
-    .guestbook.show, .guestbook.active, .music-player-modal.show, .music-player-modal.active { 
-      opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); 
+    .guestbook.show, .guestbook.active, .music-player-modal.show, .music-player-modal.active {
+      opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);
     }
 
     .close-btn {
@@ -209,7 +228,6 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook elegante */
     .guestbook h2 {
       font-family:'Cinzel',serif;
       font-size: 2.3rem;
@@ -220,8 +238,8 @@
     }
     .guestbook input,
     .guestbook textarea {
-      width:100%; background:rgba(255,255,255,0.09); border:2px solid var(--bugambilia-neon); 
-      border-radius:14px; padding:1.3rem 1.6rem; color:var(--dorado-luznegra); 
+      width:100%; background:rgba(255,255,255,0.09); border:2px solid var(--bugambilia-neon);
+      border-radius:14px; padding:1.3rem 1.6rem; color:var(--dorado-luznegra);
       font-family:'Roboto Slab',serif; margin-bottom:1.6rem; transition:all .3s;
     }
     .guestbook input:focus,
@@ -231,45 +249,16 @@
       outline:none;
     }
     .guestbook button[type="submit"] {
-      width:100%; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); 
-      border:none; color:#fff; padding:1.2rem; font-size:1.15rem; font-family:'Cinzel',serif; 
+      width:100%; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
+      border:none; color:#fff; padding:1.2rem; font-size:1.15rem; font-family:'Cinzel',serif;
       border-radius:14px; cursor:pointer; transition:all .3s;
     }
     .guestbook button[type="submit"]:hover {
       transform:scale(1.04);
       box-shadow:0 0 30px var(--rosa-electrico);
     }
-    #comments-list .comment {
-      background:rgba(255,255,255,0.07);
-      border-left:6px solid var(--bugambilia-neon);
-      padding:1.6rem 1.8rem;
-      margin-bottom:1.8rem;
-      border-radius:16px;
-      transition:all .3s;
-    }
-    #comments-list .comment:hover {
-      background:rgba(255,255,255,0.14);
-      border-left-color:var(--turquesa-cenote);
-    }
-    #comments-list .author {
-      font-family:'Cinzel',serif;
-      color:var(--dorado-luznegra);
-      font-size:1.2rem;
-      display:block;
-      margin-bottom:0.5rem;
-    }
-    #comments-list .date {
-      font-size:0.9rem;
-      opacity:0.65;
-      margin-top:1rem;
-      display:block;
-    }
 
-    /* Music Player */
-    .music-player-modal h2 {
-      display: none;
-    }
-
+    .music-player-modal h2 { display: none; }
     .music-player-modal .luna-message {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -286,27 +275,20 @@
       box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
     }
 
-    .music-player-modal .album-thumbnail { 
-      display:none; 
-      margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; 
-      box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; 
+    .album-thumbnail {
+      display:none;
+      margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px;
+      box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover;
     }
-    .music-player-modal .album-thumbnail.show { display:block; }
+    .album-thumbnail.show { display:block; }
 
-    .music-player-modal .album-info { 
-      display:none; 
-      text-align:center; font-style:italic; color:var(--rosa-electrico); 
-      font-size:1.3rem; margin-bottom:1.4rem; 
-    }
-    .music-player-modal .album-info.show { display:block; }
-
-    .music-player-modal .album-selector {
+    .album-selector {
       display:flex;
       flex-direction:column;
       gap:0.9rem;
       margin-bottom:1.6rem;
     }
-    .music-player-modal .album-option {
+    .album-option {
       background:rgba(11,0,20,0.75);
       border:2px solid var(--bugambilia-neon);
       color:var(--dorado-luznegra);
@@ -319,45 +301,43 @@
       transition:all .3s;
       text-transform: lowercase;
     }
-    .music-player-modal .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
-    .music-player-modal .album-option.active {
+    .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); }
+    .album-option.active {
       background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
       border-color:var(--rosa-electrico);
       color:var(--dorado-luznegra);
     }
 
-    .music-player-modal .player-controls { 
-      display:none; 
+    .player-controls { display:none; }
+    .player-controls.show { display:block; }
+    .player-controls .song-title {
+      font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote);
+      text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0;
     }
-    .music-player-modal .player-controls.show { display:block; }
+    .player-controls button {
+      background:transparent; border:none; color:var(--verde-acido); cursor:pointer;
+      font-size:2.4rem; transition:all .3s;
+    }
+    .player-controls button:hover {
+      color:var(--turquesa-cenote); transform:scale(1.2);
+    }
 
-    .music-player-modal .player-controls .song-title { 
-      font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote); 
-      text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0; 
-    }
-    .music-player-modal .player-controls button { 
-      background:transparent; border:none; color:var(--verde-acido); cursor:pointer; 
-      font-size:2.4rem; transition:all .3s; 
-    }
-    .music-player-modal .player-controls button:hover { 
-      color:var(--turquesa-cenote); transform:scale(1.2); 
-    }
-    .music-player-modal .song-list { 
+    .song-list {
       list-style:none; margin:1.4rem 0; padding:0 1rem; display:none;
     }
-    .music-player-modal .song-list.show { display:block; }
-    .music-player-modal .song-list li { 
-      cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico); 
-      transition:all .3s; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center; 
+    .song-list.show { display:block; }
+    .song-list li {
+      cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico);
+      transition:all .3s; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center;
     }
-    .music-player-modal .song-list li:hover { color:var(--turquesa-cenote); }
-    .music-player-modal .song-list li.active { 
-      font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 12px var(--verde-acido); 
+    .song-list li:hover { color:var(--turquesa-cenote); }
+    .song-list li.active {
+      font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 12px var(--verde-acido);
     }
-    .music-player-modal .song-list li .download-link { 
-      color: var(--naranja-volcanico); font-size: 1.4rem; margin-left: 1rem; cursor:pointer; 
+    .song-list li .download-link {
+      color: var(--naranja-volcanico); font-size: 1.4rem; margin-left: 1rem; cursor:pointer;
     }
-    .music-player-modal .song-list li .download-link:hover { color: var(--turquesa-cenote); }
+    .song-list li .download-link:hover { color: var(--turquesa-cenote); }
 
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -376,7 +356,8 @@
     }
   </style>
 </head>
-<body class="palette-petite">
+<body class="palette-esporas">
+
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -404,7 +385,6 @@
     <div class="est">EST. 2006</div>
   </div>
   <div class="chi-rho">☧</div>
-
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
     <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -413,9 +393,9 @@
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
-
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
+  <!-- Guestbook -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -427,23 +407,22 @@
     <div class="comments" id="comments-list"></div>
   </div>
 
+  <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-    
+   
     <div class="luna-message">
       DESCARGA LAS CANCIONES QUE DESEES<br>
       ANTES DE QUE TERMINE LA LUNA DE LAS FLORES
     </div>
-
     <div class="album-selector">
       <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor (2006)</div>
       <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
       <div class="album-option" id="option-2">iii. petite (2009)</div>
     </div>
-
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
-    
+   
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
       <div class="buttons">
@@ -477,20 +456,22 @@
     });
 
     const paletteToggle = document.getElementById('palette-toggle');
-    let currentPalette = 'petite';
+    let currentPalette = 'esporas';
+
     paletteToggle.addEventListener('click', () => {
-      document.body.classList.remove('palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
-      if (currentPalette === 'petite') { document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; }
+      document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
+      if (currentPalette === 'esporas') { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
+      else if (currentPalette === 'petite') { document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; }
       else if (currentPalette === 'kantoamere') { document.body.classList.add('palette-16rosas'); currentPalette = '16rosas'; }
       else if (currentPalette === '16rosas') { document.body.classList.add('palette-zlooshee'); currentPalette = 'zlooshee'; }
-      else { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
+      else { document.body.classList.add('palette-esporas'); currentPalette = 'esporas'; }
     });
   </script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-    
+   
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -560,16 +541,13 @@
     function switchAlbum(index) {
       currentAlbumIndex = index;
       document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
-
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
-
       albumCover.classList.add('show');
       albumInfo.classList.add('show');
       playerControls.classList.add('show');
       songList.classList.add('show');
-
       populateSongList();
       songTitle.textContent = '';
       playPauseBtn.textContent = '▶';
@@ -588,7 +566,6 @@
     function populateSongList() {
       songList.innerHTML = '';
       const album = albums[currentAlbumIndex];
-
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
         let downloadLink = song.src ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
@@ -628,6 +605,7 @@
         if (isPlaying && audio.src) audio.play();
       }
     });
+
     document.getElementById('next-btn').addEventListener('click', () => {
       const len = albums[currentAlbumIndex].songs.length;
       if (len > 0) {
@@ -651,7 +629,6 @@
       playPauseBtn.textContent = '▶';
     });
 
-    // Selección de álbum
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
@@ -661,6 +638,7 @@
       guestbook.classList.add('active');
       loadComments();
     });
+
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
@@ -672,7 +650,6 @@
         await addDoc(collection(db, 'comments'), { name, message, timestamp: serverTimestamp() });
         alert('¡Gracias por firmar el guestbook!');
         document.getElementById('guestbook-form').reset();
-        localStorage.setItem('hasCommented', 'true');
         loadComments();
       } catch(err) {
         console.error(err);
