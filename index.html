@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* ====================== NUEVA PALETA: ESPORAS ====================== */
+    /* ====================== PALETA ESPORAS ====================== */
     body.palette-esporas {
       --ultravioleta-cosmico: #FF4A00;
       --bugambilia-neon: #FF8A3D;
@@ -141,6 +141,7 @@
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
+    /* Blobs positions */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -210,17 +211,10 @@
     }
 
     .close-btn {
-      position: absolute;
-      top: 1.4rem;
-      right: 2rem;
-      font-size: 2.6rem;
-      color: var(--dorado-luznegra);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: all .4s cubic-bezier(0.23,1,0.32,1.275);
-      z-index: 10001;
-      line-height: 1;
+      position: absolute; top: 1.4rem; right: 2rem; font-size: 2.6rem;
+      color: var(--dorado-luznegra); background: none; border: none;
+      cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275);
+      z-index: 10001; line-height: 1;
     }
     .close-btn:hover {
       color: var(--turquesa-cenote);
@@ -229,36 +223,11 @@
     }
 
     .guestbook h2 {
-      font-family:'Cinzel',serif;
-      font-size: 2.3rem;
-      text-align:center;
-      margin-bottom: 2.4rem;
-      color:var(--dorado-luznegra);
+      font-family:'Cinzel',serif; font-size: 2.3rem; text-align:center;
+      margin-bottom: 2.4rem; color:var(--dorado-luznegra);
       text-shadow:0 0 25px var(--bugambilia-neon);
     }
-    .guestbook input,
-    .guestbook textarea {
-      width:100%; background:rgba(255,255,255,0.09); border:2px solid var(--bugambilia-neon);
-      border-radius:14px; padding:1.3rem 1.6rem; color:var(--dorado-luznegra);
-      font-family:'Roboto Slab',serif; margin-bottom:1.6rem; transition:all .3s;
-    }
-    .guestbook input:focus,
-    .guestbook textarea:focus {
-      border-color:var(--turquesa-cenote);
-      box-shadow:0 0 0 5px rgba(0,240,255,0.25);
-      outline:none;
-    }
-    .guestbook button[type="submit"] {
-      width:100%; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
-      border:none; color:#fff; padding:1.2rem; font-size:1.15rem; font-family:'Cinzel',serif;
-      border-radius:14px; cursor:pointer; transition:all .3s;
-    }
-    .guestbook button[type="submit"]:hover {
-      transform:scale(1.04);
-      box-shadow:0 0 30px var(--rosa-electrico);
-    }
 
-    .music-player-modal h2 { display: none; }
     .music-player-modal .luna-message {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -275,19 +244,10 @@
       box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
     }
 
-    .album-thumbnail {
-      display:none;
-      margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px;
-      box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover;
-    }
+    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
     .album-thumbnail.show { display:block; }
 
-    .album-selector {
-      display:flex;
-      flex-direction:column;
-      gap:0.9rem;
-      margin-bottom:1.6rem;
-    }
+    .album-selector { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.6rem; }
     .album-option {
       background:rgba(11,0,20,0.75);
       border:2px solid var(--bugambilia-neon);
@@ -314,17 +274,8 @@
       font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote);
       text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0;
     }
-    .player-controls button {
-      background:transparent; border:none; color:var(--verde-acido); cursor:pointer;
-      font-size:2.4rem; transition:all .3s;
-    }
-    .player-controls button:hover {
-      color:var(--turquesa-cenote); transform:scale(1.2);
-    }
 
-    .song-list {
-      list-style:none; margin:1.4rem 0; padding:0 1rem; display:none;
-    }
+    .song-list { list-style:none; margin:1.4rem 0; padding:0 1rem; display:none; }
     .song-list.show { display:block; }
     .song-list li {
       cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico);
@@ -334,10 +285,6 @@
     .song-list li.active {
       font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 12px var(--verde-acido);
     }
-    .song-list li .download-link {
-      color: var(--naranja-volcanico); font-size: 1.4rem; margin-left: 1rem; cursor:pointer;
-    }
-    .song-list li .download-link:hover { color: var(--turquesa-cenote); }
 
     @media (max-width: 768px) {
       .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
@@ -412,13 +359,12 @@
     <button class="close-btn" id="close-music-player">×</button>
    
     <div class="luna-message">
-      DESCARGA LAS CANCIONES QUE DESEES<br>
-      ANTES DE QUE TERMINE LA LUNA DE LAS FLORES
+      esporas de internet
     </div>
     <div class="album-selector">
-      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor (2006)</div>
-      <div class="album-option" id="option-1">ii. kanto amere (2007)</div>
-      <div class="album-option" id="option-2">iii. petite (2009)</div>
+      <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
+      <div class="album-option" id="option-1">ii. kanto amere</div>
+      <div class="album-option" id="option-2">iii. petite</div>
     </div>
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
@@ -485,7 +431,7 @@
 
     const albums = [
       {
-        title: "16 rosas y algo llamado amor (2006)",
+        title: "i. 16 rosas y algo llamado amor",
         cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
         songs: [
           { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
@@ -498,7 +444,7 @@
         ]
       },
       {
-        title: "kanto amere (2007)",
+        title: "ii. kanto amere",
         cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
         songs: [
           { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
@@ -510,7 +456,7 @@
         ]
       },
       {
-        title: "petite (2009)",
+        title: "iii. petite",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
         songs: [
           { title: 'cuentacuentos', src: 'https://hanzelconzeta.github.io/cuentacuentos.mp3', duration: '3:33' },
@@ -568,8 +514,7 @@
       const album = albums[currentAlbumIndex];
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
-        let downloadLink = song.src ? ` <a href="${song.src}" download class="download-link"><i class="fas fa-download"></i></a>` : '';
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}${downloadLink}</span>`;
+        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
         li.addEventListener('click', () => {
           loadSong(i);
           if (audio.src) {
