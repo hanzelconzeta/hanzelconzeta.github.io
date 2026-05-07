@@ -118,9 +118,10 @@
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
-      background:#FF6B1A; opacity:0.88;
+      background:#FF5500; /* Tono más contrastante */
+      opacity:0.9;
       animation:lava-move 40s infinite ease-in-out alternate;
-      box-shadow: 0 0 55px #FF6B1A;
+      box-shadow: 0 0 60px #FF5500;
     }
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
@@ -128,6 +129,7 @@
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
+    /* Blobs positions */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -247,6 +249,7 @@
       box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
       object-fit: cover;
       margin: 0 auto 1.4rem;
+      background: #333;
     }
 
     .album-selector { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.6rem; }
@@ -360,7 +363,7 @@
       <div class="luna-message">
         esporas de internet
       </div>
-      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
+      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet" onerror="this.src='https://via.placeholder.com/210x210/FF6B1A/FFFFFF?text=Esporas+de+Internet';">
     </div>
 
     <div class="album-selector">
@@ -384,7 +387,7 @@
   </div>
 
   <script>
-    // Cursor + Logo + Palette
+    // Cursor, Logo y Paleta
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
