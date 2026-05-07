@@ -106,23 +106,41 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
+    body.palette-petite .hanzel-logo span {
+      background:linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #FFCC66, #FFFFFF);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
+      animation-delay:var(--delay);
+      text-shadow: 0 0 40px #FF69B4, 0 0 70px #FF99CC, 0 0 100px #FFCC66, 0 0 130px #FFFFFF;
+    }
 
     @keyframes glow-esporas {
       from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
       to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
-
+    @keyframes glow-petite {
+      from { text-shadow: 0 0 35px #FF69B4, 0 0 65px #FF99CC; }
+      to { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #FFCC66; }
+    }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
-      background:#FFBB66; /* Color más claro y visible */
-      opacity:0.92;
+      background:var(--bugambilia-neon); 
+      opacity:0.88;
       animation:lava-move 40s infinite ease-in-out alternate;
-      box-shadow: 0 0 65px #FFBB66;
+      box-shadow: 0 0 55px var(--bugambilia-neon);
     }
+
+    /* Solo para paleta esporas - color claro solicitado */
+    body.palette-esporas .blob {
+      background: #f2dba9;
+      box-shadow: 0 0 60px #f2dba9;
+    }
+
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
@@ -146,7 +164,45 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    .vertical-menu, .est, .chi-rho, .social-icons, .palette-button { /* estilos originales */ }
+    .vertical-menu {
+      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column;
+      gap:2.5rem; z-index:25 !important;
+    }
+    .vertical-menu li {
+      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra);
+      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8;
+      transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
+    }
+    .vertical-menu li:hover {
+      color:#FFF5E6;
+      text-shadow:0 0 40px #FFF5E6;
+      transform:translateX(20px) scale(1.1);
+    }
+
+    .est, .chi-rho { z-index:25 !important; }
+    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
+    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
+
+    .social-icons {
+      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important;
+    }
+    .social-icons a {
+      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5);
+      transition:transform .3s, color .3s;
+    }
+    .social-icons a:hover {
+      color:#FFF5E6;
+      transform:scale(1.2);
+      text-shadow:0 0 20px #FFF5E6;
+    }
+
+    .palette-button {
+      position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%;
+      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
+      cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra);
+      font-size:1.5rem; display:flex; align-items:center; justify-content:center;
+    }
+    .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
     /* Modales */
     .guestbook, .music-player-modal {
@@ -173,7 +229,6 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook */
     .guestbook h2 {
       font-family:'Cinzel',serif; font-size: 2.3rem; text-align:center;
       margin-bottom: 2.4rem; color:var(--dorado-luznegra);
@@ -199,11 +254,7 @@
       box-shadow:0 0 30px var(--rosa-electrico);
     }
 
-    /* Music Player */
-    .esporas-main {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+    .esporas-main { text-align: center; margin-bottom: 2rem; }
     .esporas-cover {
       width: 210px;
       height: 210px;
@@ -326,7 +377,7 @@
         esporas de internet
       </div>
       <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet" 
-           onerror="this.src='https://via.placeholder.com/210x210/FFBB66/4A0E00?text=ESPORAS+DE+INTERNET'; this.style.opacity='0.9';">
+           onerror="this.src='https://via.placeholder.com/210x210/FFBB66/4A0E00?text=ESPORAS+DE+INTERNET';">
     </div>
 
     <div class="album-selector">
@@ -350,7 +401,6 @@
   </div>
 
   <script>
-    // Cursor, Logo y Paleta
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -530,7 +580,6 @@
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
-    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
