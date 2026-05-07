@@ -20,7 +20,7 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* ====================== PALETA ESPORAS ====================== */
+    /* PALETAS */
     body.palette-esporas {
       --ultravioleta-cosmico: #FF4A00;
       --bugambilia-neon: #FF8A3D;
@@ -106,48 +106,32 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
-    body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #FFCC66, #FFFFFF);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
-      animation-delay:var(--delay);
-      text-shadow: 0 0 40px #FF69B4, 0 0 70px #FF99CC, 0 0 100px #FFCC66, 0 0 130px #FFFFFF;
-    }
 
     @keyframes glow-esporas {
       from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
       to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
-    @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FF69B4, 0 0 65px #FF99CC; }
-      to { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #FFCC66; }
-    }
+
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); 
-      opacity:0.88;
+      background:var(--bugambilia-neon); opacity:0.88;
       animation:lava-move 40s infinite ease-in-out alternate;
       box-shadow: 0 0 55px var(--bugambilia-neon);
     }
-
-    /* Solo para paleta esporas - color claro solicitado */
     body.palette-esporas .blob {
       background: #f2dba9;
-      box-shadow: 0 0 60px #f2dba9;
+      box-shadow: 0 0 65px #f2dba9;
     }
-
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
-    /* Blobs positions */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -229,6 +213,7 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
+    /* Guestbook Estilizado */
     .guestbook h2 {
       font-family:'Cinzel',serif; font-size: 2.3rem; text-align:center;
       margin-bottom: 2.4rem; color:var(--dorado-luznegra);
@@ -254,6 +239,38 @@
       box-shadow:0 0 30px var(--rosa-electrico);
     }
 
+    #comments-list .comment {
+      background:rgba(255,255,255,0.08);
+      border-left:5px solid var(--bugambilia-neon);
+      padding:1.6rem 1.8rem;
+      margin-bottom:1.6rem;
+      border-radius:16px;
+      transition:all .3s;
+    }
+    #comments-list .comment:hover {
+      background:rgba(255,255,255,0.15);
+      border-left-color:var(--turquesa-cenote);
+      transform:translateX(8px);
+    }
+    #comments-list .author {
+      font-family:'Cinzel',serif;
+      color:var(--dorado-luznegra);
+      font-size:1.25rem;
+      display:block;
+      margin-bottom:0.6rem;
+    }
+    #comments-list .comment p {
+      line-height:1.65;
+      color:#e0d0ff;
+    }
+    #comments-list .date {
+      font-size:0.9rem;
+      opacity:0.65;
+      display:block;
+      text-align:right;
+    }
+
+    /* Music Player */
     .esporas-main { text-align: center; margin-bottom: 2rem; }
     .esporas-cover {
       width: 210px;
@@ -401,6 +418,7 @@
   </div>
 
   <script>
+    // Cursor + Logo + Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -580,6 +598,7 @@
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
+    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
