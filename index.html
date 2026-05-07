@@ -106,24 +106,13 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
-    body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #FFCC66, #FFFFFF);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
-      animation-delay:var(--delay);
-      text-shadow: 0 0 40px #FF69B4, 0 0 70px #FF99CC, 0 0 100px #FFCC66, 0 0 130px #FFFFFF;
-    }
 
     @keyframes glow-esporas {
       from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
       to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
-    @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FF69B4, 0 0 65px #FF99CC; }
-      to { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #FFCC66; }
-    }
+
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -195,7 +184,7 @@
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
-    /* ==================== MODALES ==================== */
+    /* MODALES */
     .guestbook, .music-player-modal {
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
       width:460px; max-height:85vh; overflow-y:auto; background:rgba(11,0,20,0.97);
@@ -220,22 +209,42 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
+    /* Guestbook */
     .guestbook h2 {
       font-family:'Cinzel',serif; font-size: 2.3rem; text-align:center;
       margin-bottom: 2.4rem; color:var(--dorado-luznegra);
       text-shadow:0 0 25px var(--bugambilia-neon);
     }
+    .guestbook input, .guestbook textarea {
+      width:100%; background:rgba(255,255,255,0.09); border:2px solid var(--bugambilia-neon);
+      border-radius:14px; padding:1.3rem 1.6rem; color:var(--dorado-luznegra);
+      font-family:'Roboto Slab',serif; margin-bottom:1.6rem; transition:all .3s;
+    }
+    .guestbook input:focus, .guestbook textarea:focus {
+      border-color:var(--turquesa-cenote);
+      box-shadow:0 0 0 5px rgba(0,240,255,0.25);
+      outline:none;
+    }
+    .guestbook button[type="submit"] {
+      width:100%; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
+      border:none; color:#fff; padding:1.2rem; font-size:1.15rem; font-family:'Cinzel',serif;
+      border-radius:14px; cursor:pointer; transition:all .3s;
+    }
+    .guestbook button[type="submit"]:hover {
+      transform:scale(1.04);
+      box-shadow:0 0 30px var(--rosa-electrico);
+    }
 
-    /* Music Player - Esporas */
+    /* Music Player */
     .esporas-main {
       text-align: center;
       margin-bottom: 2rem;
     }
     .esporas-cover {
-      width: 205px;
-      height: 205px;
+      width: 210px;
+      height: 210px;
       border-radius: 16px;
-      box-shadow: 0 0 45px var(--bugambilia-neon), 0 0 80px rgba(255, 138, 61, 0.5);
+      box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
       object-fit: cover;
       margin: 0 auto 1.4rem;
     }
@@ -287,11 +296,8 @@
     }
 
     @media (max-width: 768px) {
-      .hanzel-logo { font-size: clamp(3.8rem, 15vw, 6rem); letter-spacing: clamp(3px, 1.5vw, 8px); }
-      .blob { width:165px; height:165px; opacity:0.95; }
-      .blob:nth-child(n+7) { display:none; }
-      .music-player-modal, .guestbook { width:92vw; max-width:460px; padding:2.8rem 2.2rem; }
       .esporas-cover, .album-thumbnail { width:170px; height:170px; }
+      .music-player-modal, .guestbook { width:92vw; padding:2.6rem 2rem; }
     }
   </style>
 </head>
@@ -354,7 +360,7 @@
       <div class="luna-message">
         esporas de internet
       </div>
-      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporasportada.png" alt="Esporas de Internet">
+      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
     </div>
 
     <div class="album-selector">
@@ -378,14 +384,13 @@
   </div>
 
   <script>
-    // Cursor
+    // Cursor + Logo + Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     });
 
-    // Logo animado
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -399,7 +404,6 @@
       logo.appendChild(span);
     });
 
-    // Paleta
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'esporas';
 
@@ -513,14 +517,7 @@
       album.songs.forEach((song, i) => {
         const li = document.createElement('li');
         li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
-        li.addEventListener('click', () => {
-          loadSong(i);
-          if (audio.src) {
-            audio.play().catch(() => {});
-            isPlaying = true;
-            playPauseBtn.textContent = '❚❚';
-          }
-        });
+        li.addEventListener('click', () => loadSong(i));
         songList.appendChild(li);
       });
     }
