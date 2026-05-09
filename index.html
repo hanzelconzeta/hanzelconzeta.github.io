@@ -89,6 +89,15 @@
       margin-bottom:1rem; white-space: nowrap;
     }
 
+    /* Logo Petite - Blanco principal con rosas y morados suaves */
+    body.palette-petite .hanzel-logo span {
+      background: linear-gradient(90deg, #FFFFFF, #FFCCEE, #FF99DD, #D8B4FF, #FFFFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow-petite 1.7s infinite alternate, float var(--duration) infinite;
+      animation-delay: var(--delay);
+    }
+
     body.palette-esporas .hanzel-logo span {
       background:linear-gradient(90deg, #FFF5E6, #FFEBCC, #FFB366, #FF8A3D);
       -webkit-background-clip:text;
@@ -107,22 +116,14 @@
       animation-delay:var(--delay);
     }
 
-    body.palette-petite .hanzel-logo span {
-      background:linear-gradient(90deg, #FF4D94, #FF69B4, #FF99CC, #00FFFF, #FFFFFF);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:glow-petite 1.5s infinite alternate, float var(--duration) infinite;
-      animation-delay:var(--delay);
-    }
-
     @keyframes glow-esporas {
       from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
       to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes glow-petite {
-      from { text-shadow: 0 0 35px #FF69B4, 0 0 65px #FF99CC; }
-      to { text-shadow: 0 0 55px #FF69B4, 0 0 85px #FF99CC, 0 0 120px #00FFFF; }
+      from { text-shadow: 0 0 45px #FFFFFF, 0 0 75px #FF99DD, 0 0 110px #D8B4FF; }
+      to   { text-shadow: 0 0 60px #FFFFFF, 0 0 95px #FFCCEE, 0 0 130px #FF99DD, 0 0 160px #E0B0FF; }
     }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
@@ -199,7 +200,7 @@
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
-    /* ==================== MODALES ==================== */
+    /* Modales */
     .guestbook, .music-player-modal {
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
       width:460px; max-height:85vh; overflow-y:auto; background:rgba(11,0,20,0.97);
@@ -371,11 +372,6 @@
           <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
-        <filter id="goo-mobile">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="45" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
-          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
       </svg>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
@@ -444,7 +440,7 @@
   </div>
 
   <script>
-    // Cursor + Logo + Palette
+    // Cursor, Logo y Paleta
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -624,7 +620,6 @@
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
-    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
