@@ -89,12 +89,12 @@
       margin-bottom:1rem; white-space: nowrap;
     }
 
-    /* Logo Petite - Blanco principal con rosas y morados suaves */
+    /* HANZEL - Paleta Petite (ajuste final) */
     body.palette-petite .hanzel-logo span {
-      background: linear-gradient(90deg, #FFFFFF, #FFCCEE, #FF99DD, #D8B4FF, #FFFFFF);
+      background: linear-gradient(90deg, #FFFFFF, #FFCCEE, #FF8AC4, #D28CFF, #F0C8FF, #FFE0B0, #FFFFFF);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow-petite 1.7s infinite alternate, float var(--duration) infinite;
+      animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
       animation-delay: var(--delay);
     }
 
@@ -122,8 +122,8 @@
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes glow-petite {
-      from { text-shadow: 0 0 45px #FFFFFF, 0 0 75px #FF99DD, 0 0 110px #D8B4FF; }
-      to   { text-shadow: 0 0 60px #FFFFFF, 0 0 95px #FFCCEE, 0 0 130px #FF99DD, 0 0 160px #E0B0FF; }
+      from { text-shadow: 0 0 45px #FFFFFF, 0 0 80px #FF99CC, 0 0 120px #D28CFF; }
+      to   { text-shadow: 0 0 60px #FFFFFF, 0 0 100px #FF8AC4, 0 0 140px #D28CFF, 0 0 170px #FFE0B0; }
     }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
@@ -667,5 +667,6 @@
   </script>
 </body>
 </html>
+
 
 
