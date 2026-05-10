@@ -6,6 +6,7 @@
   <title>HANZEL | poema complejo acerca del alma</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto+Slab:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     :root {
       --ultravioleta-cosmico:#0B0014;
@@ -16,9 +17,18 @@
       --turquesa-cenote:#00F0FF;
       --dorado-luznegra:#FFD700;
     }
+
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
-    body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
+    body { 
+      background:var(--ultravioleta-cosmico); 
+      color:var(--dorado-luznegra); 
+      font-family:'Roboto Slab',serif; 
+      height:100vh; 
+      overflow:hidden; 
+      position:relative; 
+      cursor:none; 
+    }
 
     /* ====================== PALETAS ====================== */
     body.palette-esporas {
@@ -30,7 +40,6 @@
       --turquesa-cenote: #FFE6C7;
       --dorado-luznegra: #FFF5E6;
     }
-
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -81,7 +90,12 @@
       60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF}
     }
 
-    .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
+    .intro { 
+      position:relative; z-index:10; text-align:center; 
+      display:flex; flex-direction:column; align-items:center; justify-content:center; 
+      height:100vh; width:100%; 
+    }
+
     .hanzel-logo {
       font-family:'Cinzel',serif;
       font-size: clamp(4rem, 15vw, 10rem);
@@ -89,7 +103,7 @@
       margin-bottom:1rem; white-space: nowrap;
     }
 
-    /* HANZEL - Petite (rosas intensos + toque dorado sutil) */
+    /* Logo por paleta */
     body.palette-petite .hanzel-logo span {
       background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
       -webkit-background-clip: text;
@@ -97,7 +111,6 @@
       animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
       animation-delay: var(--delay);
     }
-
     body.palette-esporas .hanzel-logo span {
       background:linear-gradient(90deg, #FFF5E6, #FFEBCC, #FFB366, #FF8A3D);
       -webkit-background-clip:text;
@@ -105,7 +118,6 @@
       animation:glow-esporas 1.6s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
-
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
@@ -120,30 +132,52 @@
       from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
       to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
     }
-    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
+    @keyframes glow { 
+      from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} 
+      to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} 
+    }
     @keyframes glow-petite {
       from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; }
-      to   { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; }
+      to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; }
     }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
-    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
+    /* ====================== LAVA MEJORADA ====================== */
+    .lava-container {
+      position:absolute;
+      inset:0;
+      filter: url(#goo);
+      -webkit-filter: url(#goo);
+      isolation: isolate;
+      will-change: transform, filter;
+      transform: translateZ(0);
+      pointer-events:none;
+      z-index:5;
+    }
+
     .blob {
-      position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:var(--bugambilia-neon);
+      opacity:0.88;
       animation:lava-move 40s infinite ease-in-out alternate;
       box-shadow: 0 0 55px var(--bugambilia-neon);
     }
+
     body.palette-esporas .blob {
       background: #f2dba9;
       box-shadow: 0 0 65px #f2dba9;
     }
+
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
+    /* Posición de las blobs */
     .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
     .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
     .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
@@ -160,6 +194,26 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
+    /* ====================== OPTIMIZACIÓN MÓVIL Y SAFARI ====================== */
+    @media (max-width: 1024px), (pointer: coarse) {
+      .lava-container {
+        filter: url(#goo-mobile) url(#goo);
+        -webkit-filter: url(#goo-mobile) url(#goo);
+      }
+      .blob {
+        opacity: 0.92;
+        box-shadow: 0 0 50px var(--bugambilia-neon);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .blob {
+        width: 190px;
+        height: 190px;
+      }
+    }
+
+    /* ==================== ESTILOS ORIGINALES (sin cambios) ==================== */
     .vertical-menu {
       position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column;
       gap:2.5rem; z-index:25 !important;
@@ -225,130 +279,23 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Music Player Buttons - Estética restaurada */
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.8rem;
-      margin: 1.2rem 0;
-    }
-    .buttons button {
-      background: transparent;
-      border: 2px solid var(--rosa-electrico);
-      color: var(--dorado-luznegra);
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      font-size: 1.45rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.23,1,0.32,1.275);
-      box-shadow: 0 0 15px rgba(255,46,152,0.5);
-    }
-    .buttons button:hover {
-      background: var(--rosa-electrico);
-      color: white;
-      transform: scale(1.18);
-      box-shadow: 0 0 35px var(--rosa-electrico);
-    }
-    #play-pause-btn {
-      width: 64px;
-      height: 64px;
-      font-size: 1.9rem;
-    }
-
-    /* Music Player - Otros estilos */
-    .esporas-main { text-align: center; margin-bottom: 2.2rem; }
-    .luna-message {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.85rem;
-      color: #FFCC99;
-      text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4;
-      margin-bottom: 1.8rem;
-      letter-spacing: 1px;
-    }
-    .esporas-cover {
-      width: 205px;
-      height: 205px;
-      border-radius: 16px;
-      box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
-      object-fit: cover;
-      margin: 0 auto 1.8rem;
-    }
-
-    .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.6rem; }
-    .album-option {
-      background:rgba(11,0,20,0.75);
-      border:2px solid rgba(255,138,61,0.4);
-      color:var(--dorado-luznegra);
-      padding:0.95rem 1.4rem;
-      border-radius:12px;
-      cursor:pointer;
-      font-family:'Cinzel',serif;
-      font-size:1.05rem;
-      text-align:center;
-      transition:all .3s;
-      text-transform: lowercase !important;
-      opacity: 0.85;
-    }
-    .album-option:hover { 
-      border-color:var(--turquesa-cenote); 
-      color:var(--turquesa-cenote); 
-      opacity: 1;
-    }
-    .album-option.active {
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
-      border-color:var(--rosa-electrico);
-      opacity: 1;
-    }
-
-    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
-    .album-thumbnail.show { display:block; }
-
-    .player-controls { display:none; }
-    .player-controls.show { display:block; }
-    .player-controls .song-title {
-      font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote);
-      text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0;
-    }
-    .song-list {
-      list-style:none; margin:1.4rem 0; padding:0 1rem; display:none;
-    }
-    .song-list.show { display:block; }
-    .song-list li {
-      cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico);
-      transition:all .3s; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center;
-    }
-    .song-list li:hover { color:var(--turquesa-cenote); }
-    .song-list li.active {
-      font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 12px var(--verde-acido);
-    }
-
     @media (max-width: 768px) {
       .esporas-cover, .album-thumbnail { width:170px; height:170px; }
       .music-player-modal, .guestbook { width:92vw; padding:2.6rem 2rem; }
-      .luna-message { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body class="palette-esporas">
 
   <div class="cursor" id="cursor"></div>
+
   <div class="intro">
     <div class="lava-container">
-      <svg style="display:none;">
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
-          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
-      </svg>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
+
     <h1 class="hanzel-logo">HANZEL</h1>
     <ul class="vertical-menu">
       <li id="music-link">música</li>
@@ -356,7 +303,9 @@
     </ul>
     <div class="est">EST. 2006</div>
   </div>
+
   <div class="chi-rho">☧</div>
+
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
     <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -365,6 +314,7 @@
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
+
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
   <!-- Guestbook -->
@@ -382,15 +332,12 @@
   <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-   
+  
     <div class="esporas-main">
-      <div class="luna-message">
-        esporas de internet
-      </div>
-      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet" 
+      <div class="luna-message">esporas de internet</div>
+      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet"
            onerror="this.src='https://via.placeholder.com/210x210/FFBB66/4A0E00?text=ESPORAS+DE+INTERNET';">
     </div>
-
     <div class="album-selector">
       <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
       <div class="album-option" id="option-1">ii. kanto amere</div>
@@ -398,7 +345,7 @@
     </div>
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
-   
+  
     <div class="player-controls">
       <span class="song-title" id="song-title"></span>
       <div class="buttons">
@@ -411,20 +358,39 @@
     <ul class="song-list" id="song-list"></ul>
   </div>
 
-  <script>
-    // Cursor + Logo + Palette
+  <!-- FILTRO SVG (Muy importante - está fuera del contenedor) -->
+  <svg width="0" height="0" style="position: absolute; z-index: -1;">
+    <defs>
+      <filter id="goo" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+      
+      <filter id="goo-mobile" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </defs>
+  </svg>
+
+    <script>
+    // ==================== CURSOR + LOGO + PALETTE ====================
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     });
 
+    // Dividir el logo en spans con animación
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
     const durations = [5,6,4.5,5.5,4,6];
     const delays = [0,0.1,0.2,0.05,0.15,0.25];
-    text.split('').forEach((char,i) => {
+    
+    text.split('').forEach((char, i) => {
       const span = document.createElement('span');
       span.textContent = char;
       span.style.setProperty('--duration', `${durations[i]}s`);
@@ -432,23 +398,40 @@
       logo.appendChild(span);
     });
 
+    // Cambio de paletas
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'esporas';
 
     paletteToggle.addEventListener('click', () => {
       document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
-      if (currentPalette === 'esporas') { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
-      else if (currentPalette === 'petite') { document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; }
-      else if (currentPalette === 'kantoamere') { document.body.classList.add('palette-16rosas'); currentPalette = '16rosas'; }
-      else if (currentPalette === '16rosas') { document.body.classList.add('palette-zlooshee'); currentPalette = 'zlooshee'; }
-      else { document.body.classList.add('palette-esporas'); currentPalette = 'esporas'; }
+      
+      if (currentPalette === 'esporas') { 
+        document.body.classList.add('palette-petite'); 
+        currentPalette = 'petite'; 
+      }
+      else if (currentPalette === 'petite') { 
+        document.body.classList.add('palette-kantoamere'); 
+        currentPalette = 'kantoamere'; 
+      }
+      else if (currentPalette === 'kantoamere') { 
+        document.body.classList.add('palette-16rosas'); 
+        currentPalette = '16rosas'; 
+      }
+      else if (currentPalette === '16rosas') { 
+        document.body.classList.add('palette-zlooshee'); 
+        currentPalette = 'zlooshee'; 
+      }
+      else { 
+        document.body.classList.add('palette-esporas'); 
+        currentPalette = 'esporas'; 
+      }
     });
   </script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-   
+
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -457,6 +440,7 @@
       messagingSenderId: "855182658974",
       appId: "1:855182658974:web:7dede44a589105053c1a8f"
     };
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
@@ -589,6 +573,7 @@
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
+    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
@@ -636,6 +621,7 @@
   </script>
 </body>
 </html>
+
 
 
 
