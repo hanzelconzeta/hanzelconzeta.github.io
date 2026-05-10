@@ -89,9 +89,9 @@
       margin-bottom:1rem; white-space: nowrap;
     }
 
-    /* HANZEL - Paleta Petite (ajuste final) */
+    /* HANZEL - Petite (rosas intensos + toque dorado sutil) */
     body.palette-petite .hanzel-logo span {
-      background: linear-gradient(90deg, #FFFFFF, #FFCCEE, #FF8AC4, #D28CFF, #F0C8FF, #FFE0B0, #FFFFFF);
+      background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
@@ -122,8 +122,8 @@
     }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes glow-petite {
-      from { text-shadow: 0 0 45px #FFFFFF, 0 0 80px #FF99CC, 0 0 120px #D28CFF; }
-      to   { text-shadow: 0 0 60px #FFFFFF, 0 0 100px #FF8AC4, 0 0 140px #D28CFF, 0 0 170px #FFE0B0; }
+      from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; }
+      to   { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; }
     }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
@@ -225,64 +225,41 @@
       text-shadow: 0 0 25px var(--turquesa-cenote);
     }
 
-    /* Guestbook */
-    .guestbook h2 {
-      font-family:'Cinzel',serif; font-size: 2.3rem; text-align:center;
-      margin-bottom: 2.4rem; color:var(--dorado-luznegra);
-      text-shadow:0 0 25px var(--bugambilia-neon);
+    /* Music Player Buttons - Estética restaurada */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      margin: 1.2rem 0;
     }
-    .guestbook input, .guestbook textarea {
-      width:100%; background:rgba(255,255,255,0.09); border:2px solid var(--bugambilia-neon);
-      border-radius:14px; padding:1.3rem 1.6rem; color:var(--dorado-luznegra);
-      font-family:'Roboto Slab',serif; margin-bottom:1.6rem; transition:all .3s;
+    .buttons button {
+      background: transparent;
+      border: 2px solid var(--rosa-electrico);
+      color: var(--dorado-luznegra);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      font-size: 1.45rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1.275);
+      box-shadow: 0 0 15px rgba(255,46,152,0.5);
     }
-    .guestbook input:focus, .guestbook textarea:focus {
-      border-color:var(--turquesa-cenote);
-      box-shadow:0 0 0 5px rgba(0,240,255,0.25);
-      outline:none;
+    .buttons button:hover {
+      background: var(--rosa-electrico);
+      color: white;
+      transform: scale(1.18);
+      box-shadow: 0 0 35px var(--rosa-electrico);
     }
-    .guestbook button[type="submit"] {
-      width:100%; background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
-      border:none; color:#fff; padding:1.2rem; font-size:1.15rem; font-family:'Cinzel',serif;
-      border-radius:14px; cursor:pointer; transition:all .3s;
-    }
-    .guestbook button[type="submit"]:hover {
-      transform:scale(1.04);
-      box-shadow:0 0 30px var(--rosa-electrico);
-    }
-
-    #comments-list .comment {
-      background:rgba(255,255,255,0.08);
-      border-left:5px solid var(--bugambilia-neon);
-      padding:1.6rem 1.8rem;
-      margin-bottom:1.6rem;
-      border-radius:16px;
-      transition:all .3s;
-    }
-    #comments-list .comment:hover {
-      background:rgba(255,255,255,0.15);
-      border-left-color:var(--turquesa-cenote);
-      transform:translateX(8px);
-    }
-    #comments-list .author {
-      font-family:'Cinzel',serif;
-      color:var(--dorado-luznegra);
-      font-size:1.25rem;
-      display:block;
-      margin-bottom:0.6rem;
-    }
-    #comments-list .comment p {
-      line-height:1.65;
-      color:#e0d0ff;
-    }
-    #comments-list .date {
-      font-size:0.9rem;
-      opacity:0.65;
-      display:block;
-      text-align:right;
+    #play-pause-btn {
+      width: 64px;
+      height: 64px;
+      font-size: 1.9rem;
     }
 
-    /* Music Player */
+    /* Music Player - Otros estilos */
     .esporas-main { text-align: center; margin-bottom: 2.2rem; }
     .luna-message {
       font-family: 'Playfair Display', serif;
@@ -299,7 +276,6 @@
       box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
       object-fit: cover;
       margin: 0 auto 1.8rem;
-      background: #333;
     }
 
     .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.6rem; }
@@ -328,11 +304,7 @@
       opacity: 1;
     }
 
-    .album-thumbnail {
-      display:none;
-      margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px;
-      box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover;
-    }
+    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
     .album-thumbnail.show { display:block; }
 
     .player-controls { display:none; }
@@ -440,7 +412,7 @@
   </div>
 
   <script>
-    // Cursor, Logo y Paleta
+    // Cursor + Logo + Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -541,7 +513,6 @@
     const albumCover = document.getElementById('album-cover');
     const albumTitleEl = document.getElementById('album-title');
     const playerControls = document.querySelector('.player-controls');
-    const albumInfo = document.querySelector('.album-info');
 
     function switchAlbum(index) {
       currentAlbumIndex = index;
@@ -550,9 +521,7 @@
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
       albumCover.classList.add('show');
-      albumInfo.classList.add('show');
       playerControls.classList.add('show');
-      songList.classList.add('show');
       populateSongList();
       songTitle.textContent = '';
       playPauseBtn.textContent = '▶';
@@ -667,6 +636,7 @@
   </script>
 </body>
 </html>
+
 
 
 
