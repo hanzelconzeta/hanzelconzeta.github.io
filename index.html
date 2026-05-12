@@ -22,11 +22,49 @@
 
     /* ====================== PALETAS ====================== */
     body.palette-esporas {
-      --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366;
-      --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6;
+      --ultravioleta-cosmico: #FF4A00;
+      --bugambilia-neon: #FF8A3D;
+      --rosa-electrico: #FFB366;
+      --naranja-volcanico: #FFD4A3;
+      --verde-acido: #FFEBCC;
+      --turquesa-cenote: #FFE6C7;
+      --dorado-luznegra: #FFF5E6;
     }
-    body.palette-16rosas, body.palette-kantoamere, body.palette-zlooshee, body.palette-petite {
+    body.palette-16rosas {
+      --ultravioleta-cosmico: #63010E;
+      --bugambilia-neon: #FCD4D4;
+      --rosa-electrico: #FCD4D4;
+      --naranja-volcanico: #FF4500;
+      --verde-acido: #F5F5F5;
+      --turquesa-cenote: #FF69B4;
       --dorado-luznegra: #F5F5F5;
+    }
+    body.palette-kantoamere {
+      --ultravioleta-cosmico: #4A0E2A;
+      --bugambilia-neon: #A8C0FF;
+      --rosa-electrico: #FF69B4;
+      --naranja-volcanico: #FF9EC1;
+      --verde-acido: #B0FF99;
+      --turquesa-cenote: #99F0FF;
+      --dorado-luznegra: #F5E0FF;
+    }
+    body.palette-zlooshee {
+      --ultravioleta-cosmico: #0A1F3D;
+      --bugambilia-neon: #00FFCC;
+      --rosa-electrico: #FF00FF;
+      --naranja-volcanico: #FF4500;
+      --verde-acido: #00FF7F;
+      --turquesa-cenote: #40E0D0;
+      --dorado-luznegra: #FFD700;
+    }
+    body.palette-petite {
+      --ultravioleta-cosmico: #00D4FF;
+      --bugambilia-neon: #FF0088;
+      --rosa-electrico: #FF2EB8;
+      --naranja-volcanico: #FF66CC;
+      --verde-acido: #B0FFEE;
+      --turquesa-cenote: #00FFFF;
+      --dorado-luznegra: #E0FFFF;
     }
 
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 20px rgba(255,138,61,0.8); }
@@ -41,38 +79,38 @@
       margin-bottom:1rem; white-space: nowrap;
     }
 
-    /* Gradientes del logo por paleta */
+    /* Brillo del logo */
     body.palette-esporas .hanzel-logo span,
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
-      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico), var(--naranja-volcanico));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 1.6s infinite alternate, float var(--duration) infinite;
-      animation-delay: var(--delay);
+      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow 1.6s infinite alternate, float var(--duration) infinite;
+      animation-delay:var(--delay);
     }
     body.palette-petite .hanzel-logo span {
       background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
-      animation-delay: var(--delay);
+      animation:glow-petite 1.8s infinite alternate, float var(--duration) infinite;
+      animation-delay:var(--delay);
     }
-    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
+    @keyframes glow { from{text-shadow:0 0 30px var(--dorado-luznegra),0 0 60px var(--bugambilia-neon)} to{text-shadow:0 0 50px var(--dorado-luznegra),0 0 90px var(--bugambilia-neon)} }
     @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
+      background:var(--bugambilia-neon); opacity:0.9;
       animation:lava-move 40s infinite ease-in-out alternate;
-      box-shadow: 0 0 55px var(--bugambilia-neon);
+      box-shadow: 0 0 65px var(--bugambilia-neon);
     }
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
-      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
+      50%{transform:translateY(-130vh)scale(2.6)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
@@ -88,11 +126,16 @@
     .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s, color .3s; }
     .social-icons a:hover { color:#FFF5E6; transform:scale(1.2); text-shadow:0 0 20px #FFF5E6; }
 
-    .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
+    .palette-button { 
+      position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%;
+      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
+      cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra);
+      font-size:1.5rem; display:flex; align-items:center; justify-content:center;
+    }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
-    /* Modal Música */
-    .music-player-modal {
+    /* Modal */
+    .music-player-modal, .guestbook {
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.97);
       border:3px solid var(--bugambilia-neon); border-radius:26px;
@@ -100,10 +143,10 @@
       z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden;
       transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275);
     }
-    .music-player-modal.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+    .music-player-modal.active, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
 
     .close-btn {
-      position: absolute; top: 1.4rem; right: 2rem; font-size: 2.6rem;
+      position: absolute; top: 1.4rem; right: 2rem; font-size: 2.8rem;
       color: var(--dorado-luznegra); background: none; border: none;
       cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275); z-index: 10001;
     }
@@ -111,7 +154,7 @@
 
     .esporas-main { text-align: center; margin-bottom: 2.2rem; }
     .luna-message { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: #FFCC99; text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4; margin-bottom: 1.8rem; letter-spacing: 1px; }
-    .esporas-cover, .album-thumbnail { width: 205px; height: 205px; border-radius: 16px; box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6); object-fit: cover; margin: 0 auto 1.8rem; }
+    .esporas-cover { width: 205px; height: 205px; border-radius: 16px; box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6); object-fit: cover; margin: 0 auto 1.8rem; }
 
     .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.8rem; }
     .album-option {
@@ -122,13 +165,13 @@
     .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity: 1; }
     .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity: 1; }
 
-    .spotify-container { margin-top: 1rem; display: none; }
+    .spotify-container { margin-top: 1.2rem; display: none; }
     .spotify-container.show { display: block; }
 
     .spotify-btn {
       display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
       padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.05rem;
-      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s; margin: 1rem auto 0;
+      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s;
     }
     .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
   </style>
@@ -144,6 +187,7 @@
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
+      <!-- Más blobs para mayor densidad -->
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
@@ -166,7 +210,7 @@
   </div>
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
-  <!-- Music Player Modal -->
+  <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
   
@@ -181,8 +225,6 @@
       <div class="album-option" id="option-2">iii. petite</div>
     </div>
 
-    <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
-
     <div class="spotify-container" id="spotify-container">
       <iframe id="spotify-iframe" 
               width="100%" 
@@ -192,7 +234,7 @@
               style="border-radius: 16px; box-shadow: 0 0 40px rgba(193,59,255,0.3);">
       </iframe>
       
-      <div style="text-align:center;">
+      <div style="text-align:center; margin-top:1rem;">
         <a id="open-spotify-btn" href="#" target="_blank" class="spotify-btn">
           <i class="fab fa-spotify"></i> ABRIR EN SPOTIFY
         </a>
@@ -213,7 +255,7 @@
   </div>
 
   <script>
-    // Cursor + Logo + Palette + Lava
+    // Cursor, Logo, Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -262,30 +304,14 @@
     const db = getFirestore(app);
 
     const albums = [
-      {
-        title: "i. 16 rosas y algo llamado amor",
-        cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
-        embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7",
-        link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7"
-      },
-      {
-        title: "ii. kanto amere",
-        cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
-        embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R",
-        link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R"
-      },
-      {
-        title: "iii. petite",
-        cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
-        embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR",
-        link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR"
-      }
+      { title: "i. 16 rosas y algo llamado amor", embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
+      { title: "ii. kanto amere", embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R" },
+      { title: "iii. petite", embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR" }
     ];
 
     let currentAlbumIndex = -1;
 
     const musicPlayerModal = document.getElementById('music-player-modal');
-    const albumCover = document.getElementById('album-cover');
     const spotifyContainer = document.getElementById('spotify-container');
 
     function switchAlbum(index) {
@@ -293,9 +319,6 @@
       const album = albums[index];
 
       document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
-
-      albumCover.src = album.cover;
-      albumCover.style.display = 'block';
 
       document.getElementById('spotify-iframe').src = album.embed;
       document.getElementById('open-spotify-btn').href = album.link;
@@ -311,14 +334,13 @@
       musicPlayerModal.classList.remove('active');
       document.getElementById('spotify-iframe').src = '';
       spotifyContainer.classList.remove('show');
-      albumCover.style.display = 'none';
     });
 
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
-    // Guestbook (sin cambios)
+    // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
@@ -365,6 +387,7 @@
   </script>
 </body>
 </html>
+
 
 
 
