@@ -21,183 +21,51 @@
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
     /* ====================== PALETAS ====================== */
-    body.palette-esporas {
-      --ultravioleta-cosmico: #FF4A00;
-      --bugambilia-neon: #FF8A3D;
-      --rosa-electrico: #FFB366;
-      --naranja-volcanico: #FFD4A3;
-      --verde-acido: #FFEBCC;
-      --turquesa-cenote: #FFE6C7;
-      --dorado-luznegra: #FFF5E6;
-    }
+    body.palette-esporas { --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366; --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6; }
+    body.palette-16rosas { --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4; --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5; }
+    body.palette-kantoamere { --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4; --naranja-volcanico: #FF9EC1; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF; }
+    body.palette-zlooshee { --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF; --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700; }
+    body.palette-petite { --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8; --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF; }
 
-    body.palette-16rosas {
-      --ultravioleta-cosmico: #63010E;
-      --bugambilia-neon: #FCD4D4;
-      --rosa-electrico: #FCD4D4;
-      --naranja-volcanico: #FF4500;
-      --verde-acido: #F5F5F5;
-      --turquesa-cenote: #FF69B4;
-      --dorado-luznegra: #F5F5F5;
-    }
-    body.palette-kantoamere {
-      --ultravioleta-cosmico: #4A0E2A;
-      --bugambilia-neon: #A8C0FF;
-      --rosa-electrico: #FF69B4;
-      --naranja-volcanico: #FF9EC1;
-      --verde-acido: #B0FF99;
-      --turquesa-cenote: #99F0FF;
-      --dorado-luznegra: #F5E0FF;
-    }
-    body.palette-zlooshee {
-      --ultravioleta-cosmico: #0A1F3D;
-      --bugambilia-neon: #00FFCC;
-      --rosa-electrico: #FF00FF;
-      --naranja-volcanico: #FF4500;
-      --verde-acido: #00FF7F;
-      --turquesa-cenote: #40E0D0;
-      --dorado-luznegra: #FFD700;
-    }
-    body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;
-      --bugambilia-neon: #FF0088;
-      --rosa-electrico: #FF2EB8;
-      --naranja-volcanico: #FF66CC;
-      --verde-acido: #B0FFEE;
-      --turquesa-cenote: #00FFFF;
-      --dorado-luznegra: #E0FFFF;
-    }
-
-    .cursor {
-      position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none;
-      transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999;
-      transition:all .1s; animation:colorShift 3s infinite alternate;
-      box-shadow:0 0 20px rgba(255,138,61,0.8);
-    }
+    .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 20px rgba(255,138,61,0.8); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-
-    @keyframes colorShift {
-      0%{background:#FF8A3D} 30%{background:#FFB366}
-      60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF}
-    }
+    @keyframes colorShift { 0%{background:#FF8A3D} 30%{background:#FFB366} 60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF} }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
-    .hanzel-logo {
-      font-family:'Cinzel',serif;
-      font-size: clamp(4rem, 15vw, 10rem);
-      letter-spacing: clamp(4px, 2vw, 12px);
-      margin-bottom:1rem; white-space: nowrap;
-    }
+    .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
 
-    /* HANZEL - Petite (rosas intensos + toque dorado sutil) */
-    body.palette-petite .hanzel-logo span {
-      background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
-      animation-delay: var(--delay);
-    }
-
-    body.palette-esporas .hanzel-logo span {
-      background:linear-gradient(90deg, #FFF5E6, #FFEBCC, #FFB366, #FF8A3D);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:glow-esporas 1.6s infinite alternate, float var(--duration) infinite;
-      animation-delay:var(--delay);
-    }
-
+    body.palette-petite .hanzel-logo span,
+    body.palette-esporas .hanzel-logo span,
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:glow 1.5s infinite alternate, float var(--duration) infinite;
-      animation-delay:var(--delay);
+      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico), var(--naranja-volcanico));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 1.5s infinite alternate, float var(--duration) infinite;
+      animation-delay: var(--delay);
     }
 
-    @keyframes glow-esporas {
-      from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
-      to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
-    }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
-    @keyframes glow-petite {
-      from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; }
-      to   { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; }
-    }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-    .blob {
-      position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
-      animation:lava-move 40s infinite ease-in-out alternate;
-      box-shadow: 0 0 55px var(--bugambilia-neon);
-    }
-    body.palette-esporas .blob {
-      background: #f2dba9;
-      box-shadow: 0 0 65px #f2dba9;
-    }
-    @keyframes lava-move {
-      0%{transform:translateY(0)scale(1)rotate(0)}
-      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
-      100%{transform:translateY(0)scale(1)rotate(0)}
-    }
+    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:var(--bugambilia-neon); opacity:0.88; animation:lava-move 40s infinite ease-in-out alternate; box-shadow: 0 0 55px var(--bugambilia-neon); }
+    @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
 
-    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
-    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
-    .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
-    .blob:nth-child(4){left:35%;bottom:-120px;animation-duration:45s;animation-delay:15s;}
-    .blob:nth-child(5){left:45%;bottom:-180px;animation-duration:40s;animation-delay:3s;}
-    .blob:nth-child(6){left:55%;bottom:-140px;animation-duration:43s;animation-delay:8s;}
-    .blob:nth-child(7){left:65%;bottom:-220px;animation-duration:37s;animation-delay:13s;}
-    .blob:nth-child(8){left:75%;bottom:-160px;animation-duration:41s;animation-delay:18s;}
-    .blob:nth-child(9){left:85%;bottom:-190px;animation-duration:39s;animation-delay:20s;}
-    .blob:nth-child(10){left:95%;bottom:-130px;animation-duration:44s;animation-delay:22s;}
-    .blob:nth-child(11){left:10%;bottom:-250px;animation-duration:36s;animation-delay:1s;}
-    .blob:nth-child(12){left:20%;bottom:-170px;animation-duration:46s;animation-delay:7s;}
-    .blob:nth-child(13){left:40%;bottom:-210px;animation-duration:39s;animation-delay:11s;}
-    .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
-    .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
-
-    .vertical-menu {
-      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column;
-      gap:2.5rem; z-index:25 !important;
-    }
-    .vertical-menu li {
-      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra);
-      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8;
-      transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
-    }
-    .vertical-menu li:hover {
-      color:#FFF5E6;
-      text-shadow:0 0 40px #FFF5E6;
-      transform:translateX(20px) scale(1.1);
-    }
+    .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:25 !important; }
+    .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
+    .vertical-menu li:hover { color:#FFF5E6; text-shadow:0 0 40px #FFF5E6; transform:translateX(20px) scale(1.1); }
 
     .est, .chi-rho { z-index:25 !important; }
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
-    .social-icons {
-      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important;
-    }
-    .social-icons a {
-      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5);
-      transition:transform .3s, color .3s;
-    }
-    .social-icons a:hover {
-      color:#FFF5E6;
-      transform:scale(1.2);
-      text-shadow:0 0 20px #FFF5E6;
-    }
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; }
+    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s, color .3s; }
+    .social-icons a:hover { color:#FFF5E6; transform:scale(1.2); text-shadow:0 0 20px #FFF5E6; }
 
-    .palette-button {
-      position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%;
-      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
-      cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra);
-      font-size:1.5rem; display:flex; align-items:center; justify-content:center;
-    }
+    .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
     /* Modales */
@@ -212,129 +80,40 @@
     .guestbook.show, .guestbook.active, .music-player-modal.show, .music-player-modal.active {
       opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);
     }
-
     .close-btn {
       position: absolute; top: 1.4rem; right: 2rem; font-size: 2.6rem;
       color: var(--dorado-luznegra); background: none; border: none;
       cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275);
       z-index: 10001; line-height: 1;
     }
-    .close-btn:hover {
-      color: var(--turquesa-cenote);
-      transform: scale(1.25) rotate(90deg);
-      text-shadow: 0 0 25px var(--turquesa-cenote);
-    }
+    .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); text-shadow: 0 0 25px var(--turquesa-cenote); }
 
-    /* Music Player Buttons - Estética restaurada */
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.8rem;
-      margin: 1.2rem 0;
-    }
-    .buttons button {
-      background: transparent;
-      border: 2px solid var(--rosa-electrico);
-      color: var(--dorado-luznegra);
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      font-size: 1.45rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.23,1,0.32,1.275);
-      box-shadow: 0 0 15px rgba(255,46,152,0.5);
-    }
-    .buttons button:hover {
-      background: var(--rosa-electrico);
-      color: white;
-      transform: scale(1.18);
-      box-shadow: 0 0 35px var(--rosa-electrico);
-    }
-    #play-pause-btn {
-      width: 64px;
-      height: 64px;
-      font-size: 1.9rem;
-    }
-
-    /* Music Player - Otros estilos */
     .esporas-main { text-align: center; margin-bottom: 2.2rem; }
-    .luna-message {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.85rem;
-      color: #FFCC99;
-      text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4;
-      margin-bottom: 1.8rem;
-      letter-spacing: 1px;
-    }
-    .esporas-cover {
-      width: 205px;
-      height: 205px;
-      border-radius: 16px;
-      box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
-      object-fit: cover;
-      margin: 0 auto 1.8rem;
-    }
+    .luna-message { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: #FFCC99; text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4; margin-bottom: 1.8rem; letter-spacing: 1px; }
+    .esporas-cover, .album-thumbnail { width: 205px; height: 205px; border-radius: 16px; box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6); object-fit: cover; margin: 0 auto 1.8rem; }
 
     .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.6rem; }
     .album-option {
-      background:rgba(11,0,20,0.75);
-      border:2px solid rgba(255,138,61,0.4);
-      color:var(--dorado-luznegra);
-      padding:0.95rem 1.4rem;
-      border-radius:12px;
-      cursor:pointer;
-      font-family:'Cinzel',serif;
-      font-size:1.05rem;
-      text-align:center;
-      transition:all .3s;
-      text-transform: lowercase !important;
-      opacity: 0.85;
+      background:rgba(11,0,20,0.75); border:2px solid rgba(255,138,61,0.4); color:var(--dorado-luznegra);
+      padding:0.95rem 1.4rem; border-radius:12px; cursor:pointer; font-family:'Cinzel',serif;
+      font-size:1.05rem; text-align:center; transition:all .3s; text-transform: lowercase !important; opacity: 0.85;
     }
-    .album-option:hover { 
-      border-color:var(--turquesa-cenote); 
-      color:var(--turquesa-cenote); 
-      opacity: 1;
-    }
-    .album-option.active {
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
-      border-color:var(--rosa-electrico);
-      opacity: 1;
-    }
+    .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity: 1; }
+    .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity: 1; }
 
-    .album-thumbnail { display:none; margin:0 auto 1.6rem; width:200px; height:200px; border-radius:16px; box-shadow:0 0 30px var(--bugambilia-neon); object-fit:cover; }
-    .album-thumbnail.show { display:block; }
+    .album-info { text-align:center; margin:1rem 0; font-size:1.35rem; color:var(--turquesa-cenote); }
 
-    .player-controls { display:none; }
-    .player-controls.show { display:block; }
-    .player-controls .song-title {
-      font-size:1.4rem; font-weight:bold; color:var(--turquesa-cenote);
-      text-shadow:0 0 14px var(--verde-acido); display:block; margin:1.2rem 0;
+    /* Spotify */
+    .spotify-container { margin: 1.2rem 0 1.5rem; }
+    .spotify-btn {
+      display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
+      padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.1rem;
+      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s;
     }
-    .song-list {
-      list-style:none; margin:1.4rem 0; padding:0 1rem; display:none;
-    }
-    .song-list.show { display:block; }
-    .song-list li {
-      cursor:pointer; padding:1.1rem 0; border-bottom:1px dashed var(--rosa-electrico);
-      transition:all .3s; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center;
-    }
-    .song-list li:hover { color:var(--turquesa-cenote); }
-    .song-list li.active {
-      font-weight:bold; color:var(--turquesa-cenote); text-shadow:0 0 12px var(--verde-acido);
-    }
-
-    @media (max-width: 768px) {
-      .esporas-cover, .album-thumbnail { width:170px; height:170px; }
-      .music-player-modal, .guestbook { width:92vw; padding:2.6rem 2rem; }
-      .luna-message { font-size: 1.6rem; }
-    }
+    .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
   </style>
 </head>
 <body class="palette-esporas">
-
   <div class="cursor" id="cursor"></div>
   <div class="intro">
     <div class="lava-container">
@@ -382,12 +161,10 @@
   <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-   
+  
     <div class="esporas-main">
-      <div class="luna-message">
-        esporas de internet
-      </div>
-      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet" 
+      <div class="luna-message">esporas de internet</div>
+      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet"
            onerror="this.src='https://via.placeholder.com/210x210/FFBB66/4A0E00?text=ESPORAS+DE+INTERNET';">
     </div>
 
@@ -396,19 +173,25 @@
       <div class="album-option" id="option-1">ii. kanto amere</div>
       <div class="album-option" id="option-2">iii. petite</div>
     </div>
+
     <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
     <div class="album-info" id="album-title"></div>
-   
-    <div class="player-controls">
-      <span class="song-title" id="song-title"></span>
-      <div class="buttons">
-        <button id="prev-btn"><i class="fas fa-backward"></i></button>
-        <button id="play-pause-btn">▶</button>
-        <button id="next-btn"><i class="fas fa-forward"></i></button>
-      </div>
-      <audio id="audio-player" preload="none"></audio>
+
+    <div class="spotify-container">
+      <iframe id="spotify-iframe" 
+              width="100%" 
+              height="420" 
+              frameborder="0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              style="border-radius: 16px; box-shadow: 0 0 40px rgba(193,59,255,0.3);">
+      </iframe>
     </div>
-    <ul class="song-list" id="song-list"></ul>
+
+    <div style="text-align:center;">
+      <a id="open-spotify-btn" href="#" target="_blank" class="spotify-btn">
+        <i class="fab fa-spotify"></i> ABRIR EN SPOTIFY
+      </a>
+    </div>
   </div>
 
   <script>
@@ -434,7 +217,6 @@
 
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'esporas';
-
     paletteToggle.addEventListener('click', () => {
       document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
       if (currentPalette === 'esporas') { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
@@ -448,7 +230,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-   
+
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -457,6 +239,7 @@
       messagingSenderId: "855182658974",
       appId: "1:855182658974:web:7dede44a589105053c1a8f"
     };
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
@@ -464,137 +247,63 @@
       {
         title: "i. 16 rosas y algo llamado amor",
         cover: "https://hanzelconzeta.github.io/portadarosas.JPG",
-        songs: [
-          { title: 'primer acto', src: 'https://hanzelconzeta.github.io/primer_acto.mp3', duration: '3:45' },
-          { title: 'me hiciste creer', src: 'https://hanzelconzeta.github.io/me_hiciste_creer.mp3', duration: '4:12' },
-          { title: 'te entrego hoy', src: 'https://hanzelconzeta.github.io/te_entrego_hoy.mp3', duration: '3:30' },
-          { title: 'montaña rusa', src: 'https://hanzelconzeta.github.io/montana_rusa.mp3', duration: '4:05' },
-          { title: 'sin identidad', src: 'https://hanzelconzeta.github.io/sin_identidad.mp3', duration: '3:50' },
-          { title: 'la gloria #109 (27 de mayo)', src: 'https://hanzelconzeta.github.io/la_gloria.mp3', duration: '4:20' },
-          { title: 'que dificil seria verte partir', src: 'https://hanzelconzeta.github.io/que_dificil_seria_verte_partir.mp3', duration: '5:10' }
-        ]
+        embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7",
+        link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7"
       },
       {
         title: "ii. kanto amere",
         cover: "https://hanzelconzeta.github.io/kanto_portada.jpg",
-        songs: [
-          { title: 'los mejores romances', src: 'https://hanzelconzeta.github.io/los_mejores_romances.mp3', duration: '1:14' },
-          { title: 'siempre terminan en tragedia', src: 'https://hanzelconzeta.github.io/siempre_terminan_en_tragedia.mp3', duration: '4:24' },
-          { title: 'si no es hoy, mañana...', src: 'https://hanzelconzeta.github.io/si_no_es_hoy.mp3', duration: '5:30' },
-          { title: 'carta a sally', src: 'https://hanzelconzeta.github.io/carta_a_sally.mp3', duration: '4:40' },
-          { title: 'al final del arcoiris', src: 'https://hanzelconzeta.github.io/al_final_del_arcoiris.mp3', duration: '4:41' },
-          { title: 'suelo mirar al cielo cuando pienso en ti', src: 'https://hanzelconzeta.github.io/suelo_mirar_al_cielo_cuando_pienso_en_ti.mp3', duration: '5:35' }
-        ]
+        embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R",
+        link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R"
       },
       {
         title: "iii. petite",
         cover: "https://hanzelconzeta.github.io/petite_portada.PNG",
-        songs: [
-          { title: 'cuentacuentos', src: 'https://hanzelconzeta.github.io/cuentacuentos.mp3', duration: '3:33' },
-          { title: 'segundo acto: nostalgia', src: 'https://hanzelconzeta.github.io/segundo_acto2009.mp3', duration: '2:55' },
-          { title: '10:01', src: 'https://hanzelconzeta.github.io/1001_2009.mp3', duration: '2:59' },
-          { title: 'pequeña eiffel', src: 'https://hanzelconzeta.github.io/pequena_eiffel2009.mp3', duration: '3:54' },
-          { title: 'aioros', src: 'https://hanzelconzeta.github.io/aioros.mp3', duration: '3:45' },
-          { title: 'segundo acto: nostalgia (bonus track)', src: 'https://hanzelconzeta.github.io/segundo_acto2008.mp3', duration: '2:47' },
-          { title: '10:01 (bonus track)', src: 'https://hanzelconzeta.github.io/1001_2008.mp3', duration: '3:07' },
-          { title: 'pequeña eiffel (bonus track)', src: 'https://hanzelconzeta.github.io/pequena_eiffel2008.mp3', duration: '3:47' }
-        ]
+        embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR",
+        link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR"
       }
     ];
 
     let currentAlbumIndex = -1;
-    let currentSongIndex = 0;
-    let isPlaying = false;
-    const audio = document.getElementById('audio-player');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const songTitle = document.getElementById('song-title');
-    const songList = document.getElementById('song-list');
+
     const musicPlayerModal = document.getElementById('music-player-modal');
     const albumCover = document.getElementById('album-cover');
     const albumTitleEl = document.getElementById('album-title');
-    const playerControls = document.querySelector('.player-controls');
 
     function switchAlbum(index) {
       currentAlbumIndex = index;
       document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
+
       const album = albums[index];
       albumTitleEl.textContent = album.title;
       albumCover.src = album.cover;
       albumCover.classList.add('show');
-      playerControls.classList.add('show');
-      populateSongList();
-      songTitle.textContent = '';
-      playPauseBtn.textContent = '▶';
-      isPlaying = false;
+
+      document.getElementById('spotify-iframe').src = album.embed;
+      document.getElementById('open-spotify-btn').href = album.link;
     }
 
-    function loadSong(i) {
-      const album = albums[currentAlbumIndex];
-      currentSongIndex = i;
-      audio.src = album.songs[i].src || '';
-      songTitle.textContent = album.songs[i].title;
-      document.querySelectorAll('.song-list li').forEach((li, idx) => li.classList.toggle('active', idx === i));
-    }
-
-    function populateSongList() {
-      songList.innerHTML = '';
-      const album = albums[currentAlbumIndex];
-      album.songs.forEach((song, i) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${song.title}</span><span>${song.duration}</span>`;
-        li.addEventListener('click', () => loadSong(i));
-        songList.appendChild(li);
-      });
-    }
-
-    playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        if (!audio.src) loadSong(0);
-        audio.play().catch(() => {});
-        isPlaying = true;
-        playPauseBtn.textContent = '❚❚';
-      } else {
-        audio.pause();
-        isPlaying = false;
-        playPauseBtn.textContent = '▶';
-      }
-    });
-
-    document.getElementById('prev-btn').addEventListener('click', () => {
-      const len = albums[currentAlbumIndex].songs.length;
-      currentSongIndex = (currentSongIndex - 1 + len) % len;
-      loadSong(currentSongIndex);
-      if (isPlaying && audio.src) audio.play();
-    });
-
-    document.getElementById('next-btn').addEventListener('click', () => {
-      const len = albums[currentAlbumIndex].songs.length;
-      currentSongIndex = (currentSongIndex + 1) % len;
-      loadSong(currentSongIndex);
-      if (isPlaying && audio.src) audio.play();
-    });
-
+    // Event listeners
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
-      switchAlbum(0);
+      if (currentAlbumIndex === -1) switchAlbum(0);
     });
 
     document.getElementById('close-music-player').addEventListener('click', () => {
       musicPlayerModal.classList.remove('active');
-      audio.pause();
-      playPauseBtn.textContent = '▶';
+      document.getElementById('spotify-iframe').src = ''; // Detener reproducción
     });
 
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
 
+    // Guestbook (sin cambios)
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
       guestbook.classList.add('active');
       loadComments();
     });
-
     document.getElementById('close-guestbook').addEventListener('click', () => guestbook.classList.remove('active'));
 
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
@@ -636,6 +345,7 @@
   </script>
 </body>
 </html>
+
 
 
 
