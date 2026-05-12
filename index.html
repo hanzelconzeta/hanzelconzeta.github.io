@@ -74,16 +74,15 @@
     @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
+    /* ====================== LAVA MEJORADA ====================== */
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
-      position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.9;
-      animation:lava-move 40s infinite ease-in-out alternate;
+      position:absolute; border-radius:50%; background:var(--bugambilia-neon); opacity:0.88;
       box-shadow: 0 0 65px var(--bugambilia-neon);
     }
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
-      50%{transform:translateY(-135vh)scale(2.7)rotate(90deg)}
+      50%{transform:translateY(-140vh)scale(2.8)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
@@ -125,27 +124,20 @@
     }
     .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); text-shadow: 0 0 25px var(--turquesa-cenote); }
 
-    /* Guestbook Restaurado */
-    .guestbook h2 {
-      text-align:center; font-family:'Cinzel',serif; font-size:2.2rem; margin-bottom:2rem; color:var(--dorado-luznegra);
-    }
+    /* Guestbook */
+    .guestbook h2 { text-align:center; font-family:'Cinzel',serif; font-size:2.2rem; margin-bottom:2rem; color:var(--dorado-luznegra); }
     .guestbook input, .guestbook textarea {
       width:100%; background:rgba(255,255,255,0.08); border:2px solid rgba(255,46,152,0.3);
       color:var(--dorado-luznegra); padding:12px 16px; margin-bottom:1rem; border-radius:12px;
-      font-family:'Roboto Slab',serif; font-size:1.05rem; transition:all 0.3s;
+      font-family:'Roboto Slab',serif; font-size:1.05rem;
     }
-    .guestbook input:focus, .guestbook textarea:focus {
-      outline:none; border-color:var(--turquesa-cenote); box-shadow:0 0 15px rgba(0,240,255,0.3);
-    }
+    .guestbook input:focus, .guestbook textarea:focus { outline:none; border-color:var(--turquesa-cenote); box-shadow:0 0 15px rgba(0,240,255,0.3); }
     .guestbook textarea { min-height:130px; resize:vertical; }
     .guestbook button[type="submit"] {
       width:100%; padding:14px; background:var(--rosa-electrico); color:white; border:none;
       border-radius:12px; font-size:1.1rem; font-weight:bold; cursor:pointer; margin-top:0.5rem;
-      transition:all .3s;
     }
-    .guestbook button[type="submit"]:hover {
-      background:#FF69B4; transform:translateY(-2px); box-shadow:0 0 20px var(--rosa-electrico);
-    }
+    .guestbook button[type="submit"]:hover { background:#FF69B4; transform:translateY(-2px); }
 
     .comments { margin-top:2.5rem; }
     .comment {
@@ -165,10 +157,11 @@
     .album-option {
       background:rgba(11,0,20,0.75); border:2px solid rgba(255,138,61,0.4); color:var(--dorado-luznegra);
       padding:0.95rem 1.4rem; border-radius:12px; cursor:pointer; font-family:'Cinzel',serif;
-      font-size:1.05rem; text-align:center; transition:all .3s; text-transform:lowercase !important; opacity:0.85;
+      font-size:1.05rem; text-align:center; transition:all .3s; 
+      text-transform: lowercase !important; opacity: 0.85;
     }
-    .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity:1; }
-    .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity:1; }
+    .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity: 1; }
+    .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity: 1; }
 
     .spotify-container { margin-top:1.2rem; display:none; }
     .spotify-container.show { display:block; }
@@ -192,9 +185,15 @@
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <!-- Blobs con diferentes tamaños y delays -->
+      <div class="blob" style="width:180px;height:180px;left:10%;bottom:-100px;animation-duration:38s;"></div>
+      <div class="blob" style="width:260px;height:260px;left:25%;bottom:-150px;animation-duration:52s;animation-delay:4s;"></div>
+      <div class="blob" style="width:150px;height:150px;left:40%;bottom:-80px;animation-duration:35s;animation-delay:12s;"></div>
+      <div class="blob" style="width:220px;height:220px;left:55%;bottom:-200px;animation-duration:47s;animation-delay:2s;"></div>
+      <div class="blob" style="width:190px;height:190px;left:70%;bottom:-120px;animation-duration:41s;animation-delay:9s;"></div>
+      <div class="blob" style="width:280px;height:280px;left:15%;bottom:-180px;animation-duration:55s;animation-delay:15s;"></div>
+      <div class="blob" style="width:130px;height:130px;left:80%;bottom:-90px;animation-duration:33s;animation-delay:7s;"></div>
+      <div class="blob" style="width:240px;height:240px;left:35%;bottom:-220px;animation-duration:49s;animation-delay:18s;"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <ul class="vertical-menu">
@@ -381,6 +380,7 @@
   </script>
 </body>
 </html>
+
 
 
 
