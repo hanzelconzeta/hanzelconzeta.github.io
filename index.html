@@ -20,13 +20,26 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* ====================== PALETAS ====================== */
+    /* ====================== PALETAS COMPLETAS ====================== */
     body.palette-esporas {
       --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366;
       --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6;
     }
-    body.palette-16rosas, body.palette-kantoamere, body.palette-zlooshee, body.palette-petite {
-      --dorado-luznegra: #F5F5F5;
+    body.palette-16rosas {
+      --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4;
+      --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5;
+    }
+    body.palette-kantoamere {
+      --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4;
+      --naranja-volcanico: #FF9EC1; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF;
+    }
+    body.palette-zlooshee {
+      --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF;
+      --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700;
+    }
+    body.palette-petite {
+      --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8;
+      --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF;
     }
 
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 20px rgba(255,138,61,0.8); }
@@ -61,20 +74,16 @@
     @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
-    /* ====================== LAVA MEJORADA (más orgánica) ====================== */
-    .lava-container { 
-      position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; 
-      overflow: hidden;
-    }
+    /* ====================== LAVA MÁS FLUIDA ====================== */
+    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
     .blob {
-      position:absolute; border-radius:50%; background:var(--bugambilia-neon); 
-      opacity:0.85; box-shadow: 0 0 70px var(--bugambilia-neon);
+      position:absolute; border-radius:50%; background:var(--bugambilia-neon);
+      opacity:0.85; box-shadow:0 0 75px var(--bugambilia-neon);
     }
-    @keyframes lava-float {
+    @keyframes lava-slime {
       0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-      25%  { transform: translate(var(--x1), var(--y1)) scale(var(--s1)) rotate(45deg); }
-      50%  { transform: translate(var(--x2), var(--y2)) scale(var(--s2)) rotate(90deg); }
-      75%  { transform: translate(var(--x3), var(--y3)) scale(var(--s3)) rotate(135deg); }
+      33%  { transform: translate(var(--dx1), var(--dy1)) scale(var(--sc1)) rotate(60deg); }
+      66%  { transform: translate(var(--dx2), var(--dy2)) scale(var(--sc2)) rotate(120deg); }
       100% { transform: translate(0, 0) scale(1) rotate(180deg); }
     }
 
@@ -172,19 +181,19 @@
     <div class="lava-container">
       <svg style="display:none;">
         <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="32" result="blur"/>
           <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
       
-      <!-- Lava más orgánica y con movimiento en varias direcciones -->
-      <div class="blob" style="width:180px;height:180px;left:-10%;bottom:20%;animation:lava-float 45s infinite linear; --x1:80px; --y1:-300px; --x2:120px; --y2:-450px; --x3:-50px; --y3:-280px; --s1:1.4; --s2:0.9; --s3:1.3;"></div>
-      <div class="blob" style="width:250px;height:250px;left:20%;bottom:-20%;animation:lava-float 58s infinite linear; animation-delay:5s; --x1:150px; --y1:-400px; --x2:-80px; --y2:-520px; --x3:100px; --y3:-350px; --s1:1.2; --s2:1.6; --s3:1.1;"></div>
-      <div class="blob" style="width:140px;height:140px;left:70%;bottom:30%;animation:lava-float 39s infinite linear; animation-delay:12s; --x1:-120px; --y1:-280px; --x2:90px; --y2:-390px; --x3:-60px; --y3:-250px; --s1:0.8; --s2:1.3; --s3:1.1;"></div>
-      <div class="blob" style="width:220px;height:220px;left:10%;bottom:-40%;animation:lava-float 52s infinite linear; animation-delay:8s; --x1:200px; --y1:-380px; --x2:-50px; --y2:-480px; --x3:140px; --y3:-320px; --s1:1.5; --s2:1.1; --s3:1.4;"></div>
-      <div class="blob" style="width:190px;height:190px;left:80%;bottom:-10%;animation:lava-float 47s infinite linear; animation-delay:18s; --x1:-100px; --y1:-350px; --x2:130px; --y2:-420px; --x3:-70px; --y3:-290px; --s1:1.2; --s2:0.9; --s3:1.3;"></div>
-      <div class="blob" style="width:280px;height:280px;left:35%;bottom:-60%;animation:lava-float 61s infinite linear; animation-delay:3s; --x1:80px; --y1:-500px; --x2:-110px; --y2:-380px; --x3:160px; --y3:-450px; --s1:1.6; --s2:1.2; --s3:1.4;"></div>
+      <!-- Lava más slime / fluida -->
+      <div class="blob" style="width:210px;height:210px;left:-15%;bottom:10%;animation:lava-slime 42s infinite ease-in-out; --dx1:120px; --dy1:-420px; --dx2:-90px; --dy2:-380px; --sc1:1.6; --sc2:0.85;"></div>
+      <div class="blob" style="width:260px;height:260px;left:15%;bottom:-30%;animation:lava-slime 55s infinite ease-in-out; animation-delay:3s; --dx1:180px; --dy1:-480px; --dx2:60px; --dy2:-520px; --sc1:1.3; --sc2:1.7;"></div>
+      <div class="blob" style="width:160px;height:160px;left:65%;bottom:25%;animation:lava-slime 38s infinite ease-in-out; animation-delay:11s; --dx1:-140px; --dy1:-350px; --dx2:110px; --dy2:-410px; --sc1:0.9; --sc2:1.4;"></div>
+      <div class="blob" style="width:230px;height:230px;left:30%;bottom:-50%;animation:lava-slime 48s infinite ease-in-out; animation-delay:7s; --dx1:150px; --dy1:-460px; --dx2:-80px; --dy2:-390px; --sc1:1.5; --sc2:1.1;"></div>
+      <div class="blob" style="width:195px;height:195px;left:80%;bottom:-15%;animation:lava-slime 51s infinite ease-in-out; animation-delay:16s; --dx1:-110px; --dy1:-430px; --dx2:130px; --dy2:-370px; --sc1:1.2; --sc2:0.95;"></div>
+      <div class="blob" style="width:280px;height:280px;left:5%;bottom:-70%;animation:lava-slime 62s infinite ease-in-out; animation-delay:2s; --dx1:200px; --dy1:-510px; --dx2:-60px; --dy2:-450px; --sc1:1.8; --sc2:1.3;"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <ul class="vertical-menu">
@@ -371,6 +380,7 @@
   </script>
 </body>
 </html>
+
 
 
 
