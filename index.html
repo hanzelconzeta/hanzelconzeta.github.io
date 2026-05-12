@@ -20,23 +20,61 @@
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
 
-    /* Paletas */
-    body.palette-esporas { --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366; --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6; }
-    body.palette-16rosas { --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4; --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5; }
-    body.palette-kantoamere { --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4; --naranja-volcanico: #FF9EC1; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF; }
-    body.palette-zlooshee { --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF; --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700; }
-    body.palette-petite { --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8; --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF; }
+    /* ====================== PALETAS ====================== */
+    body.palette-esporas {
+      --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366;
+      --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6;
+    }
+    body.palette-16rosas, body.palette-kantoamere, body.palette-zlooshee, body.palette-petite {
+      --dorado-luznegra: #F5F5F5;
+    }
 
     .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 20px rgba(255,138,61,0.8); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
     @keyframes colorShift { 0%{background:#FF8A3D} 30%{background:#FFB366} 60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF} }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
-    .hanzel-logo { font-family:'Cinzel',serif; font-size: clamp(4rem, 15vw, 10rem); letter-spacing: clamp(4px, 2vw, 12px); margin-bottom:1rem; white-space: nowrap; }
+    .hanzel-logo {
+      font-family:'Cinzel',serif;
+      font-size: clamp(4rem, 15vw, 10rem);
+      letter-spacing: clamp(4px, 2vw, 12px);
+      margin-bottom:1rem; white-space: nowrap;
+    }
+
+    /* Gradientes del logo por paleta */
+    body.palette-esporas .hanzel-logo span,
+    body.palette-16rosas .hanzel-logo span,
+    body.palette-kantoamere .hanzel-logo span,
+    body.palette-zlooshee .hanzel-logo span {
+      background: linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico), var(--naranja-volcanico));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 1.6s infinite alternate, float var(--duration) infinite;
+      animation-delay: var(--delay);
+    }
+    body.palette-petite .hanzel-logo span {
+      background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
+      animation-delay: var(--delay);
+    }
+    @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
+    @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
+    @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-    .blob { position:absolute; width:220px; height:220px; border-radius:50%; background:var(--bugambilia-neon); opacity:0.88; animation:lava-move 40s infinite ease-in-out alternate; box-shadow: 0 0 55px var(--bugambilia-neon); }
-    @keyframes lava-move { 0%{transform:translateY(0)scale(1)rotate(0)} 50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)} 100%{transform:translateY(0)scale(1)rotate(0)} }
+    .blob {
+      position:absolute; width:220px; height:220px; border-radius:50%;
+      background:var(--bugambilia-neon); opacity:0.88;
+      animation:lava-move 40s infinite ease-in-out alternate;
+      box-shadow: 0 0 55px var(--bugambilia-neon);
+    }
+    @keyframes lava-move {
+      0%{transform:translateY(0)scale(1)rotate(0)}
+      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
+      100%{transform:translateY(0)scale(1)rotate(0)}
+    }
 
     .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:25 !important; }
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
@@ -53,7 +91,7 @@
     .palette-button { position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%; background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico); cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
-    /* Modal Music */
+    /* Modal Música */
     .music-player-modal {
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.97);
@@ -67,12 +105,12 @@
     .close-btn {
       position: absolute; top: 1.4rem; right: 2rem; font-size: 2.6rem;
       color: var(--dorado-luznegra); background: none; border: none;
-      cursor: pointer; transition: all .4s; z-index: 10001;
+      cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275); z-index: 10001;
     }
-    .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); }
+    .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); text-shadow: 0 0 25px var(--turquesa-cenote); }
 
-    .esporas-main { text-align: center; margin-bottom: 2rem; }
-    .luna-message { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: #FFCC99; text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4; margin-bottom: 1.8rem; }
+    .esporas-main { text-align: center; margin-bottom: 2.2rem; }
+    .luna-message { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: #FFCC99; text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4; margin-bottom: 1.8rem; letter-spacing: 1px; }
     .esporas-cover, .album-thumbnail { width: 205px; height: 205px; border-radius: 16px; box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6); object-fit: cover; margin: 0 auto 1.8rem; }
 
     .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.8rem; }
@@ -84,13 +122,13 @@
     .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity: 1; }
     .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity: 1; }
 
-    .spotify-container { margin-top: 1.5rem; display: none; }
+    .spotify-container { margin-top: 1rem; display: none; }
     .spotify-container.show { display: block; }
 
     .spotify-btn {
       display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
       padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.05rem;
-      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s; margin-top: 1rem;
+      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s; margin: 1rem auto 0;
     }
     .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
   </style>
@@ -143,7 +181,7 @@
       <div class="album-option" id="option-2">iii. petite</div>
     </div>
 
-    <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover" style="display:none;">
+    <img class="album-thumbnail" id="album-cover" src="" alt="Album Cover">
 
     <div class="spotify-container" id="spotify-container">
       <iframe id="spotify-iframe" 
@@ -162,7 +200,7 @@
     </div>
   </div>
 
-  <!-- Guestbook (sin cambios) -->
+  <!-- Guestbook -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -175,7 +213,7 @@
   </div>
 
   <script>
-    // Cursor, Logo y Paletas (sin cambios)
+    // Cursor + Logo + Palette + Lava
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -208,7 +246,6 @@
   </script>
 
   <script type="module">
-    // ... (Firebase config igual)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
@@ -248,7 +285,6 @@
     let currentAlbumIndex = -1;
 
     const musicPlayerModal = document.getElementById('music-player-modal');
-    const mainCover = document.getElementById('main-cover');
     const albumCover = document.getElementById('album-cover');
     const spotifyContainer = document.getElementById('spotify-container');
 
@@ -256,34 +292,28 @@
       currentAlbumIndex = index;
       const album = albums[index];
 
-      // Activar botón
       document.querySelectorAll('.album-option').forEach((opt, i) => opt.classList.toggle('active', i === index));
 
-      // Cambiar portada grande
-      mainCover.src = album.cover;
+      albumCover.src = album.cover;
+      albumCover.style.display = 'block';
 
-      // Mostrar embed de Spotify
       document.getElementById('spotify-iframe').src = album.embed;
       document.getElementById('open-spotify-btn').href = album.link;
       spotifyContainer.classList.add('show');
     }
 
-    // Abrir modal
     document.getElementById('music-link').addEventListener('click', () => {
       musicPlayerModal.classList.add('active');
-      if (currentAlbumIndex === -1) {
-        // Al abrir por primera vez mostramos el primer álbum
-        switchAlbum(0);
-      }
+      if (currentAlbumIndex === -1) switchAlbum(0);
     });
 
     document.getElementById('close-music-player').addEventListener('click', () => {
       musicPlayerModal.classList.remove('active');
       document.getElementById('spotify-iframe').src = '';
       spotifyContainer.classList.remove('show');
+      albumCover.style.display = 'none';
     });
 
-    // Botones de álbumes
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
