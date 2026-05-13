@@ -22,63 +22,29 @@
 
     /* ====================== PALETAS ====================== */
     body.palette-esporas {
-      --ultravioleta-cosmico: #FF4A00;
-      --bugambilia-neon: #FF8A3D;
-      --rosa-electrico: #FFB366;
-      --naranja-volcanico: #FFD4A3;
-      --verde-acido: #FFEBCC;
-      --turquesa-cenote: #FFE6C7;
-      --dorado-luznegra: #FFF5E6;
+      --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366;
+      --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6;
     }
     body.palette-16rosas {
-      --ultravioleta-cosmico: #63010E;
-      --bugambilia-neon: #FCD4D4;
-      --rosa-electrico: #FCD4D4;
-      --naranja-volcanico: #FF4500;
-      --verde-acido: #F5F5F5;
-      --turquesa-cenote: #FF69B4;
-      --dorado-luznegra: #F5F5F5;
+      --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4;
+      --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5;
     }
     body.palette-kantoamere {
-      --ultravioleta-cosmico: #4A0E2A;
-      --bugambilia-neon: #A8C0FF;
-      --rosa-electrico: #FF69B4;
-      --naranja-volcanico: #FF9EC1;
-      --verde-acido: #B0FF99;
-      --turquesa-cenote: #99F0FF;
-      --dorado-luznegra: #F5E0FF;
+      --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4;
+      --naranja-volcanico: #FF9EC1; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF;
     }
     body.palette-zlooshee {
-      --ultravioleta-cosmico: #0A1F3D;
-      --bugambilia-neon: #00FFCC;
-      --rosa-electrico: #FF00FF;
-      --naranja-volcanico: #FF4500;
-      --verde-acido: #00FF7F;
-      --turquesa-cenote: #40E0D0;
-      --dorado-luznegra: #FFD700;
+      --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF;
+      --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700;
     }
     body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;
-      --bugambilia-neon: #FF0088;
-      --rosa-electrico: #FF2EB8;
-      --naranja-volcanico: #FF66CC;
-      --verde-acido: #B0FFEE;
-      --turquesa-cenote: #00FFFF;
-      --dorado-luznegra: #E0FFFF;
+      --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8;
+      --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF;
     }
 
-    .cursor {
-      position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none;
-      transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999;
-      transition:all .1s; animation:colorShift 3s infinite alternate;
-      box-shadow:0 0 20px rgba(255,138,61,0.8);
-    }
+    .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 20px rgba(255,138,61,0.8); }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-
-    @keyframes colorShift {
-      0%{background:#FF8A3D} 30%{background:#FFB366}
-      60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF}
-    }
+    @keyframes colorShift { 0%{background:#FF8A3D} 30%{background:#FFB366} 60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF} }
 
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo {
@@ -90,15 +56,13 @@
 
     body.palette-petite .hanzel-logo span {
       background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
       animation-delay: var(--delay);
     }
     body.palette-esporas .hanzel-logo span {
       background:linear-gradient(90deg, #FFF5E6, #FFEBCC, #FFB366, #FF8A3D);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       animation:glow-esporas 1.6s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
@@ -106,21 +70,14 @@
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
       background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       animation:glow 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
 
-    @keyframes glow-esporas {
-      from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; }
-      to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; }
-    }
+    @keyframes glow-esporas { from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; } to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; } }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
-    @keyframes glow-petite {
-      from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; }
-      to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; }
-    }
+    @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
@@ -130,10 +87,7 @@
       animation:lava-move 40s infinite ease-in-out alternate;
       box-shadow: 0 0 55px var(--bugambilia-neon);
     }
-    body.palette-esporas .blob {
-      background: #f2dba9;
-      box-shadow: 0 0 65px #f2dba9;
-    }
+    body.palette-esporas .blob { background: #f2dba9; box-shadow: 0 0 65px #f2dba9; }
     @keyframes lava-move {
       0%{transform:translateY(0)scale(1)rotate(0)}
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
@@ -156,39 +110,19 @@
     .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
     .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
 
-    .vertical-menu {
-      position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column;
-      gap:2.5rem; z-index:25 !important;
-    }
-    .vertical-menu li {
-      font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra);
-      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8;
-      transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
-    }
-    .vertical-menu li:hover {
-      color:#FFF5E6;
-      text-shadow:0 0 40px #FFF5E6;
-      transform:translateX(20px) scale(1.1);
-    }
+    .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:25 !important; }
+    .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
+    .vertical-menu li:hover { color:#FFF5E6; text-shadow:0 0 40px #FFF5E6; transform:translateX(20px) scale(1.1); }
 
     .est, .chi-rho { z-index:25 !important; }
     .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
     .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
 
-    .social-icons {
-      position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important;
-    }
-    .social-icons a {
-      color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5);
-      transition:transform .3s, color .3s;
-    }
-    .social-icons a:hover {
-      color:#FFF5E6;
-      transform:scale(1.2);
-      text-shadow:0 0 20px #FFF5E6;
-    }
+    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; }
+    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s, color .3s; }
+    .social-icons a:hover { color:#FFF5E6; transform:scale(1.2); text-shadow:0 0 20px #FFF5E6; }
 
-    .palette-button {
+    .palette-button { 
       position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%;
       background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
       cursor:pointer; z-index:35; transition:all .3s; color:var(--dorado-luznegra);
@@ -197,7 +131,7 @@
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
 
     /* Modales */
-    .guestbook, .music-player-modal {
+    .music-player-modal, .guestbook {
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.97);
       border:3px solid var(--bugambilia-neon); border-radius:26px;
@@ -205,65 +139,52 @@
       z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden;
       transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275);
     }
-    .guestbook.active, .music-player-modal.active {
-      opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);
-    }
+    .music-player-modal.active, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
 
     .close-btn {
       position: absolute; top: 1.4rem; right: 2rem; font-size: 2.8rem;
       color: var(--dorado-luznegra); background: none; border: none;
-      cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275);
-      z-index: 10001; line-height: 1;
+      cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275); z-index: 10001;
     }
-    .close-btn:hover {
-      color: var(--turquesa-cenote);
-      transform: scale(1.25) rotate(90deg);
-      text-shadow: 0 0 25px var(--turquesa-cenote);
-    }
+    .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); text-shadow: 0 0 25px var(--turquesa-cenote); }
 
-    .esporas-main { text-align: center; margin-bottom: 2.2rem; }
-    .luna-message {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.85rem;
-      color: #FFCC99;
-      text-shadow: 0 0 25px #FF99CC, 0 0 45px #FF69B4;
-      margin-bottom: 1.8rem;
-      letter-spacing: 1px;
+    /* Guestbook */
+    .guestbook h2 { text-align:center; font-family:'Cinzel',serif; font-size:2.2rem; margin-bottom:2rem; color:var(--dorado-luznegra); }
+    .guestbook input, .guestbook textarea {
+      width:100%; background:rgba(255,255,255,0.08); border:2px solid rgba(255,46,152,0.3);
+      color:var(--dorado-luznegra); padding:12px 16px; margin-bottom:1rem; border-radius:12px;
+      font-family:'Roboto Slab',serif; font-size:1.05rem;
     }
-    .esporas-cover {
-      width: 205px;
-      height: 205px;
-      border-radius: 16px;
-      box-shadow: 0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255, 138, 61, 0.6);
-      object-fit: cover;
-      margin: 0 auto 1.8rem;
+    .guestbook input:focus, .guestbook textarea:focus { outline:none; border-color:var(--turquesa-cenote); box-shadow:0 0 15px rgba(0,240,255,0.3); }
+    .guestbook textarea { min-height:130px; resize:vertical; }
+    .guestbook button[type="submit"] {
+      width:100%; padding:14px; background:var(--rosa-electrico); color:white; border:none;
+      border-radius:12px; font-size:1.1rem; font-weight:bold; cursor:pointer; margin-top:0.5rem;
     }
+    .guestbook button[type="submit"]:hover { background:#FF69B4; transform:translateY(-2px); }
+
+    .comments { margin-top:2.5rem; }
+    .comment {
+      background:rgba(255,255,255,0.05); border-left:4px solid var(--bugambilia-neon);
+      padding:1.2rem 1.4rem; margin-bottom:1.2rem; border-radius:0 12px 12px 0;
+    }
+    .comment .author { font-family:'Cinzel',serif; color:var(--turquesa-cenote); font-size:1.1rem; display:block; margin-bottom:0.4rem; }
+    .comment p { margin:0.6rem 0; line-height:1.55; }
+    .comment .date { font-size:0.85rem; opacity:0.7; }
+
+    /* Música - Spotify */
+    .esporas-main { text-align:center; margin-bottom:2.2rem; }
+    .luna-message { font-family:'Playfair Display',serif; font-size:1.85rem; color:#FFCC99; text-shadow:0 0 25px #FF99CC, 0 0 45px #FF69B4; margin-bottom:1.8rem; letter-spacing:1px; }
+    .esporas-cover { width:205px; height:205px; border-radius:16px; box-shadow:0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255,138,61,0.6); object-fit:cover; margin:0 auto 1.8rem; }
 
     .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.8rem; }
     .album-option {
-      background:rgba(11,0,20,0.75);
-      border:2px solid rgba(255,138,61,0.4);
-      color:var(--dorado-luznegra);
-      padding:0.95rem 1.4rem;
-      border-radius:12px;
-      cursor:pointer;
-      font-family:'Cinzel',serif;
-      font-size:1.05rem;
-      text-align:center;
-      transition:all .3s;
-      text-transform: lowercase !important;
-      opacity: 0.85;
+      background:rgba(11,0,20,0.75); border:2px solid rgba(255,138,61,0.4); color:var(--dorado-luznegra);
+      padding:0.95rem 1.4rem; border-radius:12px; cursor:pointer; font-family:'Cinzel',serif;
+      font-size:1.05rem; text-align:center; transition:all .3s; text-transform: lowercase !important; opacity: 0.85;
     }
-    .album-option:hover { 
-      border-color:var(--turquesa-cenote); 
-      color:var(--turquesa-cenote); 
-      opacity: 1;
-    }
-    .album-option.active {
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico));
-      border-color:var(--rosa-electrico);
-      opacity: 1;
-    }
+    .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity: 1; }
+    .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity: 1; }
 
     .spotify-container { margin-top:1.2rem; display:none; }
     .spotify-container.show { display:block; }
@@ -314,14 +235,13 @@
     <button class="close-btn" id="close-music-player">×</button>
     <div class="esporas-main">
       <div class="luna-message">esporas de internet</div>
-      <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
+      <img class="esporas-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
     </div>
     <div class="album-selector">
       <div class="album-option" id="option-0">i. 16 rosas y algo llamado amor</div>
       <div class="album-option" id="option-1">ii. kanto amere</div>
       <div class="album-option" id="option-2">iii. petite</div>
     </div>
-
     <div class="spotify-container" id="spotify-container">
       <iframe id="spotify-iframe" width="100%" height="420" frameborder="0" 
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
