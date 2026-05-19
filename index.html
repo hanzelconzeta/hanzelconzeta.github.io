@@ -19,20 +19,23 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
     body { background:var(--ultravioleta-cosmico); color:var(--dorado-luznegra); font-family:'Roboto Slab',serif; height:100vh; overflow:hidden; position:relative; cursor:none; }
+
     /* ====================== PALETAS ====================== */
     body.palette-esporas {
       --ultravioleta-cosmico: #FF4A00; --bugambilia-neon: #FF8A3D; --rosa-electrico: #FFB366;
       --naranja-volcanico: #FFD4A3; --verde-acido: #FFEBCC; --turquesa-cenote: #FFE6C7; --dorado-luznegra: #FFF5E6;
     }
+
     body.palette-amoriv {
-      --ultravioleta-cosmico: #001133; 
-      --bugambilia-neon: #FF0033; 
-      --rosa-electrico: #FF3366; 
-      --naranja-volcanico: #FF6699; 
-      --verde-acido: #66FFCC; 
-      --turquesa-cenote: #00EEFF; 
-      --dorado-luznegra: #FFEECC;
+      --ultravioleta-cosmico: #00051F;
+      --bugambilia-neon: #FF0000;
+      --rosa-electrico: #FF0044;
+      --naranja-volcanico: #FF2A00;
+      --verde-acido: #00FFCC;
+      --turquesa-cenote: #00E6FF;
+      --dorado-luznegra: #FFEE99;
     }
+
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4;
       --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5;
@@ -49,9 +52,63 @@
       --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8;
       --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF;
     }
-    .cursor { position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999; transition:all .1s; animation:colorShift 3s infinite alternate; box-shadow:0 0 20px rgba(255,138,61,0.8); }
+
+    /* ====================== ESTILOS ESPECIALES PARA AMORIV ====================== */
+    body.palette-amoriv .hanzel-logo span {
+      background: linear-gradient(90deg, #FF0000, #FF3366, #0019FF, #00CCFF, #FF0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow-amoriv 1.3s infinite alternate, float var(--duration) infinite;
+      animation-delay: var(--delay);
+      filter: drop-shadow(0 0 25px #FF0000) drop-shadow(0 0 50px #0019FF);
+    }
+
+    @keyframes glow-amoriv {
+      from {
+        text-shadow: 0 0 35px #FF0000,
+                     0 0 70px #FF3366,
+                     0 0 100px #0019FF;
+      }
+      to {
+        text-shadow: 0 0 45px #FF0000,
+                     0 0 85px #FF3366,
+                     0 0 130px #0019FF,
+                     0 0 170px #00CCFF;
+      }
+    }
+
+    .cursor { 
+      position:fixed; width:15px; height:15px; border-radius:50%; 
+      pointer-events:none; transform:translate(-50%,-50%); 
+      mix-blend-mode:screen; z-index:9999; transition:all .1s; 
+      animation:colorShift 2.5s infinite alternate; 
+      box-shadow:0 0 25px #FF0000; 
+    }
+
+    body.palette-amoriv .cursor {
+      box-shadow: 0 0 25px #FF0000, 0 0 50px #0019FF;
+    }
+
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-    @keyframes colorShift { 0%{background:#FF8A3D} 30%{background:#FFB366} 60%{background:#FFEBCC} 80%{background:#FFF5E6} 100%{background:#FFFFFF} }
+    
+    @keyframes colorShift { 
+      0%{background:#FF0000} 
+      50%{background:#0019FF} 
+      100%{background:#FF3366} 
+    }
+
+    .blob {
+      position:absolute; width:220px; height:220px; border-radius:50%;
+      background:var(--bugambilia-neon); opacity:0.9;
+      animation:lava-move 40s infinite ease-in-out alternate;
+      box-shadow: 0 0 55px var(--bugambilia-neon);
+    }
+
+    body.palette-amoriv .blob {
+      box-shadow: 0 0 80px #FF0000, 0 0 130px #0019FF;
+    }
+
+    /* Resto de estilos generales */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo {
       font-family:'Cinzel',serif;
@@ -59,18 +116,8 @@
       letter-spacing: clamp(4px, 2vw, 12px);
       margin-bottom:1rem; white-space: nowrap;
     }
-    body.palette-petite .hanzel-logo span {
-      background: linear-gradient(90deg, #FFCCEE, #FF6EB5, #D15CFF, #FF99CC, #FFE0A8);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      animation: glow-petite 1.8s infinite alternate, float var(--duration) infinite;
-      animation-delay: var(--delay);
-    }
-    body.palette-esporas .hanzel-logo span {
-      background:linear-gradient(90deg, #FFF5E6, #FFEBCC, #FFB366, #FF8A3D);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      animation:glow-esporas 1.6s infinite alternate, float var(--duration) infinite;
-      animation-delay:var(--delay);
-    }
+    body.palette-petite .hanzel-logo span,
+    body.palette-esporas .hanzel-logo span,
     body.palette-16rosas .hanzel-logo span,
     body.palette-kantoamere .hanzel-logo span,
     body.palette-zlooshee .hanzel-logo span {
@@ -83,34 +130,8 @@
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
+
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
-    .blob {
-      position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
-      animation:lava-move 40s infinite ease-in-out alternate;
-      box-shadow: 0 0 55px var(--bugambilia-neon);
-    }
-    body.palette-esporas .blob { background: #f2dba9; box-shadow: 0 0 65px #f2dba9; }
-    @keyframes lava-move {
-      0%{transform:translateY(0)scale(1)rotate(0)}
-      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
-      100%{transform:translateY(0)scale(1)rotate(0)}
-    }
-    .blob:nth-child(1){left:5%;bottom:-100px;animation-duration:35s;}
-    .blob:nth-child(2){left:15%;bottom:-150px;animation-duration:42s;animation-delay:5s;}
-    .blob:nth-child(3){left:25%;bottom:-200px;animation-duration:38s;animation-delay:10s;}
-    .blob:nth-child(4){left:35%;bottom:-120px;animation-duration:45s;animation-delay:15s;}
-    .blob:nth-child(5){left:45%;bottom:-180px;animation-duration:40s;animation-delay:3s;}
-    .blob:nth-child(6){left:55%;bottom:-140px;animation-duration:43s;animation-delay:8s;}
-    .blob:nth-child(7){left:65%;bottom:-220px;animation-duration:37s;animation-delay:13s;}
-    .blob:nth-child(8){left:75%;bottom:-160px;animation-duration:41s;animation-delay:18s;}
-    .blob:nth-child(9){left:85%;bottom:-190px;animation-duration:39s;animation-delay:20s;}
-    .blob:nth-child(10){left:95%;bottom:-130px;animation-duration:44s;animation-delay:22s;}
-    .blob:nth-child(11){left:10%;bottom:-250px;animation-duration:36s;animation-delay:1s;}
-    .blob:nth-child(12){left:20%;bottom:-170px;animation-duration:46s;animation-delay:7s;}
-    .blob:nth-child(13){left:40%;bottom:-210px;animation-duration:39s;animation-delay:11s;}
-    .blob:nth-child(14){left:60%;bottom:-160px;animation-duration:42s;animation-delay:16s;}
-    .blob:nth-child(15){left:80%;bottom:-230px;animation-duration:37s;animation-delay:19s;}
     .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:25 !important; }
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:#FFF5E6; text-shadow:0 0 40px #FFF5E6; transform:translateX(20px) scale(1.1); }
@@ -127,7 +148,8 @@
       font-size:1.5rem; display:flex; align-items:center; justify-content:center;
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
-    /* Modales */
+
+    /* Modales (sin cambios) */
     .music-player-modal, .guestbook {
       position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.97);
@@ -143,48 +165,6 @@
       cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275); z-index: 10001;
     }
     .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); text-shadow: 0 0 25px var(--turquesa-cenote); }
-    /* Guestbook */
-    .guestbook h2 { text-align:center; font-family:'Cinzel',serif; font-size:2.2rem; margin-bottom:2rem; color:var(--dorado-luznegra); }
-    .guestbook input, .guestbook textarea {
-      width:100%; background:rgba(255,255,255,0.08); border:2px solid rgba(255,46,152,0.3);
-      color:var(--dorado-luznegra); padding:12px 16px; margin-bottom:1rem; border-radius:12px;
-      font-family:'Roboto Slab',serif; font-size:1.05rem;
-    }
-    .guestbook input:focus, .guestbook textarea:focus { outline:none; border-color:var(--turquesa-cenote); box-shadow:0 0 15px rgba(0,240,255,0.3); }
-    .guestbook textarea { min-height:130px; resize:vertical; }
-    .guestbook button[type="submit"] {
-      width:100%; padding:14px; background:var(--rosa-electrico); color:white; border:none;
-      border-radius:12px; font-size:1.1rem; font-weight:bold; cursor:pointer; margin-top:0.5rem;
-    }
-    .guestbook button[type="submit"]:hover { background:#FF69B4; transform:translateY(-2px); }
-    .comments { margin-top:2.5rem; }
-    .comment {
-      background:rgba(255,255,255,0.05); border-left:4px solid var(--bugambilia-neon);
-      padding:1.2rem 1.4rem; margin-bottom:1.2rem; border-radius:0 12px 12px 0;
-    }
-    .comment .author { font-family:'Cinzel',serif; color:var(--turquesa-cenote); font-size:1.1rem; display:block; margin-bottom:0.4rem; }
-    .comment p { margin:0.6rem 0; line-height:1.55; }
-    .comment .date { font-size:0.85rem; opacity:0.7; }
-    /* Música - Spotify */
-    .esporas-main { text-align:center; margin-bottom:2.2rem; }
-    .luna-message { font-family:'Playfair Display',serif; font-size:1.85rem; color:#FFCC99; text-shadow:0 0 25px #FF99CC, 0 0 45px #FF69B4; margin-bottom:1.8rem; letter-spacing:1px; }
-    .esporas-cover { width:205px; height:205px; border-radius:16px; box-shadow:0 0 50px var(--bugambilia-neon), 0 0 90px rgba(255,138,61,0.6); object-fit:cover; margin:0 auto 1.8rem; }
-    .album-selector { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.8rem; }
-    .album-option {
-      background:rgba(11,0,20,0.75); border:2px solid rgba(255,138,61,0.4); color:var(--dorado-luznegra);
-      padding:0.95rem 1.4rem; border-radius:12px; cursor:pointer; font-family:'Cinzel',serif;
-      font-size:1.05rem; text-align:center; transition:all .3s; text-transform: lowercase !important; opacity: 0.85;
-    }
-    .album-option:hover { border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); opacity: 1; }
-    .album-option.active { background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico)); border-color:var(--rosa-electrico); opacity: 1; }
-    .spotify-container { margin-top:1.2rem; display:none; }
-    .spotify-container.show { display:block; }
-    .spotify-btn {
-      display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
-      padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.05rem;
-      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s;
-    }
-    .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
   </style>
 </head>
 <body class="palette-esporas">
@@ -219,7 +199,8 @@
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
-  <!-- Music Player - Spotify -->
+
+  <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <div class="esporas-main">
@@ -242,6 +223,7 @@
       </div>
     </div>
   </div>
+
   <!-- Guestbook -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
@@ -253,6 +235,7 @@
     </form>
     <div class="comments" id="comments-list"></div>
   </div>
+
   <script>
     // Cursor + Logo + Palette
     const cursor = document.getElementById('cursor');
@@ -260,6 +243,7 @@
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     });
+
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
@@ -272,17 +256,36 @@
       span.style.setProperty('--delay', `${delays[i]}s`);
       logo.appendChild(span);
     });
+
     const paletteToggle = document.getElementById('palette-toggle');
     let currentPalette = 'esporas';
+
     paletteToggle.addEventListener('click', () => {
-      document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee','palette-amoriv');
-      if (currentPalette === 'esporas') { document.body.classList.add('palette-amoriv'); currentPalette = 'amoriv'; }
-      else if (currentPalette === 'amoriv') { document.body.classList.add('palette-16rosas'); currentPalette = '16rosas'; }
-      else if (currentPalette === '16rosas') { document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; }
-      else if (currentPalette === 'kantoamere') { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
-      else { document.body.classList.add('palette-esporas'); currentPalette = 'esporas'; }
+      document.body.classList.remove('palette-esporas','palette-amoriv','palette-16rosas','palette-kantoamere','palette-petite','palette-zlooshee');
+      
+      if (currentPalette === 'esporas') { 
+        document.body.classList.add('palette-amoriv'); 
+        currentPalette = 'amoriv'; 
+      }
+      else if (currentPalette === 'amoriv') { 
+        document.body.classList.add('palette-16rosas'); 
+        currentPalette = '16rosas'; 
+      }
+      else if (currentPalette === '16rosas') { 
+        document.body.classList.add('palette-kantoamere'); 
+        currentPalette = 'kantoamere'; 
+      }
+      else if (currentPalette === 'kantoamere') { 
+        document.body.classList.add('palette-petite'); 
+        currentPalette = 'petite'; 
+      }
+      else { 
+        document.body.classList.add('palette-esporas'); 
+        currentPalette = 'esporas'; 
+      }
     });
   </script>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
@@ -324,6 +327,7 @@
     document.getElementById('option-0').addEventListener('click', () => switchAlbum(0));
     document.getElementById('option-1').addEventListener('click', () => switchAlbum(1));
     document.getElementById('option-2').addEventListener('click', () => switchAlbum(2));
+
     // Guestbook
     const guestbook = document.getElementById('guestbook');
     document.getElementById('guestbook-link').addEventListener('click', () => {
@@ -369,6 +373,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
