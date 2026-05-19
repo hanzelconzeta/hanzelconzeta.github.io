@@ -30,15 +30,6 @@
       --turquesa-cenote: #FFE6C7;
       --dorado-luznegra: #FFF5E6;
     }
-body.palette-amoriv {
-      --ultravioleta-cosmico: #0019FF;
-      --bugambilia-neon: #FF0000;
-      --rosa-electrico: #FF2A5E;
-      --naranja-volcanico: #FF5E00;
-      --verde-acido: #00FFCC;
-      --turquesa-cenote: #00E6FF;
-      --dorado-luznegra: #FFEECC;
-    }
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E;
       --bugambilia-neon: #FCD4D4;
@@ -376,33 +367,15 @@ body.palette-amoriv {
       logo.appendChild(span);
     });
 
-      const paletteToggle.addEventListener('click', () => {
+    const paletteToggle = document.getElementById('palette-toggle');
+    let currentPalette = 'esporas';
+    paletteToggle.addEventListener('click', () => {
       document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
-      
-      if (currentPalette === 'esporas') { 
-        document.body.classList.add('palette-amoriv'); 
-        currentPalette = 'amoriv'; 
-      }
-      else if (currentPalette === 'amoriv') { 
-        document.body.classList.add('palette-petite'); 
-        currentPalette = 'petite'; 
-      }
-      else if (currentPalette === 'petite') { 
-        document.body.classList.add('palette-kantoamere'); 
-        currentPalette = 'kantoamere'; 
-      }
-      else if (currentPalette === 'kantoamere') { 
-        document.body.classList.add('palette-16rosas'); 
-        currentPalette = '16rosas'; 
-      }
-      else if (currentPalette === '16rosas') { 
-        document.body.classList.add('palette-zlooshee'); 
-        currentPalette = 'zlooshee'; 
-      }
-      else { 
-        document.body.classList.add('palette-esporas'); 
-        currentPalette = 'esporas'; 
-      }
+      if (currentPalette === 'esporas') { document.body.classList.add('palette-petite'); currentPalette = 'petite'; }
+      else if (currentPalette === 'petite') { document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; }
+      else if (currentPalette === 'kantoamere') { document.body.classList.add('palette-16rosas'); currentPalette = '16rosas'; }
+      else if (currentPalette === '16rosas') { document.body.classList.add('palette-zlooshee'); currentPalette = 'zlooshee'; }
+      else { document.body.classList.add('palette-esporas'); currentPalette = 'esporas'; }
     });
   </script>
 
@@ -504,6 +477,7 @@ body.palette-amoriv {
   </script>
 </body>
 </html>
+
 
 
 
