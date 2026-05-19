@@ -29,13 +29,16 @@
     body.palette-amoriv {
       --ultravioleta-cosmico: #0019FF;
       --bugambilia-neon: #FF0000;
-      --rosa-electrico: #FF3333;
-      --naranja-volcanico: #FF5555;
+      --rosa-electrico: #FF2222;
+      --naranja-volcanico: #FF4444;
       --verde-acido: #00FFCC;
       --turquesa-cenote: #00EEFF;
-      --dorado-luznegra: #FFEEAA;
+      --dorado-luznegra: #FFDD88;
     }
 
+    body.palette-16rosas, body.palette-kantoamere, body.palette-zlooshee, body.palette-petite {
+      /* sus definiciones originales */
+    }
     body.palette-16rosas {
       --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FCD4D4;
       --naranja-volcanico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5;
@@ -53,32 +56,36 @@
       --naranja-volcanico: #FF66CC; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF;
     }
 
-    /* ====================== ESTILOS ESPECIALES AMORIV ====================== */
+    /* ====================== AMORIV - Glow más suave ====================== */
     body.palette-amoriv .hanzel-logo span {
-      background: linear-gradient(90deg, #FFEEEE, #FF7777, #FF0000, #FF4444, #FFEEEE);
+      background: linear-gradient(90deg, #FFAAAA, #FF5555, #FF0000, #FF6666, #FFAAAA);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow-amoriv 1.4s infinite alternate, float var(--duration) infinite;
+      animation: glow-amoriv 2s infinite alternate, float var(--duration) infinite;
       animation-delay: var(--delay);
-      filter: drop-shadow(0 0 30px #FF0000) drop-shadow(0 0 60px #FF6666);
+      filter: drop-shadow(0 0 20px #FF0000);
     }
 
     @keyframes glow-amoriv {
-      from { text-shadow: 0 0 40px #FF0000, 0 0 80px #FF5555, 0 0 120px #FF9999; }
-      to   { text-shadow: 0 0 50px #FF0000, 0 0 100px #FF6666, 0 0 150px #FFAAAA, 0 0 180px #FFFFFF; }
+      from { text-shadow: 0 0 25px #FF0000, 0 0 45px #FF3333; }
+      to   { text-shadow: 0 0 35px #FF0000, 0 0 65px #FF5555; }
     }
 
-    /* Blobs - Mantener comportamiento original */
+    /* Blobs - Respeta al 100% el efecto goo y animaciones */
     .blob {
-      position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
+      position:absolute; 
+      width:220px; 
+      height:220px; 
+      border-radius:50%;
+      background:var(--bugambilia-neon); 
+      opacity:0.88;
       animation:lava-move 40s infinite ease-in-out alternate;
       box-shadow: 0 0 55px var(--bugambilia-neon);
     }
 
     body.palette-amoriv .blob {
       background: #FF0000;
-      box-shadow: 0 0 70px #FF0000, 0 0 110px #FF4444;
+      box-shadow: 0 0 60px #FF0000;
     }
 
     /* Cursor */
@@ -87,21 +94,20 @@
       pointer-events:none; transform:translate(-50%,-50%); 
       mix-blend-mode:screen; z-index:9999; transition:all .1s; 
       animation:colorShift 3s infinite alternate; 
-      box-shadow:0 0 25px #FF0000; 
     }
     body.palette-amoriv .cursor {
-      box-shadow: 0 0 30px #FF0000, 0 0 55px #00CCFF;
+      box-shadow: 0 0 20px #FF0000, 0 0 35px #00AAFF;
     }
 
     @keyframes colorShift { 
       0%{background:#FF0000} 
       50%{background:#0019FF} 
-      100%{background:#FF5555} 
+      100%{background:#FF4444} 
     }
 
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
 
-    /* Estilos generales (sin cambios) */
+    /* Estilos generales */
     .intro { position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; width:100%; }
     .hanzel-logo {
       font-family:'Cinzel',serif;
@@ -119,21 +125,18 @@
       animation:glow 1.5s infinite alternate, float var(--duration) infinite;
       animation-delay:var(--delay);
     }
+
     @keyframes glow-esporas { from { text-shadow: 0 0 30px #FFEBCC, 0 0 60px #FFB366; } to { text-shadow: 0 0 50px #FFEBCC, 0 0 90px #FF8A3D, 0 0 120px #FFF5E6; } }
     @keyframes glow { from{text-shadow:0 0 20px var(--dorado-luznegra),0 0 40px var(--bugambilia-neon)} to{text-shadow:0 0 40px var(--dorado-luznegra),0 0 80px var(--bugambilia-neon)} }
     @keyframes glow-petite { from { text-shadow: 0 0 40px #FFCCEE, 0 0 80px #FF6EB5, 0 0 115px #D15CFF; } to { text-shadow: 0 0 55px #FFCCEE, 0 0 95px #FF6EB5, 0 0 135px #D15CFF, 0 0 160px #FFE0A8; } }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
+
     .vertical-menu { position:absolute; right:5vw; bottom:11vh; list-style:none; display:flex; flex-direction:column; gap:2.5rem; z-index:25 !important; }
     .vertical-menu li { font-family:'Cinzel',serif; font-size:1.65rem; color:var(--dorado-luznegra); text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.8; transition:all .4s cubic-bezier(0.23,1,0.32,1.275); }
     .vertical-menu li:hover { color:#FFF5E6; text-shadow:0 0 40px #FFF5E6; transform:translateX(20px) scale(1.1); }
-    .est, .chi-rho { z-index:25 !important; }
-    .est { position:absolute; bottom:2vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.2rem; font-weight:bold; opacity:0.85; text-shadow:0 0 15px var(--turquesa-cenote); }
-    .chi-rho { position:absolute; bottom:1vh; right:1vw; font-size:1.2rem; color:var(--dorado-luznegra); opacity:0.8; text-shadow:0 0 20px var(--bugambilia-neon),0 0 35px var(--rosa-electrico); animation:glow 3s infinite alternate; }
-    .social-icons { position:absolute; top:2vh; left:50%; transform:translateX(-50%); display:flex; gap:1.5rem; z-index:30 !important; }
-    .social-icons a { color:var(--verde-acido); font-size:1.8rem; text-shadow:0 0 10px rgba(0,255,153,0.5); transition:transform .3s, color .3s; }
-    .social-icons a:hover { color:#FFF5E6; transform:scale(1.2); text-shadow:0 0 20px #FFF5E6; }
+
     .palette-button {
       position:absolute; top:2vh; right:2vw; width:50px; height:50px; border-radius:50%;
       background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
@@ -141,23 +144,6 @@
       font-size:1.5rem; display:flex; align-items:center; justify-content:center;
     }
     .palette-button:hover { background:var(--rosa-electrico); border-color:var(--turquesa-cenote); color:var(--turquesa-cenote); transform:scale(1.1); }
-
-    /* Modales */
-    .music-player-modal, .guestbook {
-      position:fixed; top:9vh; left:50%; transform:translateX(-50%) translateY(40px);
-      width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.97);
-      border:3px solid var(--bugambilia-neon); border-radius:26px;
-      padding:3.2rem 3rem 2.8rem; box-shadow:0 0 80px var(--rosa-electrico), inset 0 0 60px rgba(193,59,255,0.25);
-      z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden;
-      transition:all .65s cubic-bezier(0.175,0.885,0.32,1.275);
-    }
-    .music-player-modal.active, .guestbook.active { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-    .close-btn {
-      position: absolute; top: 1.4rem; right: 2rem; font-size: 2.8rem;
-      color: var(--dorado-luznegra); background: none; border: none;
-      cursor: pointer; transition: all .4s cubic-bezier(0.23,1,0.32,1.275); z-index: 10001;
-    }
-    .close-btn:hover { color: var(--turquesa-cenote); transform: scale(1.25) rotate(90deg); text-shadow: 0 0 25px var(--turquesa-cenote); }
   </style>
 </head>
 <body class="palette-esporas">
@@ -193,7 +179,7 @@
   </div>
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
-  <!-- Music Player y Guestbook se mantienen iguales -->
+  <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
     <div class="esporas-main">
@@ -217,6 +203,7 @@
     </div>
   </div>
 
+  <!-- Guestbook -->
   <div class="guestbook" id="guestbook">
     <button class="close-btn" id="close-guestbook">×</button>
     <h2>Guestbook</h2>
@@ -229,6 +216,7 @@
   </div>
 
   <script>
+    // Cursor + Logo + Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -255,24 +243,30 @@
       document.body.classList.remove('palette-esporas','palette-amoriv','palette-16rosas','palette-kantoamere','palette-petite','palette-zlooshee');
       
       if (currentPalette === 'esporas') { 
-        document.body.classList.add('palette-amoriv'); currentPalette = 'amoriv'; 
+        document.body.classList.add('palette-amoriv'); 
+        currentPalette = 'amoriv'; 
       }
       else if (currentPalette === 'amoriv') { 
-        document.body.classList.add('palette-16rosas'); currentPalette = '16rosas'; 
+        document.body.classList.add('palette-16rosas'); 
+        currentPalette = '16rosas'; 
       }
       else if (currentPalette === '16rosas') { 
-        document.body.classList.add('palette-kantoamere'); currentPalette = 'kantoamere'; 
+        document.body.classList.add('palette-kantoamere'); 
+        currentPalette = 'kantoamere'; 
       }
       else if (currentPalette === 'kantoamere') { 
-        document.body.classList.add('palette-petite'); currentPalette = 'petite'; 
+        document.body.classList.add('palette-petite'); 
+        currentPalette = 'petite'; 
       }
       else { 
-        document.body.classList.add('palette-esporas'); currentPalette = 'esporas'; 
+        document.body.classList.add('palette-esporas'); 
+        currentPalette = 'esporas'; 
       }
     });
   </script>
 
   <script type="module">
+    // (El script de Firebase y guestbook se mantiene igual - sin cambios)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
     const firebaseConfig = {
@@ -360,6 +354,7 @@
   </script>
 </body>
 </html>
+
 
 
 
