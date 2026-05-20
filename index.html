@@ -30,9 +30,18 @@
     }
 
     /* ====================== PALETAS ====================== */
+    body.palette-amoriv {
+      --ultravioleta-cosmico: #0A00CC;     /* Azul vibrante de la portada */
+      --bugambilia-neon: #FF1E1E;          /* Rojo intenso del símbolo */
+      --rosa-electrico: #FF4D4D;
+      --naranja-volcanico: #FF6B6B;
+      --verde-acido: #B0FF99;
+      --turquesa-cenote: #7FFFFF;
+      --dorado-luznegra: #FFEEEE;
+    }
     body.palette-esporas {
-      --ultravioleta-cosmico: #FF5A1F;     /* Naranja cálido como la portada */
-      --bugambilia-neon: #FFEB9E;          /* Vainilla / Limón claro para la lava */
+      --ultravioleta-cosmico: #FF5A1F;
+      --bugambilia-neon: #FFEB9E;
       --rosa-electrico: #FF9A6B;
       --naranja-volcanico: #FF8A3D;
       --verde-acido: #FFEBCC;
@@ -95,6 +104,7 @@
       font-size: clamp(4rem, 15vw, 10rem);
       letter-spacing: clamp(4px, 2vw, 12px);
       margin-bottom:1rem; white-space: nowrap;
+      z-index: 15;
     }
 
     .hanzel-logo span {
@@ -137,6 +147,11 @@
     .blob:nth-child(14){left:60%; bottom:-160px; animation-duration:42s; animation-delay:16s;}
     .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
 
+    /* Elementos siempre encima */
+    .est, .chi-rho, .social-icons, .palette-button, .vertical-menu {
+      z-index: 20 !important;
+    }
+
     .vertical-menu {
       position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
       gap:2.8rem; z-index:25 !important;
@@ -153,8 +168,8 @@
       .vertical-menu li { font-size:1.55rem; }
     }
 
-    .est { position:absolute; bottom:3vh; left:50%; transform:translateX(-50%); font-size:1.15rem; font-weight:bold; opacity:0.8; }
-    .chi-rho { position:absolute; bottom:1.5vh; right:2vw; font-size:1.3rem; opacity:0.75; }
+    .est { position:absolute; bottom:3vh; left:50%; transform:translateX(-50%); font-size:1.15rem; font-weight:bold; opacity:0.85; }
+    .chi-rho { position:absolute; bottom:1.5vh; right:2vw; font-size:1.4rem; opacity:0.8; }
 
     .social-icons {
       position:absolute; top:3vh; left:50%; transform:translateX(-50%); display:flex; gap:1.6rem; z-index:30;
@@ -170,7 +185,7 @@
     }
     .palette-button:hover { transform:scale(1.1); background:var(--rosa-electrico); color:var(--turquesa-cenote); }
 
-    /* ====================== MUSIC MODAL ====================== */
+    /* Modales */
     .music-player-modal, .guestbook {
       position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
@@ -261,7 +276,7 @@
     }
   </style>
 </head>
-<body class="palette-esporas">
+<body class="palette-amoriv">
   <div class="cursor" id="cursor"></div>
 
   <div class="intro">
@@ -358,10 +373,10 @@
     const logo = document.querySelector('.hanzel-logo');
     logo.innerHTML = logo.textContent.split('').map(c => `<span>${c}</span>`).join('');
 
-    let currentPalette = 'esporas';
+    let currentPalette = 'amoriv';
     document.getElementById('palette-toggle').addEventListener('click', () => {
-      document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
-      const palettes = ['esporas','petite','kantoamere','16rosas','zlooshee'];
+      document.body.classList.remove('palette-amoriv','palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
+      const palettes = ['amoriv','esporas','petite','kantoamere','16rosas','zlooshee'];
       currentPalette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
       document.body.classList.add(`palette-${currentPalette}`);
     });
@@ -470,6 +485,7 @@
   </script>
 </body>
 </html>
+
 
 
 
