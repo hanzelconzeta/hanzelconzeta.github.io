@@ -31,8 +31,8 @@
 
     /* ====================== PALETAS ====================== */
     body.palette-amoriv {
-      --ultravioleta-cosmico: #0A00CC;     /* Azul vibrante de la portada */
-      --bugambilia-neon: #FF1E1E;          /* Rojo intenso del símbolo */
+      --ultravioleta-cosmico: #0A00CC;
+      --bugambilia-neon: #FF1E1E;
       --rosa-electrico: #FF4D4D;
       --naranja-volcanico: #FF6B6B;
       --verde-acido: #B0FF99;
@@ -104,11 +104,11 @@
       font-size: clamp(4rem, 15vw, 10rem);
       letter-spacing: clamp(4px, 2vw, 12px);
       margin-bottom:1rem; white-space: nowrap;
-      z-index: 15;
+      z-index: 8; /* Detrás de la lava */
     }
 
     .hanzel-logo span {
-      background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
+      background:linear-gradient(90deg, #FFEEEE, #FFD700, #FF4D4D, #FFFFFF);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow 1.6s infinite alternate, float 6s infinite;
@@ -118,7 +118,7 @@
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
     /* ====================== LAVA / BLOBS ====================== */
-    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:5; }
+    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:12; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
       background:var(--bugambilia-neon); opacity:0.88;
@@ -131,6 +131,7 @@
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
+    /* Variaciones blobs */
     .blob:nth-child(1){left:5%; bottom:-100px; animation-duration:35s; width:180px; height:180px;}
     .blob:nth-child(2){left:15%; bottom:-150px; animation-duration:42s; animation-delay:5s;}
     .blob:nth-child(3){left:25%; bottom:-200px; animation-duration:38s; animation-delay:10s; width:260px; height:260px;}
@@ -147,14 +148,14 @@
     .blob:nth-child(14){left:60%; bottom:-160px; animation-duration:42s; animation-delay:16s;}
     .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
 
-    /* Elementos siempre encima */
+    /* Elementos por encima de la lava */
     .est, .chi-rho, .social-icons, .palette-button, .vertical-menu {
-      z-index: 20 !important;
+      z-index: 25 !important;
     }
 
     .vertical-menu {
       position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
-      gap:2.8rem; z-index:25 !important;
+      gap:2.8rem;
     }
     .vertical-menu li {
       font-family:'Cinzel',serif; font-size:1.7rem; color:var(--dorado-luznegra);
@@ -174,8 +175,13 @@
     .social-icons {
       position:absolute; top:3vh; left:50%; transform:translateX(-50%); display:flex; gap:1.6rem; z-index:30;
     }
-    .social-icons a { color:var(--verde-acido); font-size:1.85rem; transition:all .3s; }
-    .social-icons a:hover { transform:scale(1.25); color:#FFF5E6; }
+    .social-icons a { 
+      color: #FFDDDD; 
+      font-size:1.85rem; 
+      text-shadow: 0 0 12px rgba(255, 70, 70, 0.8);
+      transition:all .3s; 
+    }
+    .social-icons a:hover { transform:scale(1.25); color:#FFFFFF; text-shadow:0 0 20px #FF4D4D; }
 
     .palette-button {
       position:absolute; top:3vh; right:4vw; width:52px; height:52px; border-radius:50%;
@@ -316,15 +322,11 @@
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
-  <!-- MUSIC PLAYER -->
+  <!-- Music Player -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-    
     <h2 class="music-title" id="main-title">esporas de internet (2006-2009)</h2>
-    
-    <img class="esporas-cover" id="main-cover" 
-         src="https://hanzelconzeta.github.io/esporas.png" 
-         alt="Esporas de Internet">
+    <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
 
     <div class="album-buttons">
       <div class="album-option" data-index="1">i. 16 rosas y algo llamado amor</div>
@@ -485,6 +487,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
