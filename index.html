@@ -31,10 +31,10 @@
 
     /* ====================== PALETAS ====================== */
     body.palette-esporas {
-      --ultravioleta-cosmico: #FF4A00;
-      --bugambilia-neon: #E63B9F;     /* Ajustado más rosado/magenta */
-      --rosa-electrico: #FF2E98;
-      --naranja-volcanico: #FF6A3D;
+      --ultravioleta-cosmico: #FF5A1F;     /* Naranja cálido como la portada */
+      --bugambilia-neon: #FFEB9E;          /* Vainilla / Limón claro para la lava */
+      --rosa-electrico: #FF9A6B;
+      --naranja-volcanico: #FF8A3D;
       --verde-acido: #FFEBCC;
       --turquesa-cenote: #FFE6C7;
       --dorado-luznegra: #FFF5E6;
@@ -191,7 +191,7 @@
 
     .chapter-title {
       text-align:center; font-family:'Cinzel',serif; font-size:1.35rem; 
-      margin:2rem 0 1.2rem; color:var(--rosa-electrico); opacity:0.9;
+      margin:2.2rem 0 1.2rem; color:var(--rosa-electrico); opacity:0.9;
       letter-spacing:3px;
     }
 
@@ -418,9 +418,7 @@
     document.getElementById('main-cover').addEventListener('click', () => switchAlbum(0));
 
     document.querySelectorAll('.album-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchAlbum(parseInt(btn.dataset.index));
-      });
+      btn.addEventListener('click', () => switchAlbum(parseInt(btn.dataset.index)));
     });
 
     // Guestbook
@@ -472,6 +470,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
