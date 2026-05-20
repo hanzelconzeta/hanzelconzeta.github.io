@@ -29,7 +29,7 @@
       cursor:none; 
     }
 
-    /* ====================== PALETAS ====================== */
+    /* Paletas (mantengo las últimas) */
     body.palette-amoriv {
       --ultravioleta-cosmico: #0A00CC;
       --bugambilia-neon: #FF1E1E;
@@ -48,39 +48,10 @@
       --turquesa-cenote: #FFE6C7;
       --dorado-luznegra: #FFF5E6;
     }
-    body.palette-16rosas {
-      --ultravioleta-cosmico: #63010E;
-      --bugambilia-neon: #FCD4D4;
-      --rosa-electrico: #FF4500;
-      --verde-acido: #F5F5F5;
-      --turquesa-cenote: #FF69B4;
-      --dorado-luznegra: #F5F5F5;
-    }
-    body.palette-kantoamere {
-      --ultravioleta-cosmico: #4A0E2A;
-      --bugambilia-neon: #A8C0FF;
-      --rosa-electrico: #FF69B4;
-      --verde-acido: #B0FF99;
-      --turquesa-cenote: #99F0FF;
-      --dorado-luznegra: #F5E0FF;
-    }
-    body.palette-zlooshee {
-      --ultravioleta-cosmico: #0A1F3D;
-      --bugambilia-neon: #00FFCC;
-      --rosa-electrico: #FF00FF;
-      --naranja-volcanico: #FF4500;
-      --verde-acido: #00FF7F;
-      --turquesa-cenote: #40E0D0;
-      --dorado-luznegra: #FFD700;
-    }
-    body.palette-petite {
-      --ultravioleta-cosmico: #00D4FF;
-      --bugambilia-neon: #FF0088;
-      --rosa-electrico: #FF2EB8;
-      --verde-acido: #B0FFEE;
-      --turquesa-cenote: #00FFFF;
-      --dorado-luznegra: #E0FFFF;
-    }
+    body.palette-16rosas { --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5; }
+    body.palette-kantoamere { --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF; }
+    body.palette-zlooshee { --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF; --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700; }
+    body.palette-petite { --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF; }
 
     .cursor {
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none;
@@ -104,7 +75,7 @@
       font-size: clamp(4rem, 15vw, 10rem);
       letter-spacing: clamp(4px, 2vw, 12px);
       margin-bottom:1rem; white-space: nowrap;
-      z-index: 8; /* Detrás de la lava */
+      z-index: 8;
     }
 
     body.palette-amoriv .hanzel-logo span {
@@ -123,10 +94,7 @@
     @keyframes glow { from{text-shadow:0 0 30px var(--dorado-luznegra),0 0 55px var(--bugambilia-neon)} to{text-shadow:0 0 45px var(--dorado-luznegra),0 0 90px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
-    /* ====================== LAVA ====================== */
-    .lava-container { 
-      position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:12; 
-    }
+    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:12; }
     .blob {
       position:absolute; width:220px; height:220px; border-radius:50%;
       background:var(--bugambilia-neon); opacity:0.88;
@@ -139,6 +107,7 @@
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
+    /* Variaciones blobs (mantengo las que tenías) */
     .blob:nth-child(1){left:5%; bottom:-100px; animation-duration:35s; width:180px; height:180px;}
     .blob:nth-child(2){left:15%; bottom:-150px; animation-duration:42s; animation-delay:5s;}
     .blob:nth-child(3){left:25%; bottom:-200px; animation-duration:38s; animation-delay:10s; width:260px; height:260px;}
@@ -155,10 +124,7 @@
     .blob:nth-child(14){left:60%; bottom:-160px; animation-duration:42s; animation-delay:16s;}
     .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
 
-    /* Elementos por encima */
-    .est, .chi-rho, .social-icons, .palette-button, .vertical-menu {
-      z-index: 25 !important;
-    }
+    .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { z-index: 25 !important; }
 
     .vertical-menu {
       position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
@@ -215,16 +181,12 @@
       text-align:center; font-family:'Cinzel',serif; font-size:1.9rem; margin-bottom:2.2rem;
       color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
     }
-    .chapter-title {
-      text-align:center; font-family:'Cinzel',serif; font-size:1.35rem; 
-      margin:2.2rem 0 1.2rem; color:var(--rosa-electrico); opacity:0.9; letter-spacing:3px;
-    }
 
-    .esporas-cover {
+    .esporas-cover, .amoriv-cover {
       width: 205px; height: 205px; border-radius:16px; display:block; margin:0 auto 2.5rem;
       box-shadow:0 0 60px var(--bugambilia-neon); cursor:pointer; transition:all .4s;
     }
-    .esporas-cover:hover { transform:scale(1.05); box-shadow:0 0 85px var(--rosa-electrico); }
+    .esporas-cover:hover, .amoriv-cover:hover { transform:scale(1.05); box-shadow:0 0 85px var(--rosa-electrico); }
 
     .album-buttons { display:flex; flex-direction:column; gap:0.9rem; }
     .album-option {
@@ -239,8 +201,8 @@
       color:white;
     }
 
-    .spotify-container { margin-top:1.5rem; display:none; }
-    .spotify-container.show { display:block; }
+    .spotify-container, .album-cover-container { margin-top:1.5rem; display:none; }
+    .spotify-container.show, .album-cover-container.show { display:block; }
 
     .spotify-btn {
       display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
@@ -324,10 +286,12 @@
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
-  <!-- Music Player -->
+  <!-- ==================== MUSIC PLAYER ==================== -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
+    
     <h2 class="music-title" id="main-title">esporas de internet (2006-2009)</h2>
+    
     <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
 
     <div class="album-buttons">
@@ -342,6 +306,7 @@
       <div class="album-option" data-index="4">iv. amor intravenoso</div>
     </div>
 
+    <!-- Contenedor Spotify -->
     <div class="spotify-container" id="spotify-container">
       <iframe id="spotify-iframe" width="100%" height="420" frameborder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -351,6 +316,13 @@
           <i class="fab fa-spotify"></i> ABRIR EN SPOTIFY
         </a>
       </div>
+    </div>
+
+    <!-- Contenedor Portada Amor Intravenoso -->
+    <div class="album-cover-container" id="amoriv-cover-container">
+      <img class="amoriv-cover" id="amoriv-cover" 
+           src="https://hanzelconzeta.github.io/portadaamor.PNG" 
+           alt="Amor Intravenoso">
     </div>
   </div>
 
@@ -367,7 +339,7 @@
   </div>
 
   <script>
-    // Cursor + Logo + Palette
+    // Cursor, Logo y Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -407,39 +379,59 @@
       { index: 1, embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
       { index: 2, embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R" },
       { index: 3, embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR" },
-      { index: 4, embed: "#", link: "#" }
+      { index: 4, isCover: true } // Especial para Amor Intravenoso
     ];
 
     function switchAlbum(index) {
       const album = albums.find(a => a.index === index);
       if (!album) return;
-      document.getElementById('spotify-iframe').src = album.embed;
-      document.getElementById('open-spotify-btn').href = album.link;
-      document.getElementById('spotify-container').classList.add('show');
+
+      // Ocultar ambos contenedores
+      document.getElementById('spotify-container').classList.remove('show');
+      document.getElementById('amoriv-cover-container').classList.remove('show');
+
+      if (album.isCover) {
+        // Mostrar portada de Amor Intravenoso
+        document.getElementById('amoriv-cover-container').classList.add('show');
+      } else {
+        // Mostrar Spotify
+        document.getElementById('spotify-iframe').src = album.embed;
+        document.getElementById('open-spotify-btn').href = album.link;
+        document.getElementById('spotify-container').classList.add('show');
+      }
+
+      // Activar botón
       document.querySelectorAll('.album-option').forEach(btn => {
         btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
       });
     }
 
+    // Abrir modal
     document.getElementById('music-link').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.add('active');
       document.getElementById('spotify-container').classList.remove('show');
+      document.getElementById('amoriv-cover-container').classList.remove('show');
     });
 
     document.getElementById('close-music-player').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.remove('active');
       document.getElementById('spotify-iframe').src = '';
       document.getElementById('spotify-container').classList.remove('show');
+      document.getElementById('amoriv-cover-container').classList.remove('show');
     });
 
+    // Título y portada principal
     document.getElementById('main-title').addEventListener('click', () => switchAlbum(0));
     document.getElementById('main-cover').addEventListener('click', () => switchAlbum(0));
 
+    // Botones
     document.querySelectorAll('.album-option').forEach(btn => {
-      btn.addEventListener('click', () => switchAlbum(parseInt(btn.dataset.index)));
+      btn.addEventListener('click', () => {
+        switchAlbum(parseInt(btn.dataset.index));
+      });
     });
 
-    // Guestbook
+    // Guestbook (sin cambios)
     document.getElementById('guestbook-link').addEventListener('click', () => {
       document.getElementById('guestbook').classList.add('active');
       loadComments();
@@ -488,6 +480,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
