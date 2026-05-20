@@ -83,38 +83,22 @@
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
 
-    /* Menú Vertical */
     .vertical-menu {
       position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
       gap:2.8rem; z-index:25 !important;
     }
     .vertical-menu li {
-      font-family:'Cinzel',serif; 
-      font-size:1.7rem; 
-      color:var(--dorado-luznegra);
-      text-transform:uppercase; 
-      letter-spacing:6px; 
-      cursor:pointer; 
-      opacity:0.85;
+      font-family:'Cinzel',serif; font-size:1.7rem; color:var(--dorado-luznegra);
+      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.85;
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
     }
     .vertical-menu li:hover, .vertical-menu li:active {
-      color:#FFF5E6;
-      text-shadow:0 0 40px #FFF5E6;
-      transform:translateX(25px) scale(1.08);
+      color:#FFF5E6; text-shadow:0 0 40px #FFF5E6; transform:translateX(25px) scale(1.08);
     }
 
-    /* Mobile Menu */
     @media (max-width: 768px) {
-      .vertical-menu {
-        right: 6vw;
-        bottom: 9vh;
-        gap: 2.4rem;
-      }
-      .vertical-menu li {
-        font-size: 1.55rem;
-        letter-spacing: 4px;
-      }
+      .vertical-menu { right:6vw; bottom:9vh; gap:2.4rem; }
+      .vertical-menu li { font-size:1.55rem; letter-spacing:4px; }
     }
 
     .est { position:absolute; bottom:3vh; left:50%; transform:translateX(-50%); color:var(--dorado-luznegra); font-size:1.15rem; font-weight:bold; opacity:0.8; }
@@ -123,9 +107,7 @@
     .social-icons {
       position:absolute; top:3vh; left:50%; transform:translateX(-50%); display:flex; gap:1.6rem; z-index:30;
     }
-    .social-icons a {
-      color:var(--verde-acido); font-size:1.85rem; transition:all .3s;
-    }
+    .social-icons a { color:var(--verde-acido); font-size:1.85rem; transition:all .3s; }
     .social-icons a:hover { transform:scale(1.25); color:#FFF5E6; }
 
     .palette-button {
@@ -136,10 +118,10 @@
     }
     .palette-button:hover { transform:scale(1.1); background:var(--rosa-electrico); color:var(--turquesa-cenote); }
 
-    /* ====================== MODALES ====================== */
+    /* Modales */
     .guestbook, .music-player-modal {
       position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
-      width:460px; max-height:90vh; overflow-y:auto; background:rgba(11,0,20,0.98);
+      width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
       border:3px solid var(--bugambilia-neon); border-radius:28px;
       padding:3rem 2.8rem; box-shadow:0 0 90px var(--rosa-electrico), inset 0 0 70px rgba(193,59,255,0.2);
       z-index:10000; color:var(--verde-acido); opacity:0; visibility:hidden;
@@ -149,94 +131,76 @@
       opacity:1; visibility:visible; transform:translate(-50%, -50%);
     }
 
-    /* GUESTBOOK - Estilo Premium */
-    .guestbook h2 {
-      text-align:center; 
-      font-family:'Cinzel',serif; 
-      font-size:2.4rem; 
-      margin-bottom:2.2rem;
-      background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+    /* Music Player */
+    .music-title {
+      text-align:center; font-family:'Cinzel',serif; font-size:1.85rem; margin-bottom:1.2rem;
+      color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
+    }
+    .music-title:hover { text-shadow:0 0 25px var(--bugambilia-neon); }
+
+    .esporas-cover {
+      width: 205px; height: 205px; border-radius:16px; display:block; margin:0 auto 1.8rem;
+      box-shadow:0 0 60px var(--bugambilia-neon); cursor:pointer; transition:all .4s;
+    }
+    .esporas-cover:hover { transform:scale(1.05); box-shadow:0 0 80px var(--rosa-electrico); }
+
+    .album-buttons {
+      display:flex; flex-direction:column; gap:0.8rem; margin:2rem 0;
+    }
+    .album-option {
+      background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
+      color:var(--dorado-luznegra); padding:14px 18px; border-radius:14px;
+      cursor:pointer; font-family:'Cinzel',serif; text-align:center; transition:all .3s;
+      text-transform: lowercase;
+    }
+    .album-option:hover, .album-option.active {
+      border-color:var(--rosa-electrico);
+      background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
+      color:white;
     }
 
+    .spotify-container { margin-top:1.5rem; display:none; }
+    .spotify-container.show { display:block; }
+
+    .spotify-btn {
+      display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
+      padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.05rem;
+      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s;
+    }
+    .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
+
+    /* Guestbook (mantenido) */
+    .guestbook h2 {
+      text-align:center; font-family:'Cinzel',serif; font-size:2.4rem; margin-bottom:2.2rem;
+      background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
     .guestbook input, .guestbook textarea {
-      width:100%; 
-      background:rgba(255,255,255,0.06); 
-      border:2px solid rgba(193,59,255,0.4);
-      color:var(--dorado-luznegra); 
-      padding:15px 18px; 
-      border-radius:14px; 
-      margin-bottom:1.2rem;
-      font-family:'Roboto Slab',serif; 
+      width:100%; background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
+      color:var(--dorado-luznegra); padding:15px 18px; border-radius:14px; margin-bottom:1.2rem;
       font-size:1.1rem;
-      transition:all .3s;
     }
     .guestbook input:focus, .guestbook textarea:focus {
-      border-color:var(--rosa-electrico);
-      box-shadow:0 0 30px rgba(255,46,152,0.5);
-      outline:none;
+      border-color:var(--rosa-electrico); box-shadow:0 0 30px rgba(255,46,152,0.5);
     }
     .guestbook textarea { min-height:160px; resize:vertical; }
-
     .guestbook button[type="submit"] {
-      width:100%; 
-      padding:16px; 
-      background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
-      color:white; 
-      border:none; 
-      border-radius:50px; 
-      font-size:1.15rem; 
-      font-weight:bold;
-      cursor:pointer; 
-      text-transform:uppercase; 
-      letter-spacing:2px;
-      margin-top:0.5rem;
+      width:100%; padding:16px; background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
+      color:white; border:none; border-radius:50px; font-size:1.15rem; font-weight:bold; cursor:pointer;
     }
-    .guestbook button[type="submit"]:hover {
-      transform:scale(1.04);
-      box-shadow:0 0 45px var(--rosa-electrico);
-    }
-
     .comments { margin-top:2.8rem; display:flex; flex-direction:column; gap:1.6rem; }
     .comment {
-      background:rgba(255,255,255,0.05);
-      border-left:5px solid var(--bugambilia-neon);
-      padding:1.6rem 1.8rem;
-      border-radius:14px;
-      transition:all .3s;
+      background:rgba(255,255,255,0.05); border-left:5px solid var(--bugambilia-neon);
+      padding:1.6rem 1.8rem; border-radius:14px;
     }
-    .comment:hover {
-      background:rgba(255,255,255,0.09);
-      transform:translateX(10px);
-      border-left-color:var(--rosa-electrico);
-    }
-    .comment .author {
-      color:var(--rosa-electrico); 
-      font-family:'Cinzel',serif; 
-      font-size:1.25rem; 
-      margin-bottom:0.5rem;
-    }
-    .comment p { line-height:1.65; margin-bottom:0.7rem; }
-    .comment .date { font-size:0.9rem; opacity:0.65; }
-
     .close-btn {
       position:absolute; top:1.2rem; right:1.8rem; font-size:3rem;
-      color:var(--dorado-luznegra); background:none; border:none;
-      cursor:pointer; transition:all .4s;
+      color:var(--dorado-luznegra); background:none; border:none; cursor:pointer;
     }
-    .close-btn:hover {
-      color:var(--turquesa-cenote);
-      transform:scale(1.2) rotate(90deg);
-    }
+    .close-btn:hover { color:var(--turquesa-cenote); transform:scale(1.2) rotate(90deg); }
 
-    /* Mobile Adjustments */
     @media (max-width: 768px) {
-      .guestbook, .music-player-modal {
-        width: 92vw;
-        padding: 2.8rem 2rem;
-      }
-      .guestbook h2 { font-size: 2.1rem; }
+      .guestbook, .music-player-modal { width:92vw; padding:2.8rem 2rem; }
     }
   </style>
 </head>
@@ -280,14 +244,33 @@
 
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
-  <!-- Music Player Modal -->
+  <!-- ==================== MUSIC PLAYER MODAL ==================== -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-    <div style="text-align:center; margin-bottom:2rem;">
-      <div class="luna-message" style="font-family:'Playfair Display',serif; font-size:1.9rem; color:#FFCC99;">esporas de internet</div>
-      <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet" style="width:205px; height:205px; border-radius:16px; box-shadow:0 0 60px var(--bugambilia-neon);">
+    
+    <h2 class="music-title" id="main-title">esporas de internet (2006-2009)</h2>
+    
+    <img class="esporas-cover" id="main-cover" 
+         src="https://hanzelconzeta.github.io/esporas.png" 
+         alt="Esporas de Internet">
+
+    <div class="album-buttons" id="album-buttons">
+      <div class="album-option" data-index="0">i. 16 rosas y algo llamado amor</div>
+      <div class="album-option" data-index="1">ii. kanto amere</div>
+      <div class="album-option" data-index="2">iii. petite</div>
+      <div class="album-option" data-index="3">iv. amor intravenoso</div>
     </div>
-    <!-- Resto del music player igual que antes -->
+
+    <div class="spotify-container" id="spotify-container">
+      <iframe id="spotify-iframe" width="100%" height="420" frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              style="border-radius:16px; box-shadow:0 0 40px rgba(193,59,255,0.3);"></iframe>
+      <div style="text-align:center; margin-top:1.2rem;">
+        <a id="open-spotify-btn" href="#" target="_blank" class="spotify-btn">
+          <i class="fab fa-spotify"></i> ABRIR EN SPOTIFY
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- Guestbook -->
@@ -303,38 +286,32 @@
   </div>
 
   <script>
-    // Cursor
+    // Cursor, Logo y Palette (mantenido)
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
-      if (cursor) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      }
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     });
 
-    // Logo
     const logo = document.querySelector('.hanzel-logo');
     const text = logo.textContent;
     logo.innerHTML = '';
-    text.split('').forEach((char, i) => {
+    text.split('').forEach(char => {
       const span = document.createElement('span');
       span.textContent = char;
       logo.appendChild(span);
     });
 
-    // Palette
     let currentPalette = 'esporas';
     document.getElementById('palette-toggle').addEventListener('click', () => {
       document.body.classList.remove('palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
       const palettes = ['esporas','petite','kantoamere','16rosas','zlooshee'];
-      let index = palettes.indexOf(currentPalette);
-      currentPalette = palettes[(index + 1) % palettes.length];
+      currentPalette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
       document.body.classList.add(`palette-${currentPalette}`);
     });
   </script>
 
   <script type="module">
-    // Firebase y lógica de modales (mantengo igual tu código original)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
@@ -347,40 +324,76 @@
       appId: "1:855182658974:web:7dede44a589105053c1a8f"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
 
-    // Abrir modales
+    const albums = [
+      { title: "esporas de internet (2006-2009)", embed: "https://open.spotify.com/embed/album/2584oIavrgxKiQcRQgkx8c", link: "https://open.spotify.com/album/2584oIavrgxKiQcRQgkx8c" },
+      { title: "i. 16 rosas y algo llamado amor", embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
+      { title: "ii. kanto amere", embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R" },
+      { title: "iii. petite", embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR" },
+      { title: "iv. amor intravenoso", embed: "#", link: "#" } // Placeholder
+    ];
+
+    let currentIndex = -1;
+
+    function switchAlbum(index) {
+      currentIndex = index;
+      const album = albums[index];
+      document.getElementById('spotify-iframe').src = album.embed;
+      document.getElementById('open-spotify-btn').href = album.link;
+      document.getElementById('spotify-container').classList.add('show');
+
+      document.querySelectorAll('.album-option').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+
+    // Abrir modal de música
     document.getElementById('music-link').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.add('active');
+      if (currentIndex === -1) switchAlbum(0); // Abre por defecto el recopilatorio
     });
+
+    document.getElementById('close-music-player').addEventListener('click', () => {
+      document.getElementById('music-player-modal').classList.remove('active');
+      document.getElementById('spotify-iframe').src = '';
+      document.getElementById('spotify-container').classList.remove('show');
+    });
+
+    // Clic en título o portada → Recopilatorio
+    document.getElementById('main-title').addEventListener('click', () => switchAlbum(0));
+    document.getElementById('main-cover').addEventListener('click', () => switchAlbum(0));
+
+    // Botones de álbumes
+    document.querySelectorAll('.album-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.dataset.index);
+        switchAlbum(index);
+      });
+    });
+
+    // Guestbook (sin cambios)
     document.getElementById('guestbook-link').addEventListener('click', () => {
       document.getElementById('guestbook').classList.add('active');
       loadComments();
     });
 
-    document.getElementById('close-music-player').addEventListener('click', () => {
-      document.getElementById('music-player-modal').classList.remove('active');
-    });
     document.getElementById('close-guestbook').addEventListener('click', () => {
       document.getElementById('guestbook').classList.remove('active');
     });
 
-    // Guestbook Logic
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
       const message = document.getElementById('message').value.trim();
       if (!name || !message) return;
-
       try {
         await addDoc(collection(db, 'comments'), { name, message, timestamp: serverTimestamp() });
         alert('¡Gracias por firmar el guestbook ✨');
         e.target.reset();
         loadComments();
-      } catch(err) {
-        alert('Error al guardar el mensaje');
-      }
+      } catch(err) { alert('Error al guardar'); }
     });
 
     async function loadComments() {
@@ -391,7 +404,7 @@
         const snapshot = await getDocs(q);
         list.innerHTML = '';
         if (snapshot.empty) {
-          list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero en firmar el guestbook ✨</p>';
+          list.innerHTML = '<p style="text-align:center;opacity:0.6;">Sé el primero en firmar ✨</p>';
           return;
         }
         snapshot.forEach(doc => {
@@ -403,12 +416,13 @@
           list.appendChild(div);
         });
       } catch(err) {
-        list.innerHTML = '<p style="text-align:center;color:#ff7777;">Error al cargar los mensajes</p>';
+        list.innerHTML = '<p style="text-align:center;color:#ff7777;">Error al cargar</p>';
       }
     }
   </script>
 </body>
 </html>
+
 
 
 
