@@ -131,7 +131,7 @@
       opacity:1; visibility:visible; transform:translate(-50%, -50%);
     }
 
-    /* Music Player */
+    /* Music Player Styles */
     .music-title {
       text-align:center; font-family:'Cinzel',serif; font-size:1.85rem; margin-bottom:1.2rem;
       color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
@@ -151,7 +151,6 @@
       background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
       color:var(--dorado-luznegra); padding:14px 18px; border-radius:14px;
       cursor:pointer; font-family:'Cinzel',serif; text-align:center; transition:all .3s;
-      text-transform: lowercase;
     }
     .album-option:hover, .album-option.active {
       border-color:var(--rosa-electrico);
@@ -169,7 +168,7 @@
     }
     .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
 
-    /* Guestbook (mantenido) */
+    /* Guestbook */
     .guestbook h2 {
       text-align:center; font-family:'Cinzel',serif; font-size:2.4rem; margin-bottom:2.2rem;
       background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
@@ -255,10 +254,10 @@
          alt="Esporas de Internet">
 
     <div class="album-buttons" id="album-buttons">
-      <div class="album-option" data-index="0">i. 16 rosas y algo llamado amor</div>
-      <div class="album-option" data-index="1">ii. kanto amere</div>
-      <div class="album-option" data-index="2">iii. petite</div>
-      <div class="album-option" data-index="3">iv. amor intravenoso</div>
+      <div class="album-option" data-index="1">i. 16 rosas y algo llamado amor</div>
+      <div class="album-option" data-index="2">ii. kanto amere</div>
+      <div class="album-option" data-index="3">iii. petite</div>
+      <div class="album-option" data-index="4">iv. amor intravenoso</div>
     </div>
 
     <div class="spotify-container" id="spotify-container">
@@ -286,7 +285,7 @@
   </div>
 
   <script>
-    // Cursor, Logo y Palette (mantenido)
+    // Cursor + Logo + Palette
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -294,13 +293,7 @@
     });
 
     const logo = document.querySelector('.hanzel-logo');
-    const text = logo.textContent;
-    logo.innerHTML = '';
-    text.split('').forEach(char => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      logo.appendChild(span);
-    });
+    logo.innerHTML = logo.textContent.split('').map(char => `<span>${char}</span>`).join('');
 
     let currentPalette = 'esporas';
     document.getElementById('palette-toggle').addEventListener('click', () => {
@@ -332,7 +325,7 @@
       { title: "i. 16 rosas y algo llamado amor", embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
       { title: "ii. kanto amere", embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R" },
       { title: "iii. petite", embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR" },
-      { title: "iv. amor intravenoso", embed: "#", link: "#" } // Placeholder
+      { title: "iv. amor intravenoso", embed: "#", link: "#" }
     ];
 
     let currentIndex = -1;
@@ -345,16 +338,20 @@
       document.getElementById('spotify-container').classList.add('show');
 
       document.querySelectorAll('.album-option').forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
+        btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
       });
     }
 
-    // Abrir modal de música
+    // Abrir Música
     document.getElementById('music-link').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.add('active');
-      if (currentIndex === -1) switchAlbum(0); // Abre por defecto el recopilatorio
+      document.getElementById('spotify-container').classList.remove('show'); // Ocultar player al abrir
+      if (currentIndex === -1) {
+        // No cargar automáticamente, esperar a que el usuario haga clic
+      }
     });
 
+    // Cerrar modal
     document.getElementById('close-music-player').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.remove('active');
       document.getElementById('spotify-iframe').src = '';
@@ -373,7 +370,7 @@
       });
     });
 
-    // Guestbook (sin cambios)
+    // Guestbook
     document.getElementById('guestbook-link').addEventListener('click', () => {
       document.getElementById('guestbook').classList.add('active');
       loadComments();
@@ -422,6 +419,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
