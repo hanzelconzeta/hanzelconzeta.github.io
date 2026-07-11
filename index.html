@@ -149,7 +149,7 @@
     .blob:nth-child(14){left:60%; bottom:-160px; animation-duration:42s; animation-delay:16s;}
     .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
 
-    /* Luciérnagas (solo en cementerio) */
+    /* Luciérnagas - Muchas más */
     .fireflies {
       position: absolute;
       inset: 0;
@@ -166,16 +166,16 @@
       height: 4px;
       background: #E0FFCC;
       border-radius: 50%;
-      box-shadow: 0 0 8px #A5FF4D, 0 0 16px #39FF14;
-      animation: firefly-float 15s infinite linear, firefly-glow 2s infinite alternate;
+      box-shadow: 0 0 8px #A5FF4D, 0 0 18px #39FF14;
+      animation: firefly-float 18s infinite linear, firefly-glow 1.8s infinite alternate;
     }
     @keyframes firefly-float {
       0% { transform: translate(0, 0); }
       100% { transform: translate(var(--x), var(--y)); }
     }
     @keyframes firefly-glow {
-      from { opacity: 0.4; box-shadow: 0 0 6px #A5FF4D; }
-      to { opacity: 1; box-shadow: 0 0 14px #39FF14, 0 0 22px #7FFF4D; }
+      from { opacity: 0.3; box-shadow: 0 0 6px #A5FF4D; }
+      to { opacity: 1; box-shadow: 0 0 16px #39FF14, 0 0 26px #7FFF4D; }
     }
 
     .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { z-index: 25 !important; }
@@ -213,7 +213,7 @@
     }
     .palette-button:hover { transform:scale(1.1); background:var(--rosa-electrico); color:var(--turquesa-cenote); }
 
-    /* Modals */
+    /* Music Modal y Guestbook - Estilos restaurados */
     .music-player-modal, .guestbook {
       position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
@@ -225,13 +225,67 @@
     .music-player-modal.active, .guestbook.active {
       opacity:1; visibility:visible; transform:translate(-50%, -50%);
     }
-    .music-title, .chapter-title { color:var(--dorado-luznegra); }
-    .chapter-title { color:var(--rosa-electrico); }
+    .music-title {
+      text-align:center; font-family:'Cinzel',serif; font-size:1.9rem; margin-bottom:2.2rem;
+      color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
+    }
+    .chapter-title {
+      text-align:center; font-family:'Cinzel',serif; font-size:1.55rem;
+      margin:2.8rem 0 1.6rem; color:var(--rosa-electrico); opacity:0.95;
+      letter-spacing:4px;
+    }
+    .esporas-cover {
+      width: 205px; height: 205px; border-radius:16px; display:block; margin:0 auto 2.5rem;
+      box-shadow:0 0 60px var(--bugambilia-neon); cursor:pointer; transition:all .4s;
+    }
     .esporas-cover:hover { transform:scale(1.05); box-shadow:0 0 85px var(--rosa-electrico); }
+    .album-buttons { display:flex; flex-direction:column; gap:0.9rem; }
+    .album-option {
+      background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
+      color:var(--dorado-luznegra); padding:15px 18px; border-radius:14px;
+      cursor:pointer; font-family:'Cinzel',serif; text-align:center; transition:all .3s;
+      text-transform: lowercase;
+    }
     .album-option:hover, .album-option.active {
       border-color:var(--rosa-electrico);
       background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
       color:white;
+    }
+    .spotify-container { margin-top:1.5rem; display:none; }
+    .spotify-container.show { display:block; }
+    .spotify-btn {
+      display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
+      padding:13px 28px; border-radius:50px; text-decoration:none; font-weight:bold;
+      box-shadow:0 0 25px rgba(57,255,20,0.6); transition:all .3s;
+    }
+    .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
+
+    .guestbook h2 {
+      text-align:center; font-family:'Cinzel',serif; font-size:2.4rem; margin-bottom:2.2rem;
+      background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .guestbook input, .guestbook textarea {
+      width:100%; background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
+      color:var(--dorado-luznegra); padding:15px 18px; border-radius:14px; margin-bottom:1.2rem;
+      font-size:1.1rem;
+    }
+    .guestbook input:focus, .guestbook textarea:focus {
+      border-color:var(--rosa-electrico); box-shadow:0 0 30px rgba(57,255,20,0.5);
+    }
+    .guestbook textarea { min-height:160px; resize:vertical; }
+    .guestbook button[type="submit"] {
+      width:100%; padding:16px; background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
+      color:white; border:none; border-radius:50px; font-size:1.15rem; font-weight:bold; cursor:pointer;
+    }
+    .comments { margin-top:2.8rem; display:flex; flex-direction:column; gap:1.6rem; }
+    .comment {
+      background:rgba(255,255,255,0.05); border-left:5px solid var(--bugambilia-neon);
+      padding:1.6rem 1.8rem; border-radius:14px;
+    }
+    .close-btn {
+      position:absolute; top:1.2rem; right:1.8rem; font-size:3rem;
+      color:var(--dorado-luznegra); background:none; border:none; cursor:pointer;
     }
     .close-btn:hover { color:var(--turquesa-cenote); transform:scale(1.2) rotate(90deg); }
     @media (max-width: 768px) {
@@ -325,7 +379,6 @@
     const logo = document.querySelector('.hanzel-logo');
     logo.innerHTML = logo.textContent.split('').map(c => `<span>${c}</span>`).join('');
 
-    // Orden solicitado: cementerio primero
     let currentPalette = 'cementerio';
     document.getElementById('palette-toggle').addEventListener('click', () => {
       document.body.classList.remove('palette-amoriv','palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee','palette-cementerio');
@@ -334,23 +387,23 @@
       document.body.classList.add(`palette-${currentPalette}`);
     });
 
-    // Luciérnagas (solo en cementerio)
+    // Luciérnagas - Muchas más (70)
     function createFireflies() {
       const container = document.getElementById('fireflies');
       container.innerHTML = '';
-      for (let i = 0; i < 35; i++) {
+      for (let i = 0; i < 70; i++) {
         const fly = document.createElement('div');
         fly.className = 'firefly';
         const left = Math.random() * 100;
-        const size = Math.random() * 3 + 3;
+        const size = Math.random() * 3.5 + 3;
         fly.style.left = `${left}vw`;
-        fly.style.top = `${Math.random() * 80}vh`;
+        fly.style.top = `${Math.random() * 85}vh`;
         fly.style.width = `${size}px`;
         fly.style.height = `${size}px`;
-        fly.style.animationDuration = `${Math.random() * 12 + 12}s`;
-        fly.style.animationDelay = `-${Math.random() * 20}s`;
-        fly.style.setProperty('--x', `${(Math.random() - 0.5) * 400}px`);
-        fly.style.setProperty('--y', `${(Math.random() - 0.5) * 300 - 100}px`);
+        fly.style.animationDuration = `${Math.random() * 15 + 14}s`;
+        fly.style.animationDelay = `-${Math.random() * 25}s`;
+        fly.style.setProperty('--x', `${(Math.random() - 0.5) * 500}px`);
+        fly.style.setProperty('--y', `${(Math.random() - 0.5) * 400 - 120}px`);
         container.appendChild(fly);
       }
     }
@@ -449,6 +502,7 @@
   </script>
 </body>
 </html>
+
 
 
 
