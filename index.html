@@ -149,7 +149,7 @@
     .blob:nth-child(14){left:60%; bottom:-160px; animation-duration:42s; animation-delay:16s;}
     .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
 
-    /* Luciérnagas - Aún más intensas */
+    /* Luciérnagas */
     .fireflies {
       position: absolute;
       inset: 0;
@@ -237,6 +237,7 @@
     .esporas-cover {
       width: 205px; height: 205px; border-radius:16px; display:block; margin:0 auto 2.5rem;
       box-shadow:0 0 60px var(--bugambilia-neon); cursor:pointer; transition:all .4s;
+      object-fit: cover;
     }
     .esporas-cover:hover { transform:scale(1.05); box-shadow:0 0 85px var(--rosa-electrico); }
     .album-buttons { display:flex; flex-direction:column; gap:0.9rem; }
@@ -387,7 +388,7 @@
       document.body.classList.add(`palette-${currentPalette}`);
     });
 
-    // Luciérnagas - Muy densas
+    // Luciérnagas
     function createFireflies() {
       const container = document.getElementById('fireflies');
       container.innerHTML = '';
@@ -424,30 +425,28 @@
     initializeApp(firebaseConfig);
     const db = getFirestore();
     const albums = [
-      { index: 0, embed: "https://open.spotify.com/embed/album/2584oIavrgxKiQcRQgkx8c", link: "https://open.spotify.com/album/2584oIavrgxKiQcRQgkx8c" },
-      { index: 1, embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
-      { index: 2, embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R" },
-      { index: 3, embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR" },
-      { index: 4, embed: "https://open.spotify.com/embed/album/3GW1IVelAsgs9jKq2jBoDK", link: "https://open.spotify.com/album/3GW1IVelAsgs9jKq2jBoDK" },
-      { index: 5, embed: "#", link: "#" } // placeholder - actualizar el 18 de julio
+      { index: 0, embed: "https://open.spotify.com/embed/album/2584oIavrgxKiQcRQgkx8c", link: "https://open.spotify.com/album/2584oIavrgxKiQcRQgkx8c", cover: "https://hanzelconzeta.github.io/esporas.png" },
+      { index: 1, embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7", cover: "https://hanzelconzeta.github.io/esporas.png" },
+      { index: 2, embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R", cover: "https://hanzelconzeta.github.io/esporas.png" },
+      { index: 3, embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR", cover: "https://hanzelconzeta.github.io/esporas.png" },
+      { index: 4, embed: "https://open.spotify.com/embed/album/3GW1IVelAsgs9jKq2jBoDK", link: "https://open.spotify.com/album/3GW1IVelAsgs9jKq2jBoDK", cover: "https://hanzelconzeta.github.io/esporas.png" },
+      { index: 5, embed: "#", link: "#", cover: "https://hanzelconzeta.github.io/cementerio.JPG" }
     ];
     function switchAlbum(index) {
       const album = albums.find(a => a.index === index);
       if (!album) return;
+
+      // Cambiar portada
+      const cover = document.getElementById('main-cover');
+      cover.src = album.cover;
+      cover.alt = index === 5 ? "Cementerio de Luciérnagas" : "Esporas de Internet";
+
+      // Spotify
       document.getElementById('spotify-iframe').src = album.embed;
       document.getElementById('open-spotify-btn').href = album.link;
       document.getElementById('spotify-container').classList.add('show');
 
-      // Cambiar portada según el álbum seleccionado
-      const cover = document.getElementById('main-cover');
-      if (index === 5) {
-        cover.src = "https://hanzelconzeta.github.io/cementerio.JPG";
-        cover.alt = "Cementerio de Luciérnagas";
-      } else {
-        cover.src = "https://hanzelconzeta.github.io/esporas.png";
-        cover.alt = "Esporas de Internet";
-      }
-
+      // Activar botón
       document.querySelectorAll('.album-option').forEach(btn => {
         btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
       });
@@ -455,6 +454,8 @@
     document.getElementById('music-link').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.add('active');
       document.getElementById('spotify-container').classList.remove('show');
+      // Reset a portada principal al abrir
+      document.getElementById('main-cover').src = "https://hanzelconzeta.github.io/esporas.png";
     });
     document.getElementById('close-music-player').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.remove('active');
@@ -464,7 +465,9 @@
     document.getElementById('main-title').addEventListener('click', () => switchAlbum(0));
     document.getElementById('main-cover').addEventListener('click', () => switchAlbum(0));
     document.querySelectorAll('.album-option').forEach(btn => {
-      btn.addEventListener('click', () => switchAlbum(parseInt(btn.dataset.index)));
+      btn.addEventListener('click', () => {
+        switchAlbum(parseInt(btn.dataset.index));
+      });
     });
 
     // Guestbook
@@ -513,6 +516,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
