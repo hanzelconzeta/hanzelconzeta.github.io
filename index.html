@@ -16,20 +16,19 @@
       --turquesa-cenote:#00F0FF;
       --dorado-luznegra:#FFD700;
     }
-
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; overflow-x:hidden; }
-    body { 
-      background:var(--ultravioleta-cosmico); 
-      color:var(--dorado-luznegra); 
-      font-family:'Roboto Slab',serif; 
-      height:100vh; 
-      overflow:hidden; 
-      position:relative; 
-      cursor:none; 
+    body {
+      background:var(--ultravioleta-cosmico);
+      color:var(--dorado-luznegra);
+      font-family:'Roboto Slab',serif;
+      height:100vh;
+      overflow:hidden;
+      position:relative;
+      cursor:none;
     }
 
-    /* Paletas */
+    /* ==================== PALETAS ==================== */
     body.palette-amoriv {
       --ultravioleta-cosmico: #0A00CC;
       --bugambilia-neon: #FF1E1E;
@@ -48,28 +47,64 @@
       --turquesa-cenote: #FFE6C7;
       --dorado-luznegra: #FFF5E6;
     }
-    body.palette-16rosas { --ultravioleta-cosmico: #63010E; --bugambilia-neon: #FCD4D4; --rosa-electrico: #FF4500; --verde-acido: #F5F5F5; --turquesa-cenote: #FF69B4; --dorado-luznegra: #F5F5F5; }
-    body.palette-kantoamere { --ultravioleta-cosmico: #4A0E2A; --bugambilia-neon: #A8C0FF; --rosa-electrico: #FF69B4; --verde-acido: #B0FF99; --turquesa-cenote: #99F0FF; --dorado-luznegra: #F5E0FF; }
-    body.palette-zlooshee { --ultravioleta-cosmico: #0A1F3D; --bugambilia-neon: #00FFCC; --rosa-electrico: #FF00FF; --naranja-volcanico: #FF4500; --verde-acido: #00FF7F; --turquesa-cenote: #40E0D0; --dorado-luznegra: #FFD700; }
-    body.palette-petite { --ultravioleta-cosmico: #00D4FF; --bugambilia-neon: #FF0088; --rosa-electrico: #FF2EB8; --verde-acido: #B0FFEE; --turquesa-cenote: #00FFFF; --dorado-luznegra: #E0FFFF; }
+    body.palette-16rosas { 
+      --ultravioleta-cosmico: #63010E; 
+      --bugambilia-neon: #FCD4D4; 
+      --rosa-electrico: #FF4500; 
+      --verde-acido: #F5F5F5; 
+      --turquesa-cenote: #FF69B4; 
+      --dorado-luznegra: #F5F5F5; 
+    }
+    body.palette-kantoamere { 
+      --ultravioleta-cosmico: #4A0E2A; 
+      --bugambilia-neon: #A8C0FF; 
+      --rosa-electrico: #FF69B4; 
+      --verde-acido: #B0FF99; 
+      --turquesa-cenote: #99F0FF; 
+      --dorado-luznegra: #F5E0FF; 
+    }
+    body.palette-zlooshee { 
+      --ultravioleta-cosmico: #0A1F3D; 
+      --bugambilia-neon: #00FFCC; 
+      --rosa-electrico: #FF00FF; 
+      --naranja-volcanico: #FF4500; 
+      --verde-acido: #00FF7F; 
+      --turquesa-cenote: #40E0D0; 
+      --dorado-luznegra: #FFD700; 
+    }
+    body.palette-petite { 
+      --ultravioleta-cosmico: #00D4FF; 
+      --bugambilia-neon: #FF0088; 
+      --rosa-electrico: #FF2EB8; 
+      --verde-acido: #B0FFEE; 
+      --turquesa-cenote: #00FFFF; 
+      --dorado-luznegra: #E0FFFF; 
+    }
+    body.palette-cementerio {
+      --ultravioleta-cosmico: #0A0018;
+      --bugambilia-neon: #39FF14;
+      --rosa-electrico: #1EFF7A;
+      --naranja-volcanico: #00CC66;
+      --verde-acido: #A5FF4D;
+      --turquesa-cenote: #14FF9F;
+      --dorado-luznegra: #E0FFE6;
+    }
 
     .cursor {
       position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none;
       transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999;
       transition:all .1s; animation:colorShift 3s infinite alternate;
-      box-shadow:0 0 20px rgba(255,138,61,0.8);
+      box-shadow:0 0 20px rgba(57,255,20,0.9);
     }
     @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
-
     @keyframes colorShift {
-      0%{background:#FF8A3D} 30%{background:#FFB366} 60%{background:#FFEBCC} 100%{background:#FFFFFF}
+      0%{background:#39FF14} 30%{background:#7FFF4D} 60%{background:#B5FF99} 100%{background:#E0FFE6}
     }
 
-    .intro { 
-      position:relative; z-index:10; text-align:center; display:flex; flex-direction:column; 
-      align-items:center; justify-content:center; height:100vh; width:100%; 
+    .intro {
+      position:relative; z-index:10; text-align:center; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; height:100vh; width:100%;
     }
-
     .hanzel-logo {
       font-family:'Cinzel',serif;
       font-size: clamp(4rem, 15vw, 10rem);
@@ -77,20 +112,12 @@
       margin-bottom:1rem; white-space: nowrap;
       z-index: 8;
     }
-
-    body.palette-amoriv .hanzel-logo span {
-      background: linear-gradient(90deg, #FFEE88, #FFDD00, #FF4D4D, #FFFFFF);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
     .hanzel-logo span {
       background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       animation:glow 1.6s infinite alternate, float 6s infinite;
     }
-
     @keyframes glow { from{text-shadow:0 0 30px var(--dorado-luznegra),0 0 55px var(--bugambilia-neon)} to{text-shadow:0 0 45px var(--dorado-luznegra),0 0 90px var(--bugambilia-neon)} }
     @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
 
@@ -106,7 +133,6 @@
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
-
     .blob:nth-child(1){left:5%; bottom:-100px; animation-duration:35s; width:180px; height:180px;}
     .blob:nth-child(2){left:15%; bottom:-150px; animation-duration:42s; animation-delay:5s;}
     .blob:nth-child(3){left:25%; bottom:-200px; animation-duration:38s; animation-delay:10s; width:260px; height:260px;}
@@ -124,7 +150,6 @@
     .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
 
     .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { z-index: 25 !important; }
-
     .vertical-menu {
       position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
       gap:2.8rem;
@@ -134,27 +159,23 @@
       text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.85;
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
     }
-    .vertical-menu li:hover { color:#FFF5E6; text-shadow:0 0 40px #FFF5E6; transform:translateX(25px) scale(1.08); }
-
+    .vertical-menu li:hover { color:#E0FFE6; text-shadow:0 0 40px #E0FFE6; transform:translateX(25px) scale(1.08); }
     @media (max-width: 768px) {
       .vertical-menu { right:6vw; bottom:9vh; gap:2.4rem; }
       .vertical-menu li { font-size:1.55rem; }
     }
-
     .est { position:absolute; bottom:3vh; left:50%; transform:translateX(-50%); font-size:1.15rem; font-weight:bold; opacity:0.85; }
     .chi-rho { position:absolute; bottom:1.5vh; right:2vw; font-size:1.4rem; opacity:0.8; }
-
     .social-icons {
       position:absolute; top:3vh; left:50%; transform:translateX(-50%); display:flex; gap:1.6rem; z-index:30;
     }
-    .social-icons a { 
-      color: #FFDDDD; 
-      font-size:1.85rem; 
-      text-shadow: 0 0 12px rgba(255, 70, 70, 0.9);
-      transition:all .3s; 
+    .social-icons a {
+      color: #FFDDDD;
+      font-size:1.85rem;
+      text-shadow: 0 0 12px rgba(57,255,20,0.9);
+      transition:all .3s;
     }
     .social-icons a:hover { transform:scale(1.25); color:#FFFFFF; }
-
     .palette-button {
       position:absolute; top:3vh; right:4vw; width:52px; height:52px; border-radius:50%;
       background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
@@ -168,31 +189,27 @@
       position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
       width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
       border:3px solid var(--bugambilia-neon); border-radius:28px;
-      padding:3rem 2.8rem; box-shadow:0 0 90px var(--rosa-electrico), inset 0 0 70px rgba(193,59,255,0.2);
+      padding:3rem 2.8rem; box-shadow:0 0 90px var(--rosa-electrico), inset 0 0 70px rgba(57,255,20,0.25);
       z-index:10000; opacity:0; visibility:hidden;
       transition:all .6s cubic-bezier(0.175,0.885,0.32,1.275);
     }
     .music-player-modal.active, .guestbook.active {
       opacity:1; visibility:visible; transform:translate(-50%, -50%);
     }
-
     .music-title {
       text-align:center; font-family:'Cinzel',serif; font-size:1.9rem; margin-bottom:2.2rem;
       color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
     }
-
     .chapter-title {
-      text-align:center; font-family:'Cinzel',serif; font-size:1.55rem; 
+      text-align:center; font-family:'Cinzel',serif; font-size:1.55rem;
       margin:2.8rem 0 1.6rem; color:var(--rosa-electrico); opacity:0.95;
       letter-spacing:4px;
     }
-
     .esporas-cover {
       width: 205px; height: 205px; border-radius:16px; display:block; margin:0 auto 2.5rem;
       box-shadow:0 0 60px var(--bugambilia-neon); cursor:pointer; transition:all .4s;
     }
     .esporas-cover:hover { transform:scale(1.05); box-shadow:0 0 85px var(--rosa-electrico); }
-
     .album-buttons { display:flex; flex-direction:column; gap:0.9rem; }
     .album-option {
       background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
@@ -205,14 +222,12 @@
       background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
       color:white;
     }
-
     .spotify-container { margin-top:1.5rem; display:none; }
     .spotify-container.show { display:block; }
-
     .spotify-btn {
       display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
       padding:13px 28px; border-radius:50px; text-decoration:none; font-weight:bold;
-      box-shadow:0 0 25px rgba(255,46,152,0.6); transition:all .3s;
+      box-shadow:0 0 25px rgba(57,255,20,0.6); transition:all .3s;
     }
     .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
 
@@ -228,7 +243,7 @@
       font-size:1.1rem;
     }
     .guestbook input:focus, .guestbook textarea:focus {
-      border-color:var(--rosa-electrico); box-shadow:0 0 30px rgba(255,46,152,0.5);
+      border-color:var(--rosa-electrico); box-shadow:0 0 30px rgba(57,255,20,0.5);
     }
     .guestbook textarea { min-height:160px; resize:vertical; }
     .guestbook button[type="submit"] {
@@ -245,15 +260,13 @@
       color:var(--dorado-luznegra); background:none; border:none; cursor:pointer;
     }
     .close-btn:hover { color:var(--turquesa-cenote); transform:scale(1.2) rotate(90deg); }
-
     @media (max-width: 768px) {
       .music-player-modal, .guestbook { width:92vw; padding:2.8rem 2rem; }
     }
   </style>
 </head>
-<body class="palette-amoriv">
+<body class="palette-cementerio">
   <div class="cursor" id="cursor"></div>
-
   <div class="intro">
     <div class="lava-container">
       <svg style="display:none;">
@@ -267,19 +280,14 @@
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
       <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
     </div>
-
     <h1 class="hanzel-logo">HANZEL</h1>
-
     <ul class="vertical-menu">
       <li id="music-link">música</li>
       <li id="guestbook-link">guestbook</li>
     </ul>
-
     <div class="est">EST. 2006</div>
   </div>
-
   <div class="chi-rho">☧</div>
-
   <div class="social-icons">
     <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
     <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -288,34 +296,27 @@
     <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
-
   <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
 
   <!-- MUSIC PLAYER -->
   <div class="music-player-modal" id="music-player-modal">
     <button class="close-btn" id="close-music-player">×</button>
-    
     <h2 class="music-title" id="main-title">esporas de internet (2006-2009)</h2>
-    
     <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
-
     <div class="album-buttons">
       <div class="album-option" data-index="1">i. 16 rosas y algo llamado amor</div>
       <div class="album-option" data-index="2">ii. kanto amere</div>
       <div class="album-option" data-index="3">iii. petite</div>
     </div>
-
     <h3 class="chapter-title">capítulo ii</h3>
-
     <div class="album-buttons">
       <div class="album-option" data-index="4">iv. amor intravenoso</div>
       <div class="album-option" data-index="5">v. ??????????</div>
     </div>
-
     <div class="spotify-container" id="spotify-container">
       <iframe id="spotify-iframe" width="100%" height="420" frameborder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              style="border-radius:16px; box-shadow:0 0 40px rgba(193,59,255,0.3);"></iframe>
+              style="border-radius:16px; box-shadow:0 0 40px rgba(57,255,20,0.3);"></iframe>
       <div style="text-align:center; margin-top:1.2rem;">
         <a id="open-spotify-btn" href="#" target="_blank" class="spotify-btn">
           <i class="fab fa-spotify"></i> ABRIR EN SPOTIFY
@@ -343,14 +344,13 @@
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     });
-
     const logo = document.querySelector('.hanzel-logo');
     logo.innerHTML = logo.textContent.split('').map(c => `<span>${c}</span>`).join('');
 
-    let currentPalette = 'amoriv';
+    let currentPalette = 'cementerio';
     document.getElementById('palette-toggle').addEventListener('click', () => {
-      document.body.classList.remove('palette-amoriv','palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee');
-      const palettes = ['amoriv','esporas','petite','kantoamere','16rosas','zlooshee'];
+      document.body.classList.remove('palette-amoriv','palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee','palette-cementerio');
+      const palettes = ['amoriv','esporas','petite','kantoamere','16rosas','zlooshee','cementerio'];
       currentPalette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
       document.body.classList.add(`palette-${currentPalette}`);
     });
@@ -359,7 +359,6 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -368,50 +367,39 @@
       messagingSenderId: "855182658974",
       appId: "1:855182658974:web:7dede44a589105053c1a8f"
     };
-
     initializeApp(firebaseConfig);
     const db = getFirestore();
-
     const albums = [
       { index: 0, embed: "https://open.spotify.com/embed/album/2584oIavrgxKiQcRQgkx8c", link: "https://open.spotify.com/album/2584oIavrgxKiQcRQgkx8c" },
       { index: 1, embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
       { index: 2, embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R" },
       { index: 3, embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR" },
       { index: 4, embed: "https://open.spotify.com/embed/album/3GW1IVelAsgs9jKq2jBoDK", link: "https://open.spotify.com/album/3GW1IVelAsgs9jKq2jBoDK" },
-      { index: 5, embed: "#", link: "#" } // Placeholder para v. ??????????
+      { index: 5, embed: "#", link: "#" }
     ];
-
     function switchAlbum(index) {
       const album = albums.find(a => a.index === index);
       if (!album) return;
-
       document.getElementById('spotify-iframe').src = album.embed;
       document.getElementById('open-spotify-btn').href = album.link;
       document.getElementById('spotify-container').classList.add('show');
-
       document.querySelectorAll('.album-option').forEach(btn => {
         btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
       });
     }
-
     document.getElementById('music-link').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.add('active');
       document.getElementById('spotify-container').classList.remove('show');
     });
-
     document.getElementById('close-music-player').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.remove('active');
       document.getElementById('spotify-iframe').src = '';
       document.getElementById('spotify-container').classList.remove('show');
     });
-
     document.getElementById('main-title').addEventListener('click', () => switchAlbum(0));
     document.getElementById('main-cover').addEventListener('click', () => switchAlbum(0));
-
     document.querySelectorAll('.album-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchAlbum(parseInt(btn.dataset.index));
-      });
+      btn.addEventListener('click', () => switchAlbum(parseInt(btn.dataset.index)));
     });
 
     // Guestbook
@@ -419,11 +407,9 @@
       document.getElementById('guestbook').classList.add('active');
       loadComments();
     });
-
     document.getElementById('close-guestbook').addEventListener('click', () => {
       document.getElementById('guestbook').classList.remove('active');
     });
-
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
@@ -436,7 +422,6 @@
         loadComments();
       } catch(err) { alert('Error al guardar'); }
     });
-
     async function loadComments() {
       const list = document.getElementById('comments-list');
       list.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando mensajes...</p>';
@@ -463,6 +448,7 @@
   </script>
 </body>
 </html>
+
 
 
 
