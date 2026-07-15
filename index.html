@@ -430,7 +430,7 @@
       { index: 2, embed: "https://open.spotify.com/embed/album/3hpAhLngv5Z3jrUXKiSU2R", link: "https://open.spotify.com/album/3hpAhLngv5Z3jrUXKiSU2R", cover: "https://hanzelconzeta.github.io/esporas.png" },
       { index: 3, embed: "https://open.spotify.com/embed/album/7ypDVBOws34h2AHQwftVoR", link: "https://open.spotify.com/album/7ypDVBOws34h2AHQwftVoR", cover: "https://hanzelconzeta.github.io/esporas.png" },
       { index: 4, embed: "https://open.spotify.com/embed/album/3GW1IVelAsgs9jKq2jBoDK", link: "https://open.spotify.com/album/3GW1IVelAsgs9jKq2jBoDK", cover: "https://hanzelconzeta.github.io/esporas.png" },
-      { index: 5, embed: "#", link: "#", cover: "https://hanzelconzeta.github.io/cementerio.JPG" }
+      { index: 5, embed: "https://open.spotify.com/embed/album/5NiS55RHn6Djd8Ju1GEo3U", link: "https://open.spotify.com/album/5NiS55RHn6Djd8Ju1GEo3U?si=mhDTltnKTFaUi8FzUTqrUA", cover: "https://hanzelconzeta.github.io/cementerio.JPG" }
     ];
     function switchAlbum(index) {
       const album = albums.find(a => a.index === index);
@@ -454,7 +454,7 @@
     document.getElementById('music-link').addEventListener('click', () => {
       document.getElementById('music-player-modal').classList.add('active');
       document.getElementById('spotify-container').classList.remove('show');
-      // Reset a portada principal al abrir
+      // Reset a portada principal
       document.getElementById('main-cover').src = "https://hanzelconzeta.github.io/esporas.png";
     });
     document.getElementById('close-music-player').addEventListener('click', () => {
@@ -516,6 +516,7 @@
   </script>
 </body>
 </html>
+
 
 
 
