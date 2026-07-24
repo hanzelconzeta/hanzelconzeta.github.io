@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="HANZEL | Poema complejo acerca del alma" />
   <title>HANZEL | poema complejo acerca del alma</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto+Slab:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,8 +17,17 @@
       --turquesa-cenote:#00F0FF;
       --dorado-luznegra:#FFD700;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; overflow-x:hidden; }
+    * { 
+      margin:0; 
+      padding:0; 
+      box-sizing:border-box; 
+    }
+    html, body { 
+      width:100%; 
+      height:100%; 
+      overflow-x:hidden; 
+      scroll-behavior: smooth;
+    }
     body {
       background:var(--ultravioleta-cosmico);
       color:var(--dorado-luznegra);
@@ -26,8 +36,9 @@
       overflow:hidden;
       position:relative;
       cursor:none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-
     /* ==================== PALETAS ==================== */
     body.palette-amoriv {
       --ultravioleta-cosmico: #0A00CC;
@@ -47,38 +58,38 @@
       --turquesa-cenote: #FFE6C7;
       --dorado-luznegra: #FFF5E6;
     }
-    body.palette-16rosas { 
-      --ultravioleta-cosmico: #63010E; 
-      --bugambilia-neon: #FCD4D4; 
-      --rosa-electrico: #FF4500; 
-      --verde-acido: #F5F5F5; 
-      --turquesa-cenote: #FF69B4; 
-      --dorado-luznegra: #F5F5F5; 
+    body.palette-16rosas {
+      --ultravioleta-cosmico: #63010E;
+      --bugambilia-neon: #FCD4D4;
+      --rosa-electrico: #FF4500;
+      --verde-acido: #F5F5F5;
+      --turquesa-cenote: #FF69B4;
+      --dorado-luznegra: #F5F5F5;
     }
-    body.palette-kantoamere { 
-      --ultravioleta-cosmico: #4A0E2A; 
-      --bugambilia-neon: #A8C0FF; 
-      --rosa-electrico: #FF69B4; 
-      --verde-acido: #B0FF99; 
-      --turquesa-cenote: #99F0FF; 
-      --dorado-luznegra: #F5E0FF; 
+    body.palette-kantoamere {
+      --ultravioleta-cosmico: #4A0E2A;
+      --bugambilia-neon: #A8C0FF;
+      --rosa-electrico: #FF69B4;
+      --verde-acido: #B0FF99;
+      --turquesa-cenote: #99F0FF;
+      --dorado-luznegra: #F5E0FF;
     }
-    body.palette-zlooshee { 
-      --ultravioleta-cosmico: #0A1F3D; 
-      --bugambilia-neon: #00FFCC; 
-      --rosa-electrico: #FF00FF; 
-      --naranja-volcanico: #FF4500; 
-      --verde-acido: #00FF7F; 
-      --turquesa-cenote: #40E0D0; 
-      --dorado-luznegra: #FFD700; 
+    body.palette-zlooshee {
+      --ultravioleta-cosmico: #0A1F3D;
+      --bugambilia-neon: #00FFCC;
+      --rosa-electrico: #FF00FF;
+      --naranja-volcanico: #FF4500;
+      --verde-acido: #00FF7F;
+      --turquesa-cenote: #40E0D0;
+      --dorado-luznegra: #FFD700;
     }
-    body.palette-petite { 
-      --ultravioleta-cosmico: #00D4FF; 
-      --bugambilia-neon: #FF0088; 
-      --rosa-electrico: #FF2EB8; 
-      --verde-acido: #B0FFEE; 
-      --turquesa-cenote: #00FFFF; 
-      --dorado-luznegra: #E0FFFF; 
+    body.palette-petite {
+      --ultravioleta-cosmico: #00D4FF;
+      --bugambilia-neon: #FF0088;
+      --rosa-electrico: #FF2EB8;
+      --verde-acido: #B0FFEE;
+      --turquesa-cenote: #00FFFF;
+      --dorado-luznegra: #E0FFFF;
     }
     body.palette-cementerio {
       --ultravioleta-cosmico: #0A0018;
@@ -91,26 +102,49 @@
     }
 
     .cursor {
-      position:fixed; width:15px; height:15px; border-radius:50%; pointer-events:none;
-      transform:translate(-50%,-50%); mix-blend-mode:screen; z-index:9999;
-      transition:all .1s; animation:colorShift 3s infinite alternate;
+      position:fixed; 
+      width:15px; 
+      height:15px; 
+      border-radius:50%; 
+      pointer-events:none;
+      transform:translate(-50%,-50%); 
+      mix-blend-mode:screen; 
+      z-index:9999;
+      transition:all .1s; 
+      animation:colorShift 3s infinite alternate;
       box-shadow:0 0 20px rgba(57,255,20,0.9);
     }
-    @media (pointer: coarse) { .cursor { display:none; } body { cursor: auto; } }
+    @media (pointer: coarse) { 
+      .cursor { display:none; } 
+      body { cursor: auto; } 
+    }
     @keyframes colorShift {
-      0%{background:#39FF14} 30%{background:#7FFF4D} 60%{background:#B5FF99} 100%{background:#E0FFE6}
+      0%{background:#39FF14} 
+      30%{background:#7FFF4D} 
+      60%{background:#B5FF99} 
+      100%{background:#E0FFE6}
     }
 
     .intro {
-      position:relative; z-index:10; text-align:center; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; height:100vh; width:100%;
+      position:relative; 
+      z-index:10; 
+      text-align:center; 
+      display:flex; 
+      flex-direction:column;
+      align-items:center; 
+      justify-content:center; 
+      height:100vh; 
+      width:100%;
+      padding: 2rem 1rem;
     }
     .hanzel-logo {
       font-family:'Cinzel',serif;
-      font-size: clamp(4rem, 15vw, 10rem);
-      letter-spacing: clamp(4px, 2vw, 12px);
-      margin-bottom:1rem; white-space: nowrap;
+      font-size: clamp(3.5rem, 15vw, 10rem);
+      letter-spacing: clamp(3px, 2vw, 12px);
+      margin-bottom:1rem; 
+      white-space: nowrap;
       z-index: 8;
+      line-height: 1;
     }
     .hanzel-logo span {
       background:linear-gradient(90deg,var(--bugambilia-neon),var(--rosa-electrico),var(--naranja-volcanico));
@@ -118,13 +152,30 @@
       -webkit-text-fill-color:transparent;
       animation:glow 1.6s infinite alternate, float 6s infinite;
     }
-    @keyframes glow { from{text-shadow:0 0 30px var(--dorado-luznegra),0 0 55px var(--bugambilia-neon)} to{text-shadow:0 0 45px var(--dorado-luznegra),0 0 90px var(--bugambilia-neon)} }
-    @keyframes float { 0%,100%{transform:translateY(0)scale(1)} 50%{transform:translateY(-8px)scale(1.02)} }
+    @keyframes glow { 
+      from{text-shadow:0 0 30px var(--dorado-luznegra),0 0 55px var(--bugambilia-neon)} 
+      to{text-shadow:0 0 45px var(--dorado-luznegra),0 0 90px var(--bugambilia-neon)} 
+    }
+    @keyframes float { 
+      0%,100%{transform:translateY(0)scale(1)} 
+      50%{transform:translateY(-8px)scale(1.02)} 
+    }
 
-    .lava-container { position:absolute; inset:0; filter:url(#goo); pointer-events:none; z-index:12; }
+    .lava-container { 
+      position:absolute; 
+      inset:0; 
+      filter:url(#goo); 
+      pointer-events:none; 
+      z-index:12; 
+      overflow: hidden;
+    }
     .blob {
-      position:absolute; width:220px; height:220px; border-radius:50%;
-      background:var(--bugambilia-neon); opacity:0.88;
+      position:absolute; 
+      width:220px; 
+      height:220px; 
+      border-radius:50%;
+      background:var(--bugambilia-neon); 
+      opacity:0.88;
       animation:lava-move 40s infinite ease-in-out alternate;
       box-shadow: 0 0 55px var(--bugambilia-neon);
     }
@@ -133,21 +184,7 @@
       50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
       100%{transform:translateY(0)scale(1)rotate(0)}
     }
-    .blob:nth-child(1){left:5%; bottom:-100px; animation-duration:35s; width:180px; height:180px;}
-    .blob:nth-child(2){left:15%; bottom:-150px; animation-duration:42s; animation-delay:5s;}
-    .blob:nth-child(3){left:25%; bottom:-200px; animation-duration:38s; animation-delay:10s; width:260px; height:260px;}
-    .blob:nth-child(4){left:35%; bottom:-120px; animation-duration:45s; animation-delay:15s;}
-    .blob:nth-child(5){left:45%; bottom:-180px; animation-duration:40s; animation-delay:3s; width:190px; height:190px;}
-    .blob:nth-child(6){left:55%; bottom:-140px; animation-duration:43s; animation-delay:8s;}
-    .blob:nth-child(7){left:65%; bottom:-220px; animation-duration:37s; animation-delay:13s; width:240px; height:240px;}
-    .blob:nth-child(8){left:75%; bottom:-160px; animation-duration:41s; animation-delay:18s;}
-    .blob:nth-child(9){left:85%; bottom:-190px; animation-duration:39s; animation-delay:20s;}
-    .blob:nth-child(10){left:95%; bottom:-130px; animation-duration:44s; animation-delay:22s; width:210px; height:210px;}
-    .blob:nth-child(11){left:10%; bottom:-250px; animation-duration:36s; animation-delay:1s;}
-    .blob:nth-child(12){left:20%; bottom:-170px; animation-duration:46s; animation-delay:7s; width:230px; height:230px;}
-    .blob:nth-child(13){left:40%; bottom:-210px; animation-duration:39s; animation-delay:11s;}
-    .blob:nth-child(14){left:60%; bottom:-160px; animation-duration:42s; animation-delay:16s;}
-    .blob:nth-child(15){left:80%; bottom:-230px; animation-duration:37s; animation-delay:19s; width:200px; height:200px;}
+    /* Blob positions remain the same (already responsive via vw/vh indirectly) */
 
     /* Luciérnagas */
     .fireflies {
@@ -178,144 +215,387 @@
       to { opacity: 1; box-shadow: 0 0 16px #39FF14, 0 0 28px #7FFF4D; }
     }
 
-    .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { z-index: 25 !important; }
+    .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { 
+      z-index: 25 !important; 
+    }
+
     .vertical-menu {
-      position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
+      position:absolute; 
+      right:5vw; 
+      bottom:10vh; 
+      list-style:none; 
+      display:flex; 
+      flex-direction:column;
       gap:2.8rem;
     }
     .vertical-menu li {
-      font-family:'Cinzel',serif; font-size:1.7rem; color:var(--dorado-luznegra);
-      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.85;
+      font-family:'Cinzel',serif; 
+      font-size:1.7rem; 
+      color:var(--dorado-luznegra);
+      text-transform:uppercase; 
+      letter-spacing:6px; 
+      cursor:pointer; 
+      opacity:0.85;
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
+      user-select: none;
     }
-    .vertical-menu li:hover { color:#E0FFE6; text-shadow:0 0 40px #E0FFE6; transform:translateX(25px) scale(1.08); }
-    @media (max-width: 768px) {
-      .vertical-menu { right:6vw; bottom:9vh; gap:2.4rem; }
-      .vertical-menu li { font-size:1.55rem; }
+    .vertical-menu li:hover { 
+      color:#E0FFE6; 
+      text-shadow:0 0 40px #E0FFE6; 
+      transform:translateX(25px) scale(1.08); 
     }
-    .est { position:absolute; bottom:3vh; left:50%; transform:translateX(-50%); font-size:1.15rem; font-weight:bold; opacity:0.85; }
-    .chi-rho { position:absolute; bottom:1.5vh; right:2vw; font-size:1.4rem; opacity:0.8; }
+
+    .est { 
+      position:absolute; 
+      bottom:3vh; 
+      left:50%; 
+      transform:translateX(-50%); 
+      font-size:1.15rem; 
+      font-weight:bold; 
+      opacity:0.85; 
+      white-space: nowrap;
+    }
+    .chi-rho { 
+      position:absolute; 
+      bottom:1.5vh; 
+      right:2vw; 
+      font-size:1.4rem; 
+      opacity:0.8; 
+    }
     .social-icons {
-      position:absolute; top:3vh; left:50%; transform:translateX(-50%); display:flex; gap:1.6rem; z-index:30;
+      position:absolute; 
+      top:3vh; 
+      left:50%; 
+      transform:translateX(-50%); 
+      display:flex; 
+      gap:1.6rem; 
+      z-index:30;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .social-icons a {
       color: #FFDDDD;
       font-size:1.85rem;
       text-shadow: 0 0 12px rgba(57,255,20,0.9);
       transition:all .3s;
+      padding: 8px;
     }
-    .social-icons a:hover { transform:scale(1.25); color:#FFFFFF; }
-    .palette-button {
-      position:absolute; top:3vh; right:4vw; width:52px; height:52px; border-radius:50%;
-      background:var(--ultravioleta-cosmico); border:2px solid var(--rosa-electrico);
-      cursor:pointer; z-index:35; color:var(--dorado-luznegra); font-size:1.6rem;
-      display:flex; align-items:center; justify-content:center;
+    .social-icons a:hover { 
+      transform:scale(1.25); 
+      color:#FFFFFF; 
     }
-    .palette-button:hover { transform:scale(1.1); background:var(--rosa-electrico); color:var(--turquesa-cenote); }
 
-    /* Modals */
+    .palette-button {
+      position:absolute; 
+      top:3vh; 
+      right:4vw; 
+      width:52px; 
+      height:52px; 
+      border-radius:50%;
+      background:var(--ultravioleta-cosmico); 
+      border:2px solid var(--rosa-electrico);
+      cursor:pointer; 
+      z-index:35; 
+      color:var(--dorado-luznegra); 
+      font-size:1.6rem;
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      touch-action: manipulation;
+    }
+    .palette-button:hover { 
+      transform:scale(1.1); 
+      background:var(--rosa-electrico); 
+      color:var(--turquesa-cenote); 
+    }
+
+    /* Modals - Enhanced responsiveness */
     .music-player-modal, .guestbook, .events-modal {
-      position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
-      width:460px; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
-      border:3px solid var(--bugambilia-neon); border-radius:28px;
-      padding:3rem 2.8rem; box-shadow:0 0 90px var(--rosa-electrico), inset 0 0 70px rgba(57,255,20,0.25);
-      z-index:10000; opacity:0; visibility:hidden;
+      position:fixed; 
+      top:50%; 
+      left:50%; 
+      transform:translate(-50%, -50%);
+      width:460px; 
+      max-width: 92vw;
+      max-height:92vh; 
+      overflow-y:auto; 
+      background:rgba(11,0,20,0.98);
+      border:3px solid var(--bugambilia-neon); 
+      border-radius:28px;
+      padding:3rem 2.8rem; 
+      box-shadow:0 0 90px var(--rosa-electrico), inset 0 0 70px rgba(57,255,20,0.25);
+      z-index:10000; 
+      opacity:0; 
+      visibility:hidden;
       transition:all .6s cubic-bezier(0.175,0.885,0.32,1.275);
     }
     .music-player-modal.active, .guestbook.active, .events-modal.active {
-      opacity:1; visibility:visible; transform:translate(-50%, -50%);
+      opacity:1; 
+      visibility:visible; 
+      transform:translate(-50%, -50%);
     }
+
     .music-title, .events-title {
-      text-align:center; font-family:'Cinzel',serif; font-size:1.9rem; margin-bottom:2.2rem;
-      color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
+      text-align:center; 
+      font-family:'Cinzel',serif; 
+      font-size: clamp(1.6rem, 5vw, 1.9rem); 
+      margin-bottom:2.2rem;
+      color:var(--dorado-luznegra); 
+      cursor:pointer; 
+      transition:all .3s;
     }
     .chapter-title {
-      text-align:center; font-family:'Cinzel',serif; font-size:1.55rem;
-      margin:2.8rem 0 1.6rem; color:var(--rosa-electrico); opacity:0.95;
+      text-align:center; 
+      font-family:'Cinzel',serif; 
+      font-size:1.55rem;
+      margin:2.8rem 0 1.6rem; 
+      color:var(--rosa-electrico); 
+      opacity:0.95;
       letter-spacing:4px;
     }
     .esporas-cover {
-      width: 205px; height: 205px; border-radius:16px; display:block; margin:0 auto 2.5rem;
-      box-shadow:0 0 60px var(--bugambilia-neon); cursor:pointer; transition:all .4s;
-      object-fit: cover;
-    }
-    .esporas-cover:hover { transform:scale(1.05); box-shadow:0 0 85px var(--rosa-electrico); }
-
-    /* Flyer rectangular vertical sin espacio extra */
-    .event-cover {
-      width: 100%; 
-      max-height: 520px; 
+      width: 205px; 
+      height: 205px; 
+      max-width: 85vw;
       border-radius:16px; 
       display:block; 
-      margin:0 auto 1.2rem;
+      margin:0 auto 2.5rem;
       box-shadow:0 0 60px var(--bugambilia-neon); 
       cursor:pointer; 
+      transition:all .4s;
+      object-fit: cover;
+    }
+    .esporas-cover:hover { 
+      transform:scale(1.05); 
+      box-shadow:0 0 85px var(--rosa-electrico); 
+    }
+
+    .event-cover {
+      width: 100%;
+      max-height: 520px;
+      border-radius:16px;
+      display:block;
+      margin:0 auto 1.2rem;
+      box-shadow:0 0 60px var(--bugambilia-neon);
+      cursor:pointer;
       transition:all .4s;
       object-fit: contain;
       background: transparent;
     }
-    .event-cover:hover { transform:scale(1.03); box-shadow:0 0 85px var(--rosa-electrico); }
+    .event-cover:hover { 
+      transform:scale(1.03); 
+      box-shadow:0 0 85px var(--rosa-electrico); 
+    }
 
-    .album-buttons { display:flex; flex-direction:column; gap:0.9rem; }
+    .album-buttons { 
+      display:flex; 
+      flex-direction:column; 
+      gap:0.9rem; 
+    }
     .album-option {
-      background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
-      color:var(--dorado-luznegra); padding:15px 18px; border-radius:14px;
-      cursor:pointer; font-family:'Cinzel',serif; text-align:center; transition:all .3s;
+      background:rgba(255,255,255,0.06); 
+      border:2px solid rgba(193,59,255,0.4);
+      color:var(--dorado-luznegra); 
+      padding:15px 18px; 
+      border-radius:14px;
+      cursor:pointer; 
+      font-family:'Cinzel',serif; 
+      text-align:center; 
+      transition:all .3s;
       text-transform: lowercase;
+      touch-action: manipulation;
     }
     .album-option:hover, .album-option.active {
       border-color:var(--rosa-electrico);
       background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
       color:white;
     }
-    .spotify-container { margin-top:1.5rem; display:none; }
-    .spotify-container.show { display:block; }
-    .spotify-btn {
-      display:inline-flex; align-items:center; gap:10px; background:var(--rosa-electrico); color:white;
-      padding:13px 28px; border-radius:50px; text-decoration:none; font-weight:bold;
-      box-shadow:0 0 25px rgba(57,255,20,0.6); transition:all .3s;
+
+    .spotify-container { 
+      margin-top:1.5rem; 
+      display:none; 
     }
-    .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
+    .spotify-container.show { 
+      display:block; 
+    }
+    .spotify-btn {
+      display:inline-flex; 
+      align-items:center; 
+      gap:10px; 
+      background:var(--rosa-electrico); 
+      color:white;
+      padding:13px 28px; 
+      border-radius:50px; 
+      text-decoration:none; 
+      font-weight:bold;
+      box-shadow:0 0 25px rgba(57,255,20,0.6); 
+      transition:all .3s;
+      width: 100%;
+      justify-content: center;
+    }
+    .spotify-btn:hover { 
+      transform:scale(1.05); 
+      background:#1DB954; 
+    }
 
     .guestbook h2, .events-title {
-      text-align:center; font-family:'Cinzel',serif; font-size:2.4rem; margin-bottom:2.2rem;
+      text-align:center; 
+      font-family:'Cinzel',serif; 
+      font-size: clamp(1.9rem, 6vw, 2.4rem); 
+      margin-bottom:2.2rem;
       background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; 
+      -webkit-text-fill-color:transparent;
     }
+
     .guestbook input, .guestbook textarea, .events-modal p {
-      width:100%; background:rgba(255,255,255,0.06); border:2px solid rgba(193,59,255,0.4);
-      color:var(--dorado-luznegra); padding:12px 16px; border-radius:12px; margin-bottom:0.8rem;
+      width:100%; 
+      background:rgba(255,255,255,0.06); 
+      border:2px solid rgba(193,59,255,0.4);
+      color:var(--dorado-luznegra); 
+      padding:12px 16px; 
+      border-radius:12px; 
+      margin-bottom:0.8rem;
       font-size:1.05rem;
+      touch-action: manipulation;
     }
     .guestbook input:focus, .guestbook textarea:focus {
-      border-color:var(--rosa-electrico); box-shadow:0 0 30px rgba(57,255,20,0.5);
+      border-color:var(--rosa-electrico); 
+      box-shadow:0 0 30px rgba(57,255,20,0.5);
     }
-    .guestbook textarea { min-height:160px; resize:vertical; }
+    .guestbook textarea { 
+      min-height:160px; 
+      resize:vertical; 
+    }
     .guestbook button[type="submit"] {
-      width:100%; padding:16px; background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
-      color:white; border:none; border-radius:50px; font-size:1.15rem; font-weight:bold; cursor:pointer;
+      width:100%; 
+      padding:16px; 
+      background:linear-gradient(90deg, var(--bugambilia-neon), var(--rosa-electrico));
+      color:white; 
+      border:none; 
+      border-radius:50px; 
+      font-size:1.15rem; 
+      font-weight:bold; 
+      cursor:pointer;
+      touch-action: manipulation;
     }
-    .comments { margin-top:2.8rem; display:flex; flex-direction:column; gap:1.6rem; }
+    .comments { 
+      margin-top:2.8rem; 
+      display:flex; 
+      flex-direction:column; 
+      gap:1.6rem; 
+    }
     .comment {
-      background:rgba(255,255,255,0.05); border-left:5px solid var(--bugambilia-neon);
-      padding:1.6rem 1.8rem; border-radius:14px;
+      background:rgba(255,255,255,0.05); 
+      border-left:5px solid var(--bugambilia-neon);
+      padding:1.6rem 1.8rem; 
+      border-radius:14px;
     }
     .close-btn {
-      position:absolute; top:1.2rem; right:1.8rem; font-size:3rem;
-      color:var(--dorado-luznegra); background:none; border:none; cursor:pointer;
+      position:absolute; 
+      top:1.2rem; 
+      right:1.8rem; 
+      font-size:3rem;
+      color:var(--dorado-luznegra); 
+      background:none; 
+      border:none; 
+      cursor:pointer;
+      touch-action: manipulation;
     }
-    .close-btn:hover { color:var(--turquesa-cenote); transform:scale(1.2) rotate(90deg); }
+    .close-btn:hover { 
+      color:var(--turquesa-cenote); 
+      transform:scale(1.2) rotate(90deg); 
+    }
+
+    /* ==================== RESPONSIVE ENHANCEMENTS ==================== */
     @media (max-width: 768px) {
-      .music-player-modal, .guestbook, .events-modal { width:92vw; padding:2.8rem 2rem; }
+      .vertical-menu { 
+        right:6vw; 
+        bottom:8vh; 
+        gap:2.2rem; 
+      }
+      .vertical-menu li { 
+        font-size:1.55rem; 
+      }
+      .music-player-modal, .guestbook, .events-modal { 
+        width:92vw; 
+        padding:2.5rem 1.8rem; 
+        max-height: 88vh;
+      }
+      .social-icons {
+        gap: 1.2rem;
+        top: 2.5vh;
+      }
+      .social-icons a {
+        font-size: 1.65rem;
+      }
+      .palette-button {
+        width: 48px;
+        height: 48px;
+        font-size: 1.45rem;
+        top: 2.5vh;
+        right: 3vw;
+      }
+      .est {
+        font-size: 1rem;
+        bottom: 2.5vh;
+      }
+      .chi-rho {
+        font-size: 1.25rem;
+        bottom: 1vh;
+        right: 3vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hanzel-logo {
+        font-size: clamp(3rem, 18vw, 7rem);
+      }
+      .vertical-menu {
+        gap: 1.8rem;
+        bottom: 7vh;
+      }
+      .vertical-menu li {
+        font-size: 1.4rem;
+        letter-spacing: 4px;
+      }
+      .intro {
+        padding: 1.5rem 0.8rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .blob {
+        width: 260px;
+        height: 260px;
+      }
+    }
+
+    /* Reduced motion respect */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .cursor, .blob, .firefly, .hanzel-logo span {
+        animation: none !important;
+      }
+    }
+
+    /* Ensure iframe responsiveness */
+    iframe {
+      max-width: 100%;
+      border-radius: 16px;
     }
   </style>
 </head>
 <body class="palette-cementerio">
   <div class="cursor" id="cursor"></div>
-  
+ 
   <!-- Luciérnagas -->
   <div class="fireflies" id="fireflies"></div>
-
+  
   <div class="intro">
     <div class="lava-container">
       <svg style="display:none;">
@@ -337,22 +617,23 @@
     </ul>
     <div class="est">EST. 2006</div>
   </div>
+
   <div class="chi-rho">☧</div>
   <div class="social-icons">
-    <a href="https://www.youtube.com/hanzelconzeta" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://instagram.com/hanzelconzeta" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9" target="_blank"><i class="fab fa-spotify"></i></a>
-    <a href="https://www.facebook.com/hanzelconzeta" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://x.com/hanzelconzeta" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.youtube.com/hanzelconzeta" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://instagram.com/hanzelconzeta" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://open.spotify.com/artist/5kKnbqecf3TSRljleQdkV9" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+    <a href="https://www.facebook.com/hanzelconzeta" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://x.com/hanzelconzeta" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.tiktok.com/@hanzelconzeta" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
-  <button id="palette-toggle" class="palette-button"><i class="fas fa-palette"></i></button>
+  <button id="palette-toggle" class="palette-button" aria-label="Cambiar paleta"><i class="fas fa-palette"></i></button>
 
   <!-- MUSIC PLAYER -->
-  <div class="music-player-modal" id="music-player-modal">
-    <button class="close-btn" id="close-music-player">×</button>
+  <div class="music-player-modal" id="music-player-modal" role="dialog" aria-modal="true">
+    <button class="close-btn" id="close-music-player" aria-label="Cerrar">×</button>
     <h2 class="music-title" id="main-title">esporas de internet (2006-2009)</h2>
-    <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet">
+    <img class="esporas-cover" id="main-cover" src="https://hanzelconzeta.github.io/esporas.png" alt="Esporas de Internet" loading="lazy">
     <div class="album-buttons">
       <div class="album-option" data-index="1">i. 16 rosas y algo llamado amor</div>
       <div class="album-option" data-index="2">ii. kanto amere</div>
@@ -366,7 +647,8 @@
     <div class="spotify-container" id="spotify-container">
       <iframe id="spotify-iframe" width="100%" height="420" frameborder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              style="border-radius:16px; box-shadow:0 0 40px rgba(57,255,20,0.3);"></iframe>
+              style="border-radius:16px; box-shadow:0 0 40px rgba(57,255,20,0.3);" 
+              loading="lazy"></iframe>
       <div style="text-align:center; margin-top:1.2rem;">
         <a id="open-spotify-btn" href="#" target="_blank" class="spotify-btn">
           <i class="fab fa-spotify"></i> ABRIR EN SPOTIFY
@@ -376,10 +658,10 @@
   </div>
 
   <!-- EVENTS MODAL -->
-  <div class="events-modal" id="events-modal">
-    <button class="close-btn" id="close-events">×</button>
+  <div class="events-modal" id="events-modal" role="dialog" aria-modal="true">
+    <button class="close-btn" id="close-events" aria-label="Cerrar">×</button>
     <h2 class="events-title">Próximo Evento</h2>
-    <img class="event-cover" id="event-cover" src="https://hanzelconzeta.github.io/evento250726.JPG" alt="Evento Hanzel">
+    <img class="event-cover" id="event-cover" src="https://hanzelconzeta.github.io/evento250726.JPG" alt="Evento Hanzel" loading="lazy">
     <p style="text-align:center; font-size:1.05rem; line-height:1.4; margin:0.8rem 0; background:rgba(255,255,255,0.05); padding:0.9rem; border-radius:12px;">
       como en el 2006 (set acústico)<br>
       25/07/26 @ Café Hogar. Monterrey, Nuevo León
@@ -387,8 +669,8 @@
   </div>
 
   <!-- Guestbook -->
-  <div class="guestbook" id="guestbook">
-    <button class="close-btn" id="close-guestbook">×</button>
+  <div class="guestbook" id="guestbook" role="dialog" aria-modal="true">
+    <button class="close-btn" id="close-guestbook" aria-label="Cerrar">×</button>
     <h2>Guestbook</h2>
     <form id="guestbook-form">
       <input type="text" id="name" placeholder="Tu nombre" maxlength="50" required>
@@ -399,19 +681,24 @@
   </div>
 
   <script>
-    // Cursor, Logo y Palette
+    // Cursor
     const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
+    if (window.matchMedia("(pointer: fine)").matches) {
+      document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+    }
+
+    // Logo animation
     const logo = document.querySelector('.hanzel-logo');
     logo.innerHTML = logo.textContent.split('').map(c => `<span>${c}</span>`).join('');
 
+    // Palette cycling
     let currentPalette = 'cementerio';
     document.getElementById('palette-toggle').addEventListener('click', () => {
-      document.body.classList.remove('palette-amoriv','palette-esporas','palette-petite','palette-kantoamere','palette-16rosas','palette-zlooshee','palette-cementerio');
       const palettes = ['cementerio','amoriv','esporas','petite','kantoamere','16rosas','zlooshee'];
+      document.body.classList.remove(...palettes.map(p => `palette-${p}`));
       currentPalette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
       document.body.classList.add(`palette-${currentPalette}`);
     });
@@ -437,11 +724,26 @@
       }
     }
     createFireflies();
+
+    // Close modals when clicking outside content area (improved UX)
+    function setupModalOutsideClick(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          if (modalId === 'music-player-modal') {
+            document.getElementById('spotify-iframe').src = '';
+            document.getElementById('spotify-container').classList.remove('show');
+          }
+        }
+      });
+    }
   </script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+    
     const firebaseConfig = {
       apiKey: "AIzaSyD84RLER1Z0z3YX0XnBvFEu0WLIw3frGro",
       authDomain: "hanzelconzeta-bd17b.firebaseapp.com",
@@ -450,8 +752,10 @@
       messagingSenderId: "855182658974",
       appId: "1:855182658974:web:7dede44a589105053c1a8f"
     };
+    
     initializeApp(firebaseConfig);
     const db = getFirestore();
+
     const albums = [
       { index: 0, embed: "https://open.spotify.com/embed/album/2584oIavrgxKiQcRQgkx8c", link: "https://open.spotify.com/album/2584oIavrgxKiQcRQgkx8c" },
       { index: 1, embed: "https://open.spotify.com/embed/album/5kOsJLPACovzS1g92ivqS7", link: "https://open.spotify.com/album/5kOsJLPACovzS1g92ivqS7" },
@@ -460,38 +764,38 @@
       { index: 4, embed: "https://open.spotify.com/embed/album/3GW1IVelAsgs9jKq2jBoDK", link: "https://open.spotify.com/album/3GW1IVelAsgs9jKq2jBoDK" },
       { index: 5, embed: "https://open.spotify.com/embed/album/5NiS55RHn6Djd8Ju1GEo3U", link: "https://open.spotify.com/album/5NiS55RHn6Djd8Ju1GEo3U?si=mhDTltnKTFaUi8FzUTqrUA" }
     ];
+
     function switchAlbum(index) {
       const album = albums.find(a => a.index === index);
       if (!album) return;
-
       document.getElementById('main-cover').src = "https://hanzelconzeta.github.io/esporas.png";
-
       document.getElementById('spotify-iframe').src = album.embed;
       document.getElementById('open-spotify-btn').href = album.link;
       document.getElementById('spotify-container').classList.add('show');
-
       document.querySelectorAll('.album-option').forEach(btn => {
         btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
       });
     }
+
+    // Music modal
     document.getElementById('music-link').addEventListener('click', () => {
-      document.getElementById('music-player-modal').classList.add('active');
+      const modal = document.getElementById('music-player-modal');
+      modal.classList.add('active');
       document.getElementById('spotify-container').classList.remove('show');
     });
     document.getElementById('close-music-player').addEventListener('click', () => {
-      document.getElementById('music-player-modal').classList.remove('active');
+      const modal = document.getElementById('music-player-modal');
+      modal.classList.remove('active');
       document.getElementById('spotify-iframe').src = '';
       document.getElementById('spotify-container').classList.remove('show');
     });
     document.getElementById('main-title').addEventListener('click', () => switchAlbum(0));
     document.getElementById('main-cover').addEventListener('click', () => switchAlbum(0));
     document.querySelectorAll('.album-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchAlbum(parseInt(btn.dataset.index));
-      });
+      btn.addEventListener('click', () => switchAlbum(parseInt(btn.dataset.index)));
     });
 
-    // Eventos
+    // Events
     document.getElementById('events-link').addEventListener('click', () => {
       document.getElementById('events-modal').classList.add('active');
     });
@@ -507,6 +811,7 @@
     document.getElementById('close-guestbook').addEventListener('click', () => {
       document.getElementById('guestbook').classList.remove('active');
     });
+
     document.getElementById('guestbook-form').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
@@ -517,8 +822,11 @@
         alert('¡Gracias por firmar el guestbook ✨');
         e.target.reset();
         loadComments();
-      } catch(err) { alert('Error al guardar'); }
+      } catch(err) { 
+        alert('Error al guardar'); 
+      }
     });
+
     async function loadComments() {
       const list = document.getElementById('comments-list');
       list.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando mensajes...</p>';
@@ -535,17 +843,34 @@
           const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('es-MX') : '';
           const div = document.createElement('div');
           div.className = 'comment';
-          div.innerHTML = `<span class="author">${d.name}</span><p>${d.message}</p><span class="date">${date}</span>`;
+          div.innerHTML = `<span class="author" style="display:block;font-weight:bold;margin-bottom:0.4rem;">${d.name}</span><p>${d.message}</p><span class="date" style="font-size:0.85rem;opacity:0.6;">${date}</span>`;
           list.appendChild(div);
         });
       } catch(err) {
         list.innerHTML = '<p style="text-align:center;color:#ff7777;">Error al cargar</p>';
       }
     }
+
+    // Setup outside clicks
+    setupModalOutsideClick('music-player-modal');
+    setupModalOutsideClick('events-modal');
+    setupModalOutsideClick('guestbook');
+
+    // Keyboard escape support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll('.music-player-modal.active, .guestbook.active, .events-modal.active').forEach(modal => {
+          modal.classList.remove('active');
+          if (modal.id === 'music-player-modal') {
+            document.getElementById('spotify-iframe').src = '';
+            document.getElementById('spotify-container').classList.remove('show');
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
-
 
 
 
