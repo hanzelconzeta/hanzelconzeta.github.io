@@ -39,6 +39,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
     /* ==================== PALETAS ==================== */
     body.palette-amoriv {
       --ultravioleta-cosmico: #0A00CC;
@@ -171,20 +172,54 @@
     }
     .blob {
       position:absolute; 
-      width:220px; 
-      height:220px; 
       border-radius:50%;
       background:var(--bugambilia-neon); 
       opacity:0.88;
-      animation:lava-move 40s infinite ease-in-out alternate;
       box-shadow: 0 0 55px var(--bugambilia-neon);
+      animation: lava-rise 25s infinite ease-in-out;
+      will-change: transform, opacity;
     }
-    @keyframes lava-move {
-      0%{transform:translateY(0)scale(1)rotate(0)}
-      50%{transform:translateY(-120vh)scale(2.5)rotate(90deg)}
-      100%{transform:translateY(0)scale(1)rotate(0)}
+
+    /* Lava lamp style animation - more organic merging/separating */
+    @keyframes lava-rise {
+      0% {
+        transform: translate(0, 120vh) scale(0.6) rotate(0deg);
+        opacity: 0.6;
+      }
+      25% {
+        transform: translate(var(--dx1), 60vh) scale(1.1) rotate(25deg);
+        opacity: 0.95;
+      }
+      50% {
+        transform: translate(var(--dx2), -15vh) scale(1.4) rotate(80deg);
+        opacity: 0.9;
+      }
+      75% {
+        transform: translate(var(--dx3), -80vh) scale(0.95) rotate(140deg);
+        opacity: 0.75;
+      }
+      100% {
+        transform: translate(0, 120vh) scale(0.6) rotate(200deg);
+        opacity: 0.6;
+      }
     }
-    /* Blob positions remain the same (already responsive via vw/vh indirectly) */
+
+    /* Individual blob variations for more natural lava behavior */
+    .blob:nth-child(1) { left: 8%; width: 190px; height: 190px; animation-duration: 32s; animation-delay: -2s; --dx1: 12vw; --dx2: -8vw; --dx3: 15vw; }
+    .blob:nth-child(2) { left: 18%; width: 240px; height: 240px; animation-duration: 41s; animation-delay: -8s; --dx1: -18vw; --dx2: 22vw; --dx3: -12vw; }
+    .blob:nth-child(3) { left: 28%; width: 170px; height: 170px; animation-duration: 27s; animation-delay: -15s; --dx1: 25vw; --dx2: -15vw; --dx3: 10vw; }
+    .blob:nth-child(4) { left: 42%; width: 260px; height: 260px; animation-duration: 38s; animation-delay: -4s; --dx1: -10vw; --dx2: 30vw; --dx3: -22vw; }
+    .blob:nth-child(5) { left: 55%; width: 195px; height: 195px; animation-duration: 45s; animation-delay: -22s; --dx1: 20vw; --dx2: -25vw; --dx3: 18vw; }
+    .blob:nth-child(6) { left: 65%; width: 220px; height: 220px; animation-duration: 29s; animation-delay: -11s; --dx1: -30vw; --dx2: 12vw; --dx3: -15vw; }
+    .blob:nth-child(7) { left: 75%; width: 180px; height: 180px; animation-duration: 36s; animation-delay: -19s; --dx1: 15vw; --dx2: -20vw; --dx3: 25vw; }
+    .blob:nth-child(8) { left: 85%; width: 250px; height: 250px; animation-duration: 33s; animation-delay: -6s; --dx1: -22vw; --dx2: 28vw; --dx3: -10vw; }
+    .blob:nth-child(9) { left: 12%; width: 210px; height: 210px; animation-duration: 48s; animation-delay: -25s; --dx1: 18vw; --dx2: -12vw; --dx3: 22vw; }
+    .blob:nth-child(10){ left: 35%; width: 165px; height: 165px; animation-duration: 26s; animation-delay: -13s; --dx1: -25vw; --dx2: 15vw; --dx3: -18vw; }
+    .blob:nth-child(11){ left: 52%; width: 235px; height: 235px; animation-duration: 39s; animation-delay: -9s; --dx1: 10vw; --dx2: -28vw; --dx3: 8vw; }
+    .blob:nth-child(12){ left: 72%; width: 200px; height: 200px; animation-duration: 34s; animation-delay: -28s; --dx1: -15vw; --dx2: 20vw; --dx3: -25vw; }
+    .blob:nth-child(13){ left: 22%; width: 245px; height: 245px; animation-duration: 43s; animation-delay: -17s; --dx1: 28vw; --dx2: -18vw; --dx3: 12vw; }
+    .blob:nth-child(14){ left: 48%; width: 185px; height: 185px; animation-duration: 31s; animation-delay: -5s; --dx1: -20vw; --dx2: 25vw; --dx3: -15vw; }
+    .blob:nth-child(15){ left: 78%; width: 215px; height: 215px; animation-duration: 37s; animation-delay: -21s; --dx1: 22vw; --dx2: -10vw; --dx3: 30vw; }
 
     /* Luciérnagas */
     .fireflies {
@@ -309,7 +344,7 @@
       color:var(--turquesa-cenote); 
     }
 
-    /* Modals - Enhanced responsiveness */
+    /* Modals */
     .music-player-modal, .guestbook, .events-modal {
       position:fixed; 
       top:50%; 
@@ -564,14 +599,6 @@
       }
     }
 
-    @media (min-width: 1200px) {
-      .blob {
-        width: 260px;
-        height: 260px;
-      }
-    }
-
-    /* Reduced motion respect */
     @media (prefers-reduced-motion: reduce) {
       * {
         animation-duration: 0.01ms !important;
@@ -583,7 +610,6 @@
       }
     }
 
-    /* Ensure iframe responsiveness */
     iframe {
       max-width: 100%;
       border-radius: 16px;
@@ -600,14 +626,26 @@
     <div class="lava-container">
       <svg style="display:none;">
         <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="28" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
-      <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
+      <div class="blob"></div>
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <ul class="vertical-menu">
@@ -690,11 +728,9 @@
       });
     }
 
-    // Logo animation
     const logo = document.querySelector('.hanzel-logo');
     logo.innerHTML = logo.textContent.split('').map(c => `<span>${c}</span>`).join('');
 
-    // Palette cycling
     let currentPalette = 'cementerio';
     document.getElementById('palette-toggle').addEventListener('click', () => {
       const palettes = ['cementerio','amoriv','esporas','petite','kantoamere','16rosas','zlooshee'];
@@ -724,20 +760,6 @@
       }
     }
     createFireflies();
-
-    // Close modals when clicking outside content area (improved UX)
-    function setupModalOutsideClick(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-          if (modalId === 'music-player-modal') {
-            document.getElementById('spotify-iframe').src = '';
-            document.getElementById('spotify-container').classList.remove('show');
-          }
-        }
-      });
-    }
   </script>
 
   <script type="module">
@@ -777,7 +799,6 @@
       });
     }
 
-    // Music modal
     document.getElementById('music-link').addEventListener('click', () => {
       const modal = document.getElementById('music-player-modal');
       modal.classList.add('active');
@@ -795,7 +816,6 @@
       btn.addEventListener('click', () => switchAlbum(parseInt(btn.dataset.index)));
     });
 
-    // Events
     document.getElementById('events-link').addEventListener('click', () => {
       document.getElementById('events-modal').classList.add('active');
     });
@@ -803,7 +823,6 @@
       document.getElementById('events-modal').classList.remove('active');
     });
 
-    // Guestbook
     document.getElementById('guestbook-link').addEventListener('click', () => {
       document.getElementById('guestbook').classList.add('active');
       loadComments();
@@ -851,12 +870,23 @@
       }
     }
 
-    // Setup outside clicks
+    function setupModalOutsideClick(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          if (modalId === 'music-player-modal') {
+            document.getElementById('spotify-iframe').src = '';
+            document.getElementById('spotify-container').classList.remove('show');
+          }
+        }
+      });
+    }
+
     setupModalOutsideClick('music-player-modal');
     setupModalOutsideClick('events-modal');
     setupModalOutsideClick('guestbook');
 
-    // Keyboard escape support
     document.addEventListener('keydown', (e) => {
       if (e.key === "Escape") {
         document.querySelectorAll('.music-player-modal.active, .guestbook.active, .events-modal.active').forEach(modal => {
@@ -871,6 +901,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
