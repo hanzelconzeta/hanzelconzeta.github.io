@@ -132,6 +132,7 @@
       50%{transform:translateY(-8px)scale(1.02)} 
     }
 
+    /* ==================== LAVA LAMP (versión mejorada del mejor efecto) ==================== */
     .lava-container { 
       position:absolute; 
       inset:0; 
@@ -144,155 +145,34 @@
       position:absolute; 
       border-radius:50%;
       background:var(--bugambilia-neon); 
-      opacity:0.82;
-      box-shadow: 0 0 65px var(--bugambilia-neon);
-      animation: lava-flow 72s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      opacity:0.88;
+      box-shadow: 0 0 55px var(--bugambilia-neon);
+      animation: lava-move 55s infinite ease-in-out alternate;
       will-change: transform;
     }
 
-    @keyframes lava-flow {
-      0% {
-        transform: translate(var(--start-x), var(--start-y)) scale(var(--start-scale)) rotate(0deg);
-        opacity: 0.65;
-      }
-      22% {
-        transform: translate(var(--mid-x1), var(--mid-y1)) scale(var(--mid-scale1)) rotate(var(--rot1));
-        opacity: 0.92;
-      }
-      48% {
-        transform: translate(var(--mid-x2), var(--mid-y2)) scale(var(--mid-scale2)) rotate(var(--rot2));
-        opacity: 0.88;
-      }
-      72% {
-        transform: translate(var(--mid-x3), var(--mid-y3)) scale(var(--mid-scale3)) rotate(var(--rot3));
-        opacity: 0.78;
-      }
-      100% {
-        transform: translate(var(--end-x), var(--end-y)) scale(var(--start-scale)) rotate(var(--rot4));
-        opacity: 0.65;
-      }
+    @keyframes lava-move {
+      0%   { transform: translateY(0) scale(1) rotate(0deg); }
+      50%  { transform: translateY(-115vh) scale(2.35) rotate(90deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
     }
 
-    /* Blobs con movimiento lento y viscoso */
-    .blob:nth-child(1){left:5%; width:210px; height:210px; animation-duration:78s; animation-delay:-3s;
-      --start-x:0vw; --start-y:110vh; --start-scale:0.65;
-      --mid-x1:12vw; --mid-y1:45vh; --mid-scale1:1.35;
-      --mid-x2:-8vw; --mid-y2:-25vh; --mid-scale2:1.05;
-      --mid-x3:18vw; --mid-y3:-65vh; --mid-scale3:1.25;
-      --end-x:-5vw; --end-y:120vh;
-      --rot1:35deg; --rot2:-25deg; --rot3:45deg; --rot4:-15deg;}
-    
-    .blob:nth-child(2){left:22%; width:245px; height:245px; animation-duration:92s; animation-delay:-18s;
-      --start-x:0vw; --start-y:80vh; --start-scale:0.8;
-      --mid-x1:-22vw; --mid-y1:30vh; --mid-scale1:1.2;
-      --mid-x2:15vw; --mid-y2:-40vh; --mid-scale2:1.45;
-      --mid-x3:-12vw; --mid-y3:-80vh; --mid-scale3:0.95;
-      --end-x:10vw; --end-y:115vh;
-      --rot1:-40deg; --rot2:30deg; --rot3:-55deg; --rot4:20deg;}
-
-    .blob:nth-child(3){left:38%; width:175px; height:175px; animation-duration:64s; animation-delay:-35s;
-      --start-x:0vw; --start-y:120vh; --start-scale:0.7;
-      --mid-x1:25vw; --mid-y1:55vh; --mid-scale1:1.3;
-      --mid-x2:-18vw; --mid-y2:-15vh; --mid-scale2:1.1;
-      --mid-x3:20vw; --mid-y3:-70vh; --mid-scale3:1.4;
-      --end-x:-10vw; --end-y:105vh;
-      --rot1:20deg; --rot2:-45deg; --rot3:30deg; --rot4:-35deg;}
-
-    .blob:nth-child(4){left:55%; width:260px; height:260px; animation-duration:81s; animation-delay:-9s;
-      --start-x:0vw; --start-y:95vh; --start-scale:0.75;
-      --mid-x1:-15vw; --mid-y1:35vh; --mid-scale1:1.25;
-      --mid-x2:28vw; --mid-y2:-35vh; --mid-scale2:1.15;
-      --mid-x3:-25vw; --mid-y3:-75vh; --mid-scale3:1.35;
-      --end-x:8vw; --end-y:125vh;
-      --rot1:-30deg; --rot2:50deg; --rot3:-20deg; --rot4:40deg;}
-
-    .blob:nth-child(5){left:72%; width:195px; height:195px; animation-duration:70s; animation-delay:-27s;
-      --start-x:0vw; --start-y:115vh; --start-scale:0.6;
-      --mid-x1:18vw; --mid-y1:40vh; --mid-scale1:1.4;
-      --mid-x2:-20vw; --mid-y2:-20vh; --mid-scale2:1.05;
-      --mid-x3:12vw; --mid-y3:-85vh; --mid-scale3:1.2;
-      --end-x:-15vw; --end-y:110vh;
-      --rot1:45deg; --rot2:-15deg; --rot3:55deg; --rot4:-25deg;}
-
-    .blob:nth-child(6){left:12%; width:230px; height:230px; animation-duration:88s; animation-delay:-42s;
-      --start-x:0vw; --start-y:70vh; --start-scale:0.85;
-      --mid-x1:-25vw; --mid-y1:50vh; --mid-scale1:1.1;
-      --mid-x2:22vw; --mid-y2:-30vh; --mid-scale2:1.3;
-      --mid-x3:-10vw; --mid-y3:-60vh; --mid-scale3:0.9;
-      --end-x:15vw; --end-y:120vh;
-      --rot1:-35deg; --rot2:25deg; --rot3:-40deg; --rot4:15deg;}
-
-    .blob:nth-child(7){left:45%; width:185px; height:185px; animation-duration:76s; animation-delay:-12s;
-      --start-x:0vw; --start-y:105vh; --start-scale:0.7;
-      --mid-x1:20vw; --mid-y1:25vh; --mid-scale1:1.35;
-      --mid-x2:-28vw; --mid-y2:-45vh; --mid-scale2:1.2;
-      --mid-x3:15vw; --mid-y3:-70vh; --mid-scale3:1.25;
-      --end-x:-8vw; --end-y:115vh;
-      --rot1:30deg; --rot2:-50deg; --rot3:35deg; --rot4:-30deg;}
-
-    .blob:nth-child(8){left:65%; width:255px; height:255px; animation-duration:95s; animation-delay:-51s;
-      --start-x:0vw; --start-y:85vh; --start-scale:0.8;
-      --mid-x1:-12vw; --mid-y1:45vh; --mid-scale1:1.15;
-      --mid-x2:25vw; --mid-y2:-25vh; --mid-scale2:1.4;
-      --mid-x3:-18vw; --mid-y3:-80vh; --mid-scale3:1.05;
-      --end-x:10vw; --end-y:105vh;
-      --rot1:-25deg; --rot2:40deg; --rot3:-45deg; --rot4:20deg;}
-
-    .blob:nth-child(9){left:28%; width:205px; height:205px; animation-duration:68s; animation-delay:-22s;
-      --start-x:0vw; --start-y:125vh; --start-scale:0.65;
-      --mid-x1:30vw; --mid-y1:35vh; --mid-scale1:1.3;
-      --mid-x2:-15vw; --mid-y2:-40vh; --mid-scale2:1.1;
-      --mid-x3:22vw; --mid-y3:-65vh; --mid-scale3:1.35;
-      --end-x:-12vw; --end-y:120vh;
-      --rot1:40deg; --rot2:-20deg; --rot3:50deg; --rot4:-35deg;}
-
-    .blob:nth-child(10){left:80%; width:220px; height:220px; animation-duration:82s; animation-delay:-7s;
-      --start-x:0vw; --start-y:90vh; --start-scale:0.75;
-      --mid-x1:-20vw; --mid-y1:40vh; --mid-scale1:1.25;
-      --mid-x2:18vw; --mid-y2:-35vh; --mid-scale2:1.15;
-      --mid-x3:-25vw; --mid-y3:-75vh; --mid-scale3:1.3;
-      --end-x:5vw; --end-y:110vh;
-      --rot1:-30deg; --rot2:45deg; --rot3:-25deg; --rot4:30deg;}
-
-    .blob:nth-child(11){left:8%; width:240px; height:240px; animation-duration:71s; animation-delay:-38s;
-      --start-x:0vw; --start-y:100vh; --start-scale:0.7;
-      --mid-x1:15vw; --mid-y1:30vh; --mid-scale1:1.4;
-      --mid-x2:-22vw; --mid-y2:-50vh; --mid-scale2:1.05;
-      --mid-x3:12vw; --mid-y3:-70vh; --mid-scale3:1.2;
-      --end-x:-18vw; --end-y:115vh;
-      --rot1:25deg; --rot2:-40deg; --rot3:35deg; --rot4:-20deg;}
-
-    .blob:nth-child(12){left:52%; width:180px; height:180px; animation-duration:89s; animation-delay:-14s;
-      --start-x:0vw; --start-y:115vh; --start-scale:0.6;
-      --mid-x1:-25vw; --mid-y1:50vh; --mid-scale1:1.3;
-      --mid-x2:20vw; --mid-y2:-20vh; --mid-scale2:1.25;
-      --mid-x3:-15vw; --mid-y3:-80vh; --mid-scale3:1.1;
-      --end-x:8vw; --end-y:125vh;
-      --rot1:-45deg; --rot2:30deg; --rot3:-50deg; --rot4:25deg;}
-
-    .blob:nth-child(13){left:35%; width:265px; height:265px; animation-duration:77s; animation-delay:-29s;
-      --start-x:0vw; --start-y:80vh; --start-scale:0.85;
-      --mid-x1:22vw; --mid-y1:45vh; --mid-scale1:1.15;
-      --mid-x2:-18vw; --mid-y2:-30vh; --mid-scale2:1.35;
-      --mid-x3:25vw; --mid-y3:-60vh; --mid-scale3:1.05;
-      --end-x:-10vw; --end-y:105vh;
-      --rot1:35deg; --rot2:-30deg; --rot3:45deg; --rot4:-15deg;}
-
-    .blob:nth-child(14){left:68%; width:200px; height:200px; animation-duration:66s; animation-delay:-45s;
-      --start-x:0vw; --start-y:110vh; --start-scale:0.7;
-      --mid-x1:-12vw; --mid-y1:35vh; --mid-scale1:1.3;
-      --mid-x2:28vw; --mid-y2:-45vh; --mid-scale2:1.2;
-      --mid-x3:-20vw; --mid-y3:-75vh; --mid-scale3:1.25;
-      --end-x:12vw; --end-y:115vh;
-      --rot1:-25deg; --rot2:40deg; --rot3:-35deg; --rot4:20deg;}
-
-    .blob:nth-child(15){left:15%; width:225px; height:225px; animation-duration:84s; animation-delay:-55s;
-      --start-x:0vw; --start-y:95vh; --start-scale:0.75;
-      --mid-x1:25vw; --mid-y1:40vh; --mid-scale1:1.25;
-      --mid-x2:-15vw; --mid-y2:-25vh; --mid-scale2:1.15;
-      --mid-x3:18vw; --mid-y3:-70vh; --mid-scale3:1.35;
-      --end-x:-8vw; --end-y:120vh;
-      --rot1:30deg; --rot2:-45deg; --rot3:25deg; --rot4:-30deg;}
+    /* Posiciones y tiempos más lentos + ligeras variaciones horizontales naturales */
+    .blob:nth-child(1)  { left:5%;  bottom:-100px; width:180px; height:180px; animation-duration:58s; animation-delay:-2s; }
+    .blob:nth-child(2)  { left:15%; bottom:-150px; width:220px; height:220px; animation-duration:67s; animation-delay:-8s; }
+    .blob:nth-child(3)  { left:25%; bottom:-200px; width:260px; height:260px; animation-duration:61s; animation-delay:-15s; }
+    .blob:nth-child(4)  { left:35%; bottom:-120px; width:200px; height:200px; animation-duration:72s; animation-delay:-4s; }
+    .blob:nth-child(5)  { left:45%; bottom:-180px; width:190px; height:190px; animation-duration:64s; animation-delay:-11s; }
+    .blob:nth-child(6)  { left:55%; bottom:-140px; width:230px; height:230px; animation-duration:69s; animation-delay:-19s; }
+    .blob:nth-child(7)  { left:65%; bottom:-220px; width:240px; height:240px; animation-duration:57s; animation-delay:-6s; }
+    .blob:nth-child(8)  { left:75%; bottom:-160px; width:210px; height:210px; animation-duration:66s; animation-delay:-22s; }
+    .blob:nth-child(9)  { left:85%; bottom:-190px; width:195px; height:195px; animation-duration:63s; animation-delay:-13s; }
+    .blob:nth-child(10) { left:95%; bottom:-130px; width:210px; height:210px; animation-duration:71s; animation-delay:-9s; }
+    .blob:nth-child(11) { left:10%; bottom:-250px; width:225px; height:225px; animation-duration:59s; animation-delay:-25s; }
+    .blob:nth-child(12) { left:20%; bottom:-170px; width:230px; height:230px; animation-duration:74s; animation-delay:-16s; }
+    .blob:nth-child(13) { left:40%; bottom:-210px; width:185px; height:185px; animation-duration:62s; animation-delay:-3s; }
+    .blob:nth-child(14) { left:60%; bottom:-160px; width:245px; height:245px; animation-duration:68s; animation-delay:-20s; }
+    .blob:nth-child(15) { left:80%; bottom:-230px; width:200px; height:200px; animation-duration:60s; animation-delay:-12s; }
 
     /* Luciérnagas */
     .fireflies {
@@ -460,8 +340,8 @@
     <div class="lava-container">
       <svg style="display:none;">
         <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="32" result="blur"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 24 -9.5" result="goo"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
@@ -711,6 +591,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
