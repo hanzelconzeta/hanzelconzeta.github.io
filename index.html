@@ -157,7 +157,7 @@
       100% { transform: translateY(0) scale(1) rotate(0deg); }
     }
 
-    /* Empiezan desde las orillas (arriba, abajo, izquierda y derecha) */
+    /* Empiezan desde las orillas */
     .blob:nth-child(1)  { left:5%;   bottom:-180px; width:180px; height:180px; animation-duration:58s; animation-delay:-2s; }
     .blob:nth-child(2)  { left:18%;  bottom:-220px; width:220px; height:220px; animation-duration:67s; animation-delay:-8s; }
     .blob:nth-child(3)  { left:32%;  bottom:-260px; width:260px; height:260px; animation-duration:61s; animation-delay:-15s; }
@@ -174,7 +174,7 @@
     .blob:nth-child(14) { right:-210px; top:50%;    width:245px; height:245px; animation-duration:68s; animation-delay:-20s; }
     .blob:nth-child(15) { right:-190px; top:75%;    width:200px; height:200px; animation-duration:60s; animation-delay:-12s; }
 
-    /* Luciérnagas */
+    /* Luciérnagas (cementerio) */
     .fireflies {
       position: absolute;
       inset: 0;
@@ -201,6 +201,32 @@
     @keyframes firefly-glow {
       from { opacity: 0.35; box-shadow: 0 0 6px #A5FF4D; }
       to { opacity: 1; box-shadow: 0 0 16px #39FF14, 0 0 28px #7FFF4D; }
+    }
+
+    /* Esporas (solo palette-esporas) - partículas muy finas y sutiles */
+    .spores {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 11;
+      opacity: 0;
+    }
+    body.palette-esporas .spores {
+      opacity: 1;
+    }
+    .spore {
+      position: absolute;
+      width: 1.5px;
+      height: 1.5px;
+      background: rgba(255, 235, 158, 0.7);
+      border-radius: 50%;
+      box-shadow: 0 0 3px rgba(255, 235, 158, 0.5);
+      animation: spore-float 22s infinite linear;
+    }
+    @keyframes spore-float {
+      0% { transform: translate(0, 0); opacity: 0.2; }
+      50% { opacity: 0.85; }
+      100% { transform: translate(var(--sx), var(--sy)); opacity: 0.15; }
     }
 
     .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { z-index: 25 !important; }
@@ -237,7 +263,7 @@
     .palette-button:hover { transform:scale(1.1); background:var(--rosa-electrico); color:var(--turquesa-cenote); }
 
     /* Modals */
-    .music-player-modal, .guestbook, .events-modal {
+    .music-player-modal, .guestbook, .events-modal, .photos-modal {
       position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
       width:460px; max-width:92vw; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
       border:3px solid var(--bugambilia-neon); border-radius:28px;
@@ -245,11 +271,11 @@
       z-index:10000; opacity:0; visibility:hidden;
       transition:all .6s cubic-bezier(0.175,0.885,0.32,1.275);
     }
-    .music-player-modal.active, .guestbook.active, .events-modal.active {
+    .music-player-modal.active, .guestbook.active, .events-modal.active, .photos-modal.active {
       opacity:1; visibility:visible; transform:translate(-50%, -50%);
     }
 
-    .music-title, .events-title {
+    .music-title, .events-title, .photos-title {
       text-align:center; font-family:'Cinzel',serif; font-size: clamp(1.6rem, 5vw, 1.9rem); margin-bottom:2.2rem;
       color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
     }
@@ -292,7 +318,7 @@
     }
     .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
 
-    .guestbook h2, .events-title {
+    .guestbook h2, .events-title, .photos-title {
       text-align:center; font-family:'Cinzel',serif; font-size: clamp(1.9rem, 6vw, 2.4rem); margin-bottom:2.2rem;
       background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
@@ -318,16 +344,26 @@
     }
     .close-btn:hover { color:var(--turquesa-cenote); transform:scale(1.2) rotate(90deg); }
 
+    .past-events-title {
+      text-align:center;
+      font-family:'Cinzel',serif;
+      font-size:1.35rem;
+      margin: 2.5rem 0 1.2rem;
+      color: var(--rosa-electrico);
+      letter-spacing: 3px;
+      opacity: 0.9;
+    }
+
     @media (max-width: 768px) {
       .vertical-menu { right:6vw; bottom:8vh; gap:2.2rem; }
       .vertical-menu li { font-size:1.55rem; }
-      .music-player-modal, .guestbook, .events-modal { width:92vw; padding:2.5rem 1.8rem; }
+      .music-player-modal, .guestbook, .events-modal, .photos-modal { width:92vw; padding:2.5rem 1.8rem; }
       .social-icons { gap:1.2rem; top:2.5vh; }
       .palette-button { width:48px; height:48px; font-size:1.45rem; top:2.5vh; right:3vw; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .blob, .firefly, .hanzel-logo span { animation: none !important; }
+      .blob, .firefly, .spore, .hanzel-logo span { animation: none !important; }
     }
   </style>
 </head>
@@ -336,6 +372,9 @@
  
   <!-- Luciérnagas -->
   <div class="fireflies" id="fireflies"></div>
+  <!-- Esporas (solo se ven en palette-esporas) -->
+  <div class="spores" id="spores"></div>
+
   <div class="intro">
     <div class="lava-container">
       <svg style="display:none;">
@@ -353,6 +392,7 @@
     <ul class="vertical-menu">
       <li id="music-link">música</li>
       <li id="events-link">eventos</li>
+      <li id="photos-link">fotografías</li>
       <li id="guestbook-link">guestbook</li>
     </ul>
     <div class="est">EST. 2006</div>
@@ -399,11 +439,23 @@
   <div class="events-modal" id="events-modal">
     <button class="close-btn" id="close-events">×</button>
     <h2 class="events-title">Próximo Evento</h2>
+    <p style="text-align:center; font-size:1.25rem; letter-spacing:2px; margin:1.5rem 0 2rem; opacity:0.9;">
+      próximo evento: ??????
+    </p>
+
+    <div class="past-events-title">Eventos pasados 2026</div>
     <img class="event-cover" id="event-cover" src="https://hanzelconzeta.github.io/evento250726.JPG" alt="Evento Hanzel">
     <p style="text-align:center; font-size:1.05rem; line-height:1.4; margin:0.8rem 0; background:rgba(255,255,255,0.05); padding:0.9rem; border-radius:12px;">
       como en el 2006 (set acústico)<br>
       25/07/26 @ Café Hogar. Monterrey, Nuevo León
     </p>
+  </div>
+
+  <!-- PHOTOS MODAL -->
+  <div class="photos-modal" id="photos-modal">
+    <button class="close-btn" id="close-photos">×</button>
+    <h2 class="photos-title">Fotografías</h2>
+    <p style="text-align:center; opacity:0.7; margin-top:2rem;">Próximamente...</p>
   </div>
 
   <!-- Guestbook -->
@@ -458,6 +510,27 @@
       }
     }
     createFireflies();
+
+    // Esporas (partículas muy finas y sutiles)
+    function createSpores() {
+      const container = document.getElementById('spores');
+      container.innerHTML = '';
+      for (let i = 0; i < 120; i++) {
+        const spore = document.createElement('div');
+        spore.className = 'spore';
+        spore.style.left = `${Math.random() * 100}vw`;
+        spore.style.top = `${Math.random() * 100}vh`;
+        const size = Math.random() * 1.2 + 0.8;
+        spore.style.width = `${size}px`;
+        spore.style.height = `${size}px`;
+        spore.style.animationDuration = `${Math.random() * 18 + 16}s`;
+        spore.style.animationDelay = `-${Math.random() * 25}s`;
+        spore.style.setProperty('--sx', `${(Math.random() - 0.5) * 180}px`);
+        spore.style.setProperty('--sy', `${(Math.random() - 0.5) * 220 - 80}px`);
+        container.appendChild(spore);
+      }
+    }
+    createSpores();
   </script>
 
   <script type="module">
@@ -508,6 +581,7 @@
         switchAlbum(parseInt(btn.dataset.index));
       });
     });
+
     // Eventos
     document.getElementById('events-link').addEventListener('click', () => {
       document.getElementById('events-modal').classList.add('active');
@@ -515,6 +589,15 @@
     document.getElementById('close-events').addEventListener('click', () => {
       document.getElementById('events-modal').classList.remove('active');
     });
+
+    // Fotografías
+    document.getElementById('photos-link').addEventListener('click', () => {
+      document.getElementById('photos-modal').classList.add('active');
+    });
+    document.getElementById('close-photos').addEventListener('click', () => {
+      document.getElementById('photos-modal').classList.remove('active');
+    });
+
     // Guestbook
     document.getElementById('guestbook-link').addEventListener('click', () => {
       document.getElementById('guestbook').classList.add('active');
@@ -574,12 +657,13 @@
     }
     setupModalOutsideClick('music-player-modal');
     setupModalOutsideClick('events-modal');
+    setupModalOutsideClick('photos-modal');
     setupModalOutsideClick('guestbook');
 
     // Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === "Escape") {
-        document.querySelectorAll('.music-player-modal.active, .guestbook.active, .events-modal.active').forEach(modal => {
+        document.querySelectorAll('.music-player-modal.active, .guestbook.active, .events-modal.active, .photos-modal.active').forEach(modal => {
           modal.classList.remove('active');
           if (modal.id === 'music-player-modal') {
             document.getElementById('spotify-iframe').src = '';
@@ -591,6 +675,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
