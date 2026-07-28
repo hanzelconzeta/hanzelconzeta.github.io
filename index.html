@@ -263,7 +263,7 @@
     .palette-button:hover { transform:scale(1.1); background:var(--rosa-electrico); color:var(--turquesa-cenote); }
 
     /* Modals */
-    .music-player-modal, .guestbook, .events-modal, .photos-modal {
+    .music-player-modal, .guestbook, .events-modal, .historia-modal {
       position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
       width:460px; max-width:92vw; max-height:92vh; overflow-y:auto; background:rgba(11,0,20,0.98);
       border:3px solid var(--bugambilia-neon); border-radius:28px;
@@ -271,11 +271,11 @@
       z-index:10000; opacity:0; visibility:hidden;
       transition:all .6s cubic-bezier(0.175,0.885,0.32,1.275);
     }
-    .music-player-modal.active, .guestbook.active, .events-modal.active, .photos-modal.active {
+    .music-player-modal.active, .guestbook.active, .events-modal.active, .historia-modal.active {
       opacity:1; visibility:visible; transform:translate(-50%, -50%);
     }
 
-    .music-title, .events-title, .photos-title {
+    .music-title, .events-title, .historia-title {
       text-align:center; font-family:'Cinzel',serif; font-size: clamp(1.6rem, 5vw, 1.9rem); margin-bottom:2.2rem;
       color:var(--dorado-luznegra); cursor:pointer; transition:all .3s;
     }
@@ -318,7 +318,7 @@
     }
     .spotify-btn:hover { transform:scale(1.05); background:#1DB954; }
 
-    .guestbook h2, .events-title, .photos-title {
+    .guestbook h2, .events-title, .historia-title {
       text-align:center; font-family:'Cinzel',serif; font-size: clamp(1.9rem, 6vw, 2.4rem); margin-bottom:2.2rem;
       background:linear-gradient(90deg, var(--dorado-luznegra), var(--bugambilia-neon));
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
@@ -357,7 +357,7 @@
     @media (max-width: 768px) {
       .vertical-menu { right:6vw; bottom:8vh; gap:2.2rem; }
       .vertical-menu li { font-size:1.55rem; }
-      .music-player-modal, .guestbook, .events-modal, .photos-modal { width:92vw; padding:2.5rem 1.8rem; }
+      .music-player-modal, .guestbook, .events-modal, .historia-modal { width:92vw; padding:2.5rem 1.8rem; }
       .social-icons { gap:1.2rem; top:2.5vh; }
       .palette-button { width:48px; height:48px; font-size:1.45rem; top:2.5vh; right:3vw; }
     }
@@ -390,9 +390,9 @@
     </div>
     <h1 class="hanzel-logo">HANZEL</h1>
     <ul class="vertical-menu">
+      <li id="historia-link">historia</li>
       <li id="music-link">música</li>
       <li id="events-link">eventos</li>
-      <li id="photos-link">fotografías</li>
       <li id="guestbook-link">guestbook</li>
     </ul>
     <div class="est">EST. 2006</div>
@@ -451,10 +451,10 @@
     </p>
   </div>
 
-  <!-- PHOTOS MODAL -->
-  <div class="photos-modal" id="photos-modal">
-    <button class="close-btn" id="close-photos">×</button>
-    <h2 class="photos-title">Fotografías</h2>
+  <!-- HISTORIA MODAL -->
+  <div class="historia-modal" id="historia-modal">
+    <button class="close-btn" id="close-historia">×</button>
+    <h2 class="historia-title">Historia</h2>
     <p style="text-align:center; opacity:0.7; margin-top:2rem;">Próximamente...</p>
   </div>
 
@@ -511,11 +511,11 @@
     }
     createFireflies();
 
-    // Esporas (partículas muy finas y sutiles)
+    // Esporas (partículas muy finas y sutiles) - triplicadas
     function createSpores() {
       const container = document.getElementById('spores');
       container.innerHTML = '';
-      for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < 360; i++) {
         const spore = document.createElement('div');
         spore.className = 'spore';
         spore.style.left = `${Math.random() * 100}vw`;
@@ -590,12 +590,12 @@
       document.getElementById('events-modal').classList.remove('active');
     });
 
-    // Fotografías
-    document.getElementById('photos-link').addEventListener('click', () => {
-      document.getElementById('photos-modal').classList.add('active');
+    // Historia
+    document.getElementById('historia-link').addEventListener('click', () => {
+      document.getElementById('historia-modal').classList.add('active');
     });
-    document.getElementById('close-photos').addEventListener('click', () => {
-      document.getElementById('photos-modal').classList.remove('active');
+    document.getElementById('close-historia').addEventListener('click', () => {
+      document.getElementById('historia-modal').classList.remove('active');
     });
 
     // Guestbook
@@ -657,13 +657,13 @@
     }
     setupModalOutsideClick('music-player-modal');
     setupModalOutsideClick('events-modal');
-    setupModalOutsideClick('photos-modal');
+    setupModalOutsideClick('historia-modal');
     setupModalOutsideClick('guestbook');
 
     // Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === "Escape") {
-        document.querySelectorAll('.music-player-modal.active, .guestbook.active, .events-modal.active, .photos-modal.active').forEach(modal => {
+        document.querySelectorAll('.music-player-modal.active, .guestbook.active, .events-modal.active, .historia-modal.active').forEach(modal => {
           modal.classList.remove('active');
           if (modal.id === 'music-player-modal') {
             document.getElementById('spotify-iframe').src = '';
