@@ -481,13 +481,8 @@
     }
     const logo = document.querySelector('.hanzel-logo');
     logo.innerHTML = logo.textContent.split('').map(c => `<span>${c}</span>`).join('');
+
     let currentPalette = 'cementerio';
-    document.getElementById('palette-toggle').addEventListener('click', () => {
-      const palettes = ['cementerio','amoriv','esporas','petite','kantoamere','16rosas','zlooshee'];
-      document.body.classList.remove(...palettes.map(p => `palette-${p}`));
-      currentPalette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
-      document.body.classList.add(`palette-${currentPalette}`);
-    });
 
     // Luciérnagas
     function createFireflies() {
@@ -509,13 +504,12 @@
         container.appendChild(fly);
       }
     }
-    createFireflies();
 
-    // Esporas (partículas muy finas y sutiles) - triplicadas
+    // Esporas (1200 partículas)
     function createSpores() {
       const container = document.getElementById('spores');
       container.innerHTML = '';
-      for (let i = 0; i < 3600; i++) {
+      for (let i = 0; i < 1200; i++) {
         const spore = document.createElement('div');
         spore.className = 'spore';
         spore.style.left = `${Math.random() * 100}vw`;
@@ -530,7 +524,30 @@
         container.appendChild(spore);
       }
     }
-    createSpores();
+
+    // Función para limpiar ambos contenedores
+    function clearParticles() {
+      document.getElementById('fireflies').innerHTML = '';
+      document.getElementById('spores').innerHTML = '';
+    }
+
+    // Inicializar según la paleta de arranque
+    createFireflies();
+
+    document.getElementById('palette-toggle').addEventListener('click', () => {
+      const palettes = ['cementerio','amoriv','esporas','petite','kantoamere','16rosas','zlooshee'];
+      document.body.classList.remove(...palettes.map(p => `palette-${p}`));
+      currentPalette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
+      document.body.classList.add(`palette-${currentPalette}`);
+
+      // Crear / destruir partículas según la paleta activa
+      clearParticles();
+      if (currentPalette === 'cementerio') {
+        createFireflies();
+      } else if (currentPalette === 'esporas') {
+        createSpores();
+      }
+    });
   </script>
 
   <script type="module">
@@ -675,6 +692,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
