@@ -232,11 +232,11 @@
     .est, .chi-rho, .social-icons, .palette-button, .vertical-menu { z-index: 25 !important; }
     .vertical-menu {
       position:absolute; right:5vw; bottom:10vh; list-style:none; display:flex; flex-direction:column;
-      gap:2.8rem;
+      gap:2.2rem;
     }
     .vertical-menu li {
-      font-family:'Cinzel',serif; font-size:1.7rem; color:var(--dorado-luznegra);
-      text-transform:uppercase; letter-spacing:6px; cursor:pointer; opacity:0.85;
+      font-family:'Cinzel',serif; font-size:1.35rem; color:var(--dorado-luznegra);
+      text-transform:uppercase; letter-spacing:5px; cursor:pointer; opacity:0.85;
       transition:all .4s cubic-bezier(0.23,1,0.32,1.275);
     }
     .vertical-menu li:hover { color:#E0FFE6; text-shadow:0 0 40px #E0FFE6; transform:translateX(25px) scale(1.08); }
@@ -355,8 +355,8 @@
     }
 
     @media (max-width: 768px) {
-      .vertical-menu { right:6vw; bottom:8vh; gap:2.2rem; }
-      .vertical-menu li { font-size:1.55rem; }
+      .vertical-menu { right:6vw; bottom:8vh; gap:1.8rem; }
+      .vertical-menu li { font-size:1.2rem; }
       .music-player-modal, .guestbook, .events-modal, .historia-modal, .novedades-modal { width:92vw; padding:2.5rem 1.8rem; }
       .social-icons { gap:1.2rem; top:2.5vh; }
       .palette-button { width:48px; height:48px; font-size:1.45rem; top:2.5vh; right:3vw; }
@@ -440,30 +440,37 @@
   <!-- NOVEDADES MODAL -->
   <div class="novedades-modal" id="novedades-modal">
     <button class="close-btn" id="close-novedades">×</button>
-    <h2 class="novedades-title">Próxima Novedad</h2>
+    <h2 class="novedades-title">Novedades</h2>
     
-    <p style="text-align:center; font-size:1.35rem; letter-spacing:1px; margin:1.2rem 0 0.6rem; font-family:'Cinzel',serif; color:var(--rosa-electrico);">
+    <!-- 22/09/26 -->
+    <p style="text-align:center; font-size:1.05rem; letter-spacing:1px; margin:1.8rem 0 0.5rem; font-family:'Cinzel',serif; color:var(--rosa-electrico);">
+      22/09/26
+    </p>
+    <p style="text-align:center; font-size:1.25rem; letter-spacing:1px; margin:0 0 0.8rem; font-family:'Cinzel',serif;">
       Journey — Estreno en cines (EE.UU.)
     </p>
-    <p style="text-align:center; font-size:1.1rem; margin-bottom:1.4rem; opacity:0.9;">
-      2 de octubre de 2026
-    </p>
-    
-    <p style="text-align:left; font-size:1.05rem; line-height:1.6; margin:0 0 1.1rem; opacity:0.95;">
+    <p style="text-align:left; font-size:1.05rem; line-height:1.6; margin:0 0 0.8rem; opacity:0.95;">
       La canción <strong>Indeleble</strong> forma parte de la banda sonora de la película <em>Journey</em>.
     </p>
-    <p style="text-align:left; font-size:1.05rem; line-height:1.6; margin:0 0 1.1rem; opacity:0.95;">
+    <p style="text-align:left; font-size:1.05rem; line-height:1.6; margin:0 0 0.8rem; opacity:0.95;">
       Esta es la <strong>primera aparición de HANZEL en la pantalla grande</strong>.
     </p>
-    <p style="text-align:left; font-size:1.05rem; line-height:1.6; margin:0 0 1.8rem; opacity:0.95;">
+    <p style="text-align:left; font-size:1.05rem; line-height:1.6; margin:0 0 1.2rem; opacity:0.95;">
       Te invitamos a apoyar la película y descubrir el contexto en el que suena la canción.
     </p>
-    
-    <div style="text-align:center; margin-bottom:2.2rem;">
+    <div style="text-align:center; margin-bottom:2.5rem;">
       <a href="https://journeythemovie.com/" target="_blank" class="spotify-btn" style="display:inline-flex; width:auto; padding:13px 28px;">
         Ver página oficial → journeythemovie.com
       </a>
     </div>
+
+    <!-- 09/09/26 -->
+    <p style="text-align:center; font-size:1.05rem; letter-spacing:1px; margin:1.8rem 0 0.5rem; font-family:'Cinzel',serif; color:var(--rosa-electrico);">
+      09/09/26
+    </p>
+    <p style="text-align:center; font-size:1.25rem; letter-spacing:1px; margin:0 0 1.5rem; font-family:'Cinzel',serif;">
+      Arbologías regresa a casa
+    </p>
   </div>
 
   <!-- EVENTS MODAL -->
